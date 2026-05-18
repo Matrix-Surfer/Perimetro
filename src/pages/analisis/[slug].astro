@@ -1,0 +1,161 @@
+---
+import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const articulos = await getCollection('analisis');
+  return articulos.map((articulo) => ({
+    params: { slug: articulo.id },
+    props: { articulo },
+  }));
+}
+
+const { articulo } = Astro.props;
+const { Content } = await render(articulo);
+---
+
+<Base title={articulo.data.title}>
+  <Nav />
+
+  <article class="articulo-wrap">
+
+    <header class="articulo-header">
+      <a href="/analisis" class="articulo-back">← Análisis</a>
+      <div class="articulo-categoria">{articulo.data.categoria}</div>
+      <h1 class="articulo-title">{articulo.data.title}</h1>
+      <p class="articulo-resumen">{articulo.data.resumen}</p>
+      <div class="articulo-meta">
+        <span>{articulo.data.date}</span>
+        <span>·</span>
+        <span>{articulo.data.tiempo_lectura} min lectura</span>
+        <span>·</span>
+        <span>J. Silva</span>
+      </div>
+    </header>
+
+    <div class="articulo-body">
+      <Content />
+    </div>
+
+  </article>
+
+  <Footer />
+</Base>
+
+<style>
+  .articulo-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 740px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .articulo-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .articulo-back {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .articulo-back:hover { color: var(--accent); }
+
+  .articulo-categoria {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .articulo-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .articulo-resumen {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted2);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+  }
+
+  .articulo-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .articulo-body {
+    padding-bottom: 6rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted2);
+  }
+
+  .articulo-body p {
+    margin-bottom: 1.5rem;
+  }
+
+  .articulo-body strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .articulo-body h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    margin: 2.5rem 0 1rem;
+  }
+
+  .articulo-body h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 2rem 0 0.75rem;
+  }
+
+  .articulo-body a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .articulo-body blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25rem;
+    margin: 2rem 0;
+    color: var(--muted2);
+    font-style: italic;
+  }
+</style>
