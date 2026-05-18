@@ -2,6 +2,11 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const articulos = await getCollection('analisis');
+articulos.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const recientes = articulos.slice(0, 5);
 ---
 
 <Base title="Inicio">
@@ -94,56 +99,26 @@ import Footer from '../components/Footer.astro';
       </div>
 
       <div class="article-list">
-        <a href="/analisis/cuando-la-ai-se-vuelve-arma" class="article-item">
-  <div class="article-num">01</div>
-  <div class="article-body">
-    <div class="article-tags">
-      <span class="tag accent">Ciberseguridad</span>
-      <span class="tag">AI</span>
-    </div>
-    <h3 class="article-title">Cuando la IA se vuelve arma</h3>
-                       <div class="article-meta">
-              <span>15 mayo 2026</span>
-              <span>·</span>
-              <span>5 min lectura</span>
-            </div>
-          </div>
-        </a>
-
-        <div class="article-item">
-          <div class="article-num">02</div>
-          <div class="article-body">
-            <div class="article-tags">
-              <span class="tag accent">AI</span>
-              <span class="tag">Herramientas</span>
-            </div>
-            <h3 class="article-title">ChatGPT vs Copilot vs Gemini: cuál conviene a tu empresa</h3>
-            <p class="article-excerpt">Una comparativa sin tecnicismos para decidir qué herramienta de IA encaja con tu operación actual.</p>
-            <div class="article-meta">
-              <span>3 mayo 2025</span>
-              <span>·</span>
-              <span>7 min lectura</span>
-            </div>
-          </div>
+  {recientes.map((articulo, index) => (
+    <a href={`/analisis/${articulo.id}`} class="article-item">
+      <div class="article-num">{String(index + 1).padStart(2, '0')}</div>
+      <div class="article-body">
+        <div class="article-tags">
+          <span class="tag accent">{articulo.data.categoria}</span>
+          {articulo.data.tags.slice(0, 1).map(tag => (
+            <span class="tag">{tag}</span>
+          ))}
         </div>
-
-        <div class="article-item">
-          <div class="article-num">03</div>
-          <div class="article-body">
-            <div class="article-tags">
-              <span class="tag red">Alerta</span>
-              <span class="tag">Phishing</span>
-            </div>
-            <h3 class="article-title">Así lucen los correos fraudulentos que atacan empresas mexicanas</h3>
-            <p class="article-excerpt">Con ejemplos reales y señales concretas para que cualquier persona en tu equipo pueda identificarlos.</p>
-            <div class="article-meta">
-              <span>28 abril 2025</span>
-              <span>·</span>
-              <span>4 min lectura</span>
-            </div>
-          </div>
+        <h3 class="article-title">{articulo.data.title}</h3>
+        <div class="article-meta">
+          <span>{articulo.data.date}</span>
+          <span>·</span>
+          <span>{articulo.data.tiempo_lectura} min lectura</span>
         </div>
       </div>
+    </a>
+  ))}
+</div>
     </main>
 
     <!-- SIDEBAR -->
