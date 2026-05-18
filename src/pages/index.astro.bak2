@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perímetro — AI y Ciberseguridad</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #0a0c0f;
+      --bg2:       #0f1218;
+      --bg3:       #141820;
+      --border:    #1e2530;
+      --accent:    #00e5ff;
+      --accent2:   #ff4444;
+      --text:      #e8eaf0;
+      --muted:     #5a6478;
+      --muted2:    #8892a4;
+      --tag-bg:    #0d1a20;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Fraunces', Georgia, serif;
+      font-size: 17px;
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.6;
+    }
+
+    /* ── SCANLINE ── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 60px;
+      background: rgba(10,12,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted2);
+    }
+
+    .nav-links li a:hover { color: var(--accent); transition: color 0.2s; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-subscribe {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--accent);
+      padding: 0.4rem 1rem;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn-subscribe:hover { opacity: 0.85; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* background grid lines */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.4;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 3rem 5rem 2.5rem;
+      position: relative;
+      border-right: 1px solid var(--border);
+    }
+
+    .hero-statement {
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-statement p {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(1.8rem, 3.2vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.25;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .hero-statement em {
+      color: var(--accent);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted2);
+      letter-spacing: 0.05em;
+      line-height: 1.6;
+      max-width: 360px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+
+    .hero-meta .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent2);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 2.5rem 5rem 3rem;
+      position: relative;
+    }
+
+    .featured-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      border-left: 2px solid var(--accent2);
+      padding-left: 0.75rem;
+    }
+
+    .featured-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: relative;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+
+    .featured-card:hover { border-color: var(--accent); }
+
+    .featured-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+    }
+
+    .card-category {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-excerpt {
+      font-size: 0.9rem;
+      color: var(--muted2);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    .read-more {
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.2s;
+    }
+
+    .featured-card:hover .read-more { gap: 0.7rem; }
+
+    /* ── TICKER ── */
+    .ticker-wrap {
+      background: var(--accent);
+      overflow: hidden;
+      height: 36px;
+      display: flex;
+      align-items: center;
+    }
+
+    .ticker-track {
+      display: flex;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+
+    .ticker-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--bg);
+      padding: 0 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .ticker-sep { opacity: 0.4; }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── MAIN GRID ── */
+    .main-content {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 4rem;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.12em;
+      color: var(--text);
+    }
+
+    .section-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── ARTICLE LIST ── */
+    .article-list { display: flex; flex-direction: column; gap: 0; }
+
+    .article-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .article-item:hover { background: var(--bg2); margin: 0 -1rem; padding: 1.75rem 1rem; }
+
+    .article-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.8rem;
+      color: var(--border);
+      line-height: 1;
+      align-self: start;
+      padding-top: 4px;
+      transition: color 0.2s;
+    }
+
+    .article-item:hover .article-num { color: var(--accent); }
+
+    .article-body {}
+
+    .article-tags {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      background: var(--tag-bg);
+      color: var(--muted2);
+      border: 1px solid var(--border);
+    }
+
+    .tag.accent { color: var(--accent); border-color: var(--accent); background: rgba(0,229,255,0.05); }
+    .tag.red { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+
+    .article-title {
+      font-family: 'Fraunces', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .article-excerpt {
+      font-size: 0.85rem;
+      color: var(--muted2);
+      font-weight: 300;
+      line-height: 1.55;
+      margin-bottom: 0.6rem;
+    }
+
+    .article-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* ── SIDEBAR ── */
+    .sidebar { display: flex; flex-direction: column; gap: 2.5rem; }
+
+    .sidebar-widget {
+      border: 1px solid var(--border);
+      background: var(--bg2);
+    }
+
+    .widget-header {
+      padding: 0.9rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.15em;
+      color: var(--muted2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .widget-header::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+    }
+
+    /* radar widget */
+    .radar-list { padding: 0.5rem 0; }
+
+    .radar-item {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .radar-item:last-child { border-bottom: none; }
+    .radar-item:hover { background: var(--bg3); }
+
+    .radar-source {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+
+    .radar-title {
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.4;
+      font-weight: 400;
+    }
+
+    .radar-time {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.55rem;
+      color: var(--muted);
+      margin-top: 0.3rem;
+    }
+
+    /* newsletter widget */
+    .newsletter-body { padding: 1.25rem; }
+
+    .newsletter-body p {
+      font-size: 0.82rem;
+      color: var(--muted2);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    .newsletter-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      padding: 0.65rem 0.75rem;
+      margin-bottom: 0.75rem;
+      outline: none;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-input:focus { border-color: var(--accent); }
+    .newsletter-input::placeholder { color: var(--muted); }
+
+    .newsletter-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.75rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .newsletter-btn:hover { opacity: 0.85; }
+
+    /* about widget */
+    .about-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .about-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #0066ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      color: var(--bg);
+      letter-spacing: 0.05em;
+    }
+
+    .about-name {
+      font-family: 'Fraunces', serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .about-bio {
+      font-size: 0.8rem;
+      color: var(--muted2);
+      line-height: 1.55;
+      font-weight: 300;
+    }
+
+    /* ── ALERTA BANNER ── */
+    .alerta-banner {
+      max-width: 1300px;
+      margin: 0 auto 0;
+      padding: 0 2.5rem;
+    }
+
+    .alerta-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+    }
+
+    .alerta-section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot-red {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--accent2);
+      animation: pulse 1.5s infinite;
+    }
+
+    .alerta-ver-todas {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      color: var(--accent2);
+      text-transform: uppercase;
+    }
+
+    .alerta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(255,68,68,0.2);
+    }
+
+    .alerta-inner {
+      background: rgba(255,68,68,0.05);
+      border-right: 1px solid rgba(255,68,68,0.15);
+      padding: 1rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .alerta-inner--dark {
+      background: rgba(255,68,68,0.02);
+    }
+
+    .alerta-inner:last-child { border-right: none; }
+
+    .alerta-badge {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.5rem;
+      display: inline-block;
+      width: fit-content;
+    }
+
+    .alerta-badge--defacement {
+      color: var(--accent2);
+      border: 1px solid rgba(255,68,68,0.4);
+      background: rgba(255,68,68,0.08);
+    }
+
+    .alerta-badge--filtracion {
+      color: #ffaa00;
+      border: 1px solid rgba(255,170,0,0.4);
+      background: rgba(255,170,0,0.08);
+    }
+
+    .alerta-badge--darkforum {
+      color: var(--muted2);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .alerta-text {
+      font-size: 0.8rem;
+      color: var(--muted2);
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    .alerta-text strong { color: var(--text); font-weight: 600; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 4rem;
+      padding: 2rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1300px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .footer-note {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-align: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-statement { animation: fadeUp 0.6s ease both; }
+    .hero-sub       { animation: fadeUp 0.6s 0.15s ease both; }
+    .hero-meta      { animation: fadeUp 0.6s 0.3s ease both; }
+    .featured-card  { animation: fadeUp 0.6s 0.2s ease both; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">PERÍMETRO</div>
+    <ul class="nav-links">
+      <li><a href="#">Análisis</a></li>
+      <li><a href="#">Radar</a></li>
+      <li><a href="#">Alertas</a></li>
+      <li><a href="#">Glosario</a></li>
+      <li><a href="#">Acerca</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="btn-subscribe">Suscribirse</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-statement">
+        <p><em>AI y Ciberseguridad</em> —<br>Lo que importa,<br>cuando importa.</p>
+      </div>
+      <div class="hero-sub">Sigo de cerca el mundo de AI y ciberseguridad — y te cuento lo que encontré, lo que me preocupa, y lo que creo que importa para tu negocio.</div>
+      <div class="hero-meta">
+        <span class="dot"></span>
+        <span>Actualizado semanalmente</span>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="featured-label">— Análisis destacado</div>
+      <div class="featured-card">
+        <div class="card-category">AI Empresarial</div>
+        <h2 class="card-title">¿Tu empresa necesita IA ahora mismo, o puede esperar?</h2>
+        <p class="card-excerpt">
+          Cada semana aparece una herramienta nueva que promete transformar tu negocio. La pregunta real no es si adoptar IA — es cuándo y para qué. Una guía práctica para decidir sin dejarse llevar por el ruido.
+        </p>
+        <div class="card-footer">
+          <span>12 mayo 2025 · 6 min lectura</span>
+          <span class="read-more">Leer análisis →</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker-wrap">
+    <div class="ticker-track">
+      <div class="ticker-item">
+        <span>Radar semanal disponible</span>
+        <span class="ticker-sep">///</span>
+        <span>Nueva vulnerabilidad en routers domésticos afecta a PYMES</span>
+        <span class="ticker-sep">///</span>
+        <span>Microsoft Copilot: qué puede hacer realmente por tu empresa</span>
+        <span class="ticker-sep">///</span>
+        <span>Phishing en México creció 43% en el último trimestre</span>
+        <span class="ticker-sep">///</span>
+        <span>Guía: cómo proteger tu correo empresarial sin gastar de más</span>
+        <span class="ticker-sep">///</span>
+      </div>
+      <!-- duplicate for infinite scroll -->
+      <div class="ticker-item">
+        <span>Radar semanal disponible</span>
+        <span class="ticker-sep">///</span>
+        <span>Nueva vulnerabilidad en routers domésticos afecta a PYMES</span>
+        <span class="ticker-sep">///</span>
+        <span>Microsoft Copilot: qué puede hacer realmente por tu empresa</span>
+        <span class="ticker-sep">///</span>
+        <span>Phishing en México creció 43% en el último trimestre</span>
+        <span class="ticker-sep">///</span>
+        <span>Guía: cómo proteger tu correo empresarial sin gastar de más</span>
+        <span class="ticker-sep">///</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ALERTAS -->
+  <div class="alerta-banner">
+    <div style="height:1.5rem"></div>
+    <div class="alerta-header-bar">
+      <span class="alerta-section-label">
+        <span class="dot-red"></span>
+        Alertas de Ciberseguridad — México
+      </span>
+      <a href="#" class="alerta-ver-todas">Ver todas →</a>
+    </div>
+
+    <div class="alerta-grid">
+      <div class="alerta-inner">
+        <div class="alerta-badge alerta-badge--defacement">Defacement</div>
+        <p class="alerta-text">
+          <strong>Subdominio de la Secretaría de Administración y Finanzas de CDMX comprometido</strong> — El grupo Chronus modificó páginas públicas. Dependencias con dominios .cdmx.gob.mx deben verificar integridad de sus sitios.
+        </p>
+      </div>
+
+      <div class="alerta-inner">
+        <div class="alerta-badge alerta-badge--filtracion">Filtración</div>
+        <p class="alerta-text">
+          <strong>Información operativa del municipio de Acapulco, Gro. expuesta</strong> — El grupo Sociedad Privada 157 publicó documentos supuestamente internos. Posible exposición de datos de proveedores y contratistas.
+        </p>
+      </div>
+
+      <div class="alerta-inner alerta-inner--dark">
+        <div class="alerta-badge alerta-badge--darkforum">Dark Forum</div>
+        <p class="alerta-text">
+          <strong>Publicación en foros clandestinos menciona empresa del sector financiero en México</strong> — Se monitorea la situación. Sin confirmación oficial aún.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main-content">
+
+    <!-- ARTICLES -->
+    <main>
+      <div class="section-header">
+        <div class="section-title">Análisis Recientes</div>
+        <a href="#" class="section-link">Ver todos →</a>
+      </div>
+
+      <div class="article-list">
+
+        <div class="article-item">
+          <div class="article-num">01</div>
+          <div class="article-body">
+            <div class="article-tags">
+              <span class="tag accent">Ciberseguridad</span>
+              <span class="tag">PYME</span>
+            </div>
+            <h3 class="article-title">El error más común de seguridad en empresas de 10 a 50 personas — y cómo corregirlo hoy</h3>
+            <p class="article-excerpt">No es falta de presupuesto ni de tecnología. Es algo mucho más simple que la mayoría ignora hasta que es tarde.</p>
+            <div class="article-meta">
+              <span>8 mayo 2025</span>
+              <span>·</span>
+              <span>5 min lectura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-item">
+          <div class="article-num">02</div>
+          <div class="article-body">
+            <div class="article-tags">
+              <span class="tag accent">AI</span>
+              <span class="tag">Herramientas</span>
+            </div>
+            <h3 class="article-title">ChatGPT vs Copilot vs Gemini: cuál conviene a tu empresa según lo que ya usas</h3>
+            <p class="article-excerpt">Una comparativa sin tecnicismos para decidir qué herramienta de IA encaja con tu operación actual, sin cambiar todo lo que ya funciona.</p>
+            <div class="article-meta">
+              <span>3 mayo 2025</span>
+              <span>·</span>
+              <span>7 min lectura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-item">
+          <div class="article-num">03</div>
+          <div class="article-body">
+            <div class="article-tags">
+              <span class="tag red">Alerta</span>
+              <span class="tag">Correo</span>
+              <span class="tag">Phishing</span>
+            </div>
+            <h3 class="article-title">Así lucen los correos fraudulentos que están atacando empresas mexicanas este mes</h3>
+            <p class="article-excerpt">Con ejemplos reales y señales concretas para que cualquier persona en tu equipo pueda identificarlos antes de hacer clic.</p>
+            <div class="article-meta">
+              <span>28 abril 2025</span>
+              <span>·</span>
+              <span>4 min lectura</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="article-item">
+          <div class="article-num">04</div>
+          <div class="article-body">
+            <div class="article-tags">
+              <span class="tag accent">Estrategia IT</span>
+            </div>
+            <h3 class="article-title">La nube no es para todos: cuándo tiene sentido y cuándo es solo moda</h3>
+            <p class="article-excerpt">Migrar a la nube puede ahorrarte dinero o costarte el doble, dependiendo de cómo opera tu empresa. Aquí cómo saberlo antes de comprometerte.</p>
+            <div class="article-meta">
+              <span>21 abril 2025</span>
+              <span>·</span>
+              <span>6 min lectura</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- RADAR -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Radar de la Semana</div>
+        <div class="radar-list">
+          <div class="radar-item">
+            <div class="radar-source">tldrsec</div>
+            <div class="radar-title">Nueva técnica de ataque via QR codes afecta usuarios corporativos</div>
+            <div class="radar-time">Hace 2 días</div>
+          </div>
+          <div class="radar-item">
+            <div class="radar-source">MIT Tech Review</div>
+            <div class="radar-title">OpenAI lanza herramientas para automatizar procesos empresariales</div>
+            <div class="radar-time">Hace 3 días</div>
+          </div>
+          <div class="radar-item">
+            <div class="radar-source">Cybervizer</div>
+            <div class="radar-title">Cómo los equipos pequeños de IT pueden usar IA para hacer más con menos</div>
+            <div class="radar-time">Hace 4 días</div>
+          </div>
+          <div class="radar-item">
+            <div class="radar-source">SANS</div>
+            <div class="radar-title">Vulnerabilidad crítica en VPNs populares sin parche disponible aún</div>
+            <div class="radar-time">Hace 5 días</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSLETTER -->
+      <div class="sidebar-widget">
+        <div class="widget-header">Newsletter semanal</div>
+        <div class="newsletter-body">
+          <p>Lo más importante de la semana, curado y explicado en menos de 5 minutos. Sin spam.</p>
+          <input class="newsletter-input" type="email" placeholder="tucorreo@empresa.com" />
+          <button class="newsletter-btn">Suscribirme gratis</button>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">PERÍMETRO</div>
+    <div class="footer-note">
+      jsilva.io · Hecho en México<br>
+      <span style="opacity:0.5">AI y Ciberseguridad para empresas que crecen</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Análisis</a>
+      <a href="#">Radar</a>
+      <a href="#">Alertas</a>
+      <a href="#">Acerca</a>
+    </div>
+  </footer>
+
+</body>
+</html>

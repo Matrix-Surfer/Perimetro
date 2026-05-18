@@ -12,6 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/mdx": "^5.0.6",
+    "@fontsource/fraunces": "^5.2.9",
     "astro": "^6.3.3"
   }
 }
