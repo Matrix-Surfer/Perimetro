@@ -1,0 +1,189 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+const terminos = [
+  {
+    termino: "Ransomware",
+    categoria: "Ciberseguridad",
+    definicion: "Software malicioso que secuestra los archivos de tu empresa y exige un pago para devolverlos. Es como si alguien cambiara todas las cerraduras de tu oficina y te pidiera dinero por las llaves.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Phishing",
+    categoria: "Ciberseguridad",
+    definicion: "Correos, mensajes o sitios falsos que imitan a empresas reales para robar tus contraseñas o datos. El nombre más común en México: correos falsos del SAT o de tu banco.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Autenticación de dos factores (2FA)",
+    categoria: "Seguridad",
+    definicion: "Una segunda capa de seguridad al iniciar sesión — además de tu contraseña, necesitas confirmar tu identidad con un código que llega a tu teléfono. Es una de las medidas más efectivas y económicas que puede implementar cualquier empresa.",
+    impacto: "Protección"
+  },
+  {
+    termino: "LLM (Large Language Model)",
+    categoria: "AI",
+    definicion: "El tipo de inteligencia artificial detrás de herramientas como ChatGPT, Copilot o Gemini. Son modelos entrenados con enormes cantidades de texto que pueden generar, resumir y analizar lenguaje de forma muy natural.",
+    impacto: "Neutro"
+  },
+  {
+    termino: "Defacement",
+    categoria: "Ciberseguridad",
+    definicion: "Cuando un atacante modifica visualmente un sitio web — cambia imágenes, textos o deja un mensaje. Es como si alguien pintara tu fachada sin permiso. Generalmente es un ataque de visibilidad, no de robo de datos.",
+    impacto: "Medio"
+  },
+  {
+    termino: "VPN (Red Privada Virtual)",
+    categoria: "Seguridad",
+    definicion: "Una conexión cifrada entre tu dispositivo e internet. Útil para empleados que trabajan desde casa o en redes públicas. No es infalible, pero agrega una capa importante de protección.",
+    impacto: "Protección"
+  },
+  {
+    termino: "Zero-day",
+    categoria: "Ciberseguridad",
+    definicion: "Una vulnerabilidad en software que los fabricantes aún no conocen — y por lo tanto no tienen parche disponible. Son las más peligrosas porque no hay defensa directa aún.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Copilot",
+    categoria: "AI",
+    definicion: "Herramienta de inteligencia artificial de Microsoft integrada en sus productos (Word, Excel, Teams, Outlook). Ayuda a redactar, resumir y analizar información directamente en las apps que ya usa tu empresa.",
+    impacto: "Neutro"
+  }
+];
+---
+
+<Base title="Glosario">
+  <Nav />
+
+  <section class="glosario-wrap">
+
+    <div class="page-header">
+      <div class="page-label">— Referencia</div>
+      <h1 class="page-title">Glosario</h1>
+      <p class="page-desc">Términos de AI y ciberseguridad explicados en lenguaje de negocio. Sin tecnicismos innecesarios.</p>
+    </div>
+
+    <div class="glosario-content">
+      {terminos.map((t) => (
+        <div class="termino-item">
+          <div class="termino-header">
+            <h3 class="termino-nombre">{t.termino}</h3>
+            <div class="termino-meta">
+              <span class={`termino-categoria cat-${t.categoria.toLowerCase()}`}>{t.categoria}</span>
+              <span class={`termino-impacto imp-${t.impacto.toLowerCase()}`}>{t.impacto}</span>
+            </div>
+          </div>
+          <p class="termino-def">{t.definicion}</p>
+        </div>
+      ))}
+    </div>
+
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+  .glosario-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .page-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .page-desc {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted2);
+    font-style: italic;
+    max-width: 560px;
+  }
+
+  .glosario-content {
+    max-width: 860px;
+    padding-bottom: 4rem;
+  }
+
+  .termino-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .termino-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .termino-nombre {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  .termino-meta {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .termino-categoria, .termino-impacto {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+  }
+
+  .cat-ai { color: var(--accent); border-color: var(--accent); background: rgba(0,229,255,0.05); }
+  .cat-ciberseguridad { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+  .cat-seguridad { color: #ffaa00; border-color: rgba(255,170,0,0.4); background: rgba(255,170,0,0.05); }
+
+  .imp-alto { color: var(--accent2); border-color: rgba(255,68,68,0.3); }
+  .imp-medio { color: #ffaa00; border-color: rgba(255,170,0,0.3); }
+  .imp-protección { color: var(--accent); border-color: rgba(0,229,255,0.3); }
+  .imp-neutro { color: var(--muted); }
+
+  .termino-def {
+    font-size: 0.9rem;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+</style>

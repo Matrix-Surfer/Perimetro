@@ -1,0 +1,243 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Base title="Alertas">
+  <Nav />
+
+  <section class="alertas-wrap">
+
+    <div class="page-header">
+      <div class="page-label">
+        <span class="dot-red"></span>
+        En monitoreo activo
+      </div>
+      <h1 class="page-title">Alertas</h1>
+      <p class="page-desc">Incidentes de ciberseguridad relevantes para empresas mexicanas. Traducidos del lenguaje técnico a lo que realmente importa para tu operación.</p>
+    </div>
+
+    <div class="alertas-content">
+
+      <div class="alerta-card defacement">
+        <div class="alerta-card-header">
+          <span class="alerta-badge badge-defacement">Defacement</span>
+          <span class="alerta-date">15 mayo 2025</span>
+        </div>
+        <h3 class="alerta-title">Subdominio de la Secretaría de Administración y Finanzas de CDMX comprometido</h3>
+        <p class="alerta-desc">El grupo Chronus modificó páginas públicas de un subdominio gubernamental. Si tu empresa tiene trámites o integraciones con dependencias de CDMX, verifica que los portales que usas sean los oficiales.</p>
+        <div class="alerta-footer">
+          <span class="alerta-source">Fuente: Canal de monitoreo Telegram</span>
+          <span class="alerta-status status-active">Activa</span>
+        </div>
+      </div>
+
+      <div class="alerta-card filtracion">
+        <div class="alerta-card-header">
+          <span class="alerta-badge badge-filtracion">Filtración</span>
+          <span class="alerta-date">14 mayo 2025</span>
+        </div>
+        <h3 class="alerta-title">Información operativa del municipio de Acapulco, Guerrero expuesta</h3>
+        <p class="alerta-desc">El grupo Sociedad Privada 157 publicó documentos supuestamente internos del gobierno municipal. Posible exposición de datos de proveedores y contratistas. Si tu empresa tiene contratos con el municipio, monitorea comunicaciones oficiales.</p>
+        <div class="alerta-footer">
+          <span class="alerta-source">Fuente: Canal de monitoreo Telegram</span>
+          <span class="alerta-status status-active">Activa</span>
+        </div>
+      </div>
+
+      <div class="alerta-card darkforum">
+        <div class="alerta-card-header">
+          <span class="alerta-badge badge-darkforum">Dark Forum</span>
+          <span class="alerta-date">13 mayo 2025</span>
+        </div>
+        <h3 class="alerta-title">Publicación en foros clandestinos menciona empresa del sector financiero en México</h3>
+        <p class="alerta-desc">Se detectó una publicación en foros de la dark web mencionando datos de una empresa financiera mexicana. Se monitorea la situación. Sin confirmación oficial aún.</p>
+        <div class="alerta-footer">
+          <span class="alerta-source">Fuente: Canal de monitoreo Telegram</span>
+          <span class="alerta-status status-monitoring">En monitoreo</span>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+  .alertas-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .page-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .dot-red {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--accent2);
+    animation: pulse 1.5s infinite;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .page-desc {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted2);
+    font-style: italic;
+    max-width: 560px;
+  }
+
+  .alertas-content {
+    max-width: 860px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-bottom: 4rem;
+  }
+
+  .alerta-card {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    position: relative;
+  }
+
+  .alerta-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .defacement::before { background: var(--accent2); }
+  .filtracion::before { background: #ffaa00; }
+  .darkforum::before { background: var(--muted); }
+
+  .alerta-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+  }
+
+  .alerta-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .badge-defacement {
+    color: var(--accent2);
+    border: 1px solid rgba(255,68,68,0.4);
+    background: rgba(255,68,68,0.08);
+  }
+
+  .badge-filtracion {
+    color: #ffaa00;
+    border: 1px solid rgba(255,170,0,0.4);
+    background: rgba(255,170,0,0.08);
+  }
+
+  .badge-darkforum {
+    color: var(--muted2);
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .alerta-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .alerta-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .alerta-desc {
+    font-size: 0.88rem;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.65;
+    margin-bottom: 1rem;
+  }
+
+  .alerta-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .alerta-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .alerta-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .status-active {
+    color: var(--accent2);
+    border: 1px solid rgba(255,68,68,0.3);
+    background: rgba(255,68,68,0.06);
+  }
+
+  .status-monitoring {
+    color: var(--muted2);
+    border: 1px solid var(--border);
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+</style>

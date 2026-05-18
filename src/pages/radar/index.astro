@@ -1,0 +1,201 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Base title="Radar">
+  <Nav />
+
+  <section class="radar-wrap">
+
+    <div class="page-header">
+      <div class="page-label">— Semanal</div>
+      <h1 class="page-title">Radar</h1>
+      <p class="page-desc">Lo más relevante de la semana en AI y ciberseguridad, curado y contextualizado para empresas mexicanas.</p>
+    </div>
+
+    <div class="radar-content">
+
+      <div class="radar-week">
+        <div class="week-header">
+          <span class="week-label">Semana del 12 al 16 de mayo, 2025</span>
+        </div>
+
+        <div class="radar-items">
+
+          <div class="radar-item">
+            <div class="radar-item-header">
+              <span class="radar-source">MIT Tech Review</span>
+              <span class="radar-category accent">AI</span>
+            </div>
+            <h3 class="radar-title">OpenAI lanza herramientas para automatizar procesos empresariales</h3>
+            <p class="radar-context">Lo que esto significa para tu empresa: las herramientas de automatización de OpenAI ahora están disponibles para empresas medianas sin necesidad de equipo técnico especializado.</p>
+            <div class="radar-meta">
+              <span>14 mayo 2025</span>
+            </div>
+          </div>
+
+          <div class="radar-item">
+            <div class="radar-item-header">
+              <span class="radar-source">tldrsec</span>
+              <span class="radar-category red">Seguridad</span>
+            </div>
+            <h3 class="radar-title">Nueva técnica de ataque via QR codes afecta usuarios corporativos</h3>
+            <p class="radar-context">Atacantes están usando códigos QR en correos aparentemente legítimos para robar credenciales. Cualquier empresa que use Microsoft 365 o Google Workspace está en riesgo.</p>
+            <div class="radar-meta">
+              <span>13 mayo 2025</span>
+            </div>
+          </div>
+
+          <div class="radar-item">
+            <div class="radar-item-header">
+              <span class="radar-source">Cybervizer</span>
+              <span class="radar-category accent">AI</span>
+            </div>
+            <h3 class="radar-title">Cómo los equipos pequeños de IT pueden usar IA para hacer más con menos</h3>
+            <p class="radar-context">Una guía práctica para equipos de 1 a 3 personas de IT que quieren aprovechar herramientas de IA sin presupuesto adicional.</p>
+            <div class="radar-meta">
+              <span>12 mayo 2025</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+  .radar-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .page-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .page-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .page-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .page-desc {
+    font-family: 'Fraunces', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--muted2);
+    font-style: italic;
+    max-width: 560px;
+  }
+
+  .radar-content { max-width: 860px; }
+
+  .week-header {
+    margin-bottom: 2rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .week-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .radar-items { display: flex; flex-direction: column; gap: 0; }
+
+  .radar-item {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .radar-item-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .radar-source {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .radar-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+  }
+
+  .radar-category.accent {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: rgba(0,229,255,0.05);
+  }
+
+  .radar-category.red {
+    color: var(--accent2);
+    border-color: var(--accent2);
+    background: rgba(255,68,68,0.05);
+  }
+
+  .radar-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .radar-context {
+    font-size: 0.88rem;
+    color: var(--muted2);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 0.6rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+
+  .radar-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+</style>

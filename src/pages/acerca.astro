@@ -1,0 +1,152 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Base title="Acerca">
+  <Nav />
+
+  <section class="acerca-wrap">
+    <div class="acerca-content">
+
+      <div class="acerca-header">
+        <div class="acerca-label">Quién está detrás</div>
+        <h1 class="acerca-title">Perímetro</h1>
+      </div>
+
+      <div class="acerca-body">
+        <p>
+          No soy analista de Wall Street ni investigador académico. Soy alguien que trabaja en el mundo de IT empresarial, sigue de cerca lo que pasa en AI y ciberseguridad, y decidió documentar lo que aprende — con foco en lo que realmente le sirve a una empresa mexicana.
+        </p>
+        <p>
+          Perímetro nació de una frustración simple: toda la información relevante sobre tecnología empresarial sale primero en inglés, llega tarde a México, y cuando llega ya perdió el contexto que importa para una PYME.
+        </p>
+        <p>
+          Aquí encontrarás análisis directo, alertas reales, y perspectiva práctica para quienes toman decisiones sin tener un departamento de IT.
+        </p>
+      </div>
+
+      <div class="acerca-divider"></div>
+
+      <div class="acerca-meta">
+        <div class="meta-item">
+          <div class="meta-label">Publicación</div>
+          <div class="meta-value">Perímetro</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Enfoque</div>
+          <div class="meta-value">AI · Ciberseguridad · IT Empresarial</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Audiencia</div>
+          <div class="meta-value">MiPYMES mexicanas</div>
+        </div>
+        <div class="meta-item">
+          <div class="meta-label">Frecuencia</div>
+          <div class="meta-value">Semanal</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
+</Base>
+
+<style>
+  .acerca-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .acerca-content {
+    max-width: 680px;
+    width: 100%;
+    padding: 6rem 2.5rem;
+  }
+
+  .acerca-header {
+    margin-bottom: 3rem;
+  }
+
+  .acerca-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .acerca-label::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .acerca-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 5rem;
+    letter-spacing: 0.08em;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .acerca-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .acerca-body p {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    color: var(--muted2);
+    line-height: 1.75;
+  }
+
+  .acerca-body p:first-child {
+    font-size: 1.15rem;
+    color: var(--text);
+  }
+
+  .acerca-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--accent);
+    margin-bottom: 3rem;
+  }
+
+  .acerca-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem 2rem;
+  }
+
+  .meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .meta-value {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    color: var(--text);
+    font-weight: 400;
+  }
+</style>
