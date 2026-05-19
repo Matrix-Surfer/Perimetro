@@ -1,6 +1,6 @@
 ---
 title: "Cuando la IA reduce el costo del ciberataque"
-date: "2025-05-15"
+date: "2026-05-15"
 categoria: "Ciberseguridad"
 tags: ["IA", "ciberseguridad", "PYME", "México"]
 resumen: "a inteligencia artificial está reduciendo el costo y la complejidad de muchos ciberataques. Procesos que antes requerían equipos especializados y semanas de trabajo ahora pueden automatizarse y ejecutarse con mayor velocidad, ampliando el riesgo para empresas de todos los tamaños."
@@ -34,6 +34,7 @@ La inteligencia artificial podría seguir una trayectoria similar.
 
 Algunas amenazas que ya comienzan a fortalecerse con IA incluyen:
 
+
 * correos de phishing más personalizados y difíciles de detectar,
 * generación automatizada de malware básico,
 * fraude mediante clonación de voz,
@@ -41,13 +42,16 @@ Algunas amenazas que ya comienzan a fortalecerse con IA incluyen:
 * automatización de reconocimiento y análisis de objetivos,
 * y ataques masivos con mayor capacidad de adaptación.
 
+
 La misma tecnología también está fortaleciendo la defensa.
+
 
 Plataformas como Microsoft, Google, Cloudflare y otros grandes proveedores están integrando sistemas de detección y respuesta asistidos por inteligencia artificial. Esto permite identificar comportamientos anómalos con mayor velocidad y automatizar ciertas tareas defensivas.
 
 El riesgo: muchas organizaciones podrían asumir que la IA defensiva resolverá automáticamente todos sus problemas de seguridad. No es así.
 
 La inteligencia artificial puede mejorar la capacidad de detección, pero no reemplaza procesos fundamentales como:
+
 
 * segmentación de redes,
 * respaldos seguros,
@@ -56,6 +60,7 @@ La inteligencia artificial puede mejorar la capacidad de detección, pero no ree
 * capacitación de usuarios,
 * monitoreo continuo,
 * y gestión adecuada de accesos.
+
 
 La discusión ya no es si la inteligencia artificial participará en los ciberataques. Eso ya está ocurriendo.
 
