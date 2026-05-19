@@ -3,7 +3,7 @@ title: "Cuando la IA reduce el costo del ciberataque"
 date: "2026-05-15"
 categoria: "Ciberseguridad"
 tags: ["IA", "ciberseguridad", "PYME", "México"]
-resumen: "a inteligencia artificial está reduciendo el costo y la complejidad de muchos ciberataques. Procesos que antes requerían equipos especializados y semanas de trabajo ahora pueden automatizarse y ejecutarse con mayor velocidad, ampliando el riesgo para empresas de todos los tamaños."
+resumen: "La inteligencia artificial está reduciendo el costo y la complejidad de muchos ciberataques. Procesos que antes requerían equipos especializados y semanas de trabajo ahora pueden automatizarse y ejecutarse con mayor velocidad, ampliando el riesgo para empresas de todos los tamaños."
 tiempo_lectura: 5
 destacado: true
 ---
