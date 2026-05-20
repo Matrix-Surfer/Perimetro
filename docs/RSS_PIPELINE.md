@@ -122,10 +122,9 @@ El cache persiste entre ejecuciones.
 Usa arrays de keywords para mover cada JSON a una subcarpeta:
 
 - **alertas** — amenazas operativas activas: ransomware, exploit, breach, CVE, zero-day, phishing, malware, leak, etc.
-- **radar** — tendencias y contexto estratégico: AI, automation, enterprise, report, policy, patch, cloud, etc.
-- **discard** — todo lo que no califica en ninguna de las anteriores
+- **radar** — todo lo demás: tendencias de AI, herramientas, reportes, seguridad general, noticias sin incidente activo
 
-Las alertas tienen prioridad: si un item califica para ambas categorías, va a alertas.
+Las alertas tienen prioridad. Si un item no califica para alertas, va a radar — no existe descarte por defecto.
 
 ---
 

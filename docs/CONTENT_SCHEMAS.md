@@ -209,15 +209,21 @@ Todas las colecciones tienen el campo `publicacion` para control de visibilidad.
 | Valor | Comportamiento |
 |---|---|
 | `published` | Visible públicamente |
-| `draft` | Oculto. Pendiente de revisión y edición |
-| `review` | Oculto. En revisión editorial |
+| `draft` | Oculto. Generado automáticamente, pendiente de enriquecimiento |
+| `review` | Oculto. Enriquecido por LLM, pendiente de aprobación humana |
 | `rejected` | Oculto. Descartado permanentemente |
 
 El campo es opcional. Si no está presente, el default es `published` — esto preserva el comportamiento del contenido creado antes de que existiera el campo.
 
-El contenido generado automáticamente por `generate-drafts.js` siempre incluye `publicacion: "draft"`.
+**Flujo del pipeline automático:**
 
-Para cambiar el estado de un draft usar:
+```
+generate-drafts.js → publicacion: "draft"
+enrich-drafts.js   → publicacion: "review"
+publish.js         → publicacion: "published" | "rejected"
+```
+
+`publish.js` solo muestra ítems con `publicacion: "review"`. Para promover a publicado:
 
 ```bash
 node scripts/publish.js

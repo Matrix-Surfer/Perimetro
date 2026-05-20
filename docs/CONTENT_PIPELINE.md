@@ -107,7 +107,7 @@ Creación manual interactiva:
 
 Generación automática desde RSS:
 - `scripts/fetch-rss.js` — descarga feeds RSS configurados
-- `scripts/classify-rss.js` — clasifica items en radar/alertas/discard
+- `scripts/classify-rss.js` — clasifica items en radar/alertas (sin descarte por defecto)
 - `scripts/generate-drafts.js` — genera Markdown desde items clasificados
 - `scripts/enrich-drafts.js` — enriquece context/resumen vía LLM (requiere `ANTHROPIC_API_KEY`)
 
@@ -138,7 +138,7 @@ Una vez revisado el draft, publicarlo con:
 node scripts/publish.js
 ```
 
-El script lista todos los drafts pendientes, permite seleccionar uno y cambiar su `publicacion` de `draft` a `published` (o `review` / `rejected`).
+El script lista todos los ítems con `publicacion: "review"`, permite seleccionar uno y cambiar su estado a `published` o `rejected`.
 
 Después, hacer push para que Cloudflare Pages despliegue:
 
