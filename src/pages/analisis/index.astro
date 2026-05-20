@@ -1,7 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+const articulos = await getCollection('analisis');
+articulos.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
 
 <Base title="Análisis">
@@ -18,55 +22,26 @@ import Footer from '../../components/Footer.astro';
     <div class="analisis-content">
       <div class="article-list">
 
-        <div class="article-item">
-          <div class="article-num">01</div>
-          <div class="article-body">
-            <div class="article-tags">
-              <span class="tag accent">AI Empresarial</span>
+        {articulos.map((articulo, index) => (
+          <a href={`/analisis/${articulo.id}`} class="article-item">
+            <div class="article-num">{String(index + 1).padStart(2, '0')}</div>
+            <div class="article-body">
+              <div class="article-tags">
+                <span class="tag accent">{articulo.data.categoria}</span>
+                {articulo.data.tags.slice(0, 1).map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+              <h3 class="article-title">{articulo.data.title}</h3>
+              <p class="article-excerpt">{articulo.data.resumen}</p>
+              <div class="article-meta">
+                <span>{articulo.data.date}</span>
+                <span>·</span>
+                <span>{articulo.data.tiempo_lectura} min lectura</span>
+              </div>
             </div>
-            <h3 class="article-title">¿Tu empresa necesita IA ahora mismo, o puede esperar?</h3>
-            <p class="article-excerpt">Cada semana aparece una herramienta nueva que promete transformar tu negocio. La pregunta real no es si adoptar IA — es cuándo y para qué.</p>
-            <div class="article-meta">
-              <span>12 mayo 2025</span>
-              <span>·</span>
-              <span>6 min lectura</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="article-item">
-          <div class="article-num">02</div>
-          <div class="article-body">
-            <div class="article-tags">
-              <span class="tag accent">Ciberseguridad</span>
-              <span class="tag">PYME</span>
-            </div>
-            <h3 class="article-title">El error más común de seguridad en empresas de 10 a 50 personas</h3>
-            <p class="article-excerpt">No es falta de presupuesto ni de tecnología. Es algo mucho más simple que la mayoría ignora hasta que es tarde.</p>
-            <div class="article-meta">
-              <span>8 mayo 2025</span>
-              <span>·</span>
-              <span>5 min lectura</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="article-item">
-          <div class="article-num">03</div>
-          <div class="article-body">
-            <div class="article-tags">
-              <span class="tag accent">AI</span>
-              <span class="tag">Herramientas</span>
-            </div>
-            <h3 class="article-title">ChatGPT vs Copilot vs Gemini: cuál conviene a tu empresa</h3>
-            <p class="article-excerpt">Una comparativa sin tecnicismos para decidir qué herramienta de IA encaja con tu operación actual.</p>
-            <div class="article-meta">
-              <span>3 mayo 2025</span>
-              <span>·</span>
-              <span>7 min lectura</span>
-            </div>
-          </div>
-        </div>
+          </a>
+        ))}
 
       </div>
     </div>
@@ -132,6 +107,8 @@ import Footer from '../../components/Footer.astro';
     padding: 1.75rem 0;
     border-bottom: 1px solid var(--border);
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
 
   .article-num {
