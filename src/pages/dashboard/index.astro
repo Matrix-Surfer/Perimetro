@@ -1,0 +1,420 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allAnalisis = await getCollection('analisis');
+const allRadar    = await getCollection('radar');
+const allAlertas  = await getCollection('alertas');
+
+function countByState(items: any[]) {
+  return {
+    draft:     items.filter(i => i.data.publicacion === 'draft').length,
+    review:    items.filter(i => i.data.publicacion === 'review').length,
+    published: items.filter(i => i.data.publicacion === 'published').length,
+    rejected:  items.filter(i => i.data.publicacion === 'rejected').length,
+    total:     items.length,
+  };
+}
+
+const statsAnalisis = countByState(allAnalisis);
+const statsRadar    = countByState(allRadar);
+const statsAlertas  = countByState(allAlertas);
+
+const totalDraft     = statsAnalisis.draft     + statsRadar.draft     + statsAlertas.draft;
+const totalReview    = statsAnalisis.review    + statsRadar.review    + statsAlertas.review;
+const totalPublished = statsAnalisis.published + statsRadar.published + statsAlertas.published;
+const totalRejected  = statsAnalisis.rejected  + statsRadar.rejected  + statsAlertas.rejected;
+const total          = allAnalisis.length + allRadar.length + allAlertas.length;
+const ratioPct       = total > 0 ? Math.round((totalPublished / total) * 100) : 0;
+
+type Item = {
+  collection: string;
+  title: string;
+  publicacion: string;
+  date: string;
+  id: string;
+  tipo?: string;
+  source?: string;
+};
+
+const combined: Item[] = [
+  ...allAnalisis.map(i => ({
+    collection: 'analisis',
+    title: i.data.title,
+    publicacion: i.data.publicacion,
+    date: i.data.date,
+    id: i.id,
+  })),
+  ...allRadar.map(i => ({
+    collection: 'radar',
+    title: i.data.title,
+    publicacion: i.data.publicacion,
+    date: i.data.pubDate?.toISOString().split('T')[0] ?? '',
+    source: i.data.source,
+    id: i.id,
+  })),
+  ...allAlertas.map(i => ({
+    collection: 'alertas',
+    title: i.data.title,
+    publicacion: i.data.publicacion,
+    date: i.data.date,
+    tipo: i.data.tipo,
+    id: i.id,
+  })),
+];
+
+combined.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+const recent = combined.slice(0, 40);
+
+const buildTime = new Date().toISOString();
+---
+
+<Base title="Dashboard Editorial">
+  <Nav />
+
+  <main class="dash">
+
+    <header class="dash-header">
+      <div class="dash-header-left">
+        <span class="dash-eyebrow">Sistema editorial</span>
+        <h1 class="dash-title">Dashboard</h1>
+      </div>
+      <div class="dash-header-right">
+        <span class="dash-build-label">build-time</span>
+        <span class="dash-build-time">{buildTime}</span>
+      </div>
+    </header>
+
+    <!-- PIPELINE STATE -->
+    <section class="dash-section">
+      <h2 class="dash-section-title">Estado del pipeline</h2>
+      <div class="pipeline-grid">
+
+        {[
+          { label: 'Análisis', stats: statsAnalisis, col: 'analisis' },
+          { label: 'Radar',    stats: statsRadar,    col: 'radar' },
+          { label: 'Alertas',  stats: statsAlertas,  col: 'alertas' },
+        ].map(({ label, stats, col }) => (
+          <div class="pipeline-card">
+            <div class="pipeline-card-header">
+              <span class={`col-badge col-badge--${col}`}>{col}</span>
+              <span class="pipeline-total">{stats.total} total</span>
+            </div>
+            <div class="pipeline-rows">
+              <div class="pipeline-row">
+                <span class="pr-label">draft</span>
+                <span class="pr-val state-draft">{stats.draft}</span>
+              </div>
+              <div class="pipeline-row">
+                <span class="pr-label">review</span>
+                <span class="pr-val state-review">{stats.review}</span>
+              </div>
+              <div class="pipeline-row">
+                <span class="pr-label">published</span>
+                <span class="pr-val state-published">{stats.published}</span>
+              </div>
+              {stats.rejected > 0 && (
+                <div class="pipeline-row">
+                  <span class="pr-label">rejected</span>
+                  <span class="pr-val state-rejected">{stats.rejected}</span>
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+
+      </div>
+    </section>
+
+    <!-- MÉTRICAS GLOBALES -->
+    <section class="dash-section">
+      <h2 class="dash-section-title">Métricas globales</h2>
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-val">{total}</span>
+          <span class="metric-label">Total items</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-val state-draft">{totalDraft}</span>
+          <span class="metric-label">En draft</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-val state-review">{totalReview}</span>
+          <span class="metric-label">En revisión</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-val state-published">{totalPublished}</span>
+          <span class="metric-label">Publicados</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-val">{ratioPct}%</span>
+          <span class="metric-label">Ratio publicado</span>
+        </div>
+        {totalRejected > 0 && (
+          <div class="metric-card">
+            <span class="metric-val state-rejected">{totalRejected}</span>
+            <span class="metric-label">Rechazados</span>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- ACTIVIDAD RECIENTE -->
+    <section class="dash-section">
+      <h2 class="dash-section-title">Actividad reciente <span class="dash-section-sub">— últimos {recent.length} items por fecha</span></h2>
+      <div class="activity-table">
+        <div class="activity-header">
+          <span>Fecha</span>
+          <span>Colección</span>
+          <span>Título</span>
+          <span>Estado</span>
+        </div>
+        {recent.map(item => (
+          <div class="activity-row">
+            <span class="act-date">{item.date}</span>
+            <span class={`col-badge col-badge--${item.collection}`}>{item.collection}</span>
+            <span class="act-title">
+              {item.publicacion === 'published'
+                ? <a href={`/${item.collection}/${item.id}`}>{item.title}</a>
+                : item.title
+              }
+            </span>
+            <span class={`act-state state-${item.publicacion}`}>{item.publicacion}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+.dash {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+/* Header */
+.dash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.dash-eyebrow {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 0.3rem;
+}
+.dash-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  line-height: 1;
+}
+.dash-header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+.dash-build-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.dash-build-time {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--muted2);
+}
+
+/* Sections */
+.dash-section {
+  margin-bottom: 3rem;
+}
+.dash-section-title {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  margin-bottom: 1rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 0.6rem;
+}
+.dash-section-sub {
+  color: var(--muted);
+  font-size: 0.68rem;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Pipeline grid */
+.pipeline-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.pipeline-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.2rem 1.4rem;
+}
+.pipeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.pipeline-total {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+.pipeline-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+.pipeline-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pr-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--muted2);
+}
+.pr-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+/* Metrics grid */
+.metrics-grid {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.metric-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 110px;
+}
+.metric-val {
+  font-family: 'DM Mono', monospace;
+  font-size: 2rem;
+  line-height: 1;
+  color: var(--text);
+}
+.metric-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+
+/* Activity table */
+.activity-table {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.activity-header {
+  display: grid;
+  grid-template-columns: 100px 90px 1fr 90px;
+  padding: 0.6rem 1rem;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+.activity-row {
+  display: grid;
+  grid-template-columns: 100px 90px 1fr 90px;
+  padding: 0.55rem 1rem;
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  gap: 0.5rem;
+}
+.activity-row:last-child { border-bottom: none; }
+.activity-row:hover { background: var(--bg3); }
+.act-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  color: var(--muted2);
+  white-space: nowrap;
+}
+.act-title {
+  font-size: 0.82rem;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.act-title a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.act-title a:hover { text-decoration: underline; }
+.act-state {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  text-align: right;
+}
+
+/* Collection badges */
+.col-badge {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 2px;
+}
+.col-badge--analisis { background: #1a2040; color: #6699ff; }
+.col-badge--radar    { background: #001a1a; color: var(--accent); }
+.col-badge--alertas  { background: #1a0a0a; color: var(--accent2); }
+
+/* State colors */
+.state-draft     { color: var(--muted2); }
+.state-review    { color: #f59e0b; }
+.state-published { color: #22c55e; }
+.state-rejected  { color: var(--accent2); }
+
+@media (max-width: 700px) {
+  .pipeline-grid { grid-template-columns: 1fr; }
+  .activity-header,
+  .activity-row { grid-template-columns: 80px 75px 1fr; }
+  .activity-header span:last-child,
+  .act-state { display: none; }
+}
+</style>
