@@ -1,7 +1,16 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+
+const items = await getCollection('radar');
+items.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+const categoryClass: Record<string, string> = {
+  'AI': 'accent',
+  'Seguridad': 'red',
+};
 ---
 
 <Base title="Radar">
@@ -17,50 +26,22 @@ import Footer from '../../components/Footer.astro';
 
     <div class="radar-content">
 
-      <div class="radar-week">
-        <div class="week-header">
-          <span class="week-label">Semana del 12 al 16 de mayo, 2025</span>
-        </div>
+      <div class="radar-items">
 
-        <div class="radar-items">
-
-          <div class="radar-item">
+        {items.map((item) => (
+          <a class="radar-item">
             <div class="radar-item-header">
-              <span class="radar-source">MIT Tech Review</span>
-              <span class="radar-category accent">AI</span>
+              <span class="radar-source">{item.data.source}</span>
+              <span class={`radar-category ${categoryClass[item.data.category] ?? ''}`}>{item.data.category}</span>
             </div>
-            <h3 class="radar-title">OpenAI lanza herramientas para automatizar procesos empresariales</h3>
-            <p class="radar-context">Lo que esto significa para tu empresa: las herramientas de automatización de OpenAI ahora están disponibles para empresas medianas sin necesidad de equipo técnico especializado.</p>
+            <h3 class="radar-title">{item.data.title}</h3>
+            <p class="radar-context">{item.data.context}</p>
             <div class="radar-meta">
-              <span>14 mayo 2025</span>
+              <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
             </div>
-          </div>
+          </a>
+        ))}
 
-          <div class="radar-item">
-            <div class="radar-item-header">
-              <span class="radar-source">tldrsec</span>
-              <span class="radar-category red">Seguridad</span>
-            </div>
-            <h3 class="radar-title">Nueva técnica de ataque via QR codes afecta usuarios corporativos</h3>
-            <p class="radar-context">Atacantes están usando códigos QR en correos aparentemente legítimos para robar credenciales. Cualquier empresa que use Microsoft 365 o Google Workspace está en riesgo.</p>
-            <div class="radar-meta">
-              <span>13 mayo 2025</span>
-            </div>
-          </div>
-
-          <div class="radar-item">
-            <div class="radar-item-header">
-              <span class="radar-source">Cybervizer</span>
-              <span class="radar-category accent">AI</span>
-            </div>
-            <h3 class="radar-title">Cómo los equipos pequeños de IT pueden usar IA para hacer más con menos</h3>
-            <p class="radar-context">Una guía práctica para equipos de 1 a 3 personas de IT que quieren aprovechar herramientas de IA sin presupuesto adicional.</p>
-            <div class="radar-meta">
-              <span>12 mayo 2025</span>
-            </div>
-          </div>
-
-        </div>
       </div>
 
     </div>

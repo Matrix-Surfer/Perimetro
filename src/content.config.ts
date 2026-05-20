@@ -18,8 +18,10 @@ const radar = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/radar' }),
   schema: z.object({
     title: z.string(),
-    date: z.string(),
-    semana: z.string(),
+    source: z.string(),
+    category: z.string(),
+    context: z.string(),
+    pubDate: z.coerce.date(),
   }),
 });
 
