@@ -7,6 +7,24 @@ import { getCollection } from 'astro:content';
 const articulos = await getCollection('analisis');
 articulos.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const recientes = articulos.slice(0, 5);
+const destacado = articulos.find(a => a.data.destacado) ?? articulos[0];
+
+const todasAlertas = await getCollection('alertas');
+todasAlertas.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+const alertasRecientes = todasAlertas.slice(0, 3);
+
+const radarItems = await getCollection('radar');
+radarItems.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const radarRecientes = radarItems.slice(0, 3);
+
+const alertaBadgeClass: Record<string, string> = {
+  'Defacement': 'alerta-badge--defacement',
+  'Filtración': 'alerta-badge--filtracion',
+  'Ransomware': 'alerta-badge--defacement',
+  'Phishing': 'alerta-badge--filtracion',
+  'Dark Forum': 'alerta-badge--darkforum',
+  'Otro': 'alerta-badge--darkforum',
+};
 ---
 
 <Base title="Inicio">
@@ -27,15 +45,15 @@ const recientes = articulos.slice(0, 5);
 
     <div class="hero-right">
       <div class="featured-label">— Análisis destacado</div>
-      <div class="featured-card">
-        <div class="card-category">AI Empresarial</div>
-        <h2 class="card-title">¿Tu empresa necesita IA ahora mismo, o puede esperar?</h2>
-        <p class="card-excerpt">Cada semana aparece una herramienta nueva que promete transformar tu negocio. La pregunta real no es si adoptar IA — es cuándo y para qué.</p>
+      <a href={`/analisis/${destacado.id}`} class="featured-card">
+        <div class="card-category">{destacado.data.categoria}</div>
+        <h2 class="card-title">{destacado.data.title}</h2>
+        <p class="card-excerpt">{destacado.data.resumen}</p>
         <div class="card-footer">
-          <span>12 mayo 2025 · 6 min lectura</span>
+          <span>{destacado.data.date} · {destacado.data.tiempo_lectura} min lectura</span>
           <span class="read-more">Leer análisis →</span>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 
@@ -75,18 +93,12 @@ const recientes = articulos.slice(0, 5);
       <a href="/alertas" class="alerta-ver-todas">Ver todas →</a>
     </div>
     <div class="alerta-grid">
-      <div class="alerta-inner">
-        <div class="alerta-badge alerta-badge--defacement">Defacement</div>
-        <p class="alerta-text"><strong>Subdominio de la Secretaría de Administración y Finanzas de CDMX comprometido</strong> — El grupo Chronus modificó páginas públicas.</p>
-      </div>
-      <div class="alerta-inner">
-        <div class="alerta-badge alerta-badge--filtracion">Filtración</div>
-        <p class="alerta-text"><strong>Información operativa del municipio de Acapulco expuesta</strong> — El grupo Sociedad Privada 157 publicó documentos supuestamente internos.</p>
-      </div>
-      <div class="alerta-inner alerta-inner--dark">
-        <div class="alerta-badge alerta-badge--darkforum">Dark Forum</div>
-        <p class="alerta-text"><strong>Publicación en foros clandestinos menciona empresa del sector financiero en México</strong> — Se monitorea la situación.</p>
-      </div>
+      {alertasRecientes.map((alerta) => (
+        <div class={`alerta-inner ${alerta.data.tipo === 'Dark Forum' ? 'alerta-inner--dark' : ''}`}>
+          <div class={`alerta-badge ${alertaBadgeClass[alerta.data.tipo] ?? 'alerta-badge--darkforum'}`}>{alerta.data.tipo}</div>
+          <p class="alerta-text"><strong>{alerta.data.title}</strong> — {alerta.data.resumen}</p>
+        </div>
+      ))}
     </div>
   </div>
 
@@ -126,21 +138,13 @@ const recientes = articulos.slice(0, 5);
       <div class="sidebar-widget">
         <div class="widget-header">Radar de la Semana</div>
         <div class="radar-list">
-          <div class="radar-item">
-            <div class="radar-source">tldrsec</div>
-            <div class="radar-title">Nueva técnica de ataque via QR codes afecta usuarios corporativos</div>
-            <div class="radar-time">Hace 2 días</div>
-          </div>
-          <div class="radar-item">
-            <div class="radar-source">MIT Tech Review</div>
-            <div class="radar-title">OpenAI lanza herramientas para automatizar procesos empresariales</div>
-            <div class="radar-time">Hace 3 días</div>
-          </div>
-          <div class="radar-item">
-            <div class="radar-source">Cybervizer</div>
-            <div class="radar-title">Cómo los equipos pequeños de IT pueden usar IA para hacer más con menos</div>
-            <div class="radar-time">Hace 4 días</div>
-          </div>
+          {radarRecientes.map((item) => (
+            <div class="radar-item">
+              <div class="radar-source">{item.data.source}</div>
+              <div class="radar-title">{item.data.title}</div>
+              <div class="radar-time">{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -269,12 +273,15 @@ const recientes = articulos.slice(0, 5);
   }
 
   .featured-card {
+    display: block;
     background: var(--bg2);
     border: 1px solid var(--border);
     padding: 2rem;
     position: relative;
     transition: border-color 0.3s;
     cursor: pointer;
+    text-decoration: none;
+    color: inherit;
   }
 
   .featured-card:hover { border-color: var(--accent); }
