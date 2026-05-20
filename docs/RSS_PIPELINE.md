@@ -91,6 +91,7 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 | `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con `context`/`resumen` mejorados y `publicacion: "review"` |
 | `scripts/publish.js` | `src/content/**/*.md` con `publicacion: "review"` | Mismos archivos con `publicacion: "published"` o `"rejected"` |
 | `scripts/validate-content.js` | `src/content/{radar,alertas}/*.md` | Reporte de errores en campos obligatorios |
+| `scripts/scheduler.js` | — | Ejecuta `run-pipeline.js` cada 30 min, persiste logs |
 
 ---
 
@@ -272,11 +273,39 @@ inbox/rss/
 
 ---
 
+## Automatización (scheduler.js)
+
+Para ejecución continua en desarrollo o servidor:
+
+```bash
+ANTHROPIC_API_KEY=sk-... node scripts/scheduler.js
+```
+
+Ejecuta el pipeline cada 30 minutos via `setInterval`. Las fallas no detienen el proceso — se registran y el siguiente ciclo corre normalmente.
+
+**Para producción se recomienda cron del sistema:**
+
+```bash
+# crontab -e
+*/30 * * * * cd /home/jess/Proyectos/perimetro && ANTHROPIC_API_KEY=sk-... node scripts/run-pipeline.js >> logs/pipeline.log 2>&1
+```
+
+---
+
+## Logs
+
+Cada ejecución genera una línea en `logs/pipeline-YYYY-MM-DD.log` (JSONL):
+
+```json
+{"timestamp":"2026-05-20T20:30:00.000Z","status":"ok","duration_ms":45231}
+{"timestamp":"2026-05-20T21:00:00.000Z","status":"error","error":"API 429","duration_ms":3210}
+```
+
+Los archivos `.log` están en `.gitignore`. El directorio `logs/` se trackea con `.gitkeep`.
+
+---
+
 ## Etapas futuras
-
-### Automatización por cron
-
-Ejecutar los tres scripts en secuencia periódicamente (cada 6-12 horas) mediante GitHub Actions scheduled workflow.
 
 ### Filtrado por relevancia México
 

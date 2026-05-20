@@ -81,6 +81,7 @@ Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, cont
 - [x] Enriquecimiento editorial con LLM (`scripts/enrich-drafts.js`)
 - [x] Orquestador de pipeline (`scripts/run-pipeline.js`)
 - [x] Validador de contenido (`scripts/validate-content.js`)
+- [x] Scheduler con logging persistente (`scripts/scheduler.js`, `logs/`)
 - [x] Sistema de estados editoriales (`publicacion`: draft / review / published / rejected)
 - [x] Script de publicación interactivo (`scripts/publish.js`)
 - [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `CONTENT_PIPELINE.md`, `CONTENT_SCHEMAS.md`, `RSS_PIPELINE.md`)
@@ -89,7 +90,7 @@ Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, cont
 
 - [ ] Newsletter — infraestructura de suscripción
 - [ ] Ingesta desde Telegram
-- [ ] Automatización por cron (GitHub Actions) para el pipeline RSS
+- [ ] Cron del sistema o GitHub Actions para ejecución desatendida en producción
 - [ ] Dashboards privados — monitoreo interno
 - [ ] Contenido premium
 - [ ] Servicios de consultoría
