@@ -8,7 +8,7 @@ El estado del pipeline se puede consultar en tiempo de build en:
 /dashboard
 ```
 
-Muestra conteos por colección (draft / review / published), métricas globales y tabla de actividad reciente ordenada por fecha.
+Muestra conteos por colección (draft / review / published), métricas globales y tabla de actividad reciente con fecha, colección, título, fuente, slug y estado — ordenada por fecha descendente.
 
 ---
 
