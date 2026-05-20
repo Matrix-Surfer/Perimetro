@@ -111,11 +111,11 @@ Ver detalles del pipeline RSS en `docs/RSS_PIPELINE.md`.
 **Obligatoria. Sin excepción.**
 
 El revisor debe:
+- Abrir el archivo `.md` en `src/content/[seccion]/`
 - Verificar que la información sea precisa
 - Completar las secciones "Pendiente"
 - Adaptar el tono al estilo editorial
 - Confirmar que cumple la guía editorial (`docs/EDITORIAL_GUIDE.md`)
-- Mover el archivo de `/drafts/` a `src/content/[seccion]/`
 
 **Ningún contenido generado automáticamente se publica sin revisión.**
 
@@ -123,9 +123,22 @@ El revisor debe:
 
 ### 5. Publicación
 
-Al hacer `git push` a `main`, Cloudflare Pages ejecuta el build de Astro y publica automáticamente.
+Una vez revisado el draft, publicarlo con:
 
-No hay paso manual de deploy.
+```bash
+node scripts/publish.js
+```
+
+El script lista todos los drafts pendientes, permite seleccionar uno y cambiar su `publicacion` de `draft` a `published` (o `review` / `rejected`).
+
+Después, hacer push para que Cloudflare Pages despliegue:
+
+```bash
+git add src/content/[seccion]/[slug].md
+git push
+```
+
+Cloudflare Pages ejecuta el build de Astro y publica automáticamente. No hay paso manual de deploy.
 
 ---
 

@@ -23,6 +23,7 @@ Definidos en: `src/content.config.ts`
 | `resumen` | string | Sí | Resumen corto. Se usa en SEO description y en listados |
 | `tiempo_lectura` | number | Sí | Tiempo estimado de lectura en minutos |
 | `destacado` | boolean | No | Si es `true`, aparece como artículo destacado en el home |
+| `publicacion` | enum | No | Estado editorial. Default: `published` |
 
 ### Ejemplo de frontmatter
 
@@ -35,6 +36,7 @@ tags: ["IA", "ciberseguridad", "PYME", "México"]
 resumen: "La inteligencia artificial está reduciendo el costo y la complejidad de muchos ciberataques..."
 tiempo_lectura: 5
 destacado: true
+publicacion: "published"
 ---
 ```
 
@@ -67,6 +69,7 @@ node scripts/create-analysis.js
 | `tipo` | enum | Sí | Ver tabla de tipos |
 | `status` | enum | Sí | Ver tabla de status |
 | `resumen` | string | Sí | Descripción breve del incidente y su impacto |
+| `publicacion` | enum | No | Estado editorial. Default: `published` |
 
 ### Tipos válidos (`tipo`)
 
@@ -96,6 +99,7 @@ date: "2025-05-15"
 tipo: "Defacement"
 status: "Activa"
 resumen: "El grupo Chronus modificó páginas públicas de un subdominio gubernamental..."
+publicacion: "published"
 ---
 ```
 
@@ -140,6 +144,7 @@ node scripts/create-alert.js
 | `category` | string | Sí | Categoría del ítem. Determina el color del badge |
 | `context` | string | Sí | Contexto editorial propio. Qué significa para empresas mexicanas |
 | `pubDate` | date | Sí | Fecha de publicación. Sin comillas en YAML para que se parsee como Date |
+| `publicacion` | enum | No | Estado editorial. Default: `published` |
 
 ### Categorías y colores en UI
 
@@ -158,6 +163,7 @@ source: "tldrsec"
 category: "Seguridad"
 context: "Atacantes están usando códigos QR en correos aparentemente legítimos para robar credenciales. Cualquier empresa que use Microsoft 365 o Google Workspace está en riesgo."
 pubDate: 2025-05-13
+publicacion: "published"
 ---
 ```
 
@@ -195,6 +201,31 @@ qr-phishing-corporativo.md
 - `radar`: campo `pubDate` como date YAML sin comillas (`YYYY-MM-DD`)
 
 Esta diferencia existe porque analisis/alertas usan `z.string()` y radar usa `z.coerce.date()` en el schema.
+
+### Campo publicacion (estado editorial)
+
+Todas las colecciones tienen el campo `publicacion` para control de visibilidad. Solo el contenido con `publicacion: "published"` aparece en el sitio.
+
+| Valor | Comportamiento |
+|---|---|
+| `published` | Visible públicamente |
+| `draft` | Oculto. Pendiente de revisión y edición |
+| `review` | Oculto. En revisión editorial |
+| `rejected` | Oculto. Descartado permanentemente |
+
+El campo es opcional. Si no está presente, el default es `published` — esto preserva el comportamiento del contenido creado antes de que existiera el campo.
+
+El contenido generado automáticamente por `generate-drafts.js` siempre incluye `publicacion: "draft"`.
+
+Para cambiar el estado de un draft usar:
+
+```bash
+node scripts/publish.js
+```
+
+**Nota sobre `alertas`:** esta colección ya tiene un campo `status` para el estado del incidente (`Activa / En monitoreo / Resuelta`). El campo `publicacion` es independiente y controla únicamente la visibilidad editorial.
+
+---
 
 ### Agregar una nueva categoría de radar
 
