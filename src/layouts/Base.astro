@@ -2,12 +2,18 @@
 export interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = 'Perímetro',
-  description = 'AI y Ciberseguridad — Lo que importa, cuando importa.'
+  description = 'AI y Ciberseguridad — Lo que importa, cuando importa.',
+  image,
 } = Astro.props;
+
+const pageTitle = `${title} — Perímetro`;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jsilva.io');
+const ogImage = image ?? `${Astro.site ?? 'https://jsilva.io'}/favicon.svg`;
 ---
 
 <!DOCTYPE html>
@@ -15,8 +21,22 @@ const {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{pageTitle}</title>
   <meta name="description" content={description} />
-  <title>{title} — Perímetro</title>
+  <link rel="canonical" href={canonicalURL} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
