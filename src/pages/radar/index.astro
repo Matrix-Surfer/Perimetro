@@ -37,7 +37,7 @@ const categoryClass: Record<string, string> = {
             <h3 class="radar-title">{item.data.title}</h3>
             <p class="radar-context">{item.data.context}</p>
             <div class="radar-meta">
-              <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+              <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</span>
             </div>
           </a>
         ))}

@@ -142,7 +142,7 @@ const alertaBadgeClass: Record<string, string> = {
             <div class="radar-item">
               <div class="radar-source">{item.data.source}</div>
               <div class="radar-title">{item.data.title}</div>
-              <div class="radar-time">{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+              <div class="radar-time">{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</div>
             </div>
           ))}
         </div>
