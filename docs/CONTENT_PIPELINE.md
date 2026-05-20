@@ -10,6 +10,8 @@ El estado del pipeline se puede consultar en tiempo de build en:
 
 Muestra conteos por colección (draft / review / published), métricas globales y tabla de actividad reciente con fecha, colección, título, fuente, slug y estado — ordenada por fecha descendente.
 
+**Acceso protegido** — el dashboard requiere contraseña via Basic Auth (Cloudflare Pages Function). La contraseña se configura como variable de entorno `DASHBOARD_PASSWORD` en el panel de Cloudflare Pages → Settings → Environment variables. Sin esa variable el endpoint retorna 503.
+
 ---
 
 ## Estado actual

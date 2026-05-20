@@ -82,7 +82,7 @@ Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, cont
 - [x] Orquestador de pipeline (`scripts/run-pipeline.js`)
 - [x] Validador de contenido (`scripts/validate-content.js`)
 - [x] Scheduler con logging persistente (`scripts/scheduler.js`, `logs/`)
-- [x] Dashboard editorial (`/dashboard`) — estado del pipeline, métricas y actividad reciente
+- [x] Dashboard editorial (`/dashboard`) — estado del pipeline, métricas y actividad reciente, protegido con Basic Auth
 - [x] Sistema de estados editoriales (`publicacion`: draft / review / published / rejected)
 - [x] Script de publicación interactivo (`scripts/publish.js`)
 - [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `CONTENT_PIPELINE.md`, `CONTENT_SCHEMAS.md`, `RSS_PIPELINE.md`)
