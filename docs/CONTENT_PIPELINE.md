@@ -39,16 +39,24 @@ Fuentes externas
   (tipo, relevancia, sección)
         |
         v
-    /drafts/
-  (borradores con frontmatter generado)
+  src/content/[seccion]/
+  publicacion: "draft"
         |
         v
-  Revision humana obligatoria
-  (edición, verificacion, aprobación)
+  Enriquecimiento editorial (LLM)
+  (context/resumen mejorados)
         |
         v
   src/content/[seccion]/
-  (publicación en producción)
+  publicacion: "review"
+        |
+        v
+  Revisión humana obligatoria
+  (edición, verificación, aprobación)
+        |
+        v
+  src/content/[seccion]/
+  publicacion: "published"
 ```
 
 ---
@@ -101,6 +109,7 @@ Generación automática desde RSS:
 - `scripts/fetch-rss.js` — descarga feeds RSS configurados
 - `scripts/classify-rss.js` — clasifica items en radar/alertas/discard
 - `scripts/generate-drafts.js` — genera Markdown desde items clasificados
+- `scripts/enrich-drafts.js` — enriquece context/resumen vía LLM (requiere `ANTHROPIC_API_KEY`)
 
 Ver detalles del pipeline RSS en `docs/RSS_PIPELINE.md`.
 

@@ -30,11 +30,24 @@ scripts/generate-drafts.js
         |
         v
 src/content/radar/              src/content/alertas/
+  publicacion: "draft"            publicacion: "draft"
+        |
+        v
+scripts/enrich-drafts.js
+  (mejora context/resumen via LLM)
+        |
+        v
+src/content/radar/              src/content/alertas/
+  publicacion: "review"           publicacion: "review"
         |
         v
 Revisión humana obligatoria
-  (completar secciones Pendiente,
-   verificar información, ajustar tono)
+  (verificar información, ajustar tono,
+   completar secciones Pendiente)
+        |
+        v
+node scripts/publish.js
+  (cambia publicacion a "published")
         |
         v
 git push → Cloudflare Pages (publicación automática)
@@ -45,12 +58,13 @@ git push → Cloudflare Pages (publicación automática)
 ## Ejecución
 
 ```bash
-node scripts/fetch-rss.js       # 1. Descargar feeds
-node scripts/classify-rss.js   # 2. Clasificar en radar/alertas/discard
-node scripts/generate-drafts.js # 3. Generar drafts Markdown
+node scripts/fetch-rss.js        # 1. Descargar feeds
+node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
+node scripts/generate-drafts.js  # 3. Generar drafts Markdown
+ANTHROPIC_API_KEY=sk-... node scripts/enrich-drafts.js  # 4. Enriquecer con LLM
 ```
 
-Cada script es idempotente: ejecutarlo múltiples veces no genera duplicados.
+Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no genera duplicados. El script de enriquecimiento solo procesa archivos con `publicacion: "draft"`.
 
 ---
 
@@ -60,7 +74,8 @@ Cada script es idempotente: ejecutarlo múltiples veces no genera duplicados.
 |---|---|---|
 | `scripts/fetch-rss.js` | `data/sources/rss_sources.json` | `inbox/rss/*.json` |
 | `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas,discard}/` |
-| `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` |
+| `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
+| `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con `context`/`resumen` mejorados y `publicacion: "review"` |
 
 ---
 
@@ -127,7 +142,29 @@ Para cada JSON en `inbox/rss/radar/` y `inbox/rss/alertas/`, genera un archivo `
 - `status`: "Activa" si hay señales de explotación en curso, sino "En monitoreo"
 - `resumen`: summary limpio truncado a ~220 caracteres
 
-Los drafts tienen secciones marcadas como "Pendiente" que el editor debe completar antes de publicar.
+Todos los drafts salen con `publicacion: "draft"` y secciones marcadas como "Pendiente".
+
+---
+
+## Enriquecimiento editorial (enrich-drafts.js)
+
+Llama a la API de Anthropic para mejorar los campos editoriales clave de cada draft.
+
+**Requiere:** variable de entorno `ANTHROPIC_API_KEY`.
+
+**Radar:** reescribe el campo `context` como un insight empresarial claro en español, enfocado en impacto operativo para MiPYMES mexicanas. Reemplaza los textos genéricos de template.
+
+**Alertas:** reescribe el campo `resumen` traduciendo el riesgo técnico a lenguaje de negocio, en español, sin tecnicismos innecesarios.
+
+**Reglas editoriales del LLM:**
+- No inventa datos ni información nueva
+- No hace clickbait ni exageración
+- Tono profesional y sobrio
+- Máximo 2-3 oraciones por campo
+
+**Output:** archivos procesados quedan con `publicacion: "review"`. Solo procesa archivos con `publicacion: "draft"` — los ya revisados o publicados no se tocan.
+
+**Este script no reemplaza la revisión humana.** Es una capa de claridad y síntesis antes de que el editor revise.
 
 ---
 
