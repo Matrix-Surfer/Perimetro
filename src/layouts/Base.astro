@@ -13,7 +13,7 @@ const {
 
 const pageTitle = `${title} — Perímetro`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jsilva.io');
-const ogImage = image ?? `${Astro.site ?? 'https://jsilva.io'}/favicon.svg`;
+const ogImage = image ?? new URL('favicon.svg', Astro.site ?? 'https://jsilva.io').toString();
 ---
 
 <!DOCTYPE html>
