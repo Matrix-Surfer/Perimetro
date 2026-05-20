@@ -18,5 +18,45 @@
   {
     "name": "CISA Alerts",
     "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+  },
+  {
+    "name": "BleepingComputer",
+    "url": "https://www.bleepingcomputer.com/feed/"
+  },
+  {
+    "name": "SecurityWeek",
+    "url": "https://feeds.feedburner.com/securityweek"
+  },
+  {
+    "name": "Graham Cluley",
+    "url": "https://www.grahamcluley.com/feed/"
+  },
+  {
+    "name": "Malwarebytes Labs",
+    "url": "https://www.malwarebytes.com/blog/feed/"
+  },
+  {
+    "name": "The Register — Security",
+    "url": "https://www.theregister.com/security/headlines.atom"
+  },
+  {
+    "name": "Ars Technica — Security",
+    "url": "https://arstechnica.com/security/feed/"
+  },
+  {
+    "name": "Wired — Security",
+    "url": "https://www.wired.com/feed/category/security/latest/rss"
+  },
+  {
+    "name": "SANS Internet Storm Center",
+    "url": "https://isc.sans.edu/rssfeed_full.xml"
+  },
+  {
+    "name": "MIT Technology Review",
+    "url": "https://www.technologyreview.com/feed/"
+  },
+  {
+    "name": "VentureBeat — AI",
+    "url": "https://venturebeat.com/category/ai/feed/"
   }
 ]
