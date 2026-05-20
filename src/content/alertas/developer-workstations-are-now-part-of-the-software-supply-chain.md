@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Supply chain attackers are not only trying to slip malicious code into trusted software. They are trying to steal the access that makes trusted software possible. Recently, three separate campaigns hit npm, PyPI, and…"
+publicacion: "draft"
 ---
 
 ## Contexto

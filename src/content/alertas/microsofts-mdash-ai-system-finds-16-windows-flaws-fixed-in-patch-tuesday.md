@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Microsoft has unveiled a new multi-model artificial intelligence (AI)-driven system called MDASH to facilitate vulnerability discovery and remediation at scale, adding that it's being tested by some customers as part of…"
+publicacion: "draft"
 ---
 
 ## Contexto

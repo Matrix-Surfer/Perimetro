@@ -4,6 +4,7 @@ date: "2026-06-18"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: ""
+publicacion: "draft"
 ---
 
 ## Contexto

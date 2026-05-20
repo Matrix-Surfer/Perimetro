@@ -4,6 +4,7 @@ pubDate: 2026-05-07
 source: "Wired — Security"
 category: "AI"
 context: "Aplica a empresas que dependen de servicios y dispositivos Google."
+publicacion: "draft"
 ---
 
 ## Resumen

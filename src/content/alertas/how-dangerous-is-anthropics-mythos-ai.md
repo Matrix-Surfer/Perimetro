@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Ransomware"
 status: "Activa"
 resumen: "Last month, Anthropic made a remarkable announcement about its new model, Claude Mythos Preview: it was so good at finding security vulnerabilities in software that the company would not release it to the general…"
+publicacion: "draft"
 ---
 
 ## Contexto

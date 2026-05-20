@@ -4,6 +4,7 @@ pubDate: 2026-05-13
 source: "Malwarebytes Labs"
 category: "Seguridad"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
+publicacion: "draft"
 ---
 
 ## Resumen

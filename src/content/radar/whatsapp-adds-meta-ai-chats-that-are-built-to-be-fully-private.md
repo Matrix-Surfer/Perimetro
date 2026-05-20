@@ -4,6 +4,7 @@ pubDate: 2026-05-13
 source: "Wired — Security"
 category: "AI"
 context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
+publicacion: "draft"
 ---
 
 ## Resumen

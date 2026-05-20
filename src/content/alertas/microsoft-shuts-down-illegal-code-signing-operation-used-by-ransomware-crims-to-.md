@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "'Thousands' of US victims, including 12+ machines owned and operated by Redmond"
+publicacion: "draft"
 ---
 
 ## Contexto

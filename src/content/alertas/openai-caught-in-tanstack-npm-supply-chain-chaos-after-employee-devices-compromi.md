@@ -4,6 +4,7 @@ date: "2026-05-15"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Attackers stole a limited amount of internal credential material after malware hidden in poisoned packages reached two staff machines"
+publicacion: "draft"
 ---
 
 ## Contexto

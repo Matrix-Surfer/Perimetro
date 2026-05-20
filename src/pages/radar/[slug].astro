@@ -5,7 +5,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const items = await getCollection('radar');
+  const items = (await getCollection('radar')).filter(i => i.data.publicacion === 'published');
   return items.map((item) => ({
     params: { slug: item.id },
     props: { item },

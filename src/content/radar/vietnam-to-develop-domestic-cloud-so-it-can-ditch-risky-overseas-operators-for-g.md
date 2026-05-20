@@ -4,6 +4,7 @@ pubDate: 2026-05-13
 source: "The Register — Security"
 category: "Seguridad"
 context: "Relevante para empresas con infraestructura o servicios en la nube."
+publicacion: "draft"
 ---
 
 ## Resumen

@@ -4,6 +4,7 @@ date: "2026-01-13"
 tipo: "Otro"
 status: "Activa"
 resumen: "Salesforce on Tuesday launched an entirely rebuilt version of Slackbot, the company's workplace assistant, transforming it from a simple notification tool into what executives describe as a fully powered AI agent…"
+publicacion: "draft"
 ---
 
 ## Contexto

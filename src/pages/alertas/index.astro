@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
-const alertas = await getCollection('alertas');
+const alertas = (await getCollection('alertas')).filter(a => a.data.publicacion === 'published');
 alertas.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
 const tipoCardClass: Record<string, string> = {

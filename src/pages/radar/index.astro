@@ -4,7 +4,7 @@ import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
-const items = await getCollection('radar');
+const items = (await getCollection('radar')).filter(i => i.data.publicacion === 'published');
 items.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 
 const categoryClass: Record<string, string> = {

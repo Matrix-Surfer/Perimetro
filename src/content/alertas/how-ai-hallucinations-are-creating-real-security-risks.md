@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "AI hallucinations are introducing serious security risks into critical infrastructure decision-making by exploiting human trust through highly confident yet incorrect outputs. When an AI model lacks certainty, it…"
+publicacion: "draft"
 ---
 
 ## Contexto

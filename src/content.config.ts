@@ -1,6 +1,8 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const PUBLICACION = z.enum(['draft', 'review', 'published', 'rejected']).optional().default('published');
+
 const analisis = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/analisis' }),
   schema: z.object({
@@ -11,6 +13,7 @@ const analisis = defineCollection({
     resumen: z.string(),
     tiempo_lectura: z.number(),
     destacado: z.boolean().optional(),
+    publicacion: PUBLICACION,
   }),
 });
 
@@ -22,6 +25,7 @@ const radar = defineCollection({
     category: z.string(),
     context: z.string(),
     pubDate: z.coerce.date(),
+    publicacion: PUBLICACION,
   }),
 });
 
@@ -33,6 +37,7 @@ const alertas = defineCollection({
     tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']),
     status: z.enum(['Activa', 'En monitoreo', 'Resuelta']),
     resumen: z.string(),
+    publicacion: PUBLICACION,
   }),
 });
 

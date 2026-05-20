@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Since the last update, the TeamPCP supply chain campaign produced its loudest stretch since the March Trivy disclosure: an officially confirmed Checkmarx Jenkins plugin compromise and a new self-spreading Mini…"
+publicacion: "draft"
 ---
 
 ## Contexto

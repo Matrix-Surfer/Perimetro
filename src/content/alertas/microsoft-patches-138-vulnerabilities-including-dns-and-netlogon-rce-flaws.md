@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Microsoft on Tuesday released patches for 138 security vulnerabilities spanning its product portfolio, although none of them have been listed as publicly known or under active attack. Of the 138 flaws, 30 are rated…"
+publicacion: "draft"
 ---
 
 ## Contexto

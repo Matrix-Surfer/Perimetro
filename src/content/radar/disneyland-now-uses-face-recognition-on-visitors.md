@@ -4,6 +4,7 @@ pubDate: 2026-05-02
 source: "Wired — Security"
 category: "AI"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
+publicacion: "draft"
 ---
 
 ## Resumen

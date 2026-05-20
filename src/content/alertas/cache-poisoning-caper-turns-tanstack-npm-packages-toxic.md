@@ -4,6 +4,7 @@ date: "2026-05-12"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Six-minute supply chain blitz pushed 84 malicious versions with credential theft and disk-wiping code"
+publicacion: "draft"
 ---
 
 ## Contexto

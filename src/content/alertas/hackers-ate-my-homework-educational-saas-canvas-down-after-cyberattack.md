@@ -4,6 +4,7 @@ date: "2026-05-08"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "ShinyHunters takes the credit and gives developer an F for security"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary The web server in SENTRON 7KT PAC1261 Data Manager Before V2.1.0 contains a request smuggling vulnerability in the Go Project's net/http package that could allow an attacker to retrieve authorization…"
+publicacion: "draft"
 ---
 
 ## Contexto

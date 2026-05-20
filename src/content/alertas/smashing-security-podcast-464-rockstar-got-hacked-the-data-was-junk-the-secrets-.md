@@ -4,6 +4,7 @@ date: "2026-04-22"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A company that ran anonymous tip lines for 35,000 American schools - handling reports of bullying, weapons, and self-harm - boasted on its website that it had suffered zero security breaches in over 20 years. A hacker…"
+publicacion: "draft"
 ---
 
 ## Contexto

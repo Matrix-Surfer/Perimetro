@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Shift comes amid mounting reports of successful social engineering attacks targeting higher-ups in government"
+publicacion: "draft"
 ---
 
 ## Contexto

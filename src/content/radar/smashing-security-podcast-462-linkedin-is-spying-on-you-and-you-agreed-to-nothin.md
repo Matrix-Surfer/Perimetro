@@ -4,6 +4,7 @@ pubDate: 2026-04-08
 source: "Graham Cluley"
 category: "Seguridad"
 context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
+publicacion: "draft"
 ---
 
 ## Resumen

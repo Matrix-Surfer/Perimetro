@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary ROS# contains a ROS service file_server, that before version 2.2.2 contains a path traversal vulnerability which could allow an attacker to access, i.e. read and write, arbitrary files, which are…"
+publicacion: "draft"
 ---
 
 ## Contexto

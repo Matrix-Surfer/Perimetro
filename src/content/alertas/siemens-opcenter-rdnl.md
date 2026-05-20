@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary Opcenter RDnL is affected by missing authentication in critical function in ‘ActiveMQ Artemis’. An unauthenticated attacker within the adjacent network could use the Core protocol to force a target…"
+publicacion: "draft"
 ---
 
 ## Contexto

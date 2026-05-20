@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "The release of Shai-Hulud source code spells trouble for software developers as researchers worry the self-replicating worm could scale."
+publicacion: "draft"
 ---
 
 ## Contexto

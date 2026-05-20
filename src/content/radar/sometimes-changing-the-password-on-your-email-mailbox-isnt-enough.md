@@ -4,6 +4,7 @@ pubDate: 2026-04-16
 source: "Graham Cluley"
 category: "Seguridad"
 context: "Relevante para organizaciones que utilizan el ecosistema Microsoft."
+publicacion: "draft"
 ---
 
 ## Resumen

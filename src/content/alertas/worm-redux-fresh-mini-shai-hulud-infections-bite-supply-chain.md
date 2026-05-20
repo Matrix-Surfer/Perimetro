@@ -4,6 +4,7 @@ date: "2026-05-12"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Hundreds of npm packages infected by the self-propagating, credential-stealing worm from TeamPCP are related to the open source TanStack ecosystem."
+publicacion: "draft"
 ---
 
 ## Contexto

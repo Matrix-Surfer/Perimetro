@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Security pros warn YellowKey claim could make stolen laptops a much bigger problem"
+publicacion: "draft"
 ---
 
 ## Contexto

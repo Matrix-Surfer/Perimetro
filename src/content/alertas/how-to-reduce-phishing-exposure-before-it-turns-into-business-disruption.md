@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "What happens when a phishing email looks clean enough to pass through security, but dangerous enough to expose the business after one click? That is the gap many SOCs still struggle with: the attacks that leave teams…"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "Activa"
 resumen: "Critical security vulnerabilities have been disclosed in SEPPMail Secure E-Mail Gateway, an enterprise-grade email security solution, that could be exploited to achieve remote code execution and enable an attacker to…"
+publicacion: "draft"
 ---
 
 ## Contexto

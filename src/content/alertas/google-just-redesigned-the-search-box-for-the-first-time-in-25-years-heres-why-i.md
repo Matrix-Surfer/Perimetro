@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "Activa"
 resumen: "For a quarter century, the Google search box has been one of the most recognizable interfaces in computing: a thin white rectangle, a blinking cursor, a few typed words, and a list of blue links. On Tuesday, Google will…"
+publicacion: "draft"
 ---
 
 ## Contexto

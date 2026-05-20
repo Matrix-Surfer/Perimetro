@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "Activa"
 resumen: "View CSAF Summary An update is available that resolves vulnerability in the product versions listed as affected in this advisory. A path traversal vulnerability in these products can allow unauthenticated users to gain…"
+publicacion: "draft"
 ---
 
 ## Contexto

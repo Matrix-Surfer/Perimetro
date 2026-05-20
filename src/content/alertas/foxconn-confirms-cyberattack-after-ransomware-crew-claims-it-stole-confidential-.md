@@ -4,6 +4,7 @@ date: "2026-05-12"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "Affected factories back up and running, we're told"
+publicacion: "draft"
 ---
 
 ## Contexto

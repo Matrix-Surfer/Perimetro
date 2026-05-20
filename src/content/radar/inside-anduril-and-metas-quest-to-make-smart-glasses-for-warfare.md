@@ -4,6 +4,7 @@ pubDate: 2026-05-18
 source: "MIT Technology Review"
 category: "Seguridad"
 context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
+publicacion: "draft"
 ---
 
 ## Resumen

@@ -4,6 +4,7 @@ pubDate: 2026-05-14
 source: "The Register — Security"
 category: "AI"
 context: "Clave para equipos que están evaluando o adoptando inteligencia artificial."
+publicacion: "draft"
 ---
 
 ## Resumen

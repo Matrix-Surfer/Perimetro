@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary The SIPROTEC 5 devices do not use sufficiently random numbers to generate session identifiers. This could facilitate a brute-force attack against a valid session identifier which could allow an…"
+publicacion: "draft"
 ---
 
 ## Contexto

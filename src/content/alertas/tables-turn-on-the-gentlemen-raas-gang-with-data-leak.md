@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "An OPSEC failure provides a window into what helped the ransomware group rise: a generous affiliate model, opportunistic TTPs, and an effective organizational structure."
+publicacion: "draft"
 ---
 
 ## Contexto

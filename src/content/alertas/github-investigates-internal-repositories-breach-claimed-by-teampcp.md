@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "GitHub is investigating a breach of its internal repositories after the TeamPCP hacker group claimed to have accessed approximately 4,000 repositories containing private code. [...]"
+publicacion: "draft"
 ---
 
 ## Contexto

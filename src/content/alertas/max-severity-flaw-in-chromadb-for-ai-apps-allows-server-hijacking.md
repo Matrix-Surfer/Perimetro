@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A max-severity vulnerability in the latest Python FastAPI version of the ChromaDB project allows unauthenticated attackers to run arbitrary code on exposed servers. [...]"
+publicacion: "draft"
 ---
 
 ## Contexto

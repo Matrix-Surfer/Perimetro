@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary Simcenter Femap is affected by heap based buffer overflow vulnerability in Datakit library that could be triggered when the application reads files in IPT format. If a user is tricked to open a…"
+publicacion: "draft"
 ---
 
 ## Contexto

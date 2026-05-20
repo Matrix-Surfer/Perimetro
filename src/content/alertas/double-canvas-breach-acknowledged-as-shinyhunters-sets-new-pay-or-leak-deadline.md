@@ -4,6 +4,7 @@ date: "2026-05-11"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "UPDATED: Sorry, kids, everything's back up so get to work on your new assignment - An essay on the ethics of paying ransoms, because it looks like that's what happened here"
+publicacion: "draft"
 ---
 
 ## Contexto

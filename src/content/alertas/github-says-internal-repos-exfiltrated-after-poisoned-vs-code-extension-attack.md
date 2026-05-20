@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Initial assessment says customer data spared while users wonder what else may have slipped out"
+publicacion: "draft"
 ---
 
 ## Contexto

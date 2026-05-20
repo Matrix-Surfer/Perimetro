@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Plus three other stealers in three other packages, all from the same scumbag"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers have flagged a compromised version of the Nx Console extension that was published to the Microsoft Visual Studio Code (VS Code) Marketplace. The extension in question is rwl.angular-console…"
+publicacion: "draft"
 ---
 
 ## Contexto

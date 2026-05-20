@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Everything is still on fire. This week feels dumb in the worst way — bad links, weak checks, fake help desks, shady forum posts, and people turning supply chain attacks into some cursed little game for clout and cash.…"
+publicacion: "draft"
 ---
 
 ## Contexto

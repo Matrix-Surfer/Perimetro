@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "Activa"
 resumen: "Ivanti, Fortinet, n8n, SAP, and VMware have released security fixes for various vulnerabilities that could be exploited by bad actors to bypass authentication and execute arbitrary code. Topping the list is a critical…"
+publicacion: "draft"
 ---
 
 ## Contexto

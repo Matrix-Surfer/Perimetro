@@ -106,6 +106,7 @@ pubDate: ${parseDate(item.pubDate)}
 source: "${esc(item.source)}"
 category: "${category}"
 context: "${esc(context)}"
+publicacion: "draft"
 ---`;
 }
 
@@ -130,6 +131,7 @@ date: "${parseDate(item.pubDate)}"
 tipo: "${tipo}"
 status: "${status}"
 resumen: "${esc(resumen)}"
+publicacion: "draft"
 ---` };
 }
 

@@ -6,7 +6,7 @@ import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
-  const articulos = await getCollection('analisis');
+  const articulos = (await getCollection('analisis')).filter(a => a.data.publicacion === 'published');
   return articulos.map((articulo) => ({
     params: { slug: articulo.id },
     props: { articulo },

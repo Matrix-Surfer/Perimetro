@@ -4,6 +4,7 @@ date: "2026-03-23"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "A financially motivated data theft and extortion group is attempting to inject itself into the Iran war, unleashing a worm that spreads through poorly secured cloud services and wipes data on infected systems that use…"
+publicacion: "draft"
 ---
 
 ## Contexto

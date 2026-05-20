@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Fresh kernel flaw comes with public exploit code and continues ugly run of highly reliable privilege escalation bugs tied to memory and page-cache handling"
+publicacion: "draft"
 ---
 
 ## Contexto

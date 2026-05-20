@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Google on Tuesday unveiled a new opt-in Android feature called Intrusion Logging for storing forensic logs to better analyze sophisticated spyware attacks. Intrusion Logging, available as part of Advanced Protection…"
+publicacion: "draft"
 ---
 
 ## Contexto

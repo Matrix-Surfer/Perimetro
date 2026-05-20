@@ -4,6 +4,7 @@ date: "2026-05-15"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers have disclosed a set of four security flaws in OpenClaw that could be chained to achieve data theft, privilege escalation, and persistence. The vulnerabilities, collectively dubbed Claw Chain…"
+publicacion: "draft"
 ---
 
 ## Contexto

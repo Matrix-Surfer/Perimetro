@@ -4,6 +4,7 @@ date: "2026-04-30"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A Brazilian tech firm that specializes in protecting networks from distributed denial-of-service (DDoS) attacks has been enabling a botnet responsible for an extended campaign of massive DDoS attacks against other…"
+publicacion: "draft"
 ---
 
 ## Contexto

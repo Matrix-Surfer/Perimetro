@@ -4,6 +4,7 @@ pubDate: 2026-05-18
 source: "Malwarebytes Labs"
 category: "Seguridad"
 context: "Relevante para organizaciones que utilizan el ecosistema Microsoft."
+publicacion: "draft"
 ---
 
 ## Resumen

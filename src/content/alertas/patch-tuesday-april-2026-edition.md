@@ -4,6 +4,7 @@ date: "2026-04-14"
 tipo: "Otro"
 status: "Activa"
 resumen: "Microsoft today pushed software updates to fix a staggering 167 security vulnerabilities in its Windows operating systems and related software, including a SharePoint Server zero-day and a publicly disclosed weakness in…"
+publicacion: "draft"
 ---
 
 ## Contexto

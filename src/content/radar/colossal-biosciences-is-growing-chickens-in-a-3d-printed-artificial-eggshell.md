@@ -4,6 +4,7 @@ pubDate: 2026-05-19
 source: "MIT Technology Review"
 category: "Seguridad"
 context: "Relevante para organizaciones con dispositivos Apple en su operación."
+publicacion: "draft"
 ---
 
 ## Resumen

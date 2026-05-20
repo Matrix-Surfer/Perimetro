@@ -4,6 +4,7 @@ date: "2026-04-21"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "A 24-year-old British national and senior member of the cybercrime group \"Scattered Spider\" has pleaded guilty to wire fraud conspiracy and aggravated identity theft. Tyler Robert Buchanan admitted his role in a series…"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to take control of the victim's browser. The following versions of Kieback & Peter DDC Building Controllers are affected: DDC4002…"
+publicacion: "draft"
 ---
 
 ## Contexto

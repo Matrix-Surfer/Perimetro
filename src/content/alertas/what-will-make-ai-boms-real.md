@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "A brief overview of the forces at play that will get more organizations on board with creating and consuming AI bill of materials (BOMs)."
+publicacion: "draft"
 ---
 
 ## Contexto

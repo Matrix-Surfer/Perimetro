@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Dark Reading editors reflect on two decades of dramatic change — from perimeter defense to assume-breach strategies — and warn that while AI, cloud, and COVID-19 have transformed the threat landscape, organizations are…"
+publicacion: "draft"
 ---
 
 ## Contexto

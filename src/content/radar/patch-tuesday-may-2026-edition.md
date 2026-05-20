@@ -4,6 +4,7 @@ pubDate: 2026-05-12
 source: "Krebs on Security"
 category: "AI"
 context: "Relevante para organizaciones que utilizan el ecosistema Microsoft."
+publicacion: "draft"
 ---
 
 ## Resumen

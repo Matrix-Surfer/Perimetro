@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary Ruggedcom Rox before v2.17.1 contain multiple third-party vulnerabilities. Siemens has released new versions for the affected products and recommends to update to the latest versions. The following…"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Dark Forum"
 status: "En monitoreo"
 resumen: "Lesson one for aspiring dark web kingpins: don't have your laundered gold bars shipped to your home address. Read more in my article on the Hot for Security blog."
+publicacion: "draft"
 ---
 
 ## Contexto

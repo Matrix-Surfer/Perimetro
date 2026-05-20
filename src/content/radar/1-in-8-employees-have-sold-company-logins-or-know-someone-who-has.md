@@ -4,6 +4,7 @@ pubDate: 2026-05-12
 source: "Malwarebytes Labs"
 category: "Seguridad"
 context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
+publicacion: "draft"
 ---
 
 ## Resumen

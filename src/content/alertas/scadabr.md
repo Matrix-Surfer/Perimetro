@@ -4,6 +4,7 @@ date: "2026-05-19"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to perform unauthenticated remote code execution. The following versions of ScadaBR are affected: ScadaBR 1.2.0 (CVE-2026-8602,…"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Chaotic Eclipse, the security researcher behind the recently disclosed Windows flaws, YellowKey and GreenPlasma, has released a proof-of-concept (PoC) for a Windows privilege escalation zero-day flaw that grants…"
+publicacion: "draft"
 ---
 
 ## Contexto

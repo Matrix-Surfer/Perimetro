@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "While the numbers are modest, the crackdown on cybercrime involved 13 countries in the MENA region, the largest law enforcement collaboration to date."
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "May’s Patch Tuesday may not be the giant release many expected, but there are still plenty of important fixes that shouldn’t be ignored."
+publicacion: "draft"
 ---
 
 ## Contexto

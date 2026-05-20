@@ -4,6 +4,7 @@ date: "2026-01-16"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Alfred Wahlforss was running out of options. His startup, Listen Labs, needed to hire over 100 engineers, but competing against Mark Zuckerberg's $100 million offers seemed impossible. So he spent $5,000 — a fifth of…"
+publicacion: "draft"
 ---
 
 ## Contexto

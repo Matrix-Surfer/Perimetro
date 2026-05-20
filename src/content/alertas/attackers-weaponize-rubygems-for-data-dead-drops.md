@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Threat actors are publishing RubyGems packages that include scrapers targeting public-facing UK government servers, but with no clear objective."
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ pubDate: 2026-05-07
 source: "Dark Reading"
 category: "AI"
 context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
+publicacion: "draft"
 ---
 
 ## Resumen

@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers are sounding the alarm about what has been described as \"malicious activity\" in newly published versions of node-ipc. According to Socket and StepSecurity, three different versions of the npm…"
+publicacion: "draft"
 ---
 
 ## Contexto

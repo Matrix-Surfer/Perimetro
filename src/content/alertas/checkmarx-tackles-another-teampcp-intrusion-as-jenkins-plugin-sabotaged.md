@@ -4,6 +4,7 @@ date: "2026-05-11"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybercrooks ruin engineers' weekends with Saturday attack"
+publicacion: "draft"
 ---
 
 ## Contexto

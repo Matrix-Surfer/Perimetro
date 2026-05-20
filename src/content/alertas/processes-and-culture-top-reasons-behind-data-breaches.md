@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Government leaders revealed that, in spite of state laws meant to improve cyber hygiene, an analysis of incidents showed issues persist and visibility falls short."
+publicacion: "draft"
 ---
 
 ## Contexto

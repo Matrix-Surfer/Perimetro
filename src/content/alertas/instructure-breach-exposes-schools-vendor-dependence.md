@@ -4,6 +4,7 @@ date: "2026-05-06"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "ShinyHunters' attack on Instructure, which owns the widely used Canvas learning management system (LMS), carries big questions about the trust educational institutions put into their vendors."
+publicacion: "draft"
 ---
 
 ## Contexto

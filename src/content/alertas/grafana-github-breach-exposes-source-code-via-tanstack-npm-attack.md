@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Grafana Labs, on May 19, 2026, said an investigation into its recent breach found no evidence of customer production systems or operations being compromised. It said the scope of the incident is limited to the Grafana…"
+publicacion: "draft"
 ---
 
 ## Contexto

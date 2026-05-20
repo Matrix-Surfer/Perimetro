@@ -4,6 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Experts are urging schools to take down identifiable photos of students, after AI deepfakes have led to sextortion cases at UK schools."
+publicacion: "draft"
 ---
 
 ## Contexto

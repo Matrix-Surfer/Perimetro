@@ -4,6 +4,7 @@ date: "2026-04-29"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A developer at an AI startup wanted to cheat at Roblox. They downloaded a dodgy script on their work laptop. That one decision triggered a cascade of failures that ended with a $2 million data breach affecting hundreds…"
+publicacion: "draft"
 ---
 
 ## Contexto

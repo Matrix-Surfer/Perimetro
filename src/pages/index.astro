@@ -4,16 +4,16 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const articulos = await getCollection('analisis');
+const articulos = (await getCollection('analisis')).filter(a => a.data.publicacion === 'published');
 articulos.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const recientes = articulos.slice(0, 5);
 const destacado = articulos.find(a => a.data.destacado) ?? articulos[0];
 
-const todasAlertas = await getCollection('alertas');
+const todasAlertas = (await getCollection('alertas')).filter(a => a.data.publicacion === 'published');
 todasAlertas.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 const alertasRecientes = todasAlertas.slice(0, 3);
 
-const radarItems = await getCollection('radar');
+const radarItems = (await getCollection('radar')).filter(i => i.data.publicacion === 'published');
 radarItems.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const radarRecientes = radarItems.slice(0, 3);
 

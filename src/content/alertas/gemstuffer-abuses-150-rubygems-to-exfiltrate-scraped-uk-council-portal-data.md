@@ -4,6 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers are calling attention to a new campaign dubbed GemStuffer that has targeted the RubyGems repository with more than 150 gems that use the registry as a data exfiltration channel rather than for…"
+publicacion: "draft"
 ---
 
 ## Contexto

@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "An unauthenticated attacker can exploit the command injection vulnerability to gain remote access to robotic systems, causing significant disruption to the environment."
+publicacion: "draft"
 ---
 
 ## Contexto

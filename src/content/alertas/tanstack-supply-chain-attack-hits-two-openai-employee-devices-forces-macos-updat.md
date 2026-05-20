@@ -4,6 +4,7 @@ date: "2026-05-15"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "OpenAI has disclosed that two of its employee devices in its corporate environment were impacted via the Mini Shai-Hulud supply chain attack on TanStack, but noted that no user data, production systems, or intellectual…"
+publicacion: "draft"
 ---
 
 ## Contexto

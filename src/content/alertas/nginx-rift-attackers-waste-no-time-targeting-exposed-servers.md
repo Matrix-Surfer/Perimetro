@@ -4,6 +4,7 @@ date: "2026-05-18"
 tipo: "Filtración"
 status: "Activa"
 resumen: "Researchers say 18-year-old flaw already being probed and exploited just days after disclosure"
+publicacion: "draft"
 ---
 
 ## Contexto
