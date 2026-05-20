@@ -169,6 +169,8 @@ const buildTime = new Date().toISOString();
           <span>Fecha</span>
           <span>Colección</span>
           <span>Título</span>
+          <span>Fuente</span>
+          <span>Slug</span>
           <span>Estado</span>
         </div>
         {recent.map(item => (
@@ -181,6 +183,8 @@ const buildTime = new Date().toISOString();
                 : item.title
               }
             </span>
+            <span class="act-source">{item.source ?? '—'}</span>
+            <span class="act-slug">{item.id}</span>
             <span class={`act-state state-${item.publicacion}`}>{item.publicacion}</span>
           </div>
         ))}
@@ -347,7 +351,7 @@ const buildTime = new Date().toISOString();
 }
 .activity-header {
   display: grid;
-  grid-template-columns: 100px 90px 1fr 90px;
+  grid-template-columns: 100px 80px 1fr 120px 160px 80px;
   padding: 0.6rem 1rem;
   background: var(--bg3);
   border-bottom: 1px solid var(--border);
@@ -359,7 +363,7 @@ const buildTime = new Date().toISOString();
 }
 .activity-row {
   display: grid;
-  grid-template-columns: 100px 90px 1fr 90px;
+  grid-template-columns: 100px 80px 1fr 120px 160px 80px;
   padding: 0.55rem 1rem;
   border-bottom: 1px solid var(--border);
   align-items: center;
@@ -385,6 +389,22 @@ const buildTime = new Date().toISOString();
   text-decoration: none;
 }
 .act-title a:hover { text-decoration: underline; }
+.act-source {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--muted2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.act-slug {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 .act-state {
   font-family: 'DM Mono', monospace;
   font-size: 0.65rem;
@@ -410,11 +430,13 @@ const buildTime = new Date().toISOString();
 .state-published { color: #22c55e; }
 .state-rejected  { color: var(--accent2); }
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
   .pipeline-grid { grid-template-columns: 1fr; }
   .activity-header,
-  .activity-row { grid-template-columns: 80px 75px 1fr; }
-  .activity-header span:last-child,
-  .act-state { display: none; }
+  .activity-row { grid-template-columns: 90px 75px 1fr 80px; }
+  .activity-header span:nth-child(4),
+  .activity-header span:nth-child(5),
+  .act-source,
+  .act-slug { display: none; }
 }
 </style>
