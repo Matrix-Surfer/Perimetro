@@ -1,165 +1,141 @@
-# ARCHITECTURE.md
-
 # Arquitectura del Proyecto
 
-## Stack principal
+## Stack
 
-* Astro 6
-* Markdown Collections
-* Cloudflare Pages
-* GitHub
-
----
-
-# Filosofía de arquitectura
-
-El proyecto utiliza arquitectura estática orientada a contenido.
-
-Objetivos:
-
-* máximo rendimiento,
-* excelente SEO,
-* simplicidad,
-* mantenibilidad,
-* bajo JavaScript.
+| Capa | Tecnología |
+|---|---|
+| Framework | Astro 6 |
+| Contenido | Markdown Collections |
+| Hosting | Cloudflare Pages |
+| Repositorio | GitHub |
+| Deploy | Git push a main → build automático |
 
 ---
 
-# Estructura principal
+## Filosofía
 
-```bash
-src/
-├── components/
-├── content/
-├── layouts/
-├── pages/
-└── styles/
+Arquitectura estática orientada a contenido.
+
+Prioridades en orden:
+1. Simplicidad
+2. Rendimiento
+3. Legibilidad
+4. Mantenibilidad
+
+No se usa React. No es una SPA. El JavaScript en cliente es mínimo.
+
+---
+
+## Estructura de directorios
+
+```
+/
+├── src/
+│   ├── components/       # Nav.astro, Footer.astro
+│   ├── content/          # Markdown editorial
+│   │   ├── analisis/
+│   │   ├── alertas/
+│   │   └── radar/
+│   ├── layouts/          # Base.astro (HTML, SEO, fonts)
+│   ├── pages/            # Rutas del sitio
+│   │   ├── index.astro
+│   │   ├── analisis/
+│   │   │   ├── index.astro
+│   │   │   ├── [slug].astro
+│   │   │   └── rss.xml.ts
+│   │   ├── alertas/
+│   │   │   ├── index.astro
+│   │   │   ├── [slug].astro
+│   │   │   └── rss.xml.ts
+│   │   └── radar/
+│   │       ├── index.astro
+│   │       ├── [slug].astro
+│   │       └── rss.xml.ts
+│   ├── styles/
+│   │   └── global.css
+│   └── content.config.ts # Definición de schemas Zod
+├── public/
+│   ├── favicon.ico
+│   ├── favicon.svg
+│   └── robots.txt
+├── docs/                 # Documentación del proyecto
+├── scripts/              # Herramientas de operación editorial
+├── data/
+│   └── sources/          # Configuración de fuentes (futuro pipeline)
+├── inbox/
+│   └── telegram/         # Ingesta futura de Telegram
+├── drafts/               # Borradores pre-publicación
+└── astro.config.mjs
 ```
 
 ---
 
-# Components
+## Collections implementadas
 
-## Objetivo
+Definidas en `src/content.config.ts` usando Astro Content Layer con `glob` loader.
 
-Contener componentes reutilizables.
+| Collection | Directorio | Ruta pública |
+|---|---|---|
+| analisis | `src/content/analisis/` | `/analisis/[slug]` |
+| alertas | `src/content/alertas/` | `/alertas/[slug]` |
+| radar | `src/content/radar/` | `/radar/[slug]` |
 
-Ejemplos:
-
-* Nav.astro
-* Footer.astro
-
----
-
-# Content
-
-## Objetivo
-
-Contener TODO el contenido editorial.
-
-```bash
-content/
-├── analisis/
-├── radar/
-└── alertas/
-```
+Los schemas completos están documentados en `docs/CONTENT_SCHEMAS.md`.
 
 ---
 
-# Collections
+## Rutas generadas
 
-Definidas en:
-
-```bash
-src/content.config.ts
-```
-
-Colecciones actuales:
-
-* analisis
-* radar
-* alertas
-
----
-
-# Layouts
-
-## Base.astro
-
-Contiene:
-
-* head
-* meta tags
-* carga global CSS
-* estructura HTML principal
+| Ruta | Tipo | Fuente |
+|---|---|---|
+| `/` | Estática | `pages/index.astro` |
+| `/analisis` | Estática | `pages/analisis/index.astro` |
+| `/analisis/[slug]` | Dinámica | Markdown en `content/analisis/` |
+| `/analisis/rss.xml` | API | `pages/analisis/rss.xml.ts` |
+| `/alertas` | Estática | `pages/alertas/index.astro` |
+| `/alertas/[slug]` | Dinámica | Markdown en `content/alertas/` |
+| `/alertas/rss.xml` | API | `pages/alertas/rss.xml.ts` |
+| `/radar` | Estática | `pages/radar/index.astro` |
+| `/radar/[slug]` | Dinámica | Markdown en `content/radar/` |
+| `/radar/rss.xml` | API | `pages/radar/rss.xml.ts` |
+| `/sitemap-index.xml` | Generado | `@astrojs/sitemap` |
+| `/robots.txt` | Estático | `public/robots.txt` |
 
 ---
 
-# Pages
+## SEO implementado
 
-Responsables del render de rutas.
+Gestionado desde `src/layouts/Base.astro`.
 
-Ejemplos:
+Cada página incluye:
+- `<title>` dinámico
+- `meta description`
+- `link rel="canonical"`
+- `og:title`, `og:description`, `og:type`, `og:url`, `og:image`
+- `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`
 
-* /
-* /analisis
-* /alertas
-* /radar
+Las páginas `[slug].astro` pasan `description` al layout desde el frontmatter del markdown.
 
----
-
-# Estrategia editorial
-
-Todo el contenido debe renderizarse dinámicamente desde collections.
-
-Evitar hardcode.
+Sitemap generado automáticamente por `@astrojs/sitemap` con URL base `https://jsilva.io`.
 
 ---
 
-# Estrategia SEO
+## Diseño visual
 
-Priorizar:
+Identidad definida. No modificar sin razón explícita.
 
-* metadata dinámica
-* OpenGraph
-* RSS
-* sitemap
-* canonical URLs
-* performance
-
----
-
-# Diseño
-
-El diseño debe mantener:
-
-* estética editorial,
-* apariencia cyber-minimal,
-* fondo oscuro,
-* tipografía fuerte,
-* enfoque visual limpio.
+- Fondo oscuro (`#0a0c0f`)
+- Tipografía: Bebas Neue (títulos), Fraunces (cuerpo), DM Mono (labels/meta)
+- Acento principal: `#00e5ff` (cyan)
+- Acento secundario: `#ff4444` (rojo alertas)
+- Estética: editorial cyber-minimal
 
 ---
 
-# Restricciones técnicas
+## Restricciones técnicas
 
-NO usar React innecesariamente.
-
-NO convertir el sitio en SPA.
-
-NO agregar dependencias pesadas sin justificación.
-
-NO mezclar contenido y lógica excesivamente.
-
----
-
-# Objetivo de escalabilidad
-
-Preparar el proyecto para:
-
-* automatización editorial,
-* integración con IA,
-* pipelines RSS,
-* newsletter,
-* dashboards,
-* y futuras APIs.
+- NO React salvo necesidad demostrada
+- NO convertir en SPA
+- NO dependencias pesadas sin justificación
+- NO mezclar contenido y lógica en exceso
+- NO hardcodear contenido en páginas (todo desde collections)

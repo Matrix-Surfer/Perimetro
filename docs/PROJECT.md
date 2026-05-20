@@ -6,130 +6,95 @@
 
 Perímetro es un proyecto editorial independiente enfocado en inteligencia artificial, ciberseguridad y riesgos tecnológicos para empresas mexicanas.
 
-El sitio busca explicar el impacto empresarial real de las tecnologías emergentes mediante:
+El sitio traduce complejidad técnica en contexto empresarial accionable mediante:
 
-* análisis,
-* contexto,
-* interpretación,
-* monitoreo,
-* y curación especializada.
+* análisis editorial propio
+* curación semanal (Radar)
+* monitoreo de incidentes (Alertas)
 
 ---
 
-# Audiencia objetivo
+## Audiencia objetivo
 
-## Primaria
-
+**Primaria:**
 * MiPYMES mexicanas
-* dueños de negocio
-* directivos
-* responsables de TI
-* consultores
+* Dueños de negocio y directivos
+* Responsables de TI
+* Consultores independientes
 
-## Secundaria
-
-* profesionales de ciberseguridad
-* analistas
-* equipos IT pequeños
-* tomadores de decisión tecnológicos
+**Secundaria:**
+* Profesionales de ciberseguridad
+* Analistas y equipos IT pequeños
+* Tomadores de decisión tecnológica
 
 ---
 
-# Problema que resuelve
+## Problema que resuelve
 
-Existe demasiada información técnica fragmentada.
+La mayoría de medios tecnológicos priorizan velocidad sobre contexto, replican comunicados sin análisis, o usan lenguaje demasiado técnico para su audiencia.
 
-La mayoría de medios:
-
-* priorizan noticias rápidas,
-* replican comunicados,
-* o usan lenguaje excesivamente técnico.
-
-Perímetro busca:
-
-* traducir complejidad,
-* contextualizar riesgos,
-* explicar implicaciones,
-* y conectar tecnología con operación empresarial.
+Perímetro contextualiza, interpreta y conecta tecnología con operación empresarial real en México.
 
 ---
 
-# Secciones actuales
+## Secciones
 
-## Análisis
+### Análisis
+Contenido editorial largo con perspectiva propia. Profundidad e interpretación sobre AI, ciberseguridad y tecnología empresarial.
 
-Contenido editorial largo.
+### Radar
+Resumen semanal curado. Señales relevantes de la semana con contexto propio.
 
-Objetivo:
-
-* profundidad,
-* interpretación,
-* análisis,
-* perspectiva.
+### Alertas
+Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, contexto, impacto empresarial.
 
 ---
 
-## Radar
+## Stack técnico
 
-Resumen semanal curado.
-
-Objetivo:
-
-* síntesis,
-* vigilancia tecnológica,
-* señales relevantes.
-
----
-
-## Alertas
-
-Incidentes relevantes de seguridad.
-
-Objetivo:
-
-* monitoreo,
-* contexto,
-* impacto empresarial.
+| Componente | Tecnología |
+|---|---|
+| Framework | Astro 6 |
+| Contenido | Markdown Collections |
+| Hosting | Cloudflare Pages |
+| Repositorio | GitHub |
+| Dominio | jsilva.io |
 
 ---
 
-# Stack tecnológico
+## Estado actual del proyecto
 
-## Frontend
+### Completado
 
-* Astro
+- [x] Arquitectura base con Astro 6
+- [x] Collections dinámicas: analisis, alertas, radar
+- [x] Páginas índice dinámicas para las tres secciones
+- [x] Rutas dinámicas individuales (`[slug].astro`) para las tres secciones
+- [x] Diseño visual editorial implementado
+- [x] SEO base: title, description, canonical, OpenGraph, Twitter Card
+- [x] Sitemap automático (`/sitemap-index.xml`)
+- [x] RSS feeds: `/analisis/rss.xml`, `/alertas/rss.xml`, `/radar/rss.xml`
+- [x] `robots.txt`
+- [x] Infraestructura de pipeline editorial (`/scripts`, `/drafts`, `/inbox`, `/data`)
+- [x] Script de creación de alertas (`scripts/create-alert.js`)
+- [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `CONTENT_PIPELINE.md`)
 
-## Hosting
+### Pendiente
 
-* Cloudflare Pages
-
-## Repositorio
-
-* GitHub
-
-## Contenido
-
-* Markdown Collections
-
----
-
-# Objetivos técnicos
-
-* sitio extremadamente rápido
-* excelente SEO
-* mínimo JavaScript
-* bajo costo
-* arquitectura simple
-* escalabilidad editorial
+- [ ] Newsletter — infraestructura de suscripción
+- [ ] Automatización editorial — ingesta desde Telegram/RSS
+- [ ] Workflows IA — clasificación y draft automático
+- [ ] Dashboards privados — monitoreo interno
+- [ ] Contenido premium
+- [ ] Servicios de consultoría
 
 ---
 
-# Objetivos futuros
+## Objetivos técnicos permanentes
 
-* newsletter
-* automatización editorial
-* workflows IA
-* dashboards privados
-* contenido premium
-* monitoreo empresarial
-* servicios de consultoría
+* Sitio extremadamente rápido
+* Excelente SEO
+* Mínimo JavaScript en cliente
+* Bajo costo operativo
+* Arquitectura simple y mantenible
+* Escalabilidad editorial sin fricción técnica
