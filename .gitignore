@@ -22,3 +22,7 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# RSS pipeline — datos locales, no van al repo
+inbox/rss/*.json
+data/cache/rss_seen.json
