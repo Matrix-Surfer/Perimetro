@@ -25,4 +25,5 @@ pnpm-debug.log*
 
 # RSS pipeline — datos locales, no van al repo
 inbox/rss/*.json
+inbox/rss/**/*.json
 data/cache/rss_seen.json
