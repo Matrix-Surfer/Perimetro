@@ -49,7 +49,7 @@ const statusCssClass: Record<string, string> = {
     <div class="alertas-content">
 
       {alertas.map((alerta) => (
-        <div class={`alerta-card ${tipoCardClass[alerta.data.tipo] ?? 'otro'}`}>
+        <a href={`/alertas/${alerta.id}`} class={`alerta-card ${tipoCardClass[alerta.data.tipo] ?? 'otro'}`}>
           <div class="alerta-card-header">
             <span class={`alerta-badge ${tipoBadgeClass[alerta.data.tipo] ?? 'badge-otro'}`}>{alerta.data.tipo}</span>
             <span class="alerta-date">{alerta.data.date}</span>
@@ -60,7 +60,7 @@ const statusCssClass: Record<string, string> = {
             <span class="alerta-source">Canal de monitoreo Telegram</span>
             <span class={`alerta-status ${statusCssClass[alerta.data.status] ?? 'status-monitoring'}`}>{alerta.data.status}</span>
           </div>
-        </div>
+        </a>
       ))}
 
     </div>
@@ -132,9 +132,12 @@ const statusCssClass: Record<string, string> = {
   }
 
   .alerta-card {
+    display: block;
     border: 1px solid var(--border);
     padding: 1.5rem;
     position: relative;
+    text-decoration: none;
+    color: inherit;
   }
 
   .alerta-card::before {

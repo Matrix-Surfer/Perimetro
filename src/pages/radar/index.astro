@@ -29,7 +29,7 @@ const categoryClass: Record<string, string> = {
       <div class="radar-items">
 
         {items.map((item) => (
-          <a class="radar-item">
+          <a href={`/radar/${item.id}`} class="radar-item">
             <div class="radar-item-header">
               <span class="radar-source">{item.data.source}</span>
               <span class={`radar-category ${categoryClass[item.data.category] ?? ''}`}>{item.data.category}</span>
@@ -113,8 +113,11 @@ const categoryClass: Record<string, string> = {
   .radar-items { display: flex; flex-direction: column; gap: 0; }
 
   .radar-item {
+    display: block;
     padding: 1.75rem 0;
     border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
   }
 
   .radar-item-header {

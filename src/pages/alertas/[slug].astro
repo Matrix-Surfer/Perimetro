@@ -1,0 +1,169 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const alertas = await getCollection('alertas');
+  return alertas.map((alerta) => ({
+    params: { slug: alerta.id },
+    props: { alerta },
+  }));
+}
+
+const { alerta } = Astro.props;
+const { Content } = await render(alerta);
+
+const tipoBadgeClass: Record<string, string> = {
+  'Defacement': 'badge-defacement',
+  'Filtración': 'badge-filtracion',
+  'Ransomware': 'badge-ransomware',
+  'Phishing': 'badge-phishing',
+  'Dark Forum': 'badge-darkforum',
+  'Otro': 'badge-otro',
+};
+
+const statusCssClass: Record<string, string> = {
+  'Activa': 'status-active',
+  'En monitoreo': 'status-monitoring',
+  'Resuelta': 'status-resolved',
+};
+---
+
+<Base title={alerta.data.title}>
+  <Nav />
+
+  <article class="alerta-wrap">
+
+    <header class="alerta-header">
+      <a href="/alertas" class="alerta-back">← Alertas</a>
+      <div class="alerta-badges">
+        <span class={`alerta-badge ${tipoBadgeClass[alerta.data.tipo] ?? 'badge-otro'}`}>{alerta.data.tipo}</span>
+        <span class={`alerta-status ${statusCssClass[alerta.data.status] ?? 'status-monitoring'}`}>{alerta.data.status}</span>
+      </div>
+      <h1 class="alerta-title">{alerta.data.title}</h1>
+      <p class="alerta-resumen">{alerta.data.resumen}</p>
+      <div class="alerta-meta">
+        <span>{alerta.data.date}</span>
+        <span>·</span>
+        <span>Canal de monitoreo Telegram</span>
+      </div>
+    </header>
+
+    <div class="alerta-body">
+      <Content />
+    </div>
+
+  </article>
+
+  <Footer />
+</Base>
+
+<style>
+  .alerta-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 740px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .alerta-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .alerta-back {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .alerta-back:hover { color: var(--accent2); }
+
+  .alerta-badges {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .alerta-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .badge-defacement { color: var(--accent2); border: 1px solid rgba(255,68,68,0.4); background: rgba(255,68,68,0.08); }
+  .badge-filtracion { color: #ffaa00; border: 1px solid rgba(255,170,0,0.4); background: rgba(255,170,0,0.08); }
+  .badge-darkforum { color: var(--muted2); border: 1px solid var(--border); background: rgba(255,255,255,0.03); }
+  .badge-ransomware { color: #ff6b35; border: 1px solid rgba(255,107,53,0.4); background: rgba(255,107,53,0.08); }
+  .badge-phishing { color: #a855f7; border: 1px solid rgba(168,85,247,0.4); background: rgba(168,85,247,0.08); }
+  .badge-otro { color: var(--muted); border: 1px solid var(--border); background: transparent; }
+
+  .alerta-status {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .status-active { color: var(--accent2); border: 1px solid rgba(255,68,68,0.3); background: rgba(255,68,68,0.06); }
+  .status-monitoring { color: var(--muted2); border: 1px solid var(--border); }
+  .status-resolved { color: #4ade80; border: 1px solid rgba(74,222,128,0.3); background: rgba(74,222,128,0.06); }
+
+  .alerta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 1.25rem;
+  }
+
+  .alerta-resumen {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted2);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--accent2);
+    padding-left: 1rem;
+  }
+
+  .alerta-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .alerta-body {
+    padding-bottom: 6rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted2);
+  }
+
+  .alerta-body p { margin-bottom: 1.5rem; }
+  .alerta-body strong { color: var(--text); font-weight: 600; }
+  .alerta-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.08em; color: var(--text); margin: 2.5rem 0 1rem; }
+  .alerta-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+</style>

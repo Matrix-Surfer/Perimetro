@@ -1,0 +1,149 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const items = await getCollection('radar');
+  return items.map((item) => ({
+    params: { slug: item.id },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+const { Content } = await render(item);
+
+const categoryClass: Record<string, string> = {
+  'AI': 'accent',
+  'Seguridad': 'red',
+};
+---
+
+<Base title={item.data.title}>
+  <Nav />
+
+  <article class="radar-wrap">
+
+    <header class="radar-header">
+      <a href="/radar" class="radar-back">← Radar</a>
+      <div class="radar-meta-top">
+        <span class="radar-source-label">{item.data.source}</span>
+        <span class={`radar-category ${categoryClass[item.data.category] ?? ''}`}>{item.data.category}</span>
+      </div>
+      <h1 class="radar-title">{item.data.title}</h1>
+      <div class="radar-context-block">{item.data.context}</div>
+      <div class="radar-date">
+        <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric' })}</span>
+      </div>
+    </header>
+
+    <div class="radar-body">
+      <Content />
+    </div>
+
+  </article>
+
+  <Footer />
+</Base>
+
+<style>
+  .radar-wrap {
+    min-height: 100vh;
+    padding-top: 60px;
+    max-width: 740px;
+    margin: 0 auto;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .radar-header {
+    padding: 4rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 3rem;
+  }
+
+  .radar-back {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s;
+  }
+
+  .radar-back:hover { color: var(--accent); }
+
+  .radar-meta-top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .radar-source-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .radar-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--border);
+    color: var(--muted2);
+  }
+
+  .radar-category.accent { color: var(--accent); border-color: var(--accent); background: rgba(0,229,255,0.05); }
+  .radar-category.red { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+
+  .radar-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    letter-spacing: 0.05em;
+    color: var(--text);
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  .radar-context-block {
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--muted2);
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  .radar-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.62rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  .radar-body {
+    padding-bottom: 6rem;
+    font-family: 'Fraunces', serif;
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted2);
+  }
+
+  .radar-body p { margin-bottom: 1.5rem; }
+  .radar-body strong { color: var(--text); font-weight: 600; }
+  .radar-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.08em; color: var(--text); margin: 2.5rem 0 1rem; }
+  .radar-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+</style>
