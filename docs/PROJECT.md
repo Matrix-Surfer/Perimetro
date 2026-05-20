@@ -79,6 +79,8 @@ Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, cont
 - [x] Scripts de creación manual: `create-alert.js`, `create-analysis.js`, `create-radar.js`
 - [x] Pipeline RSS: ingesta (`fetch-rss.js`), clasificación (`classify-rss.js`), generación de drafts (`generate-drafts.js`)
 - [x] Enriquecimiento editorial con LLM (`scripts/enrich-drafts.js`)
+- [x] Orquestador de pipeline (`scripts/run-pipeline.js`)
+- [x] Validador de contenido (`scripts/validate-content.js`)
 - [x] Sistema de estados editoriales (`publicacion`: draft / review / published / rejected)
 - [x] Script de publicación interactivo (`scripts/publish.js`)
 - [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `CONTENT_PIPELINE.md`, `CONTENT_SCHEMAS.md`, `RSS_PIPELINE.md`)

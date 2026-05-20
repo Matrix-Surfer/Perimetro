@@ -13,9 +13,16 @@ node scripts/create-radar.js
 
 **Automática desde RSS** (radar y alertas):
 ```
+ANTHROPIC_API_KEY=sk-... node scripts/run-pipeline.js
+```
+
+O paso a paso:
+```
 node scripts/fetch-rss.js        # descarga feeds
 node scripts/classify-rss.js    # clasifica por keywords
 node scripts/generate-drafts.js # genera drafts Markdown
+ANTHROPIC_API_KEY=sk-... node scripts/enrich-drafts.js  # enriquece vía LLM
+node scripts/publish.js          # publica ítems en revisión
 ```
 
 En ambos casos, el contenido requiere revisión humana antes de publicarse. Cada `git push` a `main` dispara el deploy en Cloudflare Pages automáticamente.
@@ -106,10 +113,14 @@ Creación manual interactiva:
 - `scripts/create-radar.js` — genera draft de ítem de radar
 
 Generación automática desde RSS:
+- `scripts/run-pipeline.js` — orquestador: ejecuta los 5 pasos en secuencia, detiene en cualquier fallo
 - `scripts/fetch-rss.js` — descarga feeds RSS configurados
 - `scripts/classify-rss.js` — clasifica items en radar/alertas (sin descarte por defecto)
 - `scripts/generate-drafts.js` — genera Markdown desde items clasificados
 - `scripts/enrich-drafts.js` — enriquece context/resumen vía LLM (requiere `ANTHROPIC_API_KEY`)
+
+Validación previa a publicación:
+- `scripts/validate-content.js` — valida campos obligatorios en radar y alertas contra el schema Zod
 
 Ver detalles del pipeline RSS en `docs/RSS_PIPELINE.md`.
 

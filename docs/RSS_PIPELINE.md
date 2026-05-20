@@ -57,11 +57,23 @@ git push → Cloudflare Pages (publicación automática)
 
 ## Ejecución
 
+**Comando único:**
+```bash
+ANTHROPIC_API_KEY=sk-... node scripts/run-pipeline.js
+```
+
+**O paso a paso:**
 ```bash
 node scripts/fetch-rss.js        # 1. Descargar feeds
-node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
+node scripts/classify-rss.js    # 2. Clasificar en radar/alertas
 node scripts/generate-drafts.js  # 3. Generar drafts Markdown
 ANTHROPIC_API_KEY=sk-... node scripts/enrich-drafts.js  # 4. Enriquecer con LLM
+node scripts/publish.js          # 5. Publicar ítems en revisión
+```
+
+**Validación (independiente del pipeline):**
+```bash
+node scripts/validate-content.js
 ```
 
 Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no genera duplicados. El script de enriquecimiento solo procesa archivos con `publicacion: "draft"`.
@@ -72,10 +84,13 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 
 | Script | Entrada | Salida |
 |---|---|---|
+| `scripts/run-pipeline.js` | — | Ejecuta los 5 pasos en secuencia |
 | `scripts/fetch-rss.js` | `data/sources/rss_sources.json` | `inbox/rss/*.json` |
-| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas,discard}/` |
+| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas}/` |
 | `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
 | `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con `context`/`resumen` mejorados y `publicacion: "review"` |
+| `scripts/publish.js` | `src/content/**/*.md` con `publicacion: "review"` | Mismos archivos con `publicacion: "published"` o `"rejected"` |
+| `scripts/validate-content.js` | `src/content/{radar,alertas}/*.md` | Reporte de errores en campos obligatorios |
 
 ---
 
@@ -167,6 +182,40 @@ Llama a la API de Anthropic para mejorar los campos editoriales clave de cada dr
 
 ---
 
+## Orquestador (run-pipeline.js)
+
+Ejecuta los cinco pasos del pipeline en orden, deteniendo en cualquier fallo:
+
+```
+[fetch-rss] OK
+[classify]  OK
+[generate]  OK
+[enrich]    OK
+[publish]   OK
+```
+
+Requiere `ANTHROPIC_API_KEY` en el entorno. El paso `publish` es interactivo: muestra los ítems en revisión y permite seleccionar cuál publicar.
+
+---
+
+## Validación de contenido (validate-content.js)
+
+Valida los campos obligatorios de todos los archivos en `src/content/radar/` y `src/content/alertas/` contra el schema Zod exacto.
+
+**Radar valida:** `title`, `pubDate` (fecha válida), `source`, `category`, `context`
+
+**Alertas valida:** `title`, `date` (formato YYYY-MM-DD), `tipo` (enum), `status` (enum), `resumen`
+
+Salida:
+```
+[OK] archivo.md
+[ERROR] archivo.md → motivo
+```
+
+Exit code 1 si hay errores — apto para CI o pre-publicación manual.
+
+---
+
 ## Estructura del inbox
 
 ```
@@ -174,9 +223,7 @@ inbox/rss/
   ├── {timestamp}-{slug}.json     ← items recién descargados
   ├── radar/
   │     └── {timestamp}-{slug}.json
-  ├── alertas/
-  │     └── {timestamp}-{slug}.json
-  └── discard/
+  └── alertas/
         └── {timestamp}-{slug}.json
 ```
 
