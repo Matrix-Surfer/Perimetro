@@ -2,15 +2,23 @@
 
 ## Estado actual
 
-El contenido se crea manualmente mediante archivos Markdown en:
+El contenido llega a producción por dos vías:
 
+**Manual** (análisis y contenido editorial propio):
 ```
-src/content/analisis/
-src/content/radar/
-src/content/alertas/
+node scripts/create-analysis.js
+node scripts/create-alert.js
+node scripts/create-radar.js
 ```
 
-Cada archivo se publica automáticamente al hacer deploy en Cloudflare Pages.
+**Automática desde RSS** (radar y alertas):
+```
+node scripts/fetch-rss.js        # descarga feeds
+node scripts/classify-rss.js    # clasifica por keywords
+node scripts/generate-drafts.js # genera drafts Markdown
+```
+
+En ambos casos, el contenido requiere revisión humana antes de publicarse. Cada `git push` a `main` dispara el deploy en Cloudflare Pages automáticamente.
 
 ---
 
@@ -83,17 +91,18 @@ Fuentes externas
 - Fuente original referenciada en comentario
 
 **Herramientas disponibles:**
-- `scripts/create-analysis.js` — genera draft de análisis interactivamente
-- `scripts/create-alert.js` — genera draft de alerta interactivamente
-- `scripts/create-radar.js` — genera draft de ítem de radar interactivamente
 
-Uso:
+Creación manual interactiva:
+- `scripts/create-analysis.js` — genera draft de análisis
+- `scripts/create-alert.js` — genera draft de alerta
+- `scripts/create-radar.js` — genera draft de ítem de radar
 
-```bash
-node scripts/create-analysis.js
-node scripts/create-alert.js
-node scripts/create-radar.js
-```
+Generación automática desde RSS:
+- `scripts/fetch-rss.js` — descarga feeds RSS configurados
+- `scripts/classify-rss.js` — clasifica items en radar/alertas/discard
+- `scripts/generate-drafts.js` — genera Markdown desde items clasificados
+
+Ver detalles del pipeline RSS en `docs/RSS_PIPELINE.md`.
 
 ---
 
