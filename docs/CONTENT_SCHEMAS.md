@@ -44,6 +44,12 @@ destacado: true
 - `date` en formato ISO (`YYYY-MM-DD`) entre comillas para que Zod lo valide como string.
 - El `slug` de la ruta es el nombre del archivo sin `.md`.
 
+### Creación rápida
+
+```bash
+node scripts/create-analysis.js
+```
+
 ---
 
 ## Collection: alertas
@@ -160,6 +166,12 @@ pubDate: 2025-05-13
 - `pubDate` sin comillas en YAML. Con comillas se interpreta como string y falla el schema (`z.coerce.date()`).
 - El campo `context` es el valor editorial central del Radar. Debe explicar la implicación para empresas mexicanas, no solo repetir el titular.
 - Las fechas se muestran en español (ej. "13 de mayo de 2025") usando `toLocaleDateString` con `timeZone: 'UTC'`.
+
+### Creación rápida
+
+```bash
+node scripts/create-radar.js
+```
 
 ---
 

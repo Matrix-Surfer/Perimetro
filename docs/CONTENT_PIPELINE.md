@@ -83,7 +83,17 @@ Fuentes externas
 - Fuente original referenciada en comentario
 
 **Herramientas disponibles:**
+- `scripts/create-analysis.js` — genera draft de análisis interactivamente
 - `scripts/create-alert.js` — genera draft de alerta interactivamente
+- `scripts/create-radar.js` — genera draft de ítem de radar interactivamente
+
+Uso:
+
+```bash
+node scripts/create-analysis.js
+node scripts/create-alert.js
+node scripts/create-radar.js
+```
 
 ---
 
