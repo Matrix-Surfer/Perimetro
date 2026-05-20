@@ -49,8 +49,7 @@ function matches(text, keywords) {
 function classify(item) {
   const text = normalize(`${item.title} ${item.summary}`);
   if (matches(text, KEYWORDS_ALERTAS)) return 'alertas';
-  if (matches(text, KEYWORDS_RADAR))   return 'radar';
-  return 'discard';
+  return 'radar';
 }
 
 async function main() {

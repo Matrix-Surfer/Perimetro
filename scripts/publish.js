@@ -23,7 +23,7 @@ async function getDrafts() {
     for (const file of files) {
       const path = join(dir, file);
       const content = await readFile(path, 'utf8');
-      if (content.includes('publicacion: "draft"') || content.includes("publicacion: 'draft'")) {
+      if (content.includes('publicacion: "review"') || content.includes("publicacion: 'review'")) {
         drafts.push({ seccion, file, path });
       }
     }
@@ -37,12 +37,12 @@ async function main() {
   const drafts = await getDrafts();
 
   if (drafts.length === 0) {
-    console.log('\nNo hay drafts pendientes.\n');
+    console.log('\nNo hay ítems en revisión pendientes de publicación.\n');
     rl.close();
     return;
   }
 
-  console.log(`\n${drafts.length} drafts pendientes:\n`);
+  console.log(`\n${drafts.length} ítems en revisión:\n`);
   drafts.forEach((d, i) => {
     console.log(`  ${String(i + 1).padStart(3)}. [${d.seccion}] ${d.file}`);
   });
@@ -79,8 +79,8 @@ async function main() {
 
   const original = await readFile(draft.path, 'utf8');
   const updated = original
-    .replace(/publicacion: "draft"/, `publicacion: "${estado}"`)
-    .replace(/publicacion: 'draft'/, `publicacion: "${estado}"`);
+    .replace(/publicacion: "review"/, `publicacion: "${estado}"`)
+    .replace(/publicacion: 'review'/, `publicacion: "${estado}"`);
 
   await writeFile(draft.path, updated, 'utf8');
   console.log(`\n✓ ${draft.file} → ${estado}\n`);
