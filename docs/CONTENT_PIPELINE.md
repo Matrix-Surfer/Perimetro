@@ -1,5 +1,17 @@
 # Content Pipeline — Perímetro
 
+## Monitoreo
+
+El estado del pipeline se puede consultar en tiempo de build en:
+
+```
+/dashboard
+```
+
+Muestra conteos por colección (draft / review / published), métricas globales y tabla de actividad reciente ordenada por fecha.
+
+---
+
 ## Estado actual
 
 El contenido llega a producción por dos vías:
