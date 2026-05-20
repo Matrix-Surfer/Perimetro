@@ -27,3 +27,6 @@ pnpm-debug.log*
 inbox/rss/*.json
 inbox/rss/**/*.json
 data/cache/rss_seen.json
+
+# Pipeline logs — generados en ejecución
+logs/*.log
