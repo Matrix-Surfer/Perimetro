@@ -57,7 +57,7 @@ const statusCssClass: Record<string, string> = {
           <h3 class="alerta-title">{alerta.data.title}</h3>
           <p class="alerta-desc">{alerta.data.resumen}</p>
           <div class="alerta-footer">
-            <span class="alerta-source">Canal de monitoreo Telegram</span>
+            <span class="alerta-source">{alerta.data.source ?? 'Monitoreo Telegram'}</span>
             <span class={`alerta-status ${statusCssClass[alerta.data.status] ?? 'status-monitoring'}`}>{alerta.data.status}</span>
           </div>
         </a>
