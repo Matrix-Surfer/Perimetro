@@ -1,16 +1,8 @@
 ---
-title: "Agent AI is Coming. Are You Ready?"
+title: "Los agentes de IA están llegando. ¿Estás preparado?"
 pubDate: 2026-05-20
 source: "The Hacker News"
-category: "Seguridad"
-context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
-publicacion: "draft"
+category: "AI"
+context: "Las empresas están adoptando agentes de IA sin resolver primero el control de identidades: un reporte de Orchid Security muestra que el 57% de los accesos digitales en organizaciones son invisibles — credenciales y cuentas sin monitoreo activo. Para empresas que empiezan a incorporar herramientas de IA, esto significa que la superficie de ataque crece antes de que se entienda el riesgo."
+publicacion: "published"
 ---
-
-## Resumen
-
-New Industry Data Just Released Suggests Not. On May 19th, 2026, Orchid Security released the results of our Identity Gap: Snapshot 2026. Among the findings, "identity dark matter" (the unseen, unmanaged elements of identity) now overshadows the visible elements 57% vs. 43%. And it couldn't have occurred at a worse time, with enterprises embracing Agent AI with both arms (and unfortunately, as
-
-## Relevancia empresarial
-
-Pendiente.
