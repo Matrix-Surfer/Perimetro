@@ -25,6 +25,7 @@ const radar = defineCollection({
     category: z.string(),
     context: z.string(),
     pubDate: z.coerce.date(),
+    link: z.string().url().optional(),
     publicacion: PUBLICACION,
   }),
 });

@@ -104,6 +104,7 @@ function radarFrontmatter(item) {
 title: "${esc(item.title)}"
 pubDate: ${parseDate(item.pubDate)}
 source: "${esc(item.source)}"
+link: "${esc(item.link ?? '')}"
 category: "${category}"
 context: "${esc(context)}"
 publicacion: "draft"
