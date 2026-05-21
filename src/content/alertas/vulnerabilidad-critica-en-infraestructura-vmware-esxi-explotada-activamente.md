@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Ransomware"
 status: "Activa"
 resumen: "Se reporta la explotación activa de una vulnerabilidad crítica en entornos VMware ESXi. El vector de ataque permite ejecución remota y posible despliegue de ransomware en infraestructura virtualizada sin necesidad de credenciales previas."
+source: "CISA"
 publicacion: "published"
 ---
 

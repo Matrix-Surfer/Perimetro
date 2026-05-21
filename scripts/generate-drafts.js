@@ -132,6 +132,8 @@ date: "${parseDate(item.pubDate)}"
 tipo: "${tipo}"
 status: "${status}"
 resumen: "${esc(resumen)}"
+source: "${esc(item.source ?? '')}"
+link: "${esc(item.link ?? '')}"
 publicacion: "draft"
 ---` };
 }

@@ -4,6 +4,7 @@ date: "2026-05-20"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "Se detectó una campaña de phishing que utiliza códigos QR en correos electrónicos para dirigir a empleados a páginas falsas de autenticación. El objetivo es obtener credenciales de Microsoft 365 y Google Workspace utilizadas en entornos corporativos."
+source: "The Hacker News"
 publicacion: "published"
 ---
 

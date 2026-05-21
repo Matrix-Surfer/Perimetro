@@ -47,8 +47,13 @@ const statusCssClass: Record<string, string> = {
       <div class="alerta-meta">
         <span>{alerta.data.date}</span>
         <span>·</span>
-        <span>Canal de monitoreo Telegram</span>
+        <span>{alerta.data.source}</span>
       </div>
+      {alerta.data.link && (
+        <a href={alerta.data.link} target="_blank" rel="noopener noreferrer" class="alerta-source-link">
+          Leer fuente original →
+        </a>
+      )}
     </header>
 
     <div class="alerta-body">
@@ -151,6 +156,24 @@ const statusCssClass: Record<string, string> = {
     letter-spacing: 0.08em;
     display: flex;
     gap: 0.5rem;
+  }
+
+  .alerta-source-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    text-decoration: none;
+    border: 1px solid var(--accent2);
+    padding: 0.4rem 0.9rem;
+    transition: background 0.2s;
+  }
+
+  .alerta-source-link:hover {
+    background: rgba(255, 68, 68, 0.08);
   }
 
   .alerta-body {

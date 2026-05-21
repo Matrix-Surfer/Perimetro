@@ -38,6 +38,8 @@ const alertas = defineCollection({
     tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']),
     status: z.enum(['Activa', 'En monitoreo', 'Resuelta']),
     resumen: z.string(),
+    source: z.string().optional().default('Monitoreo Telegram'),
+    link: z.string().url().optional(),
     publicacion: PUBLICACION,
   }),
 });

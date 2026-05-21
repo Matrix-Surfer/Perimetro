@@ -30,6 +30,7 @@ async function main() {
   const status = STATUSES[parseInt(statusInput) - 1] ?? 'En monitoreo';
 
   const resumen = await rl.question('Resumen breve: ');
+  const link = await rl.question('Link a fuente (opcional, dejar vacío si es Telegram): ');
 
   rl.close();
 
@@ -37,12 +38,16 @@ async function main() {
   const date = today();
   const outputPath = join(CONTENT_DIR, `${slug}.md`);
 
+  const source = link.trim() ? 'Fuente externa' : 'Monitoreo Telegram';
+  const linkLine = link.trim() ? `\nlink: "${esc(link.trim())}"` : '';
+
   const content = `---
 title: "${esc(title.trim())}"
 date: "${date}"
 tipo: "${tipo}"
 status: "${status}"
 resumen: "${esc(resumen.trim())}"
+source: "${source}"${linkLine}
 ---
 
 ## Contexto
