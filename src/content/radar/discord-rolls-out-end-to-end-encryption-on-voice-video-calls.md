@@ -1,16 +1,8 @@
 ---
-title: "Discord rolls out end-to-end encryption on voice, video calls"
+title: "Discord activa cifrado de extremo a extremo en llamadas de voz y video"
 pubDate: 2026-05-19
 source: "BleepingComputer"
 category: "Seguridad"
-context: "Relevante para empresas con dispositivos conectados o infraestructura industrial."
-publicacion: "draft"
+context: "Discord activó cifrado de extremo a extremo por defecto en todas las llamadas de voz y video. Si tu equipo usa Discord para comunicación interna, las conversaciones ahora están protegidas sin configuración adicional."
+publicacion: "published"
 ---
-
-## Resumen
-
-Discord announced that all voice and video calls through the communication platform are now protected by default with end-to-end encryption (E2EE). [...]
-
-## Relevancia empresarial
-
-Pendiente.

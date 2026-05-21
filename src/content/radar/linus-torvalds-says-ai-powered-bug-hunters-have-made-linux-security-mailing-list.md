@@ -1,16 +1,8 @@
 ---
-title: "Linus Torvalds says AI-powered bug hunters have made Linux security mailing list ‘almost entirely unmanageable’"
+title: "Linus Torvalds: los cazadores de bugs con IA saturaron la lista de seguridad de Linux"
 pubDate: 2026-05-17
 source: "The Register — Security"
-category: "Seguridad"
-context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+category: "AI"
+context: "Múltiples investigadores usando las mismas herramientas de IA para encontrar los mismos bugs están inundando la lista de seguridad de Linux con reportes duplicados. La señal para empresas: la automatización sin criterio en seguridad genera ruido que dificulta atender lo que realmente importa."
+publicacion: "published"
 ---
-
-## Resumen
-
-Multiple researchers using the same tools to find the same bugs are creating ‘unnecessary pain and pointless work’
-
-## Relevancia empresarial
-
-Pendiente.

@@ -1,16 +1,8 @@
 ---
-title: " Microsoft is changing Edge’s plaintext password behavior "
+title: "Microsoft corrige cómo Edge almacena contraseñas en memoria"
 pubDate: 2026-05-18
 source: "Malwarebytes Labs"
 category: "Seguridad"
-context: "Relevante para organizaciones que utilizan el ecosistema Microsoft."
-publicacion: "draft"
+context: "Edge guardaba las contraseñas del gestor integrado en texto plano en memoria durante toda la sesión — un investigador lo reportó y Microsoft está corrigiendo el comportamiento. Aplica a cualquier empresa con Windows que use Edge con contraseñas guardadas: mantener el navegador actualizado cierra esta exposición."
+publicacion: "published"
 ---
-
-## Resumen
-
-Saved passwords in Microsoft Edge will no longer sit in plaintext memory for the entire browser session after a researcher raised concerns.
-
-## Relevancia empresarial
-
-Pendiente.
