@@ -142,4 +142,16 @@ import Footer from '../components/Footer.astro';
     color: var(--text);
     font-weight: 400;
   }
+
+  @media (max-width: 768px) {
+    .acerca-content {
+      padding: 3rem 1.25rem;
+    }
+
+    .acerca-title { font-size: 3.5rem; }
+
+    .acerca-meta {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
