@@ -1,21 +1,33 @@
 ---
 ---
 
-<nav>
-    <a href="/" class="nav-logo">PERÍMETRO</a>
-  <>
+<nav id="main-nav">
+  <a href="/" class="nav-logo">PERÍMETRO</a>
+
   <ul class="nav-links">
     <li><a href="/analisis">Análisis</a></li>
-    
     <li><a href="/radar">Radar</a></li>
     <li><a href="/alertas">Alertas</a></li>
     <li><a href="/glosario">Glosario</a></li>
     <li><a href="/acerca">Acerca</a></li>
   </ul>
+
   <div class="nav-right">
     <button class="btn-subscribe">Suscribirse</button>
   </div>
+
+  <button class="nav-hamburger" id="nav-toggle" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 </nav>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const nav    = document.getElementById('main-nav');
+  toggle?.addEventListener('click', () => nav?.classList.toggle('is-open'));
+</script>
 
 <style>
   nav {
@@ -66,4 +78,71 @@
   }
 
   .btn-subscribe:hover { opacity: 0.85; }
+
+  /* HAMBURGER — oculto en desktop */
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    transition: transform 0.25s, opacity 0.25s;
+  }
+
+  /* Animación al abrir */
+  nav.is-open .nav-hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  nav.is-open .nav-hamburger span:nth-child(2) { opacity: 0; }
+  nav.is-open .nav-hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav {
+      flex-wrap: wrap;
+      height: auto;
+      padding: 0 1.25rem;
+    }
+
+    .nav-logo {
+      height: 60px;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-right { display: none; }
+
+    .nav-hamburger {
+      display: flex;
+      height: 60px;
+    }
+
+    .nav-links {
+      display: none;
+      width: 100%;
+      flex-direction: column;
+      gap: 0;
+      padding-bottom: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    nav.is-open .nav-links { display: flex; }
+
+    .nav-links li a {
+      display: block;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted2);
+    }
+
+    .nav-links li:last-child a { border-bottom: none; }
+  }
 </style>
