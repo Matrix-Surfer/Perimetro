@@ -1,12 +1,12 @@
 ---
-title: “Actualizar Chrome de inmediato — fallas críticas permiten ejecución de código”
-date: “2026-05-22”
-tipo: “Otro”
-status: “Activa”
-resumen: “Google publicó una actualización de emergencia para Chrome que corrige vulnerabilidades críticas explotables desde sitios web maliciosos. Basta visitar una página comprometida para que un atacante ejecute código en el equipo. Aplicar la actualización es inmediato y no requiere IT.”
-source: “Malwarebytes Labs”
-link: “https://www.malwarebytes.com/blog/bugs/2026/05/update-chrome-now-critical-bugs-could-let-attackers-run-code”
-publicacion: “published”
+title: "Actualizar Chrome de inmediato — fallas críticas permiten ejecución de código"
+date: "2026-05-22"
+tipo: "Otro"
+status: "Activa"
+resumen: "Google publicó una actualización de emergencia para Chrome que corrige vulnerabilidades críticas explotables desde sitios web maliciosos. Basta visitar una página comprometida para que un atacante ejecute código en el equipo. Aplicar la actualización es inmediato y no requiere IT."
+source: "Malwarebytes Labs"
+link: "https://www.malwarebytes.com/blog/bugs/2026/05/update-chrome-now-critical-bugs-could-let-attackers-run-code"
+publicacion: "published"
 ---
 
 ## Contexto
