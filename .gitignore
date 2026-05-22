@@ -30,3 +30,4 @@ data/cache/rss_seen.json
 
 # Pipeline logs — generados en ejecución
 logs/*.log
+tweets-*.txt
