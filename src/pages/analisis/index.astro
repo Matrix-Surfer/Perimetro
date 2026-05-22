@@ -167,4 +167,21 @@ articulos.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date)
     display: flex;
     gap: 0.5rem;
   }
+
+  @media (max-width: 768px) {
+    .analisis-wrap {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .page-header { padding: 2.5rem 0 2rem; }
+    .page-title  { font-size: 3rem; }
+
+    .article-item {
+      grid-template-columns: 48px 1fr;
+      gap: 1rem;
+    }
+
+    .article-num { font-size: 2rem; }
+  }
 </style>
