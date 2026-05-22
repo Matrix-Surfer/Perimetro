@@ -257,5 +257,5 @@ Current priorities:
 Do not jump ahead into advanced architecture unless requested.
 
 
-
+All content must be translated to spanish.
 
