@@ -19,8 +19,9 @@ const URL_T_LENGTH = 23;
 const MAX_TWEET = 280;
 
 const DIRS = {
-  alertas: join(ROOT, 'src', 'content', 'alertas'),
-  radar:   join(ROOT, 'src', 'content', 'radar'),
+  analisis: join(ROOT, 'src', 'content', 'analisis'),
+  alertas:  join(ROOT, 'src', 'content', 'alertas'),
+  radar:    join(ROOT, 'src', 'content', 'radar'),
 };
 
 function stripQuotes(s) {
@@ -73,6 +74,20 @@ function truncate(text, maxChars) {
   return [...text].slice(0, maxChars - 1).join('') + '…';
 }
 
+function buildAnalisisTweet(title, resumen, slug) {
+  const url = `${BASE_URL}/analisis/${slug}`;
+  const hashtags = '#ciberseguridad #MiPYME #Mexico';
+  const emoji = '✍️';
+
+  const fixed = `${emoji} ${title}\n\n\n\n${url}\n\n${hashtags}`;
+  const fixedLen = tweetLength(fixed);
+  const available = MAX_TWEET - fixedLen - 2;
+
+  const resumenCorto = truncate(resumen, Math.max(available, 60));
+
+  return `${emoji} ${title}\n\n${resumenCorto}\n\n${url}\n\n${hashtags}`;
+}
+
 function buildAlertaTweet(title, resumen, slug, tipo) {
   const url = `${BASE_URL}/alertas/${slug}`;
   const hashtags = '#ciberseguridad #MiPYME #Mexico';
@@ -116,7 +131,9 @@ async function getPublishedByDate(dir, seccion, fecha) {
     if (date !== fecha) continue;
 
     const slug = basename(file, '.md');
-    if (seccion === 'alertas') {
+    if (seccion === 'analisis') {
+      items.push({ seccion, slug, title: fm.title ?? '', resumen: fm.resumen ?? '' });
+    } else if (seccion === 'alertas') {
       items.push({ seccion, slug, title: fm.title ?? '', resumen: fm.resumen ?? '', tipo: fm.tipo ?? '' });
     } else {
       items.push({ seccion, slug, title: fm.title ?? '', context: fm.context ?? '' });
@@ -132,9 +149,10 @@ async function main() {
   console.log(`\nGenerando tweets para: ${fecha}\n`);
   console.log('─'.repeat(60));
 
-  const alertas = await getPublishedByDate(DIRS.alertas, 'alertas', fecha);
-  const radar   = await getPublishedByDate(DIRS.radar,   'radar',   fecha);
-  const todos   = [...alertas, ...radar];
+  const analisis = await getPublishedByDate(DIRS.analisis, 'analisis', fecha);
+  const alertas  = await getPublishedByDate(DIRS.alertas,  'alertas',  fecha);
+  const radar    = await getPublishedByDate(DIRS.radar,    'radar',    fecha);
+  const todos    = [...analisis, ...alertas, ...radar];
 
   if (todos.length === 0) {
     console.log(`\nNo hay items publicados con fecha ${fecha}.\n`);
@@ -145,7 +163,9 @@ async function main() {
 
   for (const item of todos) {
     let tweet;
-    if (item.seccion === 'alertas') {
+    if (item.seccion === 'analisis') {
+      tweet = buildAnalisisTweet(item.title, item.resumen, item.slug);
+    } else if (item.seccion === 'alertas') {
       tweet = buildAlertaTweet(item.title, item.resumen, item.slug, item.tipo);
     } else {
       tweet = buildRadarTweet(item.title, item.context, item.slug);
