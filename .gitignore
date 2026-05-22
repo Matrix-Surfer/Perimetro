@@ -31,3 +31,6 @@ data/cache/rss_seen.json
 # Pipeline logs — generados en ejecución
 logs/*.log
 tweets-*.txt
+
+# Documentos locales de trabajo
+Flujo_Trabajo_Perimetro
