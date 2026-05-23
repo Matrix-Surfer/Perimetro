@@ -4,7 +4,7 @@ date: "2026-04-06"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "An elusive hacker who went by the handle \"UNKN\" and ran the early Russian ransomware groups GandCrab and REvil now has a name and a face. Authorities in Germany say 31-year-old Russian Daniil Maksimovich Shchukin headed…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

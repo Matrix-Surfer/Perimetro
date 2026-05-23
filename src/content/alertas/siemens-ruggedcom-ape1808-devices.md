@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary A buffer overflow vulnerability in the User-ID™ Authentication Portal (aka Captive Portal) service of Palo Alto Networks PAN-OS software allows an unauthenticated attacker to execute arbitrary code…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

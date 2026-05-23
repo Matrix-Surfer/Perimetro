@@ -4,7 +4,7 @@ pubDate: 2026-04-10
 source: "Graham Cluley"
 category: "Seguridad"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

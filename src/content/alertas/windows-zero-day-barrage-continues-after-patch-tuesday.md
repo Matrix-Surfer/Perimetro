@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "YellowKey, GreenPlasma, and MiniPlasma add to the growing list of vulnerabilities a security researcher disclosed over the past six weeks."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

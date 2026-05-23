@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "The good news: no 0-days. The bad news: busy week ahead for Microsoft admins"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

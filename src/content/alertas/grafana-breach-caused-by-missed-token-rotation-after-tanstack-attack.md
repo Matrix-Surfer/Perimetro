@@ -4,7 +4,7 @@ date: "2026-05-20"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "The Grafana data breach was caused by a single GitHub workflow token that slipped through the rotation process following the TanStack npm supply-chain attack last week. [...]"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

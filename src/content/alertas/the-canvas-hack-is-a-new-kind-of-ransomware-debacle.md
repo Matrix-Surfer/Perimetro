@@ -4,7 +4,7 @@ date: "2026-05-08"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "Thousands of schools around the US were paralyzed on Thursday after education tech firm Instructure shut down access to its Canvas platform following a breach by hackers going by the name ShinyHunters."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

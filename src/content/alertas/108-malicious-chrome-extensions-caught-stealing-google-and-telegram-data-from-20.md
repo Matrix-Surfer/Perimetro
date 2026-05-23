@@ -4,7 +4,7 @@ date: "2026-04-15"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers have revealed that 108 malicious Google Chrome extensions have been quietly stealing user credentials, hijacking Telegram sessions, and injecting unwanted ads and scripts into browsers - all…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

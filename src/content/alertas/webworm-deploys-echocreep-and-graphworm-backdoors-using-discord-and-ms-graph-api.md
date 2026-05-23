@@ -4,7 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers have flagged fresh activity from a China-aligned threat actor known as Webworm in 2025, deploying custom backdoors that employ Discord and Microsoft Graph API for command-and-control (C2 or…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

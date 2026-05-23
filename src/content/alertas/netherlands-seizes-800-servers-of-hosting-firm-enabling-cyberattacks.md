@@ -6,7 +6,7 @@ status: "En monitoreo"
 resumen: "Financial crime investigators in the Netherlands (FIOD) arrested two men and seized 800 servers linked to a web hosting company that enabled cyberattacks, interference operations, and disinformation campaigns. [...]"
 source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/security/netherlands-seizes-800-servers-of-hosting-firm-enabling-cyberattacks/"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

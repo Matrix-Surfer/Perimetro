@@ -4,7 +4,7 @@ pubDate: 2026-05-18
 source: "Dark Reading"
 category: "AI"
 context: "Clave para equipos que están evaluando o adoptando inteligencia artificial."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

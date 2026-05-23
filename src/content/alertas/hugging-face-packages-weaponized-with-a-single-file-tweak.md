@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "A tokenizer library file present in Hugging Face AI models can be manipulated to hijack the model's outputs and exfiltrate data."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

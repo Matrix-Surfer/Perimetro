@@ -5,7 +5,7 @@ source: "The Register — Security"
 link: "https://www.theregister.com/cyber-crime/2026/05/22/jailbroken-gemini-helped-russian-speaking-fraudster-target-maga-crypto-users/5245390"
 category: "AI"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

@@ -4,7 +4,7 @@ date: "2026-01-07"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Nous Research, the open-source artificial intelligence startup backed by crypto venture firm Paradigm, released a new competitive programming model on Monday that it says matches or exceeds several larger proprietary…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

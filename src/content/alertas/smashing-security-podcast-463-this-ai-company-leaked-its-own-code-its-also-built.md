@@ -4,7 +4,7 @@ date: "2026-04-15"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A hacking group claims to have broken into the flood defence system protecting Venice's Piazza San Marco - and is offering to sell access to whoever wants it. The asking price? A frankly insulting $600. Meanwhile,…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

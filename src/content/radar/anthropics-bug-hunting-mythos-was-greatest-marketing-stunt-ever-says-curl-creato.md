@@ -4,7 +4,7 @@ pubDate: 2026-05-11
 source: "The Register — Security"
 category: "AI"
 context: "Las áreas de cumplimiento y legal deben dar seguimiento a estas disposiciones."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

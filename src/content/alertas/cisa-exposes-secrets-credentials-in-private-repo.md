@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "The agency's GitHub repository, publicly available since November 2025, was ironically named \"Private-CISA.\""
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -4,7 +4,7 @@ date: "2026-01-19"
 tipo: "Otro"
 status: "Activa"
 resumen: "The artificial intelligence coding revolution comes with a catch: it's expensive. Claude Code, Anthropic's terminal-based AI agent that can write, debug, and deploy code autonomously, has captured the imagination of…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

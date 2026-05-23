@@ -5,7 +5,7 @@ source: "Schneier on Security"
 link: "https://www.schneier.com/blog/archives/2026/05/friday-squid-blogging-regulating-squid-fishing-in-the-south-pacific.html"
 category: "Seguridad"
 context: "Las áreas de cumplimiento y legal deben dar seguimiento a estas disposiciones."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

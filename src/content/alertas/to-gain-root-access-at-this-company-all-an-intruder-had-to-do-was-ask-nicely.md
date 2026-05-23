@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Human IT managers thought they were being nice to the boss, but were assisting a threat actor"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

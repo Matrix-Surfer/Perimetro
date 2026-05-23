@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Fears exponential increase in attack scale and speed"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

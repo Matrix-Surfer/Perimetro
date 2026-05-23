@@ -4,7 +4,7 @@ date: "2026-05-18"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Until this past weekend, a contractor for the Cybersecurity & Infrastructure Security Agency (CISA) maintained a public GitHub repository that exposed credentials to several highly privileged AWS GovCloud accounts and a…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

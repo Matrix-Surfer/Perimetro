@@ -4,7 +4,7 @@ date: "2026-05-06"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "It's not just you. Scammers, hackers, and other cybercriminals are complaining about “AI shit” flooding platforms where they discuss cyberattacks and other illegal activity."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

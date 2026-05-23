@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "View CSAF Summary Successful exploitation of this vulnerability could allow an attacker to elevate privileges from user to system, which may then enable the attacker to cause a temporary denial of service, open files,…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

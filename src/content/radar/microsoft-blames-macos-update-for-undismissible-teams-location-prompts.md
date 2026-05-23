@@ -4,7 +4,7 @@ pubDate: 2026-05-19
 source: "BleepingComputer"
 category: "Seguridad"
 context: "Relevante para organizaciones que utilizan el ecosistema Microsoft."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

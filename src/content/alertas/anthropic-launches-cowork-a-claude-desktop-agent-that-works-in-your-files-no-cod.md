@@ -4,7 +4,7 @@ date: "2026-01-12"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Anthropic released Cowork on Monday, a new AI agent capability that extends the power of its wildly successful Claude Code tool to non-technical users — and according to company insiders, the team built the entire…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

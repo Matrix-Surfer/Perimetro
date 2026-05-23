@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cybersecurity researchers have disclosed details of a new ad fraud and malvertising operation dubbed Trapdoor targeting Android device users. The activity, per HUMAN's Satori Threat Intelligence and Research Team,…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

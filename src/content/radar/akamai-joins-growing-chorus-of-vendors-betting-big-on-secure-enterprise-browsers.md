@@ -5,7 +5,7 @@ source: "Dark Reading"
 link: "https://www.darkreading.com/remote-workforce/akamai-growing-chorus-betting-on-secure-enterprise-browsers"
 category: "Seguridad"
 context: "Relevante para organizaciones con dispositivos Apple en su operación."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

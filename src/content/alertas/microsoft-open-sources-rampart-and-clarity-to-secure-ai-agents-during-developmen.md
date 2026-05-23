@@ -4,7 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Microsoft has unveiled two new open-source tools called RAMPART and Clarity to assist developers in better testing the security of artificial intelligence (AI) agents. RAMPART, short for Risk Assessment and Measurement…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

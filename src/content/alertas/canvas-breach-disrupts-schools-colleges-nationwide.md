@@ -4,7 +4,7 @@ date: "2026-05-08"
 tipo: "Filtración"
 status: "Activa"
 resumen: "An ongoing data extortion attack targeting the widely-used education technology platform Canvas disrupted classes and coursework at school districts and universities across the United States today, after a cybercrime…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -4,7 +4,7 @@ date: "2026-05-18"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "No customer info stolen, no impact to operations, and no blackmail payment"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

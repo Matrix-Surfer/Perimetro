@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "View CSAF Summary SIMATIC S7 PLCs contain multiple vulnerabilities in the web server that could allow an attacker to perform cross-site scripting attacks. Siemens has released new versions for several affected products…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

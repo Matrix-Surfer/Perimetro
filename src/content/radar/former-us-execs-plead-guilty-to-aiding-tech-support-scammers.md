@@ -5,7 +5,7 @@ source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/security/former-us-execs-plead-guilty-to-aiding-tech-support-scammers/"
 category: "Seguridad"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

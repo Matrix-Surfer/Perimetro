@@ -4,7 +4,7 @@ date: "2026-04-28"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "A 21-year-old man suspected of conducting approximately 100 data breaches since late 2025 - including a hack of the French Ministry of National Education that exposed records on almost a quarter of a million employees -…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

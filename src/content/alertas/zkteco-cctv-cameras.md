@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "View CSAF Summary Successful exploitation of this vulnerability could result in information disclosure, including capture of camera account credentials. The following versions of ZKTeco CCTV Cameras are affected:…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

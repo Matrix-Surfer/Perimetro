@@ -4,7 +4,7 @@ pubDate: 2026-05-19
 source: "MIT Technology Review"
 category: "AI"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

@@ -4,7 +4,7 @@ pubDate: 2026-05-12
 source: "CISA Alerts"
 category: "AI"
 context: "Impacta a cualquier organización que use dependencias de software de terceros."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

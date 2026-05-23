@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "Pay up, or we'll pay someone to pay you a visit. Cybercrime gangs are increasingly turning to real-world threats - and even hiring local muscle to deliver the message. Read more in my article on the Hot for Security…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

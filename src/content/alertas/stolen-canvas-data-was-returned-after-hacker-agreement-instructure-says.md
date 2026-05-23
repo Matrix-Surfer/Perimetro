@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Instructure says the stolen Canvas data impacting millions of students and staff was “returned.” That’s not how breaches work."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

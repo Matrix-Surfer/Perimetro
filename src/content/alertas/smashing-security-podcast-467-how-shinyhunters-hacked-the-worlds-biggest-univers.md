@@ -4,7 +4,7 @@ date: "2026-05-13"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Welcome to the largest educational data breach in history - affecting nearly 9,000 institutions, every Ivy League university, and 30 million students mid-finals. When Canvas's parent company refused to pay and announced…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "The Belarus-aligned threat group known as Ghostwriter has been attributed to a fresh set of attacks targeting governmental organizations in Ukraine. Active since at least 2016, Ghostwriter has been linked to both cyber…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

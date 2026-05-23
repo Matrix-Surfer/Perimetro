@@ -4,7 +4,7 @@ date: "2026-05-19"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Drupal has issued an alert stating that it intends to release a \"core security release\" for all supported branches on May 20, 2026, from 5-9 p.m. UTC. \"The Drupal Security Team urges you to reserve time for core updates…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

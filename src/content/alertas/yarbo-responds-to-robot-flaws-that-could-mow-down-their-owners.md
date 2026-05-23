@@ -4,7 +4,7 @@ date: "2026-05-11"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "A researcher found a host of vulnerabilities in Yarbo garden robots that could expose Wi-Fi passwords, hijack cameras, and run over their owners on command."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

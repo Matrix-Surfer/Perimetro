@@ -4,7 +4,7 @@ pubDate: 2026-05-20
 source: "MIT Technology Review"
 category: "Seguridad"
 context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

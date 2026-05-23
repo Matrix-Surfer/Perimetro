@@ -4,7 +4,7 @@ date: "2026-01-22"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Railway, a San Francisco-based cloud platform that has quietly amassed two million developers without spending a dollar on marketing, announced Thursday that it raised $100 million in a Series B funding round, as…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

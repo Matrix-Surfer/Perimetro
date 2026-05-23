@@ -4,7 +4,7 @@ date: "2026-05-20"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Microsoft has shared mitigations for YellowKey, a recently disclosed Windows BitLocker zero-day vulnerability that grants access to protected drives. [...]"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

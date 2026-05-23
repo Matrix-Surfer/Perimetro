@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Ransomware"
 status: "En monitoreo"
 resumen: "A Nitrogen ransomware attack on Foxconn's North American facilities is one of 600 hits on manufacturers this year, as gangs increasingly target the sector for its low tolerance for downtime."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -4,7 +4,7 @@ pubDate: 2026-05-12
 source: "The Register — Security"
 category: "Seguridad"
 context: "Aplica a empresas que dependen de servicios y dispositivos Google."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Resumen

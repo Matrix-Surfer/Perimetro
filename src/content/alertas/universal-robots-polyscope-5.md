@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Phishing"
 status: "En monitoreo"
 resumen: "View CSAF Summary Successful exploitation of these vulnerabilities could allow an attacker to bypass authentication and execute code. The following versions of Universal Robots Polyscope 5 are affected: Polyscope 5…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

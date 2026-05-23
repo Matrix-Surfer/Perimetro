@@ -4,7 +4,7 @@ date: "2026-05-04"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Here's a tip for you all. Unless you want to draw attention to yourself as a cybercriminal, don't flaunt your diamond-encrusted \"HACK THE PLANET\" necklace on Snapchat, or pose as a Sopranos crime boss while the FBI is…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

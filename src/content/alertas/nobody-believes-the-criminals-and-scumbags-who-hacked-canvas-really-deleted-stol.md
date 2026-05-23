@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Other than Instructure execs - maybe?"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

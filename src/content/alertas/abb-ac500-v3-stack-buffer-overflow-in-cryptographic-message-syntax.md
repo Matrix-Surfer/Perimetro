@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Filtración"
 status: "Activa"
 resumen: "View CSAF Summary ABB became aware of vulnerability in the products versions listed as affected in the advisory. An update is available that resolves publicly reported vulnerability. An attacker who successfully…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -6,7 +6,7 @@ status: "En monitoreo"
 resumen: "Lawmakers in both houses of Congress are demanding answers from the U.S. Cybersecurity & Infrastructure Security Agency (CISA) after KrebsOnSecurity reported this week that a CISA contractor intentionally published AWS…"
 source: "Krebs on Security"
 link: "https://krebsonsecurity.com/2026/05/lawmakers-demand-answers-as-cisa-tries-to-contain-data-leak/"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

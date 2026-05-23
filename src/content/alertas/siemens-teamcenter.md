@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "View CSAF Summary Siemens Teamcenter is affected by multiple vulnerabilities which could potentially lead to a compromise in availability, integrity and confidentiality. Siemens has released new versions for the…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

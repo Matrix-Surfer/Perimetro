@@ -4,7 +4,7 @@ date: "2026-05-20"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "Identity checks alone can't stop attackers using stolen session tokens and compromised devices. Specops Software outlines why Zero Trust strategies increasingly depend on continuous device verification. [...]"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

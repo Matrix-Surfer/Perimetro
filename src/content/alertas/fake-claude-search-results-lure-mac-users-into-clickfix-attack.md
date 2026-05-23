@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Researchers found a ClickFix campaign that uses fake Claude setup guides to trick Mac users into infecting themselves."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

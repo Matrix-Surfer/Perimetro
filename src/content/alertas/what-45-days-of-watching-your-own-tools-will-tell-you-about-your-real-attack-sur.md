@@ -4,7 +4,7 @@ date: "2026-05-15"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "In Your Biggest Security Risk Isn't Malware — It's What You Already Trust, we made a simple argument: the most dangerous activity inside most organizations no longer looks like an attack. It looks like administration.…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

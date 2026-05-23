@@ -4,7 +4,7 @@ date: "2026-05-15"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "The Russian state-sponsored hacking group known as Turla has transformed its custom backdoor Kazuar into a modular peer-to-peer (P2P) botnet that's engineered for stealth and persistent access to compromised hosts.…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

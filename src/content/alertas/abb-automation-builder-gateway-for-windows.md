@@ -4,7 +4,7 @@ date: "2026-05-12"
 tipo: "Filtración"
 status: "Activa"
 resumen: "View CSAF Summary ABB became aware of severe vulnerability in the products versions listed as affected in the advisory. The Windows gateway is accessible remotely by default. Unauthenticated attackers can therefore…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

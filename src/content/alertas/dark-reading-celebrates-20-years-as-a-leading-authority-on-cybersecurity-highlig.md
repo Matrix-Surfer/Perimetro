@@ -4,7 +4,7 @@ date: "2026-05-13"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Informa TechTarget's flagship cybersecurity media brand launches a special content series to mark two decades as a trusted source for cybersecurity professionals."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

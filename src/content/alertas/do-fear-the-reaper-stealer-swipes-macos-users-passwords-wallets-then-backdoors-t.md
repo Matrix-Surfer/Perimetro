@@ -4,7 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "While also spoofing all the trusted domains - Apple, Microsoft, and Google - in the same attack"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

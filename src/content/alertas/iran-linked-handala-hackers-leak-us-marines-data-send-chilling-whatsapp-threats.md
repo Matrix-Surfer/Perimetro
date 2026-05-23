@@ -4,7 +4,7 @@ date: "2026-04-30"
 tipo: "Filtración"
 status: "En monitoreo"
 resumen: "US Marines stationed around the Persian Gulf have been receiving WhatsApp messages from strangers suggesting they call home and make their final goodbyes. Read more in my article on the Hot for Security blog."
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

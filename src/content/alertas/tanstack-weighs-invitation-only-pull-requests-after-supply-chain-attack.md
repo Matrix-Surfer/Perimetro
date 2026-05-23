@@ -4,7 +4,7 @@ date: "2026-05-18"
 tipo: "Otro"
 status: "Activa"
 resumen: "Shai-Hulud worm exploited GitHub Actions misconfiguration to poison shared cache, now project weighing nuclear option on unsolicited contributions"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Filtración"
 status: "Activa"
 resumen: "View CSAF Summary SIMATIC CN 4100 contains multiple vulnerabilities which could potentially lead to a compromise in availability, integrity and confidentiality. Siemens has released a new version for SIMATIC CN 4100 and…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto

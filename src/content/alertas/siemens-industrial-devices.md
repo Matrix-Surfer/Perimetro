@@ -4,7 +4,7 @@ date: "2026-05-14"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "View CSAF Summary Multiple industrial devices contain a vulnerability that could allow an attacker to cause a denial of service condition. Siemens has released new versions for several affected products and recommends…"
-publicacion: "draft"
+publicacion: "rejected"
 ---
 
 ## Contexto
