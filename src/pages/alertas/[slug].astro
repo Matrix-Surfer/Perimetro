@@ -49,15 +49,15 @@ const statusCssClass: Record<string, string> = {
         <span>·</span>
         <span>{alerta.data.source}</span>
       </div>
+    </header>
+
+    <div class="alerta-body">
+      <Content />
       {alerta.data.link && (
         <a href={alerta.data.link} target="_blank" rel="noopener noreferrer" class="alerta-source-link">
           Leer fuente original →
         </a>
       )}
-    </header>
-
-    <div class="alerta-body">
-      <Content />
     </div>
 
   </article>
