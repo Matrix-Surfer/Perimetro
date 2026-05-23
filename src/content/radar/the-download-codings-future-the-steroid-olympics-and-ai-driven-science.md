@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Anthropic’s Code with Claude showed off coding’s future—whether you like it or not At Anthropic’s developer event in London this week, Code with Claude, attendees were asked if they’d shipped code…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

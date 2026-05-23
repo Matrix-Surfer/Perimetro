@@ -12,6 +12,6 @@ publicacion: "published"
 
 Un investigador de seguridad descubrió que las API keys de Google Cloud permanecen activas hasta 23 minutos después de ser eliminadas, a pesar de que Google documenta que la revocación es inmediata. Durante esa ventana, una credencial supuestamente cancelada puede seguir siendo usada por un atacante.
 
-## Relevancia empresarial
+## Relevancia
 
 Cualquier empresa que use Google Cloud, Google Maps API, Workspace o servicios de Google con credenciales programáticas está afectada. Si una API key se filtra y se revoca como respuesta de emergencia, hay una ventana de casi media hora en la que el atacante puede seguir operando. El protocolo estándar de "borrar y listo" no es suficiente.

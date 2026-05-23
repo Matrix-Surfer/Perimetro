@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Article about the bigfin squid. As usual, you can also use this squid post to talk about the security stories in the news that I haven’t covered. Blog moderation policy.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

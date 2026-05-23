@@ -11,6 +11,6 @@ publicacion: "draft"
 
 UK researchers find LLMs are learning to finish jobs faster and improving all the time
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

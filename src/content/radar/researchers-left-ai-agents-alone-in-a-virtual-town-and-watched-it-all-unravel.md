@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Told not to commit crimes, the AI agents mostly did anyway. Arson, violence, romance, self-deletion, and general chaos quickly ensued.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

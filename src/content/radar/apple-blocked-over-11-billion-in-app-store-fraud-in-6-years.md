@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Apple revealed that it blocked over $11 billion in fraudulent App Store transactions over the last six years, more than $2.2 billion in potentially fraudulent App Store transactions in 2025 alone. [...]
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

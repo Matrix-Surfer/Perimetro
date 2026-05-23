@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Listen to the session or watch below Elon Musk lost his suit against OpenAI, in which he alleged CEO Sam Altman and President Greg Brockman had deceived him over the company’s non-profit status. Watch as AI reporter and attorney Michelle Kim, who covered the trial for MIT Technology Review, joins in conversation with editor in…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

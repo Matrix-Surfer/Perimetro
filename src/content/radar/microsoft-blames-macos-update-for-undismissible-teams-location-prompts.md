@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Microsoft has confirmed user reports that the Teams team collaboration app is displaying non-dismissible location prompts on some macOS systems. [...]
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

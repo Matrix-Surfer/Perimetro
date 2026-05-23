@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 You’ll need a lot of detailed prompts to get solid output - and even then it may have errors and typos
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

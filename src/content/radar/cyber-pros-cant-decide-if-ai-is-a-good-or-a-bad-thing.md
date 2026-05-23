@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 There is nothing cybersecurity professionals are more excited about, and nothing they fear more, than AI.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

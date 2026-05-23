@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 "Never-ending" AI slop strains corporate hacking reward schemes.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

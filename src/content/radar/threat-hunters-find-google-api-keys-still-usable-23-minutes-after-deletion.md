@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Plenty of time for cyber crims to grab data or hit you with a giant bill
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

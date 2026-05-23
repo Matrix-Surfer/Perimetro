@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Cifas just published research that should bother anyone who runs a business, or buys from one.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

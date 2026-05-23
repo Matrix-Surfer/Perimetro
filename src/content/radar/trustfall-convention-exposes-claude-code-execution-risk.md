@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Malicious repositories can trigger code execution in Claude Code, Cursor CLI, Gemini CLI, and CoPilot CLI with minimal or no user interaction, thanks to skimpy warning dialogs.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 I wonder what's in 'external-secret-repo-creds.yaml' and 'AWS-Workspace-Firefox-Passwords.csv'?
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

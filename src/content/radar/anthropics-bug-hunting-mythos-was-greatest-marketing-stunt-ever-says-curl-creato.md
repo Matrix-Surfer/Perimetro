@@ -11,6 +11,6 @@ publicacion: "draft"
 
 After all that hype, AI scanner found one low-severity cURL flaw
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

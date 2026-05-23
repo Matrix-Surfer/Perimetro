@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Security governance needs to be more than an annual compliance exercise. New companies are emerging to address risk-management gaps in current audit tools.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

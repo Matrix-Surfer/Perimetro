@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Since its earliest days back in office, the Trump administration has been going after researchers who study and try to counter hate speech, harassment, propaganda, and disinformation online. Now, some of those researchers are fighting back. Last week their lawsuit—which could have global repercussions for online safety and free speech—made its first appearance in court. …
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

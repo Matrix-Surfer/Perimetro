@@ -11,6 +11,6 @@ publicacion: "draft"
 
 To stop children from bypassing its age checks, Meta is revamping its age-verification tools with an AI system that analyzes images and videos for “visual cues,” such as height and bone structure.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

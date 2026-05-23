@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 CTO says new AI model is "every bit as capable" as world's best security researchers.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

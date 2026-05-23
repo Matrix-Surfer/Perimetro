@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 This is today’s edition of The Download, our weekday newsletter that provides a daily dose of what’s going on in the world of technology. Tech researchers are suing the Trump administration over the future of online safety For months, the Trump administration has been going after researchers who study and try to counter hate speech,…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

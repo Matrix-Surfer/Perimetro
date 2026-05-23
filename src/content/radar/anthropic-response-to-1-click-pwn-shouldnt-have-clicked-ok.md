@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Security biz Adversa AI argues users of AI tools need clearer warnings
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

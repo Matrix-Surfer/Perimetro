@@ -11,6 +11,6 @@ publicacion: "draft"
 
 David Norman, a former Phoenix police officer who’s described himself as “a fucking savage,” now runs a company that provided training to Homeland Security’s Special Response Teams.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

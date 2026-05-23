@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Volume and sensitivity of the data cited as chief concerns
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -11,6 +11,6 @@ publicacion: "draft"
 
 After years of stopping dead at the green bubble border, iPhone and Android users can finally send E2EE messages without relying on third-party apps
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

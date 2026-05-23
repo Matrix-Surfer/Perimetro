@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Communist government plans personalized ‘data-driven decision-making based on real-time information’ by 2035
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

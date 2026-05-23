@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Don't miss this virtual event as we explore how to cut through alert fatigue, leverage AI and unified platforms to accelerate investigations, and apply actionable threat intelligence. The post Virtual Event Today: Threat Detection & Incident Response Summit appeared first on SecurityWeek.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The company has developed a platform that uses specialized AI agents to inspect every incoming message. The post Ocean Emerges From Stealth With $28M for Agentic Email Security Platform appeared first on SecurityWeek.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

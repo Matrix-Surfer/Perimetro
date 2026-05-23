@@ -12,6 +12,6 @@ publicacion: "published"
 
 Las pérdidas por fraude en comercio digital no se limitan a los contracargos. Los rechazos falsos (clientes legítimos bloqueados por sistemas antifraude demasiado agresivos), la toma de cuentas y el abuso de promociones generan daño económico y de reputación que muchas empresas no están midiendo correctamente.
 
-## Relevancia empresarial
+## Relevancia
 
 Para cualquier negocio con ventas en línea, calibrar mal el antifraude tiene dos costos: el fraude que pasa y las ventas legítimas que se pierden. Las MiPYMEs que dependen de plataformas como Shopify, WooCommerce o MercadoShops necesitan revisar sus métricas más allá del ratio de contracargos para tener visibilidad real del problema.

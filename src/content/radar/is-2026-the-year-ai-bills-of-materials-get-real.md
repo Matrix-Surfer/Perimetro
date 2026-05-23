@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Understanding AI BOMs and where they fit into risk management for artificial intelligence.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

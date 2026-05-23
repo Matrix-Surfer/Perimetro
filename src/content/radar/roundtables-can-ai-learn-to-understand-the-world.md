@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Listen to the session or watch below AI companies want to build systems that understand the external world and overcome the limitations of LLMs. Recent developments have brought world models to the forefront of the AI discussion. Watch a conversation with editor in chief Mat Honan, senior AI editor Will Douglas Heaven, and AI reporter…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

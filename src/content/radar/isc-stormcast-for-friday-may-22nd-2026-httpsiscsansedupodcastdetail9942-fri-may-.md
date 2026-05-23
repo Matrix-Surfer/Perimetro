@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 (c) SANS Internet Storm Center. https://isc.sans.edu Creative Commons Attribution-Noncommercial 3.0 United States License.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

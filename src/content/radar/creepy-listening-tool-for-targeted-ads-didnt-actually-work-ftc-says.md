@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Three firms will pay nearly $1 million for selling “Active Listening” technology that they claimed tapped people’s phones for advertising. The FTC alleges the “tech” was just pricey email lists.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Artificial intelligence platforms may be just as susceptible to social engineering as human beings, but they are proving remarkably good at finding security vulnerabilities in human-made computer code. That reality is on full display this month with some of the more widely-used software makers -- including Apple, Google, Microsoft, Mozilla and Oracle -- fixing near record volumes of security bugs, and/or quickening the tempo of their patch releases.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

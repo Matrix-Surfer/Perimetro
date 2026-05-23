@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 New results suggest Mythos' cyber threat isn't "a breakthrough specific to one model."
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

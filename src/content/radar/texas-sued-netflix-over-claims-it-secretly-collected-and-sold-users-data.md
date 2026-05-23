@@ -11,6 +11,6 @@ publicacion: "draft"
 
 The Texas AG sued Netflix, accusing the company of secretly tracking viewers, selling user data, and using addictive features targeted at minors.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

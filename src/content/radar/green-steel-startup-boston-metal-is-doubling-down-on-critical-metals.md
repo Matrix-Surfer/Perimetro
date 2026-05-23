@@ -11,6 +11,6 @@ publicacion: "draft"
 
 The startup Boston Metal has raised a $75 million funding round to produce critical metals, MIT Technology Review can exclusively report. The company has been known largely for its efforts to clean up steel production, an industry that’s responsible for about 8% of global greenhouse emissions today. With the additional money, the new focus could…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

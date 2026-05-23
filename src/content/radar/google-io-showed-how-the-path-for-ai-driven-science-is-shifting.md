@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 During Tuesday’s Google I/O keynote, Demis Hassabis, the CEO of Google DeepMind, proclaimed that we are currently “standing in the foothills of the singularity.” It was a striking statement—the singularity is the theoretical future moment when AI rapidly exceeds human intelligence and dramatically transforms the world. But what struck me as I listened in the…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

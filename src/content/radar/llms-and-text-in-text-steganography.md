@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Turns out that LLMs are really good at hiding text messages in other text messages.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

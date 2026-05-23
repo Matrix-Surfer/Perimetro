@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Five ways CISOs can prepare for consuming AI Bill of Materials and influence the direction of how they're generated.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

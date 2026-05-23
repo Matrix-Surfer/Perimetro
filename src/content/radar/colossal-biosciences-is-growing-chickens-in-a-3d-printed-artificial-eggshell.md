@@ -11,6 +11,6 @@ publicacion: "draft"
 
 The baby chicks were shifting and starting to pip—or trying to hatch. But not from an egg. Instead, these chickens were growing inside transparent 3D-printed plastic cups at the Dallas headquarters of Colossal Biosciences. The biotech company today claimed it has developed a “fully artificial egg” as part of its effort to resurrect extinct avian…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

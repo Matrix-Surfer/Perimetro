@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 France is already moving on from Zoom and Microsoft Teams in favor of homegrown alternatives. Other countries are quickly following suit.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

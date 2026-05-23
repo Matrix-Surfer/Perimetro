@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Chrome users were caught off guard by a 4-GB Google AI model baked into Chrome, sparking privacy concerns. The good news: You can easily uninstall it. The bad? You might not want to.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

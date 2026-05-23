@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Flipper Devices, the maker of the Flipper Zero pentesting tool, is asking the community to help build Flipper One, an open Linux platform for connected devices. [...]
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

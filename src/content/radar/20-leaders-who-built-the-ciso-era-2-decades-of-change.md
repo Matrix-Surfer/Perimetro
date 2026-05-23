@@ -11,6 +11,6 @@ publicacion: "draft"
 
 As part of Dark Reading's 20th anniversary special coverage, we profile the CISOs, founders, researchers, criminals, and policymakers who rewrote the enterprise risk playbook.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

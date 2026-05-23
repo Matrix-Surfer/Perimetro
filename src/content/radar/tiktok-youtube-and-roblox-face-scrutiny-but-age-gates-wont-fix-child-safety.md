@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Ofcom says TikTok and YouTube are "not safe enough" for children, but simply adding stricter age checks is not the answer.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

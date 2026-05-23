@@ -11,6 +11,6 @@ publicacion: "draft"
 
 South Korea's local elections next month will be a test bed for how effective regulations might be to stymie the flow of deepfakes.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

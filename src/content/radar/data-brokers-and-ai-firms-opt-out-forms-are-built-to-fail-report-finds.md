@@ -11,6 +11,6 @@ publicacion: "draft"
 
 A new study finds AI companies, defense firms, and dating apps are among 38 data collectors allegedly using manipulative design to confuse users while collecting their data.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Starting May 19, tech platforms in the US will have to comply with the Take It Down Act. Here’s how more than a dozen major platforms are handling takedown demands for your nonconsensual nudes.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

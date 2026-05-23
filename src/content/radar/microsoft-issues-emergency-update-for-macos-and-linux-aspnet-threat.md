@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 When authentication fails, things can go very, very wrong.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

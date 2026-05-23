@@ -12,6 +12,6 @@ publicacion: "published"
 
 Investigación de Omdia documenta cómo la proliferación de agentes de IA en entornos empresariales está creando una nueva categoría de identidades digitales que requieren gestión, seguridad y gobernanza — y que la mayoría de organizaciones no tienen contempladas en sus presupuestos ni procesos de IAM.
 
-## Relevancia empresarial
+## Relevancia
 
 Un agente de IA tiene credenciales, accede a APIs, lee datos y ejecuta acciones. Si esa identidad no está controlada, auditada y revocable, es un vector de ataque o fuga de información. Las empresas que están adoptando agentes de IA para automatizar procesos internos necesitan incluirlos en su gestión de accesos desde el inicio, no como un paso posterior.

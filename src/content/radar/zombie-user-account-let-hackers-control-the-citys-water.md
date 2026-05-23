@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Failing to disable a former employee’s account was a huge mistake
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Firefox maker says the tools are basic security infrastructure, not teenage contraband
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

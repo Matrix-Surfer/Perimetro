@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 A stubborn misconception is hampering the already hard work of quantum readiness.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

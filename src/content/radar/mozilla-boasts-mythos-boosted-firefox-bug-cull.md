@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Yet it remains unclear if Anthropic's uber model was effective, or if better model middleware is what makes the difference
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

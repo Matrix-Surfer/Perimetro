@@ -37,10 +37,6 @@ const alertaBadgeClass: Record<string, string> = {
         <p><em>AI y Ciberseguridad</em> —<br/>Lo que importa,<br/>cuando importa.</p>
       </div>
       <div class="hero-sub">Sigo de cerca el mundo de AI y ciberseguridad y comparto lo que vale la pena entender, cuestionar y seguir de cerca.</div>
-      <div class="hero-meta">
-        <span class="dot"></span>
-        <span>Actualizado semanalmente</span>
-      </div>
     </div>
 
     <div class="hero-right">
@@ -94,10 +90,10 @@ const alertaBadgeClass: Record<string, string> = {
     </div>
     <div class="alerta-grid">
       {alertasRecientes.map((alerta) => (
-        <div class={`alerta-inner ${alerta.data.tipo === 'Dark Forum' ? 'alerta-inner--dark' : ''}`}>
+        <a href={`/alertas/${alerta.id}`} class={`alerta-inner ${alerta.data.tipo === 'Dark Forum' ? 'alerta-inner--dark' : ''}`}>
           <div class={`alerta-badge ${alertaBadgeClass[alerta.data.tipo] ?? 'alerta-badge--darkforum'}`}>{alerta.data.tipo}</div>
           <p class="alerta-text"><strong>{alerta.data.title}</strong> — {alerta.data.resumen}</p>
-        </div>
+        </a>
       ))}
     </div>
   </div>
@@ -407,7 +403,13 @@ const alertaBadgeClass: Record<string, string> = {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: background 0.2s;
   }
+
+  .alerta-inner:hover { background: rgba(255,68,68,0.1); }
 
   .alerta-inner--dark { background: rgba(255,68,68,0.02); }
   .alerta-inner:last-child { border-right: none; }

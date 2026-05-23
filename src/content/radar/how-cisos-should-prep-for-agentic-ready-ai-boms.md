@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Finding ways to document both component and execution attributes for AI bills of materials (AI BOMs).
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

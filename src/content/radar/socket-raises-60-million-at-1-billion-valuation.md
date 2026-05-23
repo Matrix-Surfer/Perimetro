@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The company will invest in its firewall, certified patches, protection extensions, new products, and team expansion. The post Socket Raises $60 Million at $1 Billion Valuation appeared first on SecurityWeek.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

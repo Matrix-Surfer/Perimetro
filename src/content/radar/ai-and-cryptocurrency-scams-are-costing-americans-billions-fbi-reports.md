@@ -11,6 +11,6 @@ publicacion: "draft"
 
 The fraud landscape has been changed by AI and cryptocurrency in a way that should concern organisations and individuals alike. Read more in my article on the Fortra blog.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

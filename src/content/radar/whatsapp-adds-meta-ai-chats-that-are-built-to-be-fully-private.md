@@ -11,6 +11,6 @@ publicacion: "draft"
 
 The company says its new Incognito Chat allows you to use its AI chatbot without anyone else—including Meta—being able to access your conversations.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

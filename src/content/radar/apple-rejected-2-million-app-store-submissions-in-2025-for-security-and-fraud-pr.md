@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The company blocked over 1.1 billion accounts and $2.2 billion in potentially fraudulent transactions. The post Apple Rejected 2 Million App Store Submissions in 2025 for Security and Fraud Prevention appeared first on SecurityWeek.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 We’re over a year into the second Trump administration here in the US, and support for climate causes is weak. But climate tech companies are finding ways to survive and even thrive in this new environment, including by focusing on potential benefits outside decarbonization. Suddenly, it feels like every climate tech company has a story…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

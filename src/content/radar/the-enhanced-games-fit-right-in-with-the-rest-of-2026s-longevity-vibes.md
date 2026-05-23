@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 This Sunday, a group of 42 athletes will gather in Las Vegas to compete in a somewhat unusual sporting competition. Participants in the inaugural Enhanced Games are being encouraged to take performance-enhancing drugs. The goal is to “push the boundaries of human performance.” The games’ organizers have said that competitors will only be taking substances that…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

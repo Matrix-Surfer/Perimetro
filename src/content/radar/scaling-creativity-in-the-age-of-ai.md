@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Storytelling is core to humanity’s DNA, stemming from our impulse to express ideals, warnings, hopes, and experiences. Technology has always been woven through the medium and the distribution: from early humans’ innovation of natural pigments and charcoals for cave paintings to literal representation by the camera. The landscape of storytelling continues to shift under our…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

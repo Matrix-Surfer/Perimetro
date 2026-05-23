@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 One line tucked into a federal highway bill would strip funds from cities and states unless they kill their automated plate tracking programs—effectively banning the tech for all but toll collection.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

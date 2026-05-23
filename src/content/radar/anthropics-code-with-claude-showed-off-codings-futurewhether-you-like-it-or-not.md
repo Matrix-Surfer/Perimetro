@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The vibes were strong at Code with Claude, Anthropic’s two-day event for software developers in London that kicked off on May 19, the same day as Google’s I/O in Palo Alto. (A coincidence, not a flex, Anthropic staffers assured me.) “Who here has shipped a pull request in the last week that was completely written…
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

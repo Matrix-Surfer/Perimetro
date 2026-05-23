@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 'Budgets are moral documents,' Rep. Delia Ramirez said
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The developer of Firefox says it has "completely bought in" on AI-assisted bug discovery.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

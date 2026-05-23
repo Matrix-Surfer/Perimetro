@@ -11,6 +11,6 @@ publicacion: "draft"
 
 Plus: The NSA tests Anthropic’s Mythos Preview to find vulnerabilities, a Finnish teen is charged over the Scattered Spider hacking spree, and more.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

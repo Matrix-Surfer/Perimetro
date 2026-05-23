@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 CopyFail threatens multi-tenant servers, CI/CD work flows, Kubernetes containers, and more.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.
