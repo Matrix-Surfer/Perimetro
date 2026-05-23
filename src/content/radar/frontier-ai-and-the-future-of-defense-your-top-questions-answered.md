@@ -5,7 +5,7 @@ source: "Unit 42 — Palo Alto Networks"
 link: "https://unit42.paloaltonetworks.com/frontier-ai-top-questions-answered/"
 category: "AI"
 context: "Palo Alto Networks responde las preguntas más frecuentes de líderes de seguridad sobre el impacto real de la IA frontier: qué cambia, qué sigue igual y cómo prepararse operacionalmente."
-publicacion: "published"
+publicacion: "rejected"
 ---
 
 ## Resumen
