@@ -68,6 +68,7 @@ El tono es el de un colega confiable que encontró algo importante y lo explica 
 - Noticias internacionales sin conexión con México o MiPYMES
 - Listas de "X cosas que debes saber" sin profundidad
 - Cualquier contenido que amplifique pánico sin utilidad práctica
+- **Títulos que prometen contenido que el artículo no entrega** — si el título dice "las 10 preguntas", "los 5 pasos" o cualquier listado numerado, el artículo debe entregar ese listado completo. Si solo hay un resumen o contexto externo, el título genera una expectativa rota que hace ver el sitio mal diseñado. En ese caso: reescribir el título o rechazar el ítem.
 
 ---
 
