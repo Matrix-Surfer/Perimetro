@@ -16,7 +16,7 @@ A diferencia de las VPN legítimas usadas por empresas para proteger su tráfico
 
 ## Impacto potencial
 
-El impacto directo en empresas mexicanas es indirecto pero relevante: varios de los grupos que usaban este servicio han tenido actividad documentada en América Latina. La eliminación de esta infraestructura puede reducir temporalmente la capacidad operativa de algunos actores de ransomware, aunque los grupos más organizados migrarán a otras herramientas.
+Varios de los grupos que usaban este servicio tienen actividad documentada en América Latina. La eliminación de esta infraestructura puede reducir temporalmente la capacidad operativa de algunos actores de ransomware, aunque los grupos más organizados migrarán a otras herramientas.
 
 ## Recomendaciones
 

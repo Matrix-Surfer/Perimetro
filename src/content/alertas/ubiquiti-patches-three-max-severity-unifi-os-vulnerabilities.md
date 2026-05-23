@@ -3,7 +3,7 @@ title: "Tres vulnerabilidades críticas en Ubiquiti UniFi — routers de oficina
 date: "2026-05-22"
 tipo: "Otro"
 status: "Activa"
-resumen: "Ubiquiti publicó parches para tres vulnerabilidades de severidad máxima en UniFi OS que permiten a atacantes remotos sin credenciales tomar control de routers, switches y access points. Equipos de red Ubiquiti son comunes en oficinas medianas y pequeñas en México."
+resumen: "Ubiquiti publicó parches para tres vulnerabilidades de severidad máxima en UniFi OS que permiten a atacantes remotos sin credenciales tomar control de routers, switches y access points. Equipos de red Ubiquiti son comunes en oficinas medianas y pequeñas."
 source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/security/ubiquiti-patches-three-max-severity-unifi-os-vulnerabilities/"
 publicacion: "published"
@@ -15,7 +15,7 @@ Ubiquiti publicó actualizaciones de seguridad para tres vulnerabilidades de sev
 
 ## Impacto potencial
 
-UniFi es la infraestructura de red más común en oficinas pequeñas y medianas en México por su relación precio-funcionalidad. Un atacante que explote estas vulnerabilidades puede interceptar todo el tráfico de red de la organización, redirigir conexiones, o usar los dispositivos como punto de entrada a la red interna. No se requiere ningún acceso previo.
+UniFi es la infraestructura de red más común en oficinas pequeñas y medianas por su relación precio-funcionalidad. Un atacante que explote estas vulnerabilidades puede interceptar todo el tráfico de red de la organización, redirigir conexiones, o usar los dispositivos como punto de entrada a la red interna. No se requiere ningún acceso previo.
 
 ## Recomendaciones
 

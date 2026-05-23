@@ -4,6 +4,6 @@ pubDate: 2026-05-22
 source: "Ars Technica — Security"
 link: "https://arstechnica.com/security/2026/05/texas-ag-sues-meta-over-claims-that-whatsapp-doesnt-provide-end-to-end-encryptio/"
 category: "Seguridad"
-context: "WhatsApp es la herramienta de comunicación empresarial más usada en México. Esta demanda pone en duda públicamente si los mensajes son realmente privados — aunque los críticos señalan que la acusación carece de sustento técnico. Una señal de que la privacidad de plataformas de mensajería empresarial seguirá siendo tema de debate regulatorio."
+context: "Una demanda judicial en EE.UU. pone en duda públicamente si WhatsApp cifra realmente los mensajes de extremo a extremo. Los críticos señalan que la acusación carece de sustento técnico, pero el debate sobre la privacidad real de las plataformas de mensajería empresarial sigue abierto — y cada vez más relevante para equipos que las usan para comunicación sensible."
 publicacion: "published"
 ---

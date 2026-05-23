@@ -29,7 +29,7 @@ Bashe es un actor activo con víctimas documentadas en varios países. Su credib
 
 Si el incidente se confirma, la exposición de reportes financieros e información personal podría afectar a empleados, proveedores y socios comerciales de la empresa.
 
-Independientemente de la veracidad de esta reclamación específica, el sector manufacturero y agroalimentario mexicano sigue siendo un objetivo activo para grupos de ransomware. La industria alimentaria frecuentemente combina sistemas IT modernos con infraestructura OT (operativa) más antigua, una combinación que facilita el movimiento lateral de los atacantes.
+El sector manufacturero y agroalimentario es un objetivo activo para grupos de ransomware. La industria alimentaria frecuentemente combina sistemas IT modernos con infraestructura OT (operativa) más antigua, una combinación que facilita el movimiento lateral de los atacantes.
 
 ## Recomendaciones
 
