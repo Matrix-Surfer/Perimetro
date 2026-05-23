@@ -58,5 +58,9 @@
   {
     "name": "VentureBeat — AI",
     "url": "https://venturebeat.com/category/ai/feed/"
+  },
+  {
+    "name": "Unit 42 — Palo Alto Networks",
+    "url": "https://unit42.paloaltonetworks.com/feed/"
   }
 ]
