@@ -37,16 +37,17 @@ const categoryClass: Record<string, string> = {
       <div class="radar-date">
         <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</span>
       </div>
-      {item.data.link && (
-        <a href={item.data.link} target="_blank" rel="noopener noreferrer" class="radar-source-link">
-          Leer fuente original →
-        </a>
-      )}
     </header>
 
     <div class="radar-body">
       <Content />
     </div>
+
+    {item.data.link && (
+      <a href={item.data.link} target="_blank" rel="noopener noreferrer" class="radar-source-link">
+        Leer fuente original →
+      </a>
+    )}
 
   </article>
 

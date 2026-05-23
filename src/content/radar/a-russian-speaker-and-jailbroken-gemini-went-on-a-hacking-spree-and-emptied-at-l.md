@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Hey, Gemini, how much can we earn from one pump-and-dump cycle?
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

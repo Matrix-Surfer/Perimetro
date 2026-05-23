@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Or is it just life today, with AI constantly digging through code repositories in search of security holes?
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 The South Pacific Regional Fisheries Management Organization (SPRFMO) needs to regulate squid fishing in the South Pacific. As usual, you can also use this squid post to talk about the security stories in the news that I haven’t covered. Blog moderation policy.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

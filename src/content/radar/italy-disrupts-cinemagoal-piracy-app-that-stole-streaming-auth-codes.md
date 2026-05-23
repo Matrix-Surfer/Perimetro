@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Italian authorities have dismantled a piracy ecosystem centered around the CINEMAGOAL app that provided access to various streaming platforms, including Netflix, Disney+, and Spotify. [...]
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

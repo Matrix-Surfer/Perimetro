@@ -12,6 +12,6 @@ publicacion: "published"
 
 Anthropic reveló que su Proyecto Glasswing —una iniciativa defensiva de ciberseguridad lanzada el mes pasado— ha identificado más de 10,000 vulnerabilidades de severidad alta o crítica en software de importancia sistémica global. La iniciativa usa el modelo Claude Mythos para analizar código a escala masiva con el objetivo de asegurar infraestructura crítica antes de que actores maliciosos la exploten.
 
-## Relevancia empresarial
+## Relevancia
 
 Para empresas mexicanas, el hallazgo tiene dos lecturas prácticas: el software del que dependen (sistemas ERP, plataformas cloud, librerías de código abierto) será auditado con mayor velocidad e intensidad conforme herramientas como esta escalen. Eso es buena noticia a largo plazo, pero también significa que el ciclo entre descubrimiento de vulnerabilidad y explotación activa se comprime. Las organizaciones con procesos lentos de actualización y gestión de parches son las más expuestas en este nuevo escenario.

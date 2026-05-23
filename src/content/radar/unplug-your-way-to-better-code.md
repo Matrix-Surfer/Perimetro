@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Cybersecurity concepts — logs, packets, DNS exfiltration, and more — are usually intangible, and its practitioners are prone to mental fatigue, Amy takes a second to yell at you to go touch grass.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

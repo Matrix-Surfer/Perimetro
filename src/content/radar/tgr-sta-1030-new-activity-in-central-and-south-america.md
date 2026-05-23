@@ -12,6 +12,6 @@ publicacion: "published"
 
 Palo Alto Networks Unit 42 publicó un reporte confirmando que el actor de amenaza TGR-STA-1030 mantiene operaciones activas con foco particular en Centroamérica y Sudamérica. Si bien el reporte no detalla sectores específicos afectados en México, la actividad regional documentada por un equipo de threat intelligence de primer nivel justifica monitoreo activo.
 
-## Relevancia empresarial
+## Relevancia
 
 La presencia documentada de un actor de amenaza con operaciones activas en la región latinoamericana es una señal temprana relevante para organizaciones mexicanas. Los patrones de TGR-STA-1030 sugieren campañas oportunistas que escalan según la visibilidad de los objetivos. Organizaciones con presencia regional o proveedores en Centroamérica y Sudamérica deberían incluir este actor en su monitoreo de threat intelligence.

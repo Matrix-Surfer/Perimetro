@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Two former executives of a call-tracking and analytics company pleaded guilty to concealing a years-long tech support fraud scheme that victimized individuals worldwide. [...]
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

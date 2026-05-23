@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 El equipo de Palo Alto Networks compiló las 10 preguntas más frecuentes de directivos y líderes de seguridad sobre la IA frontier aplicada a la defensa: desde cómo los modelos de IA aceleran tanto los ataques como la detección, hasta qué decisiones operativas deben tomar las organizaciones hoy. El reporte es accesible y orientado a tomadores de decisión, no a técnicos.
 
-## Relevancia empresarial
+## Relevancia
 
 Para responsables de IT y directivos en México, este reporte ofrece un marco claro para entender dónde la IA cambia realmente las reglas del juego en ciberseguridad: los atacantes ya la usan para encontrar vulnerabilidades más rápido, automatizar phishing y evadir detección. La respuesta no es solo adoptar más herramientas, sino entender qué capacidades de defensa son prioritarias en este nuevo contexto.

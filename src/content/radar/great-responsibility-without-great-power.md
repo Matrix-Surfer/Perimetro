@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 In this week’s newsletter, Hazel uses International Superhero Day as a springboard to explore why empathy — rather than just technical prowess — is the most essential, underrated superpower for navigating the human side of cybersecurity.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

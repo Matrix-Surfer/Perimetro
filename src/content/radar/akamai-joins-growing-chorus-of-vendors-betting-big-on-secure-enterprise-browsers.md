@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 When Akamai announced its LayerX acquisition, the company joined a growing list of vendors adding secure enterprise browsers to their product portfolios.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.

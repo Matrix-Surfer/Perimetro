@@ -12,6 +12,6 @@ publicacion: "rejected"
 
 Will Jason Statham save us?
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.
