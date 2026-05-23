@@ -1,6 +1,6 @@
 ---
 title: "Escalación en Active Directory Certificate Services: técnica activa usada por grupos APT documentada por Unit 42"
-date: "2026-05-11"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "Unit 42 documentó cómo atacantes explotan plantillas mal configuradas en AD CS para escalar privilegios hasta Domain Admin. El grupo Fighting Ursa (APT ruso) ya utiliza activamente estas técnicas."

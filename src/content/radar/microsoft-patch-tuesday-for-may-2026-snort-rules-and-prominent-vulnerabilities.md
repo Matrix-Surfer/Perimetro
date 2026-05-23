@@ -1,6 +1,6 @@
 ---
 title: “Patch Tuesday mayo 2026: Microsoft corrige 137 vulnerabilidades incluyendo 16 críticas”
-pubDate: 2026-05-12
+pubDate: 2026-05-23
 source: “Cisco Talos Blog”
 link: “https://blog.talosintelligence.com/microsoft-patch-tuesday-may-2026/”
 category: “Seguridad”

@@ -1,6 +1,6 @@
 ---
 title: “CloudZ RAT activo desde enero 2026 roba mensajes OTP mediante el plugin 'Pheno'”
-date: “2026-05-05”
+date: "2026-05-23"
 tipo: “Otro”
 status: “Activa”
 resumen: “Cisco Talos documentó una intrusión activa desde enero 2026 donde un atacante desplegó el RAT CloudZ junto con un plugin inédito llamado 'Pheno' capaz de interceptar mensajes OTP, neutralizando la autenticación de dos factores.”

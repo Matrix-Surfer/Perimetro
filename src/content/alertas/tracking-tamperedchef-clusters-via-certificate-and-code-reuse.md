@@ -1,6 +1,6 @@
 ---
 title: "TamperedChef: malware distribuido a través de apps de productividad troyanizadas y anuncios maliciosos"
-date: "2026-05-20"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "Unit 42 documentó clusters de malware TamperedChef que distribuyen troyanos de acceso remoto mediante aplicaciones de productividad modificadas — lectores PDF, herramientas de documentos — y publicidad maliciosa."

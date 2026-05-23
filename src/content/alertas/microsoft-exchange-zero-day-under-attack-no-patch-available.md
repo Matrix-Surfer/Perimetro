@@ -1,6 +1,6 @@
 ---
 title: "Zero-day en Microsoft Exchange bajo ataque activo — sin parche disponible (CVE-2026-42897)"
-date: "2026-05-18"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "CVE-2026-42897 es una vulnerabilidad XSS en Exchange que permite comprometer buzones de Outlook Web Access. Está bajo explotación activa y Microsoft aún no ha publicado parche."

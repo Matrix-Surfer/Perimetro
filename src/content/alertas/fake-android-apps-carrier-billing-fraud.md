@@ -1,6 +1,6 @@
 ---
 title: "Apps Android falsas suscriben a servicios premium sin que el usuario lo sepa — interceptan OTPs"
-date: "2026-05-20"
+date: "2026-05-23"
 tipo: "Phishing"
 status: "Activa"
 resumen: "Aplicaciones Android maliciosas usan automatización de WebView e interceptación de OTPs para completar suscripciones fraudulentas a servicios premium cargadas directamente a la factura del operador."

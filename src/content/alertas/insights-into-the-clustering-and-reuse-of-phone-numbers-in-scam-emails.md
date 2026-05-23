@@ -1,6 +1,6 @@
 ---
 title: "Cisco Talos: los números telefónicos en correos de scam se reutilizan — y eso permite detectarlos"
-date: "2026-05-06"
+date: "2026-05-23"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Talos comenzó a rastrear números telefónicos dentro de correos de scam como indicadores de compromiso. Los análisis muestran patrones de reutilización que permiten detectar campañas activas antes de que los usuarios caigan en ellas."

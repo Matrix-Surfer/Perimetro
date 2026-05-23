@@ -1,6 +1,6 @@
 ---
 title: "IA frontier y el futuro de la defensa: las 10 preguntas que hacen los líderes de seguridad"
-pubDate: 2026-04-23
+pubDate: 2026-05-23
 source: "Unit 42 — Palo Alto Networks"
 link: "https://unit42.paloaltonetworks.com/frontier-ai-top-questions-answered/"
 category: "AI"

@@ -1,6 +1,6 @@
 ---
 title: "DBIR 2026: el sector salud resiste más ataques de ingeniería social mientras ransomware y brechas de proveedores persisten"
-date: "2026-05-22"
+date: "2026-05-23"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "El reporte anual de brechas de Verizon (DBIR 2026) documenta cómo el sector salud enfrenta una escalada de ataques de ingeniería social cada vez más sofisticados, mientras ransomware y brechas por proveedores siguen siendo los vectores dominantes."

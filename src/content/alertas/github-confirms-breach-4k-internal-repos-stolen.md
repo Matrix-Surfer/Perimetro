@@ -1,6 +1,6 @@
 ---
 title: "GitHub confirma breach: el grupo TeamPCP robó 4,000 repositorios internos"
-date: "2026-05-20"
+date: "2026-05-23"
 tipo: "Filtración"
 status: "Activa"
 resumen: "GitHub confirmó el robo de aproximadamente 4,000 repositorios internos por parte del actor TeamPCP. El incidente expone código propietario y potencialmente secretos, tokens y credenciales embebidos."

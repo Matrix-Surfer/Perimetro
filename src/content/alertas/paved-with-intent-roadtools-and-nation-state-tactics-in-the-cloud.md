@@ -1,6 +1,6 @@
 ---
 title: "Actores estado-nación usan ROADtools para infiltrarse en entornos Azure y Microsoft 365"
-date: "2026-05-22"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "Grupos como Midnight Blizzard y Void Blizzard están usando el framework open source ROADtools para comprometer entornos Azure y Entra ID. Organizaciones con Microsoft 365 deben revisar sus configuraciones de identidad."

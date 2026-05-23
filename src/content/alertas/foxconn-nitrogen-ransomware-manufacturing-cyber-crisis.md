@@ -1,6 +1,6 @@
 ---
 title: "Foxconn atacado por ransomware Nitrogen — manufactura global enfrenta 600 incidentes en lo que va del año"
-date: "2026-05-14"
+date: "2026-05-23"
 tipo: "Ransomware"
 status: "Activa"
 resumen: "Un ataque de ransomware Nitrogen afectó las instalaciones norteamericanas de Foxconn. Es uno de 600 ataques contra el sector manufacturero en 2026, donde los grupos priorizan industrias con baja tolerancia al tiempo de inactividad."

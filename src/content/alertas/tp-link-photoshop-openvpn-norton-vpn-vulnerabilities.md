@@ -1,6 +1,6 @@
 ---
 title: "Talos divulga 8 vulnerabilidades en routers TP-Link y fallas en Photoshop, OpenVPN y Norton VPN"
-date: "2026-05-19"
+date: "2026-05-23"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cisco Talos divulgó ocho vulnerabilidades en dispositivos TP-Link y una falla adicional en Adobe Photoshop, OpenVPN y Norton VPN. Todas cuentan con parche disponible — la acción requerida es actualizar."

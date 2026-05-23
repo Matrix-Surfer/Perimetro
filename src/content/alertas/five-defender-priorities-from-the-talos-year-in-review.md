@@ -1,6 +1,6 @@
 ---
 title: "Cinco prioridades de defensa para 2026 según el reporte anual de Cisco Talos"
-date: "2026-04-28"
+date: "2026-05-23"
 tipo: "Otro"
 status: "En monitoreo"
 resumen: "Cisco Talos distila su reporte anual 2025 en cinco prioridades prácticas para que los equipos de defensa enfoquen su atención en lo que más importa — en lugar de reaccionar a todo el ruido."

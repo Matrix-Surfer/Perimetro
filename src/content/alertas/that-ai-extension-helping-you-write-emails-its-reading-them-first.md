@@ -1,6 +1,6 @@
 ---
 title: "Las extensiones de IA que te ayudan a redactar correos también los están leyendo"
-date: "2026-04-30"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "Unit 42 identificó extensiones de navegador con IA que se presentan como herramientas de productividad pero interceptan correos, roban contraseñas y exfiltran datos en segundo plano."

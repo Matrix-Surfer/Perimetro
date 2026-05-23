@@ -1,6 +1,6 @@
 ---
 title: "TGR-STA-1030: actor de amenaza con operaciones activas en Centroamérica y Sudamérica"
-pubDate: 2026-04-24
+pubDate: 2026-05-23
 source: "Unit 42 — Palo Alto Networks"
 link: "https://unit42.paloaltonetworks.com/new-activity-central-south-america/"
 category: "Seguridad"

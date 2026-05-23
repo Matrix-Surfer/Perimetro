@@ -1,6 +1,6 @@
 ---
 title: "Copy Fail (CVE-2026-31431): vulnerabilidad crítica en el kernel Linux permite escalar a root sin dejar rastro"
-date: "2026-05-05"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "CVE-2026-31431 es una escalación de privilegios local en el kernel Linux que permite obtener acceso root de forma sigilosa. Afecta millones de sistemas incluyendo servidores, VPS y contenedores."

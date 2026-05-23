@@ -1,6 +1,6 @@
 ---
 title: "Agentes de IA generando herramientas de hackeo personalizadas en tiempo real contra México y Brasil"
-date: "2026-05-13"
+date: "2026-05-23"
 tipo: "Otro"
 status: "Activa"
 resumen: "Actores de amenaza están usando agentes de IA para generar herramientas de ataque personalizadas en campañas dirigidas específicamente a organizaciones en México y Brasil, según Dark Reading."
