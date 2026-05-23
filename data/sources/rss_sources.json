@@ -62,5 +62,9 @@
   {
     "name": "Unit 42 — Palo Alto Networks",
     "url": "https://unit42.paloaltonetworks.com/feed/"
+  },
+  {
+    "name": "Cisco Talos Blog",
+    "url": "https://blog.talosintelligence.com/rss/"
   }
 ]
