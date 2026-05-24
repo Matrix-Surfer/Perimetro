@@ -46,7 +46,7 @@ context: "${esc(context.trim())}"
 
 Pendiente.
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.
 `;

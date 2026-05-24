@@ -38,6 +38,22 @@ El tono es el de un colega confiable que encontró algo importante y lo explica 
 
 ---
 
+## Definición de términos técnicos
+
+Cuando se usa un término técnico de ciberseguridad o tecnología, **explicarlo en el mismo párrafo o en paréntesis**, en lenguaje simple. No asumir que el lector conoce el vocabulario especializado.
+
+Ejemplos del estándar:
+
+- ❌ "La campaña usa ClickFix para comprometer sistemas."
+- ✅ "La campaña usa ClickFix —una técnica que engaña al usuario para que ejecute comandos maliciosos en su propio equipo— para comprometer sistemas."
+
+- ❌ "Explotaron una vulnerabilidad de inyección SQL en el CMS."
+- ✅ "Explotaron una vulnerabilidad de inyección SQL —un fallo que permite a un atacante manipular la base de datos del sitio— en el CMS."
+
+**Regla:** si el término no lo entendería alguien de administración o finanzas de una empresa mediana, hay que explicarlo. Una oración basta. No se trata de simplificar el análisis, sino de no dejar a nadie fuera.
+
+---
+
 ## Qué publicar
 
 **Análisis:**

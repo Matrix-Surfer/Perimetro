@@ -161,7 +161,7 @@ async function processRadar() {
 
 ${summary}
 
-## Relevancia empresarial
+## Relevancia
 
 Pendiente.
 `;
