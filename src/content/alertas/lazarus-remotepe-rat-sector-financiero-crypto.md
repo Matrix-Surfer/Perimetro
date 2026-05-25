@@ -11,27 +11,27 @@ publicacion: "published"
 
 ## Contexto
 
-Investigadores de Fox-IT documentaron una nueva herramienta del grupo Lazarus —un actor de amenazas persistentes avanzadas (APT, grupos con recursos estatales y objetivos de largo plazo) vinculado al régimen de Corea del Norte— llamada RemotePE. Se trata de un RAT de solo memoria, es decir, un troyano de acceso remoto —software malicioso que le da al atacante control total sobre el sistema infectado— que opera exclusivamente en la memoria RAM del equipo sin escribir archivos en el disco duro.
+Investigadores de Fox-IT documentaron una nueva herramienta del grupo Lazarus. Lazarus es un APT vinculado a Corea del Norte: grupos con recursos estatales y objetivos de largo plazo. La herramienta se llama RemotePE. Es un RAT de solo memoria. Un troyano de acceso remoto que opera exclusivamente en la RAM. No escribe archivos en disco. Tu antivirus no lo detecta. No tiene nada que analizar.
 
 La cadena de ataque tiene tres etapas:
 
-1. **DPAPILoader:** un cargador inicial que usa DPAPI —una interfaz legítima del sistema operativo Windows para cifrado de datos— para descifrar y cargar el siguiente componente. Al usar funciones nativas del sistema, evita disparar alertas en soluciones de seguridad que detectan comportamientos anómalos.
+1. **DPAPILoader:** usa DPAPI, una interfaz legítima de Windows para cifrado de datos. Al usar funciones nativas del sistema, no dispara alertas de seguridad.
 
-2. **RemotePELoader:** carga el troyano final directamente en memoria sin tocar el disco. Los antivirus tradicionales basados en análisis de archivos no detectan la amenaza porque no hay ningún archivo malicioso que analizar.
+2. **RemotePELoader:** carga el troyano directamente en memoria. Sin tocar el disco. Sin dejar huella que analizar.
 
-3. **RemotePE:** el troyano activo. Establece comunicación con los servidores del atacante y ejecuta comandos remotos en el sistema comprometido.
+3. **RemotePE:** el troyano activo. Establece contacto con los servidores del atacante. Ejecuta comandos remotos. El sistema está comprometido. Nada lo indica.
 
 ## Impacto potencial
 
-Lazarus tiene un historial documentado de ataques contra instituciones financieras —incluyendo el robo de 81 millones de dólares al Banco de Bangladesh en 2016— y en los últimos años ha intensificado su actividad contra empresas del sector cripto. El uso de RemotePE indica una evolución táctica orientada a evadir las defensas modernas de organizaciones con mayor madurez en seguridad.
+Lazarus robó 81 millones de dólares al Banco de Bangladesh en 2016. En los últimos años escaló su actividad contra el sector cripto. RemotePE es la herramienta con la que ahora evade las defensas modernas.
 
-Para una empresa fintech, casa de cambio o plataforma que procese transacciones financieras, la consecuencia concreta de una infección exitosa es la **pérdida de control operativo sin señal de alerta**: el atacante puede permanecer activo en los sistemas durante semanas o meses antes de actuar, observando operaciones y acumulando acceso. Cuando decide actuar, puede vaciar cuentas, manipular transacciones o destruir registros.
+Para una fintech, casa de cambio o plataforma de transacciones, el riesgo es concreto. El atacante puede permanecer activo semanas o meses. Observando. Acumulando acceso. Sin dejar rastro. Cuando activa el ataque, puede vaciar cuentas. Manipular transacciones. Destruir registros.
 
-Esto también tiene una dimensión regulatoria crítica: si la empresa maneja fondos de terceros o datos financieros de clientes y hay una brecha, **las obligaciones de notificación y respuesta no son opcionales**. El costo de un incidente no es solo la pérdida directa — incluye la gestión legal, la notificación a clientes afectados y el impacto reputacional en un sector donde la confianza es el activo principal.
+Hay una dimensión regulatoria que no es opcional. Si la empresa maneja fondos de terceros y hay una brecha, debe notificar. El costo no es solo la pérdida directa. Incluye la gestión legal. La notificación a clientes. El daño reputacional. En un sector donde la confianza es el activo principal.
 
 ## Recomendaciones
 
-- **Revisar con tu proveedor de seguridad si las herramientas actuales incluyen detección de comportamiento en tiempo real (EDR):** un antivirus tradicional que analiza archivos no detecta malware que opera solo en memoria. Si la respuesta es que se usa únicamente antivirus, el nivel de protección frente a esta amenaza es insuficiente para empresas que manejan dinero.
-- **Solicitar una evaluación del principio de mínimo privilegio:** preguntar a TI si cada cuenta de usuario y servicio tiene solo los permisos estrictamente necesarios para operar. Limitar el acceso reduce el radio de daño si un equipo es comprometido.
-- **Revisar el plan de respuesta a incidentes:** asegurarse de que el equipo legal y de cumplimiento tenga un protocolo documentado para la revocación de accesos y la notificación a clientes en caso de compromiso detectado.
-- **Capacitar al equipo en el vector de acceso inicial:** Lazarus utiliza principalmente correos de phishing dirigidos y ofertas de empleo falsas en LinkedIn. Establecer una regla simple: ningún contacto no solicitado que traiga archivos adjuntos o enlaces debe abrirse sin verificación directa con el remitente por otro canal.
+- **Preguntar a tu proveedor de seguridad si las herramientas actuales incluyen detección de comportamiento en tiempo real (EDR).** Un antivirus tradicional no detecta malware que opera solo en memoria. Si la respuesta es "solo tenemos antivirus", el nivel de protección es insuficiente para empresas que manejan dinero.
+- **Solicitar a TI una evaluación de permisos.** ¿Cada cuenta de usuario tiene solo los permisos que necesita? Limitar el acceso reduce el daño si un equipo es comprometido.
+- **Revisar el plan de respuesta a incidentes.** ¿El equipo legal sabe qué hacer si se detecta una brecha? ¿Hay un protocolo para revocar accesos y notificar a clientes? Si no existe, este incidente justifica crearlo.
+- **Establecer una regla con el equipo.** Lazarus entra por correos de phishing dirigidos y ofertas de empleo falsas en LinkedIn. La regla: ningún archivo adjunto ni enlace de un contacto no solicitado se abre sin verificar con el remitente por otro canal.

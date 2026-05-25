@@ -11,27 +11,27 @@ publicacion: "published"
 
 ## Contexto
 
-El FBI emitió una advertencia formal sobre Kali365, una plataforma de phishing-as-a-service (PhaaS) —es decir, un servicio que alquila infraestructura de ataque a otros delincuentes sin que necesiten conocimientos técnicos— diseñada específicamente para comprometer cuentas de Microsoft 365 corporativas.
+El FBI emitió una advertencia formal. Kali365 es una plataforma que vende capacidad de ataque a otros delincuentes. Sin conocimientos técnicos. Sin infraestructura propia. Solo pagan y atacan.
 
-El método que usa es técnicamente sofisticado y difícil de detectar: abusa del flujo de autenticación OAuth por código de dispositivo, un mecanismo legítimo que Microsoft creó para que equipos sin navegador —como televisores inteligentes o impresoras en red— puedan autenticarse en servicios corporativos.
+El método es difícil de detectar. Abusa del flujo de autenticación OAuth por código de dispositivo. Es un mecanismo que Microsoft creó para equipos sin navegador: televisores inteligentes, impresoras en red. Legítimo por diseño.
 
-El ataque funciona así: el operador de Kali365 genera un código de dispositivo válido desde la propia infraestructura de Microsoft y envía un correo de phishing al empleado objetivo. El correo le pide que visite una URL auténtica de Microsoft —no una página falsa— e ingrese ese código para "verificar" su cuenta. La víctima cree que completa un proceso normal de seguridad; en realidad, acaba de autorizar la sesión del atacante.
+El ataque funciona así. El operador genera un código válido desde la propia infraestructura de Microsoft. Envía un correo al empleado objetivo. Le pide visitar una URL auténtica de Microsoft. No una página falsa. Una página real. El empleado ingresa el código. Cree que completa una verificación de seguridad. No lo es. Acaba de autorizar la sesión del atacante.
 
-El resultado es un token de acceso —una credencial digital temporal que permite operar la cuenta sin contraseña— en manos del delincuente.
+El resultado: un token de acceso en manos del delincuente. Una credencial digital que opera la cuenta sin contraseña.
 
 ## Impacto potencial
 
-El problema más grave de este vector es que **la verificación en dos pasos (MFA) no lo detiene**. Como es la propia víctima quien realiza la autenticación voluntariamente, el segundo factor queda satisfecho de forma legítima. Un empleado bien entrenado para no entregar contraseñas puede caer igual.
+La verificación en dos pasos no lo detiene. El empleado es quien hace la autenticación. Voluntariamente. El segundo factor queda satisfecho. El atacante entra igual.
 
-Desde el correo corporativo comprometido, el riesgo más directo es el **fraude por desvío de pagos**: el atacante puede monitorear conversaciones de facturación activas e interceptar una transferencia, redirigiendo los fondos a una cuenta bajo su control sin que ninguna de las partes lo note hasta que es tarde. Es uno de los fraudes más comunes y más difíciles de revertir.
+El riesgo más directo: **fraude por desvío de pagos**. El atacante monitorea conversaciones de facturación activas. Intercepta una transferencia. Redirige los fondos. Nadie lo nota hasta que el dinero ya salió. Es uno de los fraudes más difíciles de revertir.
 
-El segundo riesgo es la **responsabilidad contractual y reputacional**. Un atacante que opera desde una dirección de correo legítima de la empresa puede engañar a clientes o proveedores, filtrar información confidencial de contratos o lanzar ataques en nombre de la organización. Eso no es solo un incidente técnico — es un evento con consecuencias legales y de confianza que la empresa debe responder.
+El segundo riesgo es contractual. El atacante opera desde el correo real de la empresa. Puede engañar a clientes. Puede filtrar contratos. Puede atacar a proveedores en nombre de la organización. Eso no es un incidente técnico. Es un evento legal.
 
-Por último, si el acceso alcanza datos personales de empleados o clientes —nóminas, contratos, archivos de recursos humanos— puede activar **obligaciones de notificación por brecha de datos** ante las autoridades correspondientes.
+Si el acceso alcanza nóminas, contratos o datos de empleados, se activan **obligaciones de notificación** ante reguladores.
 
 ## Recomendaciones
 
-- **Solicitar a TI la desactivación del flujo de autenticación por código de dispositivo** en el panel de administración de Microsoft 365, a menos que haya una necesidad operativa documentada. La mayoría de las empresas no lo necesitan activo. El mecanismo se controla mediante Políticas de Acceso Condicional —reglas que definen qué métodos de autenticación se permiten y desde qué contextos.
-- **Solicitar que se activen alertas de inicio de sesión inusual:** Azure Active Directory puede notificar cuando una cuenta inicia sesión desde una ubicación nueva, un dispositivo desconocido o usando un método de autenticación poco habitual.
-- **Establecer una regla clara con el equipo:** ningún proceso legítimo de Microsoft pide que un empleado ingrese en una página un código recibido por correo. Si alguien recibe esa instrucción, es un ataque. Esto aplica aunque la URL parezca oficial.
-- **Pregunta de gobierno para revisar con TI:** ¿Podemos ver un inventario de los métodos de autenticación activos en nuestras cuentas de Microsoft 365 y cuándo fue la última vez que se auditaron?
+- **Solicitar a TI la desactivación del flujo de autenticación por código de dispositivo.** No debe estar activo salvo necesidad documentada. La mayoría de las empresas no lo necesitan. Se controla con Políticas de Acceso Condicional: reglas que definen qué métodos de autenticación se permiten y desde dónde.
+- **Activar alertas de inicio de sesión inusual.** Azure Active Directory notifica cuando una cuenta entra desde una ubicación nueva, un dispositivo desconocido o un método poco habitual.
+- **Establecer una regla con el equipo.** Ningún proceso legítimo de Microsoft pide ingresar un código recibido por correo. Si alguien recibe esa instrucción, es un ataque. Aunque la URL parezca oficial.
+- **Pregunta de gobierno para TI:** ¿Qué métodos de autenticación están activos en nuestras cuentas de Microsoft 365? ¿Cuándo se auditaron por última vez?

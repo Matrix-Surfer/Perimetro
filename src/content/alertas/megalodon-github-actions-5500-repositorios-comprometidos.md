@@ -11,23 +11,23 @@ publicacion: "published"
 
 ## Contexto
 
-La campaña Megalodon comprometió más de 5,500 repositorios en GitHub mediante una técnica específica: inyectar commits automatizados falsos que agregan o modifican archivos de flujos de trabajo de GitHub Actions —el sistema de automatización de GitHub que ejecuta tareas de compilación, pruebas y despliegue cada vez que hay cambios en el código.
+La campaña Megalodon comprometió más de 5,500 repositorios en GitHub. La técnica: inyectar commits automatizados falsos. Esos commits agregan o modifican archivos de GitHub Actions. GitHub Actions es el sistema que ejecuta tareas de compilación, pruebas y despliegue automáticamente cada vez que el equipo sube cambios al código.
 
-Los archivos maliciosos inyectados contienen instrucciones que, al activarse, exfiltran en silencio todo lo que ese flujo de trabajo tiene acceso: el token de autenticación del repositorio (GITHUB_TOKEN), secretos de despliegue almacenados en el repositorio, claves de API de servicios en la nube y cualquier variable de entorno configurada para los pipelines de integración continua.
+Los archivos maliciosos se activan solos. Extraen en silencio todo lo que ese flujo de trabajo puede acceder. El token de autenticación del repositorio. Secretos de despliegue. Claves de servicios en la nube. Variables de entorno con contraseñas de bases de datos.
 
-La diferencia con ataques anteriores de este tipo es la escala: 5,500 repositorios afectados de forma coordinada sugiere automatización y un vector de compromiso inicial que permitió escribir en esos repositorios, posiblemente credenciales de GitHub robadas en campañas previas.
+La escala es el dato preocupante. 5,500 repositorios comprometidos de forma coordinada implica automatización. Implica que alguien ya tenía las credenciales. Posiblemente robadas en una campaña anterior.
 
 ## Impacto potencial
 
-El riesgo no es que el código quede expuesto — es que **el atacante obtiene control operativo sobre la infraestructura del negocio**. Las credenciales almacenadas en los pipelines de GitHub no son datos: son llaves maestras.
+El riesgo no es que el código quede expuesto. El riesgo es el control operativo. Las credenciales en GitHub no son datos. Son llaves maestras.
 
-Con acceso a tokens de servicios en la nube como AWS, Google Cloud o Azure, un atacante puede eliminar bases de datos de producción, copiar y exfiltrar datos de clientes, crear recursos para lanzar otros ataques desde la infraestructura de la empresa, o simplemente dejar todo fuera de línea. El impacto sobre la continuidad del negocio puede ser total.
+Con tokens de AWS, Google Cloud o Azure, el atacante puede eliminar bases de datos de producción. Puede copiar datos de clientes. Puede lanzar otros ataques desde la infraestructura de la empresa. Puede dejar todo fuera de línea. El impacto puede ser total.
 
-Si la infraestructura comprometida almacena datos de clientes, la empresa enfrenta además **obligaciones de notificación por brecha de datos**. Y si el producto de la empresa depende de terceros como plataformas de pago o mensajería integradas, el compromiso de esas claves puede afectar a los usuarios finales, generando responsabilidad contractual con los proveedores afectados.
+Si hay datos de clientes en esa infraestructura, hay **obligaciones de notificación**. Si el producto depende de plataformas de pago o mensajería integradas, el compromiso de esas claves afecta a los usuarios finales. Eso es responsabilidad contractual.
 
 ## Recomendaciones
 
-- **Instruir al equipo de desarrollo a revisar los repositorios de GitHub con automatización activa:** pedir que auditen los archivos de workflows (`.github/workflows/`) en busca de cambios recientes que ningún miembro del equipo reconozca. Un commit automatizado que nadie hizo es señal de alerta.
-- **Rotar todas las credenciales almacenadas en GitHub como medida preventiva:** cambiar los secretos de repositorios activos es la acción prioritaria. No esperar a confirmar si hubo o no compromiso.
-- **Pregunta de gobierno para revisar con TI o el equipo de desarrollo:** ¿Tenemos un inventario actualizado de todas las claves de acceso a la nube y servicios externos que están almacenadas en nuestros repositorios? ¿Quién tiene acceso a esas credenciales y cuándo se auditó por última vez?
-- **Solicitar que se habilite el escaneo de secretos en GitHub:** GitHub tiene una función de detección automática de credenciales expuestas en repositorios. Activarla no requiere desarrollo — es una configuración en el panel del repositorio.
+- **Instruir al equipo a revisar los archivos `.github/workflows/` en repositorios activos.** Un commit reciente que nadie del equipo reconoce es señal de alerta. Megalodon usa commits que parecen actividad automática.
+- **Rotar todas las credenciales almacenadas en GitHub.** No esperar a confirmar el compromiso. Si hay repositorios públicos con pipelines activos, cambiar los secretos es la acción prioritaria ahora.
+- **Habilitar el escaneo de secretos en GitHub.** Es una configuración en el panel del repositorio. No requiere desarrollo. Detecta credenciales expuestas automáticamente.
+- **Pregunta de gobierno para el equipo de desarrollo:** ¿Tenemos un inventario de todas las claves almacenadas en nuestros repositorios? ¿Quién tiene acceso? ¿Cuándo se auditaron por última vez?

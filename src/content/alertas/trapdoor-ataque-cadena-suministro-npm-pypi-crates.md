@@ -11,23 +11,23 @@ publicacion: "published"
 
 ## Contexto
 
-El 22 de mayo se detectó una campaña coordinada de ataque a la cadena de suministro de software —ataques que no apuntan directamente a una empresa sino a las herramientas y librerías que sus equipos de desarrollo usan para construir sus sistemas— bautizada TrapDoor.
+El 22 de mayo se detectó TrapDoor. Una campaña coordinada de ataque a la cadena de suministro de software. No apunta a las empresas directamente. Apunta a las herramientas que sus equipos usan para construir sus sistemas.
 
-Los atacantes publicaron simultáneamente más de 34 paquetes maliciosos en tres registros distintos: npm (JavaScript), PyPI (Python) y Crates.io (Rust). En total, más de 384 versiones de esos paquetes circularon en oleadas coordinadas. Cada paquete contiene malware diseñado para robar credenciales del equipo donde se instala.
+Los atacantes publicaron más de 34 paquetes maliciosos simultáneamente. En tres registros distintos: npm para JavaScript, PyPI para Python, Crates.io para Rust. Más de 384 versiones distribuidas en oleadas. Cada paquete roba credenciales.
 
-El mecanismo de infección es el mismo en los tres ecosistemas: el desarrollador instala uno de esos paquetes —ya sea porque tiene un nombre muy parecido a una librería legítima conocida (typosquatting), porque se cuela como dependencia de otro paquete, o porque simplemente aparece en resultados de búsqueda— y al ejecutarse, el código malicioso corre en segundo plano y extrae credenciales almacenadas localmente.
+El mecanismo es el mismo en los tres ecosistemas. El desarrollador instala el paquete. A veces porque tiene un nombre casi idéntico al de una librería legítima. A veces porque se cuela como dependencia de otro paquete. A veces simplemente aparece en los resultados de búsqueda. Se instala. El malware corre en segundo plano. Las credenciales salen.
 
 ## Impacto potencial
 
-El objetivo del malware no es el usuario final del producto: es el desarrollador. Una sola máquina comprometida puede darle al atacante acceso completo a la infraestructura del negocio — servidores, bases de datos, servicios en la nube — porque los desarrolladores trabajan con credenciales que tienen permisos amplios sobre los sistemas que construyen.
+El objetivo no es el usuario final. Es el desarrollador. Una sola máquina comprometida puede dar acceso a toda la infraestructura del negocio. Los desarrolladores trabajan con credenciales amplias. Eso es lo que se roba.
 
-En términos de negocio, esto significa **riesgo de pérdida de continuidad operativa total**: si el atacante accede a las credenciales de producción, puede eliminar datos, tomar el control de sistemas o interrumpir el servicio. Para empresas con clientes que dependen de esos sistemas, la interrupción genera responsabilidad contractual y reputacional directa.
+Si el atacante llega a las credenciales de producción, puede eliminar datos. Puede tomar control de sistemas. Puede interrumpir el servicio. Para empresas con clientes que dependen de esos sistemas, la interrupción es **responsabilidad contractual directa**.
 
-Hay una implicación adicional para **equipos de desarrollo que trabajan para terceros** — agencias, consultoras o freelancers. Si las credenciales comprometidas incluyen acceso a infraestructura de clientes, el incidente ya no es interno: es un evento que afecta a múltiples organizaciones y puede generar reclamaciones de los clientes afectados.
+Para agencias y consultoras, el riesgo escala. Las credenciales comprometidas pueden incluir acceso a infraestructura de varios clientes. El incidente deja de ser interno. Afecta a múltiples organizaciones. Los clientes pueden reclamar.
 
 ## Recomendaciones
 
-- **Solicitar al equipo de desarrollo que verifique si instaló paquetes de npm, PyPI o Crates.io entre el 22 y el 25 de mayo:** es la pregunta más importante. Si la respuesta es sí, el siguiente paso es revisar la lista de paquetes maliciosos confirmados y asumir compromiso preventivo.
-- **Rotar credenciales de producción como prioridad inmediata:** si hay posibilidad de que un equipo de desarrollo haya sido afectado, cambiar los tokens de acceso a la nube, las claves de bases de datos y las credenciales de servicios críticos no puede esperar a confirmar el incidente.
-- **Revisar la actividad en la nube desde el 22 de mayo:** solicitar a TI o al equipo de infraestructura que verifique en AWS, GCP o Azure si hubo operaciones inusuales —creación de recursos, transferencias de datos o cambios de permisos— en ese período.
-- **Pregunta de gobierno para el equipo técnico:** ¿Tenemos un proceso para validar los paquetes de software de terceros antes de instalarlos en entornos con acceso a producción? Si la respuesta es no, este incidente justifica establecer uno.
+- **Preguntar al equipo de desarrollo si instaló paquetes de npm, PyPI o Crates.io entre el 22 y el 25 de mayo.** Es la pregunta más importante. Si la respuesta es sí, asumir compromiso preventivo y actuar.
+- **Rotar credenciales de producción de inmediato.** No esperar confirmación. Tokens de acceso a la nube, claves de bases de datos, credenciales de servicios críticos. Todo.
+- **Revisar la actividad en la nube desde el 22 de mayo.** ¿Hubo operaciones inusuales en AWS, GCP o Azure? Creación de recursos, transferencias de datos, cambios de permisos.
+- **Pregunta de gobierno para el equipo técnico:** ¿Validamos los paquetes de terceros antes de instalarlos en entornos con acceso a producción? Si la respuesta es no, este incidente justifica establecer ese proceso.
