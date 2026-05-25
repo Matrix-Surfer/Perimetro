@@ -23,18 +23,15 @@ El resultado es un token de acceso —una credencial digital temporal que permit
 
 El problema más grave de este vector es que **la verificación en dos pasos (MFA) no lo detiene**. Como es la propia víctima quien realiza la autenticación voluntariamente, el segundo factor queda satisfecho de forma legítima. Un empleado bien entrenado para no entregar contraseñas puede caer igual.
 
-Una cuenta de Microsoft 365 comprometida entrega al atacante acceso inmediato a:
+Desde el correo corporativo comprometido, el riesgo más directo es el **fraude por desvío de pagos**: el atacante puede monitorear conversaciones de facturación activas e interceptar una transferencia, redirigiendo los fondos a una cuenta bajo su control sin que ninguna de las partes lo note hasta que es tarde. Es uno de los fraudes más comunes y más difíciles de revertir.
 
-- Correo corporativo, historial y libreta de contactos
-- Conversaciones y archivos compartidos en Microsoft Teams
-- Documentos en SharePoint y OneDrive
-- La capacidad de enviar correos desde una dirección real de la empresa para atacar clientes, proveedores o socios
+El segundo riesgo es la **responsabilidad contractual y reputacional**. Un atacante que opera desde una dirección de correo legítima de la empresa puede engañar a clientes o proveedores, filtrar información confidencial de contratos o lanzar ataques en nombre de la organización. Eso no es solo un incidente técnico — es un evento con consecuencias legales y de confianza que la empresa debe responder.
 
-Para una empresa que opera en Microsoft 365, una sola cuenta comprometida puede escalar a fraude financiero, fuga de información contractual o campañas de phishing contra toda la cadena de contactos del negocio.
+Por último, si el acceso alcanza datos personales de empleados o clientes —nóminas, contratos, archivos de recursos humanos— puede activar **obligaciones de notificación por brecha de datos** ante las autoridades correspondientes.
 
 ## Recomendaciones
 
-- **Bloquear el flujo de código de dispositivo:** a menos que exista una necesidad operativa específica y documentada, este mecanismo debe deshabilitarse en el panel de administración de Microsoft 365 mediante Políticas de Acceso Condicional —reglas que definen qué métodos de autenticación se permiten y desde qué contextos—. La mayoría de las empresas no necesitan tenerlo activo.
-- **Activar alertas de inicio de sesión inusual:** Azure Active Directory permite configurar notificaciones automáticas cuando se detectan sesiones desde ubicaciones nuevas, dispositivos desconocidos o flujos de autenticación poco habituales.
-- **Capacitar con un caso concreto:** ningún proceso legítimo de Microsoft requiere que un empleado ingrese en una página un código generado en otro dispositivo o recibido por correo. Si alguien recibe ese tipo de instrucción, es un ataque, independientemente de que la URL parezca oficial.
-- **Auditar sesiones activas:** si hay sospecha de compromiso, verificar en el portal de administración de Microsoft 365 las sesiones activas y revocar los tokens de acceso de las cuentas potencialmente afectadas.
+- **Solicitar a TI la desactivación del flujo de autenticación por código de dispositivo** en el panel de administración de Microsoft 365, a menos que haya una necesidad operativa documentada. La mayoría de las empresas no lo necesitan activo. El mecanismo se controla mediante Políticas de Acceso Condicional —reglas que definen qué métodos de autenticación se permiten y desde qué contextos.
+- **Solicitar que se activen alertas de inicio de sesión inusual:** Azure Active Directory puede notificar cuando una cuenta inicia sesión desde una ubicación nueva, un dispositivo desconocido o usando un método de autenticación poco habitual.
+- **Establecer una regla clara con el equipo:** ningún proceso legítimo de Microsoft pide que un empleado ingrese en una página un código recibido por correo. Si alguien recibe esa instrucción, es un ataque. Esto aplica aunque la URL parezca oficial.
+- **Pregunta de gobierno para revisar con TI:** ¿Podemos ver un inventario de los métodos de autenticación activos en nuestras cuentas de Microsoft 365 y cuándo fue la última vez que se auditaron?

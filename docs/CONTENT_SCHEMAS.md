@@ -108,15 +108,23 @@ publicacion: "published"
 ```markdown
 ## Contexto
 
-Descripción detallada del incidente, actores involucrados, método detectado.
+Descripción del incidente, actores involucrados y método detectado. Los términos técnicos se explican en el mismo párrafo. Este es el único lugar donde el detalle técnico es apropiado.
 
 ## Impacto potencial
 
-Qué tipo de empresas o usuarios pueden verse afectados y cómo.
+No inventariar qué datos roba el atacante. Responder: ¿qué pierde la empresa?
+
+Las tres dimensiones relevantes:
+- Continuidad operativa: ¿qué proceso se interrumpe?
+- Exposición financiera: ¿puede derivar en fraude o pérdida directa?
+- Responsabilidad regulatoria o contractual: ¿activa obligaciones legales o viola acuerdos?
+
+Ver estándar completo en docs/EDITORIAL_GUIDE.md → "Ángulo de análisis: impacto de negocio".
 
 ## Recomendaciones
 
-Acciones concretas que una empresa mexicana puede tomar.
+Instrucciones delegables y preguntas de gobierno — no comandos de terminal como instrucción principal.
+Ejecutables por alguien que toma decisiones sin configurar servidores.
 ```
 
 ### Creación rápida

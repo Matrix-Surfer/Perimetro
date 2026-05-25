@@ -54,6 +54,51 @@ Ejemplos del estándar:
 
 ---
 
+## Ángulo de análisis: impacto de negocio sobre detalle técnico
+
+El análisis en Perímetro no describe incidentes técnicos — traduce riesgo tecnológico en consecuencias de negocio. Este principio aplica especialmente a la sección de impacto en Alertas y al campo `context` en Radar.
+
+### Sección "Impacto potencial" en Alertas
+
+**No responder:** ¿qué datos roba el atacante?
+
+**Responder:** ¿qué pierde la empresa?
+
+Las tres dimensiones a cubrir:
+
+- **Continuidad operativa:** ¿qué proceso crítico se interrumpe o queda comprometido?
+- **Exposición financiera:** ¿puede derivar en fraude, pérdida directa, costo de respuesta o interrupción de facturación?
+- **Responsabilidad regulatoria o contractual:** ¿activa notificaciones obligatorias, viola acuerdos de nivel de servicio o expone la empresa a reclamaciones de clientes o proveedores?
+
+El detalle técnico de qué se filtra o cómo opera el ataque pertenece al **Contexto**, no al impacto. El impacto habla de consecuencias, no de mecanismos.
+
+Ejemplos del estándar:
+
+- ❌ "El atacante obtiene tokens OAuth, acceso a SharePoint y variables de entorno del servidor."
+- ✅ "El acceso al correo corporativo habilita fraude por desvío de pagos: el atacante puede interceptar facturas activas y redirigir transferencias. Si accede a contratos o comunicaciones con clientes, la empresa enfrenta responsabilidad civil por filtración de información confidencial."
+
+### Sección "Recomendaciones" en Alertas
+
+Las recomendaciones deben ser ejecutables por alguien que toma decisiones pero no configura servidores. Los comandos de terminal y los pasos técnicos específicos solo aparecen como contexto secundario dentro de una instrucción, nunca como la instrucción principal.
+
+Dos formatos válidos:
+
+- **Instrucción delegable:** "Solicitar a TI que verifique si [X] está activo / desactivado / auditado / incluido en el contrato de servicio."
+- **Pregunta de gobierno:** "¿Con qué frecuencia se revisan los permisos de acceso de terceros a nuestros sistemas?"
+
+Usar el segundo formato cuando la acción depende de una decisión de presupuesto, política o proveedor, no solo de configuración técnica.
+
+### Campo `context` en Radar
+
+No resumir la noticia — el lector ya la lee en el título y la fuente. El `context` responde una sola pregunta: **¿qué cambia en cómo esta empresa gestiona su tecnología o toma decisiones?**
+
+Ejemplos del estándar:
+
+- ❌ "Anthropic publicó Mythos, que detectó 23,000 vulnerabilidades en proyectos de software abierto."
+- ✅ "La velocidad de descubrimiento de vulnerabilidades acaba de cambiar. Los sistemas de IA detectan fallas en el software que tu empresa usa antes de que tus proveedores las parcheen. Los plazos que acordaste con tu equipo de TI para aplicar actualizaciones ya son obsoletos."
+
+---
+
 ## Qué publicar
 
 **Análisis:**

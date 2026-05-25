@@ -19,22 +19,15 @@ El mecanismo de infección es el mismo en los tres ecosistemas: el desarrollador
 
 ## Impacto potencial
 
-El objetivo del malware no es el usuario final del producto: es el desarrollador. Las credenciales que un desarrollador tiene en su máquina son especialmente valiosas porque incluyen:
+El objetivo del malware no es el usuario final del producto: es el desarrollador. Una sola máquina comprometida puede darle al atacante acceso completo a la infraestructura del negocio — servidores, bases de datos, servicios en la nube — porque los desarrolladores trabajan con credenciales que tienen permisos amplios sobre los sistemas que construyen.
 
-- **Tokens de acceso a la nube** (AWS, Google Cloud, Azure) — permiten al atacante crear instancias, extraer bases de datos o lanzar ataques desde la infraestructura de la empresa
-- **Claves de repositorio** (GitHub, GitLab) — permiten acceder al código fuente, modificarlo o inyectar backdoors en los propios productos de la empresa
-- **Claves de API de servicios** integrados en el sistema — servicios de pago, correo transaccional, plataformas de mensajería
-- **Variables de entorno locales** con contraseñas de bases de datos o servicios internos
+En términos de negocio, esto significa **riesgo de pérdida de continuidad operativa total**: si el atacante accede a las credenciales de producción, puede eliminar datos, tomar el control de sistemas o interrumpir el servicio. Para empresas con clientes que dependen de esos sistemas, la interrupción genera responsabilidad contractual y reputacional directa.
 
-Para una empresa con un equipo de desarrollo —aunque sea de una sola persona— la infección de una sola máquina puede entregar al atacante acceso a toda la infraestructura del negocio.
+Hay una implicación adicional para **equipos de desarrollo que trabajan para terceros** — agencias, consultoras o freelancers. Si las credenciales comprometidas incluyen acceso a infraestructura de clientes, el incidente ya no es interno: es un evento que afecta a múltiples organizaciones y puede generar reclamaciones de los clientes afectados.
 
 ## Recomendaciones
 
-- **Verificar los paquetes instalados recientemente:** revisar `package.json`, `requirements.txt` y `Cargo.toml` en busca de dependencias añadidas después del 22 de mayo que no sean reconocibles. Consultar la lista de paquetes maliciosos confirmados en el artículo fuente.
-- **Correr auditorías de seguridad en los proyectos activos:**
-  - JavaScript: `npm audit`
-  - Python: `pip-audit`
-  - Rust: `cargo audit`
-- **Rotar credenciales por precaución:** si algún desarrollador instaló paquetes de estas plataformas entre el 22 y el 25 de mayo, cambiar tokens de acceso a la nube, claves de repositorio y variables de entorno con contraseñas es la acción más importante.
-- **Revisar logs de actividad en la nube:** verificar en AWS, GCP o Azure si hubo operaciones inusuales —creación de recursos, transferencias de datos, cambios de permisos— desde el 22 de mayo.
-- **Habilitar lockfiles con versiones fijadas:** `package-lock.json`, `poetry.lock` o `Cargo.lock` previenen que una actualización silenciosa reemplace una dependencia legítima por una versión comprometida.
+- **Solicitar al equipo de desarrollo que verifique si instaló paquetes de npm, PyPI o Crates.io entre el 22 y el 25 de mayo:** es la pregunta más importante. Si la respuesta es sí, el siguiente paso es revisar la lista de paquetes maliciosos confirmados y asumir compromiso preventivo.
+- **Rotar credenciales de producción como prioridad inmediata:** si hay posibilidad de que un equipo de desarrollo haya sido afectado, cambiar los tokens de acceso a la nube, las claves de bases de datos y las credenciales de servicios críticos no puede esperar a confirmar el incidente.
+- **Revisar la actividad en la nube desde el 22 de mayo:** solicitar a TI o al equipo de infraestructura que verifique en AWS, GCP o Azure si hubo operaciones inusuales —creación de recursos, transferencias de datos o cambios de permisos— en ese período.
+- **Pregunta de gobierno para el equipo técnico:** ¿Tenemos un proceso para validar los paquetes de software de terceros antes de instalarlos en entornos con acceso a producción? Si la respuesta es no, este incidente justifica establecer uno.

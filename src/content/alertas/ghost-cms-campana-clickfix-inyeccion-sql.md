@@ -17,15 +17,14 @@ Los atacantes aprovechan esta falla para inyectar código JavaScript malicioso e
 
 ## Impacto potencial
 
-Hay dos grupos afectados:
+Hay dos grupos afectados con consecuencias distintas:
 
-**Operadores de Ghost CMS:** si la instalación no está actualizada y parchada, el sitio puede estar sirviendo código malicioso a sus audiencias sin que el administrador lo sepa. La reputación del sitio queda comprometida junto con la seguridad de sus lectores.
+**Operadores de Ghost CMS:** un sitio comprometido sirve malware a sus propios lectores sin que el administrador lo sepa. Esto tiene consecuencias directas: **pérdida de confianza y reputación** entre la audiencia que construyó el sitio, posible suspensión por el proveedor de hosting o el registrador del dominio si se detecta actividad maliciosa, y en casos donde los lectores son clientes o suscriptores, **responsabilidad por los daños** causados a quienes fueron infectados desde la plataforma.
 
-**Visitantes de sitios comprometidos:** cualquier persona que visite un sitio afectado y siga el aviso falso instala malware en su equipo, lo que puede resultar en robo de contraseñas, tokens de acceso o datos sensibles almacenados en el navegador o el sistema.
+**Visitantes de sitios comprometidos:** quien sigue el aviso falso instala malware que puede robar contraseñas y sesiones activas del navegador, lo que incluye acceso a correo, banca en línea o herramientas de trabajo. Para un empleado en una empresa, eso puede convertirse en el punto de entrada de un incidente más amplio.
 
 ## Recomendaciones
 
-- **Si usas Ghost CMS:** actualizar a la versión más reciente que corrige CVE-2026-26980 de forma inmediata. No esperar.
-- Revisar los logs del servidor en busca de consultas SQL inusuales o modificaciones inesperadas a la base de datos.
-- Verificar el código fuente del sitio en busca de JavaScript externo no reconocido inyectado en las páginas.
-- **Regla general para todos:** ninguna página web legítima pide que copies y ejecutes un comando en tu computadora. Si ves ese tipo de aviso, es una trampa.
+- **Si usas Ghost CMS:** confirmar con el equipo técnico o el proveedor que gestiona el sitio que la instalación está actualizada a la versión que corrige CVE-2026-26980. Esta acción no puede esperar — un sitio vulnerable puede estar afectando a sus visitantes en este momento.
+- Solicitar una revisión de los logs del servidor en busca de modificaciones inesperadas en las páginas del sitio desde principios de mayo.
+- **Regla para todo el equipo:** ninguna página web legítima pide que copies y ejecutes un comando en tu computadora. Si alguien en el equipo reporta haber visto ese tipo de aviso en algún sitio, fue un intento de ataque.

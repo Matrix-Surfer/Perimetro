@@ -19,19 +19,15 @@ La diferencia con ataques anteriores de este tipo es la escala: 5,500 repositori
 
 ## Impacto potencial
 
-El riesgo principal no es que el código fuente quede expuesto, sino que **los secretos de producción queden en manos del atacante**. En un flujo de trabajo típico de una empresa con despliegues automatizados, los secretos almacenados en GitHub pueden incluir:
+El riesgo no es que el código quede expuesto — es que **el atacante obtiene control operativo sobre la infraestructura del negocio**. Las credenciales almacenadas en los pipelines de GitHub no son datos: son llaves maestras.
 
-- Credenciales de servidores de producción (SSH, FTP, acceso a paneles)
-- Tokens de acceso a servicios en la nube (AWS, GCP, Azure) que permiten operar infraestructura
-- Claves de bases de datos del entorno de producción
-- Tokens de plataformas de terceros integradas en el producto (Stripe, Twilio, SendGrid, etc.)
+Con acceso a tokens de servicios en la nube como AWS, Google Cloud o Azure, un atacante puede eliminar bases de datos de producción, copiar y exfiltrar datos de clientes, crear recursos para lanzar otros ataques desde la infraestructura de la empresa, o simplemente dejar todo fuera de línea. El impacto sobre la continuidad del negocio puede ser total.
 
-Para equipos que usan GitHub en proyectos activos con pipelines de despliegue automatizado, un workflow malicioso puede comprometer toda la infraestructura sin dejar rastros obvios en el código.
+Si la infraestructura comprometida almacena datos de clientes, la empresa enfrenta además **obligaciones de notificación por brecha de datos**. Y si el producto de la empresa depende de terceros como plataformas de pago o mensajería integradas, el compromiso de esas claves puede afectar a los usuarios finales, generando responsabilidad contractual con los proveedores afectados.
 
 ## Recomendaciones
 
-- **Auditar los archivos `.github/workflows/`** en todos los repositorios activos. Revisar cualquier archivo `.yml` o `.yaml` añadido o modificado recientemente que no sea reconocible. Los commits de Megalodon aparecen como actividad automatizada y pueden pasar desapercibidos en el historial.
-- **Rotar secretos de repositorios por precaución:** si hay repositorios públicos con GitHub Actions activos, cambiar todos los secretos almacenados en GitHub (Settings → Secrets and variables) es la acción prioritaria.
-- **Revisar el historial de commits en busca de actividad no reconocida:** `git log --all --oneline` puede revelar commits que no correspondan a ningún miembro del equipo.
-- **Limitar permisos del GITHUB_TOKEN:** configurar los workflows para que el token tenga solo los permisos mínimos necesarios (`permissions: read-all` como default en el archivo de workflow).
-- **Habilitar alertas de seguridad en GitHub:** activar Dependabot y el escaneo de secretos (Secret scanning) en los repositorios del equipo para detectar exposición de credenciales.
+- **Instruir al equipo de desarrollo a revisar los repositorios de GitHub con automatización activa:** pedir que auditen los archivos de workflows (`.github/workflows/`) en busca de cambios recientes que ningún miembro del equipo reconozca. Un commit automatizado que nadie hizo es señal de alerta.
+- **Rotar todas las credenciales almacenadas en GitHub como medida preventiva:** cambiar los secretos de repositorios activos es la acción prioritaria. No esperar a confirmar si hubo o no compromiso.
+- **Pregunta de gobierno para revisar con TI o el equipo de desarrollo:** ¿Tenemos un inventario actualizado de todas las claves de acceso a la nube y servicios externos que están almacenadas en nuestros repositorios? ¿Quién tiene acceso a esas credenciales y cuándo se auditó por última vez?
+- **Solicitar que se habilite el escaneo de secretos en GitHub:** GitHub tiene una función de detección automática de credenciales expuestas en repositorios. Activarla no requiere desarrollo — es una configuración en el panel del repositorio.
