@@ -38,6 +38,27 @@ El tono es el de un colega confiable que encontró algo importante y lo explica 
 
 ---
 
+## Ritmo de escritura: Staccato
+
+La seña de identidad de Perímetro es el fraseo corto. Oraciones breves, directas, punzantes. Sin subordinadas complejas. Sin párrafos kilométricos llenos de comas.
+
+**Mecánica:** el punto seguido como martillo. Cada oración contiene un solo concepto, una sola acción.
+
+**Ejemplo:**
+
+> No hubo un "hackeo" espectacular. Hubo una decisión cotidiana. Alguien quiso terminar más rápido. Buscó una herramienta "con IA". La instaló. Le concedió acceso. El día siguió.
+
+**Efecto:** urgencia, velocidad y claridad clínica. En mobile y newsletters, evita la fatiga visual y obliga a seguir leyendo.
+
+**Dónde aplica con más fuerza:** secciones de Contexto e Impacto potencial en Alertas, y el campo `context` en Radar. Las Recomendaciones pueden ser ligeramente más instructivas, pero siguen el mismo principio: una idea por oración.
+
+**Lo que evitar:**
+
+- ❌ "Dado que el atacante opera desde una dirección de correo legítima de la empresa, lo que significa que los filtros de spam no lo detectarán, el impacto directo puede incluir fraude por desvío de pagos, especialmente en contextos donde existen flujos de facturación activos."
+- ✅ "El atacante opera desde el correo real de la empresa. Los filtros de spam no lo ven. Puede interceptar facturas activas. Puede redirigir transferencias. Nadie lo nota hasta que el dinero ya salió."
+
+---
+
 ## Definición de términos técnicos
 
 Cuando se usa un término técnico de ciberseguridad o tecnología, **explicarlo en el mismo párrafo o en paréntesis**, en lenguaje simple. No asumir que el lector conoce el vocabulario especializado.

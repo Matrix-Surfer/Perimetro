@@ -26,38 +26,38 @@ const AI_KEYWORDS = [
 
 const CONTEXT_TEMPLATES = [
   { kw: ['microsoft', 'windows', 'office 365', 'azure', 'teams'],
-    text: 'Relevante para organizaciones que utilizan el ecosistema Microsoft.' },
+    text: 'Las organizaciones que usan el ecosistema Microsoft deben verificar si sus versiones actuales están afectadas y cuándo está programada la actualización en su entorno.' },
   { kw: ['google', 'chrome', 'workspace', 'android'],
-    text: 'Aplica a empresas que dependen de servicios y dispositivos Google.' },
+    text: 'Las empresas que dependen de servicios y dispositivos Google deben revisar el impacto operativo de este cambio en sus flujos de trabajo.' },
   { kw: ['apple', 'ios', 'macos', 'iphone'],
-    text: 'Relevante para organizaciones con dispositivos Apple en su operación.' },
+    text: 'Las organizaciones con dispositivos Apple en operación deben evaluar si el cambio afecta sus políticas de actualización y gestión de dispositivos.' },
   { kw: ['supply chain', 'npm', 'pypi', 'open source', 'package manager'],
-    text: 'Impacta a cualquier organización que use dependencias de software de terceros.' },
+    text: 'Cualquier empresa que use software con dependencias de terceros debe revisar si sus proyectos están expuestos y quién es responsable de mantener esa cadena actualizada.' },
   { kw: ['aws', 'cloud', 'saas', 'gcp', 'govcloud'],
-    text: 'Relevante para empresas con infraestructura o servicios en la nube.' },
+    text: 'Las empresas con infraestructura o servicios en la nube deben verificar si su configuración actual las expone a este riesgo y qué controles tienen en lugar.' },
   { kw: ['artificial intelligence', 'machine learning', 'llm', 'gpt', 'automation', 'agentic'],
-    text: 'Clave para equipos que están evaluando o adoptando inteligencia artificial.' },
+    text: 'Este desarrollo modifica el panorama de riesgo y capacidades. Los equipos que evalúan o ya adoptaron IA deben actualizar su análisis de riesgo operativo y de gobernanza.' },
   { kw: ['patch tuesday', 'security update', 'patch', 'cve-', 'zero-day', 'vulnerability'],
-    text: 'Los equipos de IT deben priorizar la revisión y aplicación de actualizaciones.' },
+    text: 'El tiempo entre la publicación de un parche y su explotación activa se ha reducido. Los equipos de IT deben priorizar estas actualizaciones y revisar si los plazos acordados siguen siendo adecuados.' },
   { kw: ['phishing', 'social engineering', 'credential', 'mfa', 'authentication'],
-    text: 'Toda organización con correo corporativo debe reforzar la capacitación de usuarios.' },
+    text: 'El vector de ataque apunta a errores humanos que la tecnología no detiene sola. La revisión de controles de acceso y la capacitación del equipo son las defensas prioritarias.' },
   { kw: ['router', 'iot', 'firmware', 'industrial', 'scada', 'ot'],
-    text: 'Relevante para empresas con dispositivos conectados o infraestructura industrial.' },
+    text: 'Las empresas con dispositivos conectados o infraestructura industrial deben verificar si sus equipos tienen actualizaciones disponibles y si el proveedor tiene un proceso activo de parches.' },
   { kw: ['regulation', 'compliance', 'gdpr', 'policy', 'law', 'sbom'],
-    text: 'Las áreas de cumplimiento y legal deben dar seguimiento a estas disposiciones.' },
+    text: 'Las áreas de cumplimiento y legal deben evaluar si esta disposición genera obligaciones nuevas o modifica los plazos de adecuación existentes.' },
   { kw: ['ransomware', 'extortion', 'encrypt'],
-    text: 'Las empresas deben revisar sus capacidades de respaldo y continuidad operativa.' },
+    text: 'Este tipo de ataque interrumpe operaciones y genera presión financiera directa. Las empresas deben revisar si sus capacidades de respaldo y recuperación serían suficientes ante un incidente real.' },
 ];
 
 // --- Impacto potencial por tipo de alerta ---
 
 const IMPACTO = {
-  Ransomware:   'Puede afectar la disponibilidad de sistemas y resultar en pérdida de datos o extorsión económica.',
-  Filtración:   'Datos sensibles de clientes, empleados o infraestructura pueden haber sido expuestos públicamente.',
-  Phishing:     'Empleados con acceso a sistemas corporativos o cuentas bancarias pueden ser el objetivo directo.',
-  Defacement:   'La reputación digital de la organización puede verse comprometida ante clientes y proveedores.',
-  'Dark Forum': 'La mención en foros clandestinos puede anticipar un ataque o filtración próxima.',
-  Otro:         'Requiere evaluación según el contexto específico de cada organización.',
+  Ransomware:   'La interrupción operativa puede ser total: sistemas bloqueados, datos cifrados y presión para pagar. La exposición financiera incluye el costo del rescate, la recuperación y el tiempo fuera de operación. Si hay datos de clientes o empleados afectados, puede activar obligaciones de notificación ante reguladores.',
+  Filtración:   'Los datos expuestos pueden incluir información de clientes, empleados o contratos, lo que genera responsabilidad legal y reputacional. Dependiendo del tipo de datos, puede activar obligaciones de notificación. El daño reputacional puede afectar la relación con clientes y socios.',
+  Phishing:     'Una cuenta corporativa comprometida puede derivar en fraude por desvío de pagos, acceso a información confidencial o ataques a los contactos del negocio. El riesgo no es solo técnico: es financiero y de responsabilidad contractual con clientes y proveedores.',
+  Defacement:   'La modificación de un sitio corporativo daña la imagen pública ante clientes y proveedores, y puede generar desconfianza activa. Si el sitio maneja transacciones o datos, implica revisar si hubo acceso a información sensible más allá del cambio visual.',
+  'Dark Forum': 'La mención en foros clandestinos puede anticipar un ataque, una filtración o la venta de accesos a los sistemas de la organización. Aunque no es un incidente confirmado, requiere monitoreo activo y revisión preventiva de accesos y controles.',
+  Otro:         'El impacto requiere evaluación según el contexto específico. Las tres dimensiones a revisar: continuidad operativa (¿qué proceso se interrumpe?), exposición financiera (¿puede derivar en pérdida directa?) y obligaciones regulatorias o contractuales.',
 };
 
 // --- Helpers ---

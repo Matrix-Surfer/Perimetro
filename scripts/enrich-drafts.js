@@ -73,16 +73,18 @@ async function enrichRadarFile(content) {
 
   const prompt = `Eres asistente editorial de Perímetro, plataforma de inteligencia sobre ciberseguridad e IA para empresas mexicanas.
 
-Reescribe el campo "context" de este ítem de radar como un insight empresarial claro y directo para empresas medianas mexicanas.
+Reescribe el campo "context" de este ítem de radar. No resumas la noticia — el lector ya la ve en el título y la fuente.
+
+Responde una sola pregunta: ¿qué cambia en cómo esta empresa gestiona su tecnología o toma decisiones?
 
 Reglas:
-- Máximo 2 oraciones
+- 2 a 3 oraciones
 - No inventes datos ni información nueva
 - Sin clickbait ni exageración
-- Tono profesional y sobrio
+- Tono directo y profesional, como un colega que encontró algo relevante
 - En español
-- Enfocado en impacto operativo real para MiPYMES mexicanas
-- Traduce tecnicismos a lenguaje de negocio
+- Enfocado en implicación operativa o de gobernanza para empresas mexicanas medianas
+- Si aplica, cerrar con la pregunta concreta que el responsable debería hacerle a su equipo de TI
 
 Título: ${title}
 Contexto actual: ${context}
@@ -101,16 +103,20 @@ async function enrichAlertaFile(content) {
 
   const prompt = `Eres asistente editorial de Perímetro, plataforma de inteligencia sobre ciberseguridad e IA para empresas mexicanas.
 
-Reescribe el campo "resumen" de esta alerta de seguridad explicando el riesgo operativo real para empresas mexicanas en lenguaje claro, sin tecnicismos innecesarios.
+Reescribe el campo "resumen" de esta alerta explicando qué pierde o qué arriesga la empresa si esto la afecta. No describas el mecanismo técnico del ataque.
+
+Considera estas dimensiones cuando apliquen:
+- Continuidad operativa: ¿qué proceso del negocio se interrumpe o queda comprometido?
+- Exposición financiera: ¿puede derivar en fraude, pérdida directa o costo de respuesta?
+- Responsabilidad regulatoria o contractual: ¿activa obligaciones legales o viola acuerdos con clientes o proveedores?
 
 Reglas:
-- Máximo 2-3 oraciones
+- 2 a 3 oraciones
 - No inventes datos ni información nueva
 - Sin clickbait ni exageración
 - Tono profesional y sobrio
-- En español
-- Explica el riesgo de negocio, no solo el técnico
-- Si está en inglés, traduce al español
+- En español; si el contenido está en inglés, traducir
+- Lenguaje de negocio, no técnico
 
 Título: ${title}
 Resumen actual: ${resumen}
