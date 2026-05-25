@@ -33,13 +33,15 @@ URLs canónicas por sección:
 jsilva.io/[seccion]/[slug]
 ```
 
-### Tono
+### Tono y ritmo
 
 El tweet es una extensión del tono editorial: analítico, directo, útil. No es un titular de diario sensacionalista ni un comunicado corporativo.
 
+El ritmo es staccato. Oraciones cortas. Una idea por línea. El punto como martillo.
+
 - ❌ "¡URGENTE! Hackers norcoreanos atacan empresas. ¿Está tu empresa en riesgo?"
 - ❌ "Lazarus Group ha desplegado RemotePE, un RAT de solo memoria que usa DPAPILoader."
-- ✅ "El grupo norcoreano Lazarus tiene un nuevo malware que opera sin dejar archivos en disco. Tu antivirus no lo detecta. Objetivo: empresas financieras y de criptomonedas."
+- ✅ "Lazarus tiene un nuevo malware. Opera solo en memoria. No escribe archivos. Tu antivirus no tiene nada que analizar."
 
 ---
 
@@ -47,10 +49,10 @@ El tweet es una extensión del tono editorial: analítico, directo, útil. No es
 
 **Alerta — Phishing / Kali365**
 ```
-Un empleado puede autorizar el acceso de un atacante a tu correo
-creyendo que completó un proceso de seguridad normal. El FBI
-advierte sobre Kali365: phishing industrial que abusa del mecanismo
-de autenticación de Microsoft 365. La verificación en dos pasos
+El FBI advierte sobre Kali365. Phishing industrial. Se vende como servicio.
+Cualquiera puede comprarlo.
+
+La víctima autoriza el acceso sin saberlo. La verificación en dos pasos
 no lo detiene.
 
 jsilva.io/alertas/kali365-phishing-como-servicio-cuentas-microsoft-365
@@ -58,62 +60,63 @@ jsilva.io/alertas/kali365-phishing-como-servicio-cuentas-microsoft-365
 
 **Alerta — Malware / Lazarus**
 ```
-El grupo norcoreano Lazarus tiene un nuevo malware que opera sin
-dejar archivos en disco. Tu antivirus no lo detecta. Objetivo:
-empresas financieras y de criptomonedas. Una infección puede
-significar pérdida de control operativo sin ninguna señal de alerta.
+Lazarus tiene un nuevo malware. Opera solo en memoria. No escribe archivos.
+Tu antivirus no tiene nada que analizar.
+
+Objetivo: empresas financieras y cripto. Sin señal de alerta.
 
 jsilva.io/alertas/lazarus-remotepe-rat-sector-financiero-crypto
 ```
 
 **Alerta — Supply chain / Megalodon**
 ```
-5,500 repositorios de GitHub comprometidos con automatización
-maliciosa. Si tu equipo usa GitHub con pipelines de despliegue,
-las credenciales de tu infraestructura pueden estar en manos de
-atacantes ahora. Acción prioritaria: rotar credenciales sin
-esperar confirmación.
+5,500 repositorios de GitHub comprometidos. Commits falsos. Automatización
+maliciosa.
+
+Si tu equipo usa GitHub con pipelines activos, las credenciales de tu
+infraestructura pueden estar expuestas. Rotar. No esperar confirmación.
 
 jsilva.io/alertas/megalodon-github-actions-5500-repositorios-comprometidos
 ```
 
 **Alerta — Supply chain / TrapDoor**
 ```
-34 paquetes maliciosos en npm, PyPI y Crates.io desde el 22 de
-mayo. Si tu equipo instaló dependencias esta semana, las credenciales
-de producción pueden estar comprometidas. El acceso al desarrollador
-es el acceso a toda la infraestructura del negocio.
+34 paquetes maliciosos. npm, PyPI, Crates.io. Desde el 22 de mayo.
+
+Si tu equipo instaló dependencias esta semana, asumir compromiso preventivo.
+El acceso al desarrollador es el acceso a toda la infraestructura.
 
 jsilva.io/alertas/trapdoor-ataque-cadena-suministro-npm-pypi-crates
 ```
 
 **Alerta — Phishing / Ghost CMS**
 ```
-Más de 700 sitios con Ghost CMS están sirviendo malware a sus
-visitantes sin que los administradores lo sepan. Vulnerabilidad
-activamente explotada. Si usas Ghost, confirmar que está actualizado
-no puede esperar.
+700 sitios con Ghost CMS sirviendo malware a sus visitantes.
+Los administradores no lo saben.
+
+Si usas Ghost: actualizar ahora. No puede esperar.
 
 jsilva.io/alertas/ghost-cms-campana-clickfix-inyeccion-sql
 ```
 
 **Alerta — Supply chain / Laravel Lang**
 ```
-Paquetes de desarrollo PHP ampliamente usados en México fueron
-comprometidos para robar credenciales. Si tu empresa o agencia
-mantiene proyectos Laravel, tratar el entorno de desarrollo como
-potencialmente comprometido es el paso correcto mientras se confirma
-el alcance.
+Paquetes de Laravel Lang comprometidos. Malware distribuido como
+actualización de rutina.
+
+Alta penetración en México. Si tu equipo usa Laravel, tratar el entorno
+como comprometido. Rotar credenciales. No esperar.
 
 jsilva.io/alertas/laravel-lang-paquetes-comprometidos-malware-credenciales
 ```
 
 **Radar — AI / Mythos**
 ```
-La IA de Anthropic analizó 1,000 proyectos de software y detectó
-23,000 vulnerabilidades. El plazo de 15 o 30 días que tiene tu
-proveedor de TI para aplicar parches ya no es competitivo. El
-atacante ahora descubre fallas más rápido que el parche que las cierra.
+La IA de Anthropic analizó 1,000 proyectos de software. Encontró 23,000
+vulnerabilidades.
+
+El atacante descubre fallas más rápido que el parche que las cierra.
+El plazo de 30 días que acordaste con TI ya es obsoleto.
 
 jsilva.io/radar/anthropic-mythos-ia-descubre-23000-vulnerabilidades-oss
 ```
