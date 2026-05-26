@@ -4,14 +4,18 @@ pubDate: 2026-05-26
 source: "MIT Technology Review"
 link: "https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria/"
 category: "AI"
-context: "A pesar del ruido mediático, la evidencia disponible no respalda la tesis de desplazamiento masivo de empleo por IA en los números agregados — al menos no todavía. Lo que sí se observa es impacto concentrado en trabajos de nivel de entrada y tareas rutinarias de conocimiento. Para directivos que están tomando decisiones de plantilla basadas en expectativas sobre IA, este análisis sugiere calibrar con datos y no con titulares."
+context: "Los despidos masivos en tecnología generan titulares. Los números reales son más tranquilos. El análisis disponible no muestra desplazamiento masivo de empleo por IA en sectores de conocimiento — todavía. Lo que sí muestra: impacto concreto en posiciones junior y tareas rutinarias. Para directivos que toman decisiones de plantilla basadas en la narrativa, este es el momento de separar los datos del ruido."
 publicacion: "published"
 ---
 
 ## Resumen
 
-A pesar de las oleadas de despidos en empresas tecnológicas atribuidas a la IA (Coinbase, Meta, Cisco), los números agregados de empleo en países desarrollados se mantienen estables. El análisis de MIT Technology Review encuentra poca evidencia de que la IA haya producido un desplazamiento masivo de empleos de cuello blanco hasta la fecha. El impacto más claro está en posiciones de nivel de entrada y tareas de conocimiento rutinarias.
+A pesar de los despidos en empresas como Coinbase, Meta y Cisco atribuidos a IA, los números agregados de empleo en países desarrollados se mantienen estables. El análisis de MIT Technology Review encuentra poca evidencia de desplazamiento masivo de empleos de cuello blanco. El impacto más claro está en posiciones de nivel de entrada y tareas de conocimiento rutinarias.
 
 ## Relevancia
 
-El contexto importa para empresas mexicanas que diseñan su estrategia de talento: las decisiones de no contratar junior o reducir funciones administrativas basadas en promesas de IA pueden dejar brechas reales si la adopción es más lenta de lo esperado. La señal más útil del análisis es dónde sí hay impacto comprobado — tareas repetitivas de conocimiento — y dónde no: trabajo que requiere juicio, contexto local y relaciones. Diseñar la plantilla con esa distinción es más preciso que reaccionar a la narrativa general.
+El riesgo para empresas mexicanas es tomar decisiones de plantilla basadas en expectativas que los datos aún no validan.
+
+No contratar analistas junior porque "la IA lo va a hacer" puede dejar brechas reales si la adopción es más lenta de lo esperado. Reducir funciones administrativas antes de tener los procesos automatizados funciona igual.
+
+La señal útil del análisis es dónde sí hay impacto comprobado: tareas repetitivas de conocimiento. Y dónde no: trabajo que requiere juicio, contexto local y relaciones. Diseñar la plantilla con esa distinción es más preciso que reaccionar a los titulares.

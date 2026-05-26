@@ -3,7 +3,7 @@ title: "Hackers iraníes despliegan MiniFast y MiniJunk V2 mediante phishing y e
 date: "2026-05-26"
 tipo: "Phishing"
 status: "En monitoreo"
-resumen: "La campaña de Nimbus Manticore combina phishing dirigido con resultados de búsqueda manipulados: el primer resultado de Google para ciertas búsquedas de software legítimo puede llevar directo al malware. Si la empresa no tiene filtrado de DNS ni controles de navegación, el empleado no tiene señales visuales de alerta — el sitio malicioso parece exactamente lo que estaba buscando."
+resumen: "La misma campaña iraní usa un vector diferente: resultados de búsqueda manipulados que posicionan páginas falsas como si fueran software legítimo. El empleado busca en Google una herramienta técnica, hace clic en el primer resultado y descarga el malware sin ninguna señal de alerta. Sin filtrado de DNS en la red corporativa, no hay protección ante esto."
 source: "The Hacker News"
 link: "https://thehackernews.com/2026/05/iranian-hackers-deploy-minifast-and.html"
 publicacion: "published"
@@ -11,14 +11,18 @@ publicacion: "published"
 
 ## Contexto
 
-El grupo iraní Nimbus Manticore (UNC1549) está desplegando dos nuevas herramientas de acceso persistente — MiniFast y MiniJunk V2 — mediante una combinación de spear phishing y envenenamiento SEO. En el vector SEO, los atacantes posicionan páginas falsas en los primeros resultados de búsqueda para términos relacionados con software del sector aeronáutico y tecnológico. En el vector de phishing, usan señuelos que imitan comunicaciones de organizaciones conocidas del sector.
+Nimbus Manticore (UNC1549) despliega dos nuevos implantes de acceso persistente — MiniFast y MiniJunk V2 — mediante phishing dirigido y envenenamiento SEO. En el vector de envenenamiento SEO, los atacantes posicionan páginas maliciosas en los primeros resultados de Google para búsquedas de software técnico específico del sector aeronáutico. El empleado que busca la herramienta correcta puede llegar al sitio incorrecto sin ninguna señal visual de alerta.
 
 ## Impacto potencial
 
-MiniFast y MiniJunk V2 son implantes de acceso persistente: una vez instalados, el atacante mantiene presencia en el sistema durante meses sin generar alertas evidentes. El objetivo es espionaje y recopilación de información — no cifrado ni extorsión. Para empresas cuyos empleados buscan software técnico en Google sin filtros de navegación, el riesgo de instalación inadvertida es real incluso sin abrir un correo de phishing.
+Un implante de acceso persistente no grita. Observa.
+
+Puede estar activo semanas antes de que alguien note algo. Durante ese tiempo, el atacante mapea la red, identifica activos críticos y recopila información.
+
+Si el dispositivo comprometido tiene acceso a sistemas financieros o de clientes, la exposición es total. El costo de respuesta — análisis forense, notificación a clientes, revisión de contratos — suele superar con creces el costo del evento técnico.
 
 ## Recomendaciones
 
-- Activar filtrado de DNS con categorías de protección contra sitios de phishing y dominios recién registrados.
-- Capacitar al equipo sobre que los resultados patrocinados y orgánicos de Google pueden llevar a sitios maliciosos — especialmente para búsquedas de software técnico.
-- Revisar IOCs publicados para MiniFast y MiniJunk en sistemas críticos.
+- Solicitar a TI que active filtrado de DNS con protección contra dominios maliciosos y sitios de phishing conocidos. Es una medida de bajo costo con alto impacto.
+- ¿Tienen los empleados que buscan software técnico en internet alguna guía sobre fuentes autorizadas? ¿O queda a criterio individual de cada persona?
+- Solicitar a TI una revisión de qué herramientas técnicas está descargando el equipo y desde qué fuentes.

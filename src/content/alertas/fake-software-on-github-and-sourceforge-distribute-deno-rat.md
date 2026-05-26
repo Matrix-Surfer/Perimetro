@@ -3,7 +3,7 @@ title: "Instaladores falsos de ChatGPT, Claude y AutoTune en GitHub y SourceForg
 date: "2026-05-26"
 tipo: "Otro"
 status: "En monitoreo"
-resumen: "Repositorios públicos como GitHub y SourceForge están siendo usados para distribuir versiones falsas de herramientas populares de IA y software creativo. Si un empleado descarga estas versiones fuera de los canales oficiales, el atacante obtiene control remoto completo del equipo. El vector no requiere phishing: basta con que el usuario busque la herramienta en Google y descargue el primer resultado convincente."
+resumen: "Repositorios públicos distribuyen versiones falsas de herramientas de IA y software creativo con un troyano embebido. Un empleado que descarga una de estas versiones entrega control remoto completo de su equipo. Sin política de software permitido, la empresa no puede detectar ni contener esta infección antes de que cause daño real."
 source: "Malwarebytes Labs"
 link: "https://www.malwarebytes.com/blog/threat-intel/2026/05/fake-software-on-github-and-sourceforge-distribute-deno-rat"
 publicacion: "published"
@@ -11,14 +11,18 @@ publicacion: "published"
 
 ## Contexto
 
-Se detectaron instaladores y plugins falsos para ChatGPT, Claude, AutoTune y otro software popular en GitHub y SourceForge. Los archivos instalan el RAT Deno (troyano de acceso remoto), que otorga al atacante control total sobre el dispositivo infectado. La técnica aprovecha la confianza en estas plataformas de desarrollo y la búsqueda creciente de herramientas de IA por parte de usuarios sin formación técnica especializada.
+Se detectaron instaladores falsos para ChatGPT, Claude, AutoTune y otro software popular distribuidos en GitHub y SourceForge — plataformas de repositorios de código donde cualquiera puede publicar software. Los archivos instalan el RAT Deno, un troyano de acceso remoto que da al atacante control total del dispositivo. La técnica funciona porque los usuarios confían en estas plataformas y porque la demanda de herramientas de IA hace que muchos busquen descargas fuera de los canales oficiales.
 
 ## Impacto potencial
 
-Un dispositivo corporativo comprometido con un RAT expone credenciales guardadas, archivos locales, acceso a VPN y la red interna. Dado que muchos empleados buscan herramientas de IA por su cuenta — fuera de los canales aprobados por TI — el riesgo es alto en organizaciones sin políticas de software permitido. El daño puede escalar desde el dispositivo individual hasta comprometer sistemas críticos si el empleado tiene acceso privilegiado.
+Control remoto total del dispositivo significa acceso a todo lo que ese empleado puede hacer. Correo, banca en línea, VPN, archivos compartidos. El atacante puede esperar semanas antes de actuar.
+
+Si el empleado tiene acceso a cuentas de pago o transferencias, la exposición financiera es directa y cuantificable.
+
+Sin una política de software permitido, la empresa tampoco puede demostrar diligencia debida ante una aseguradora o auditor si ocurre un incidente. La ausencia de esa política convierte el descuido de un empleado en una responsabilidad institucional.
 
 ## Recomendaciones
 
-- Comunicar al equipo que las herramientas de IA solo deben descargarse desde los sitios oficiales del fabricante: openai.com, claude.ai, anthropic.com — nunca desde buscadores de repositorios.
-- Implementar una política de software permitido (allowlist) en los endpoints administrados.
-- Activar alertas en el EDR para instalación de ejecutables nuevos no firmados digitalmente.
+- Comunicar al equipo con claridad: las herramientas de IA solo se descargan desde los sitios oficiales del fabricante — openai.com, claude.ai, anthropic.com. Un repositorio de GitHub, por conocido que parezca, no es la fuente oficial.
+- ¿Existe hoy una lista de herramientas aprobadas para instalar en equipos corporativos? ¿Quién la administra y cómo se actualiza?
+- Solicitar a TI un proceso para aprobar nuevas herramientas antes de su instalación, especialmente herramientas de IA que el equipo solicita por su cuenta.

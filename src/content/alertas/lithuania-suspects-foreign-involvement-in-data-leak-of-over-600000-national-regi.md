@@ -3,7 +3,7 @@ title: "Lituania investiga filtración de 600,000 registros del padrón nacional
 date: "2026-05-26"
 tipo: "Filtración"
 status: "En monitoreo"
-resumen: "Las autoridades lituanas sospechan participación extranjera en una filtración que expuso datos de más de 600,000 personas registradas en bases de datos gubernamentales. El caso ilustra que actores de Estado usan brechas de datos civiles como herramienta geopolítica — una tendencia que no se limita a Europa. Para organizaciones que resguardan grandes volúmenes de datos personales, refuerza la importancia de controlar quién puede exportar bases de datos completas."
+resumen: "600,000 registros de padrones nacionales lituanos fueron filtrados, posiblemente por un actor estatal. El dato más relevante no es la magnitud — es el acceso: alguien tuvo permisos suficientes para exportar toda esa información. Para cualquier empresa que resguarda datos masivos de clientes o empleados, la pregunta es la misma: ¿quién puede hacer lo mismo con los datos propios?"
 source: "SecurityWeek"
 link: "https://www.securityweek.com/lithuania-suspects-foreign-involvement-in-data-leak-of-over-600000-national-register-entries/"
 publicacion: "published"
@@ -11,14 +11,18 @@ publicacion: "published"
 
 ## Contexto
 
-Autoridades lituanas investigan una filtración masiva que expuso más de 600,000 registros de padrones nacionales, con indicios de participación de actores extranjeros. La magnitud del incidente y su naturaleza apuntan a una operación de inteligencia más que a una extorsión económica: los datos de registros civiles tienen alto valor para campañas de desinformación y operaciones de influencia.
+Las autoridades lituanas investigan una filtración masiva de más de 600,000 registros de padrones nacionales con indicios de participación extranjera. La magnitud y el carácter de los datos — registros civiles, no datos financieros — apuntan a una operación de inteligencia más que a extorsión. Los actores de Estado usan este tipo de información para operaciones de influencia, suplantación y espionaje dirigido.
 
 ## Impacto potencial
 
-El incidente es un recordatorio de que las bases de datos civiles y corporativas de gran escala son objetivos estratégicos — no solo comerciales. Para empresas mexicanas que administran datos masivos de clientes, empleados o beneficiarios, el riesgo no solo es regulatorio: también es reputacional y operativo si los datos se usan en campañas de suplantación o fraude dirigido. La pregunta clave no es "¿somos un objetivo político?" sino "¿tenemos visibilidad de quién exporta datos de nuestras bases?"
+La filtración no afecta directamente a empresas mexicanas. La lección sí.
+
+La pregunta no es si alguien podría querer los datos de tu empresa. Es si quien los custodia está preparado para impedirlo.
+
+Una exportación masiva de datos sin alertas ni controles puede pasar desapercibida días o semanas. Cuando se detecta, el daño ya está hecho. Si esos datos incluyen información de clientes o contratos, puede activarse la obligación legal de notificación y la responsabilidad contractual frente a los afectados.
 
 ## Recomendaciones
 
-- Auditar quién tiene permisos para exportar o descargar grandes volúmenes de datos de las bases de datos corporativas.
-- Activar alertas para consultas o exportaciones de más de N registros en sistemas de bases de datos críticos.
-- Revisar si los registros de auditoría de acceso a datos están activos y retenidos por al menos 90 días.
+- Solicitar a TI un inventario de quién tiene permisos para exportar o descargar grandes volúmenes de datos de las bases corporativas.
+- ¿Existe alertamiento automático cuando alguien descarga más de cierto volumen de registros? Si no, ¿quién debería definir ese umbral?
+- Revisar si los contratos con proveedores que administran datos propios incluyen restricciones explícitas sobre exportación masiva y auditorías de acceso.

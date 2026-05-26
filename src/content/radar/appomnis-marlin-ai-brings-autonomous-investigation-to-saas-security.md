@@ -4,14 +4,18 @@ pubDate: 2026-05-26
 source: "SecurityWeek"
 link: "https://www.securityweek.com/appomnis-marlin-ai-brings-autonomous-investigation-to-saas-security/"
 category: "Seguridad"
-context: "Las configuraciones incorrectas en SaaS son una de las causas más frecuentes de brechas en empresas medianas — y suelen descubrirse tarde porque nadie las monitorea activamente. Marlin AI analiza estas configuraciones de forma autónoma, investiga actividad relacionada y recomienda correcciones sin ejecutarlas directamente. Para equipos de TI pequeños con docenas de aplicaciones SaaS activas, reduce la brecha entre lo que existe y lo que se puede atender."
+context: "Las aplicaciones SaaS de la empresa acumulan configuraciones incorrectas sin que nadie las revise. Cada configuración mal hecha es una puerta potencialmente abierta. Marlin AI las detecta, investiga la actividad relacionada y recomienda qué hacer — sin ejecutar nada por su cuenta. Para equipos de TI que no tienen tiempo de auditar 30 aplicaciones SaaS en forma manual, esto cambia lo que es posible revisar."
 publicacion: "published"
 ---
 
 ## Resumen
 
-AppOmni lanzó Marlin AI, una capa de inteligencia autónoma para su plataforma de seguridad SaaS. La herramienta analiza configuraciones incorrectas en aplicaciones como Salesforce, Microsoft 365 y ServiceNow, investiga actividad relacionada en el entorno corporativo y genera recomendaciones de remediación. La autonomía se detiene antes de ejecutar cambios — un humano debe aprobar las correcciones.
+AppOmni lanzó Marlin AI, una capa de inteligencia autónoma para su plataforma de seguridad SaaS. Analiza configuraciones incorrectas en aplicaciones como Salesforce, Microsoft 365 y ServiceNow, investiga actividad relacionada en el entorno corporativo y genera recomendaciones de remediación. No ejecuta cambios por su cuenta — un humano debe aprobar cada acción.
 
 ## Relevancia
 
-La mayoría de las empresas medianas mexicanas opera con 20 a 50 aplicaciones SaaS activas y sin una postura unificada de seguridad para ese ecosistema. Marlin AI representa el tipo de herramienta que puede dar visibilidad real sin requerir un equipo dedicado de seguridad SaaS. El dato de diseño más relevante: no toma acciones autónomas — reduce el riesgo de que una corrección automática cause más problemas que los que resuelve.
+La mayoría de las empresas medianas opera con 20 a 50 aplicaciones SaaS activas. Nadie las audita todas con frecuencia.
+
+Una configuración incorrecta en Salesforce o Microsoft 365 puede exponer datos de clientes sin que nadie lo note. El costo de una brecha por mala configuración — que ya son la causa número uno de incidentes en SaaS — incluye notificación a clientes y posible responsabilidad contractual.
+
+El diseño sin acciones autónomas es deliberado: reduce el riesgo de que una corrección automática cause más problemas de los que resuelve. La herramienta recomienda. La empresa decide.
