@@ -115,14 +115,23 @@ function alertaFrontmatter(item) {
   const text = normalize(`${item.title} ${item.summary}`);
 
   let tipo = 'Otro';
-  if (matches(text, ['ransomware']))                                          tipo = 'Ransomware';
-  else if (matches(text, ['phishing']))                                       tipo = 'Phishing';
-  else if (matches(text, ['defacement']))                                     tipo = 'Defacement';
-  else if (matches(text, ['dark web', 'dark forum', 'underground forum']))    tipo = 'Dark Forum';
-  else if (matches(text, ['leak', 'breach', 'credential', 'exposed', 'stolen', 'filtrac'])) tipo = 'Filtración';
+  if (matches(text, ['ransomware', 'encrypt', 'file-encrypting']))            tipo = 'Ransomware';
+  else if (matches(text, ['phishing', 'spear phishing', 'smishing', 'vishing',
+    'mfa fatigue', 'mfa bombing', 'prompt bombing', 'credential harvesting',
+    'social engineering', 'business email compromise', 'bec'])) tipo = 'Phishing';
+  else if (matches(text, ['defacement', 'defaced', 'web shell', 'webshell'])) tipo = 'Defacement';
+  else if (matches(text, ['dark web', 'dark forum', 'underground forum',
+    'clandestine', 'tor marketplace', 'criminal forum']))           tipo = 'Dark Forum';
+  else if (matches(text, ['data breach', 'data leak', 'leak', 'breach',
+    'exposed data', 'stolen data', 'records exposed', 'records stolen',
+    'database exposed', 'dump', 'filtrac', 'impacted by', 'affected by']))   tipo = 'Filtración';
 
-  const status = matches(text, ['exploited', 'in the wild', 'active exploit', 'ongoing', 'actively'])
-    ? 'Activa' : 'En monitoreo';
+  const status = matches(text, [
+    'exploited', 'in the wild', 'active exploit', 'ongoing', 'actively exploited',
+    'cisa orders', 'cisa adds', 'under attack', 'being exploited',
+    'active campaign', 'live campaign', 'confirmed breach', 'confirmed attack',
+    'hijacked', 'compromised', 'infected',
+  ]) ? 'Activa' : 'En monitoreo';
 
   const resumen = truncate(item.summary);
 

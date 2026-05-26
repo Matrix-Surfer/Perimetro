@@ -10,8 +10,8 @@ const ROOT = join(__dirname, '..');
 const RADAR_DIR   = join(ROOT, 'src', 'content', 'radar');
 const ALERTAS_DIR = join(ROOT, 'src', 'content', 'alertas');
 
-const API_KEY = process.env.ANTHROPIC_API_KEY;
-const MODEL   = 'claude-haiku-4-5-20251001';
+const API_KEY = process.env.GOOGLE_AI_API_KEY;
+const MODEL   = 'gemini-2.0-flash';
 
 // --- Parsers ---
 
@@ -43,25 +43,21 @@ function getBody(content) {
   return end !== -1 ? content.slice(end + 5).trim() : '';
 }
 
-// --- LLM ---
+// --- LLM (Google Gemini) ---
 
 async function callLLM(prompt) {
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+  const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-    },
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 300,
-      messages: [{ role: 'user', content: prompt }],
+      contents: [{ parts: [{ text: prompt }] }],
+      generationConfig: { maxOutputTokens: 300, temperature: 0.3 },
     }),
   });
   if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
   const data = await res.json();
-  return data.content[0].text.trim();
+  return data.candidates[0].content.parts[0].text.trim();
 }
 
 // --- Enrichers ---
@@ -155,8 +151,8 @@ async function processDir(dir, enrichFn, label) {
 
 async function main() {
   if (!API_KEY) {
-    console.error('\nError: ANTHROPIC_API_KEY no configurada.');
-    console.error('Uso: ANTHROPIC_API_KEY=sk-... node scripts/enrich-drafts.js\n');
+    console.error('\nError: GOOGLE_AI_API_KEY no configurada.');
+    console.error('Uso: GOOGLE_AI_API_KEY=... node scripts/enrich-drafts.js\n');
     process.exit(1);
   }
 

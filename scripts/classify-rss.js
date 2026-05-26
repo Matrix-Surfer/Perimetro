@@ -10,6 +10,34 @@ const DIR_RADAR   = join(INBOX, 'radar');
 const DIR_ALERTAS = join(INBOX, 'alertas');
 const DIR_DISCARD = join(INBOX, 'discard');
 
+// Patrones de descarte — se evalúan ANTES que alertas/radar
+// Objetivo: eliminar ruido editorial (webinars, recaps, podcasts, avisos OT/ICS)
+const KEYWORDS_DISCARD = [
+  // Contenido editorial sin valor informativo
+  'webinar', 'watch on demand', 'weekly recap', 'weekly roundup',
+  'stormcast for ', 'all sessions available', 'join us', 'register now',
+  'remembering ', 'in memoriam', 'obituary',
+
+  // Avisos CISA para sistemas industriales/OT — irrelevantes para MiPYME
+  'ics medical advisory', 'industrial control systems advisory',
+  'ics-cert advisory', 'ot security advisory',
+
+  // Dispositivos OT/médicos específicos que CISA reporta regularmente
+  'abb ', 'abb terra', 'abb ac500', 'abb ability', 'abb b&r',
+  'schneider electric', 'siemens energy', 'rockwell automation',
+  'eppendorf', 'bioflo', 'yokogawa', 'honeywell', 'ge vernova',
+];
+
+// Patrones de descarte solo cuando aparecen en el TÍTULO (más específicos)
+const TITLE_DISCARD_PATTERNS = [
+  /^\[thn webinar\]/i,
+  /^webinar:/i,
+  /^watch on demand:/i,
+  /^⚡ weekly recap/i,
+  /^isc stormcast for/i,
+  /^remembering /i,
+];
+
 const KEYWORDS_ALERTAS = [
   'ransomware', 'data breach', 'credential', 'phishing', 'malware',
   'exploit', 'exploited', 'zero-day', 'zero day', '0-day', 'cve-',
@@ -46,7 +74,16 @@ function matches(text, keywords) {
   return keywords.some(kw => text.includes(kw));
 }
 
+function shouldDiscard(item) {
+  const text = normalize(`${item.title} ${item.summary}`);
+  const title = normalize(item.title ?? '');
+  if (matches(text, KEYWORDS_DISCARD)) return true;
+  if (TITLE_DISCARD_PATTERNS.some(re => re.test(title))) return true;
+  return false;
+}
+
 function classify(item) {
+  if (shouldDiscard(item)) return 'discard';
   const text = normalize(`${item.title} ${item.summary}`);
   if (matches(text, KEYWORDS_ALERTAS)) return 'alertas';
   return 'radar';
