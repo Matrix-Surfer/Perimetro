@@ -1,17 +1,17 @@
 ---
-title: "Identifying People Using Wi-Fi Routers"
+title: "Investigadores identifican personas dentro de espacios físicos usando señales Wi-Fi ordinarias"
 pubDate: 2026-05-26
 source: "Schneier on Security"
 link: "https://www.schneier.com/blog/archives/2026/05/identifying-people-using-wi-fi-routers.html"
 category: "Seguridad"
-context: "La viabilidad técnica de utilizar señales de Wi-Fi"
-publicacion: "review"
+context: "Investigadores demostraron que las señales Wi-Fi de un router convencional pueden usarse para inferir la presencia, posición y movimiento de personas en un espacio físico — sin cámaras ni sensores adicionales. Para empresas con salas de juntas o áreas confidenciales cubiertas por Wi-Fi corporativo, esto representa un vector de vigilancia no contemplado en la mayoría de los modelos de amenaza actuales."
+publicacion: "published"
 ---
 
 ## Resumen
 
-Not identifying people based on their use of Wi-Fi routers, but identifying people using Wi-Fi signals. This is accomplished through what is known as WiFi sensing, or the use of WiFi signals to infer information about a physical environment. When radio signals like WiFi travel through a space, they interact with the objects and people around them. Those signals can be reflected, scattered, or absorbed. By analyzing how the signal is expected to behave compared with how it is actually received, researchers can infer details about the surrounding environment. “By observing the propagation of radio waves, we can create an image of the surroundings and of persons who are present,” said Thorsten Strufe, a KIT professor and study co-author, in a press release. “This works similar to a normal camera, the difference being that in our case, radio waves instead of light waves are used for the recognition.”
+Investigadores del KIT (Instituto de Tecnología de Karlsruhe) demostraron que las señales Wi-Fi convencionales pueden analizarse para crear una imagen de las personas presentes en un espacio físico. Cuando las señales de radio viajan a través de un espacio, interactúan con objetos y personas: al comparar cómo se espera que se comporte la señal versus cómo se recibe realmente, es posible inferir presencia, posición y movimiento de personas. No se requiere hardware especial — basta con los routers existentes.
 
 ## Relevancia
 
-Pendiente.
+La técnica abre un vector de vigilancia pasiva que no deja rastro en sistemas de seguridad convencionales: no hay cámara que revisar, no hay log de acceso físico. Para empresas con salas de juntas, cuartos de servidores o áreas de I+D cubiertas por la misma red Wi-Fi que el resto de la oficina, segmentar físicamente las señales o usar tecnologías de comunicación alternativas en áreas sensibles pasa de ser una opción a una consideración de diseño de seguridad.
