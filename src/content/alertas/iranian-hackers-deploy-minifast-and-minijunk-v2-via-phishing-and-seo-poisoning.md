@@ -3,10 +3,10 @@ title: "Iranian Hackers Deploy MiniFast and MiniJunk V2 via Phishing and SEO Poi
 date: "2026-05-26"
 tipo: "Phishing"
 status: "En monitoreo"
-resumen: "The Iranian state-sponsored threat actor known as Nimbus Manticore (aka Screening Serpens and UNC1549) has been attributed to a fresh campaign using lures impersonating organizations in the aviation and software sectors…"
+resumen: "Una cuenta corporativa comprometida por esta campaña puede deriv"
 source: "The Hacker News"
 link: "https://thehackernews.com/2026/05/iranian-hackers-deploy-minifast-and.html"
-publicacion: "draft"
+publicacion: "review"
 ---
 
 ## Contexto

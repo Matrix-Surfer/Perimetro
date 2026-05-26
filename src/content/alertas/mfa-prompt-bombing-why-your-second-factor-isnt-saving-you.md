@@ -3,10 +3,10 @@ title: "MFA Prompt Bombing: Why Your Second Factor Isn't Saving You"
 date: "2026-05-26"
 tipo: "Phishing"
 status: "En monitoreo"
-resumen: "Multi-factor authentication (MFA) was supposed to close a critical gap in identity security. It meant that, even if an attacker possessed the account credentials, they couldn't log in without the second factor. While…"
+resumen: "Un ataque de \"MFA Prompt Bombing\" permite"
 source: "The Hacker News"
 link: "https://thehackernews.com/2026/05/mfa-prompt-bombing-why-your-second.html"
-publicacion: "draft"
+publicacion: "review"
 ---
 
 ## Contexto

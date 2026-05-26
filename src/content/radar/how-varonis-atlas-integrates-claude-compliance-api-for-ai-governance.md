@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/security/how-varonis-atlas-integrates-claude-compliance-api-for-ai-governance/"
 category: "Seguridad"
-context: "Las áreas de cumplimiento y legal deben evaluar si esta disposición genera obligaciones nuevas o modifica los plazos de adecuación existentes."
-publicacion: "draft"
+context: "áreas de cumplimiento y legal deben evaluar si esta disposición"
+publicacion: "review"
 ---
 
 ## Resumen

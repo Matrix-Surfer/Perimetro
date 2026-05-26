@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "MIT Technology Review"
 link: "https://www.technologyreview.com/2026/05/26/1138028/the-download-ai-jobs-data/"
 category: "Seguridad"
-context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+context: "La falta de evidencia sobre un desplazamiento masivo de empleos"
+publicacion: "review"
 ---
 
 ## Resumen

@@ -3,10 +3,10 @@ title: "Admins of Bulletproof Hosting Service Used by Russian Hackers Arrested i
 date: "2026-05-26"
 tipo: "Otro"
 status: "En monitoreo"
-resumen: "The two own Dutch companies that allegedly provided bulletproof hosting services to Russia-aligned threat actors. The post Admins of Bulletproof Hosting Service Used by Russian Hackers Arrested in Netherlands appeared…"
+resumen: "La detención de los administradores de este servicio"
 source: "SecurityWeek"
 link: "https://www.securityweek.com/admins-of-bulletproof-hosting-service-used-by-russian-hackers-arrested-in-netherlands/"
-publicacion: "draft"
+publicacion: "review"
 ---
 
 ## Contexto

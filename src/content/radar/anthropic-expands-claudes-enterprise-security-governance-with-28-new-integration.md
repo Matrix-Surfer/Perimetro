@@ -4,8 +4,9 @@ pubDate: 2026-05-26
 source: "SecurityWeek"
 link: "https://www.securityweek.com/anthropic-expands-claudes-enterprise-security-reach-with-28-new-integrations/"
 category: "AI"
-context: "Las organizaciones que usan el ecosistema Microsoft deben verificar si sus versiones actuales están afectadas y cuándo está programada la actualización en su entorno."
-publicacion: "draft"
+context: "Analyze the Input Information:**
+    *   *What"
+publicacion: "review"
 ---
 
 ## Resumen

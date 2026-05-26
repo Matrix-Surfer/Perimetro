@@ -10,8 +10,8 @@ const ROOT = join(__dirname, '..');
 const RADAR_DIR   = join(ROOT, 'src', 'content', 'radar');
 const ALERTAS_DIR = join(ROOT, 'src', 'content', 'alertas');
 
-const API_KEY = process.env.GOOGLE_AI_API_KEY;
-const MODEL   = 'gemini-2.0-flash';
+const API_KEY = process.env.GEMINI_API_KEY;
+const MODEL   = 'gemini-2.5-flash';
 
 // --- Parsers ---
 
@@ -45,19 +45,44 @@ function getBody(content) {
 
 // --- LLM (Google Gemini) ---
 
+const RATE_LIMIT_DELAY_MS = 15000; // 15s entre llamadas → 4 req/min (límite: 5 RPM free tier)
+const MAX_RETRIES = 3;
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
 async function callLLM(prompt) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: prompt }] }],
-      generationConfig: { maxOutputTokens: 300, temperature: 0.3 },
-    }),
-  });
-  if (!res.ok) throw new Error(`API ${res.status}: ${await res.text()}`);
-  const data = await res.json();
-  return data.candidates[0].content.parts[0].text.trim();
+
+  for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { maxOutputTokens: 300, temperature: 0.3 },
+      }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      return data.candidates[0].content.parts[0].text.trim();
+    }
+
+    const body = await res.text();
+
+    // Extraer retryDelay del cuerpo si viene (429/503)
+    if (res.status === 429 || res.status === 503) {
+      const match = body.match(/"retryDelay":\s*"(\d+)s"/);
+      const wait = match ? (parseInt(match[1]) + 2) * 1000 : 60000;
+      if (attempt < MAX_RETRIES) {
+        process.stderr.write(`  ~ reintento ${attempt}/${MAX_RETRIES} en ${Math.round(wait/1000)}s (${res.status})\n`);
+        await sleep(wait);
+        continue;
+      }
+    }
+
+    throw new Error(`API ${res.status}: ${body}`);
+  }
 }
 
 // --- Enrichers ---
@@ -141,9 +166,12 @@ async function processDir(dir, enrichFn, label) {
       enriched++;
       process.stdout.write(`  ✓ [${label}] ${file}\n`);
     } catch (err) {
-      process.stderr.write(`  ! [${label}] ${file}: ${err.message}\n`);
+      process.stderr.write(`  ! [${label}] ${file}: ${err.message.slice(0, 80)}\n`);
       skipped++;
     }
+
+    // Delay entre llamadas para respetar el límite de 5 RPM del free tier
+    await sleep(RATE_LIMIT_DELAY_MS);
   }
 
   return { enriched, skipped };
@@ -151,8 +179,8 @@ async function processDir(dir, enrichFn, label) {
 
 async function main() {
   if (!API_KEY) {
-    console.error('\nError: GOOGLE_AI_API_KEY no configurada.');
-    console.error('Uso: GOOGLE_AI_API_KEY=... node scripts/enrich-drafts.js\n');
+    console.error('\nError: GEMINI_API_KEY no configurada.');
+    console.error('Uso: GEMINI_API_KEY=... node scripts/enrich-drafts.js\n');
     process.exit(1);
   }
 

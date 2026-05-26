@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "MIT Technology Review"
 link: "https://www.technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai/"
 category: "AI"
-context: "Este desarrollo modifica el panorama de riesgo y capacidades. Los equipos que evalúan o ya adoptaron IA deben actualizar su análisis de riesgo operativo y de gobernanza."
-publicacion: "draft"
+context: "La transición hacia la IA agéntica exige"
+publicacion: "review"
 ---
 
 ## Resumen

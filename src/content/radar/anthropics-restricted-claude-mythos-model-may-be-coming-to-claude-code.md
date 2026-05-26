@@ -4,8 +4,8 @@ pubDate: 2026-05-25
 source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/artificial-intelligence/anthropics-restricted-claude-mythos-model-may-be-coming-to-claude-code/"
 category: "AI"
-context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+context: "La llegada de un modelo de alta capacidad pero con riesgos"
+publicacion: "review"
 ---
 
 ## Resumen

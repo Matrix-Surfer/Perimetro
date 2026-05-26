@@ -3,10 +3,10 @@ title: "Lithuania Suspects Foreign Involvement in Data Leak of Over 600,000 Nati
 date: "2026-05-26"
 tipo: "Filtración"
 status: "En monitoreo"
-resumen: "Lithuanian authorities are on high alert after a massive data leak involving more than 600,000 entries from national data registers. The post Lithuania Suspects Foreign Involvement in Data Leak of Over 600,000 National…"
+resumen: "Una filtración de datos de esta magnitud expone información sensible"
 source: "SecurityWeek"
 link: "https://www.securityweek.com/lithuania-suspects-foreign-involvement-in-data-leak-of-over-600000-national-register-entries/"
-publicacion: "draft"
+publicacion: "review"
 ---
 
 ## Contexto

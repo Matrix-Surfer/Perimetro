@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "MIT Technology Review"
 link: "https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria/"
 category: "Seguridad"
-context: "Señal relevante para el monitoreo de amenazas y tendencias tecnológicas."
-publicacion: "draft"
+context: "Esta tendencia obliga a las empresas a cambiar la narrativa del"
+publicacion: "review"
 ---
 
 ## Resumen

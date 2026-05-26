@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "SecurityWeek"
 link: "https://www.securityweek.com/appomnis-marlin-ai-brings-autonomous-investigation-to-saas-security/"
 category: "Seguridad"
-context: "Las empresas con infraestructura o servicios en la nube deben verificar si su configuración actual las expone a este riesgo y qué controles tienen en lugar."
-publicacion: "draft"
+context: "Target Audience:* Medium-sized Mexican companies."
+publicacion: "review"
 ---
 
 ## Resumen

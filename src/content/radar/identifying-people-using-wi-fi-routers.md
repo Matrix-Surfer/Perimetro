@@ -4,8 +4,8 @@ pubDate: 2026-05-26
 source: "Schneier on Security"
 link: "https://www.schneier.com/blog/archives/2026/05/identifying-people-using-wi-fi-routers.html"
 category: "Seguridad"
-context: "Las empresas con dispositivos conectados o infraestructura industrial deben verificar si sus equipos tienen actualizaciones disponibles y si el proveedor tiene un proceso activo de parches."
-publicacion: "draft"
+context: "La viabilidad técnica de utilizar señales de Wi-Fi"
+publicacion: "review"
 ---
 
 ## Resumen
