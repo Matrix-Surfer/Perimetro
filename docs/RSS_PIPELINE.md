@@ -57,17 +57,22 @@ git push → Cloudflare Pages (publicación automática)
 
 ## Ejecución
 
-**Comando único:**
+**Comando único (con enriquecimiento LLM):**
 ```bash
-ANTHROPIC_API_KEY=sk-... node scripts/run-pipeline.js
+GOOGLE_AI_API_KEY=... node scripts/run-pipeline.js
+```
+
+**Sin API key (pasos 1-3 + publicación manual):**
+```bash
+PIPELINE_NONINTERACTIVE=1 node scripts/run-pipeline.js
 ```
 
 **O paso a paso:**
 ```bash
 node scripts/fetch-rss.js        # 1. Descargar feeds
-node scripts/classify-rss.js    # 2. Clasificar en radar/alertas
+node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
 node scripts/generate-drafts.js  # 3. Generar drafts Markdown
-ANTHROPIC_API_KEY=sk-... node scripts/enrich-drafts.js  # 4. Enriquecer con LLM
+GOOGLE_AI_API_KEY=... node scripts/enrich-drafts.js  # 4. Enriquecer vía Gemini
 node scripts/publish.js          # 5. Publicar ítems en revisión
 ```
 
@@ -135,12 +140,15 @@ El cache persiste entre ejecuciones.
 
 ## Clasificación (classify-rss.js)
 
-Usa arrays de keywords para mover cada JSON a una subcarpeta:
+Usa arrays de keywords para mover cada JSON a una subcarpeta. El orden de evaluación es:
 
-- **alertas** — amenazas operativas activas: ransomware, exploit, breach, CVE, zero-day, phishing, malware, leak, etc.
-- **radar** — todo lo demás: tendencias de AI, herramientas, reportes, seguridad general, noticias sin incidente activo
+1. **discard** — ruido editorial descartado automáticamente:
+   - Webinars, recaps semanales, podcasts (ISC Stormcast), summits, memoriales
+   - Avisos CISA para dispositivos OT/ICS industriales: ABB, Schneider Electric, Siemens Energy, Rockwell, Eppendorf, etc.
+2. **alertas** — amenazas operativas activas: ransomware, exploit, breach, CVE, zero-day, phishing, malware, leak, etc.
+3. **radar** — todo lo demás: tendencias de AI, herramientas, reportes, seguridad general, noticias sin incidente activo
 
-Las alertas tienen prioridad. Si un item no califica para alertas, va a radar — no existe descarte por defecto.
+Las alertas tienen prioridad sobre radar. El descarte tiene prioridad sobre todo.
 
 ---
 
@@ -163,9 +171,9 @@ Todos los drafts salen con `publicacion: "draft"` y secciones marcadas como "Pen
 
 ## Enriquecimiento editorial (enrich-drafts.js)
 
-Llama a la API de Anthropic para mejorar los campos editoriales clave de cada draft.
+Llama a la API de Google Gemini para mejorar los campos editoriales clave de cada draft.
 
-**Requiere:** variable de entorno `ANTHROPIC_API_KEY`.
+**Requiere:** variable de entorno `GOOGLE_AI_API_KEY`. Modelo: `gemini-2.0-flash`.
 
 **Radar:** reescribe el campo `context` como un insight empresarial claro en español, enfocado en impacto operativo para MiPYMES mexicanas. Reemplaza los textos genéricos de template.
 
@@ -275,22 +283,33 @@ inbox/rss/
 
 ---
 
-## Automatización (scheduler.js)
+## Automatización
 
-Para ejecución continua en desarrollo o servidor:
+### Cron del sistema (recomendado)
+
+Cron configurado en el sistema para ejecución automática cada 30 minutos:
 
 ```bash
-ANTHROPIC_API_KEY=sk-... node scripts/scheduler.js
+# Ver entrada activa:
+crontab -l
+
+# Sin API key (pasos 1-3):
+*/30 * * * * PIPELINE_NONINTERACTIVE=1 /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
+
+# Con API key (pipeline completo incluyendo enriquecimiento Gemini):
+*/30 * * * * PIPELINE_NONINTERACTIVE=1 GOOGLE_AI_API_KEY=... /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
+```
+
+**Nota:** usar la ruta absoluta de node porque cron no carga el PATH del usuario (nvm).
+El log va a `logs/cron.log` (gitignored).
+
+### scheduler.js (alternativa en proceso continuo)
+
+```bash
+GOOGLE_AI_API_KEY=... node scripts/scheduler.js
 ```
 
 Ejecuta el pipeline cada 30 minutos via `setInterval`. Las fallas no detienen el proceso — se registran y el siguiente ciclo corre normalmente.
-
-**Para producción se recomienda cron del sistema:**
-
-```bash
-# crontab -e
-*/30 * * * * cd /home/jess/Proyectos/perimetro && ANTHROPIC_API_KEY=sk-... node scripts/run-pipeline.js >> logs/pipeline.log 2>&1
-```
 
 ---
 
