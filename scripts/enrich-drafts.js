@@ -23,8 +23,8 @@ function getField(content, field) {
 function setField(content, field, value) {
   const escaped = value.replace(/"/g, '\\"');
   return content.replace(
-    new RegExp(`^(${field}:\\s*)"(?:[^"\\\\]|\\\\.)*"`, 'm'),
-    `$1"${escaped}"`
+    new RegExp(`^${field}:.*$`, 'm'),
+    `${field}: "${escaped}"`
   );
 }
 
@@ -65,7 +65,14 @@ async function callLLM(prompt) {
 
     if (res.ok) {
       const data = await res.json();
-      return data.candidates[0].content.parts[0].text.trim();
+      const raw = data.candidates[0].content.parts[0].text;
+      // Normalizar: quitar comillas externas que algunos modelos añaden,
+      // colapsar saltos de línea (rompen YAML en una sola línea)
+      return raw
+        .trim()
+        .replace(/^["']|["']$/g, '')   // quitar comillas externas
+        .replace(/\n+/g, ' ')          // colapsar newlines → espacio
+        .trim();
     }
 
     const body = await res.text();
