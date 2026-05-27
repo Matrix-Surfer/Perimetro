@@ -5,15 +5,9 @@ import Footer from '../../components/Footer.astro';
 
 const terminos = [
   {
-    termino: "Ransomware",
+    termino: "APT (Amenaza Persistente Avanzada)",
     categoria: "Ciberseguridad",
-    definicion: "Software malicioso que secuestra los archivos de tu empresa y exige un pago para devolverlos. Es como si alguien cambiara todas las cerraduras de tu oficina y te pidiera dinero por las llaves.",
-    impacto: "Alto"
-  },
-  {
-    termino: "Phishing",
-    categoria: "Ciberseguridad",
-    definicion: "Correos, mensajes o sitios falsos que imitan a empresas reales para robar tus contraseñas o datos. El nombre más común en México: correos falsos del SAT o de tu banco.",
+    definicion: "Un grupo de atacantes altamente organizados — generalmente vinculados a gobiernos — que se infiltran en una red y permanecen sin ser detectados durante meses o años. No buscan hacer ruido: buscan espiar, robar información estratégica o sabotear en el momento preciso. MuddyWater (Irán) es un ejemplo activo.",
     impacto: "Alto"
   },
   {
@@ -21,42 +15,6 @@ const terminos = [
     categoria: "Seguridad",
     definicion: "Una segunda capa de seguridad al iniciar sesión — además de tu contraseña, necesitas confirmar tu identidad con un código que llega a tu teléfono. Es una de las medidas más efectivas y económicas que puede implementar cualquier empresa.",
     impacto: "Protección"
-  },
-  {
-    termino: "LLM (Large Language Model)",
-    categoria: "AI",
-    definicion: "El tipo de inteligencia artificial detrás de herramientas como ChatGPT, Copilot o Gemini. Son modelos entrenados con enormes cantidades de texto que pueden generar, resumir y analizar lenguaje de forma muy natural.",
-    impacto: "Neutro"
-  },
-  {
-    termino: "Defacement",
-    categoria: "Ciberseguridad",
-    definicion: "Cuando un atacante modifica visualmente un sitio web — cambia imágenes, textos o deja un mensaje. Es como si alguien pintara tu fachada sin permiso. Generalmente es un ataque de visibilidad, no de robo de datos.",
-    impacto: "Medio"
-  },
-  {
-    termino: "VPN (Red Privada Virtual)",
-    categoria: "Seguridad",
-    definicion: "Una conexión cifrada entre tu dispositivo e internet. Útil para empleados que trabajan desde casa o en redes públicas. No es infalible, pero agrega una capa importante de protección.",
-    impacto: "Protección"
-  },
-  {
-    termino: "Zero-day",
-    categoria: "Ciberseguridad",
-    definicion: "Una vulnerabilidad en software que los fabricantes aún no conocen — y por lo tanto no tienen parche disponible. Son las más peligrosas porque no hay defensa directa aún.",
-    impacto: "Alto"
-  },
-  {
-    termino: "Copilot",
-    categoria: "AI",
-    definicion: "Herramienta de inteligencia artificial de Microsoft integrada en sus productos (Word, Excel, Teams, Outlook). Ayuda a redactar, resumir y analizar información directamente en las apps que ya usa tu empresa.",
-    impacto: "Neutro"
-  },
-  {
-    termino: "APT (Amenaza Persistente Avanzada)",
-    categoria: "Ciberseguridad",
-    definicion: "Un grupo de atacantes altamente organizados — generalmente vinculados a gobiernos — que se infiltran en una red y permanecen sin ser detectados durante meses o años. No buscan hacer ruido: buscan espiar, robar información estratégica o sabotear en el momento preciso. MuddyWater (Irán) es un ejemplo activo.",
-    impacto: "Alto"
   },
   {
     termino: "C2 / Comando y control",
@@ -77,6 +35,12 @@ const terminos = [
     impacto: "Medio"
   },
   {
+    termino: "Copilot",
+    categoria: "AI",
+    definicion: "Herramienta de inteligencia artificial de Microsoft integrada en sus productos (Word, Excel, Teams, Outlook). Ayuda a redactar, resumir y analizar información directamente en las apps que ya usa tu empresa.",
+    impacto: "Neutro"
+  },
+  {
     termino: "Cryptojacking",
     categoria: "Ciberseguridad",
     definicion: "Malware que se instala silenciosamente en tu equipo y usa sus recursos — procesador, memoria, electricidad — para minar criptomonedas en beneficio del atacante. No roba datos directamente, pero degrada el rendimiento de los equipos y aumenta el consumo eléctrico de forma sostenida.",
@@ -87,6 +51,12 @@ const terminos = [
     categoria: "Ciberseguridad",
     definicion: "Identificador único asignado a cada vulnerabilidad de seguridad descubierta públicamente. Cuando lees CVE-2026-27771, es el número de expediente de esa falla específica. Permite que todo el sector hable de la misma vulnerabilidad con el mismo nombre, independientemente del proveedor o herramienta.",
     impacto: "Neutro"
+  },
+  {
+    termino: "Defacement",
+    categoria: "Ciberseguridad",
+    definicion: "Cuando un atacante modifica visualmente un sitio web — cambia imágenes, textos o deja un mensaje. Es como si alguien pintara tu fachada sin permiso. Generalmente es un ataque de visibilidad, no de robo de datos.",
+    impacto: "Medio"
   },
   {
     termino: "Exfiltración",
@@ -113,6 +83,12 @@ const terminos = [
     impacto: "Neutro"
   },
   {
+    termino: "LLM (Large Language Model)",
+    categoria: "AI",
+    definicion: "El tipo de inteligencia artificial detrás de herramientas como ChatGPT, Copilot o Gemini. Son modelos entrenados con enormes cantidades de texto que pueden generar, resumir y analizar lenguaje de forma muy natural.",
+    impacto: "Neutro"
+  },
+  {
     termino: "MCP (Model Context Protocol)",
     categoria: "AI",
     definicion: "Protocolo que permite a herramientas de IA de programación conectarse con servicios externos — bases de datos, APIs, sistemas de archivos. Extiende lo que la IA puede hacer, pero también amplía la superficie de ataque: un servidor MCP comprometido puede acceder a todo lo que la herramienta de IA puede tocar.",
@@ -131,6 +107,18 @@ const terminos = [
     impacto: "Alto"
   },
   {
+    termino: "Phishing",
+    categoria: "Ciberseguridad",
+    definicion: "Correos, mensajes o sitios falsos que imitan a empresas reales para robar tus contraseñas o datos. El nombre más común en México: correos falsos del SAT o de tu banco.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Ransomware",
+    categoria: "Ciberseguridad",
+    definicion: "Software malicioso que secuestra los archivos de tu empresa y exige un pago para devolverlos. Es como si alguien cambiara todas las cerraduras de tu oficina y te pidiera dinero por las llaves.",
+    impacto: "Alto"
+  },
+  {
     termino: "Shadow AI (IA en la sombra)",
     categoria: "AI",
     definicion: "El uso de herramientas de inteligencia artificial por parte de empleados sin que la empresa lo sepa ni lo haya aprobado — ChatGPT para redactar documentos, extensiones de IA en el navegador, herramientas de transcripción de reuniones. No es malicioso por intención, pero puede exponer información confidencial a proveedores externos sin ningún control.",
@@ -143,9 +131,21 @@ const terminos = [
     impacto: "Alto"
   },
   {
+    termino: "VPN (Red Privada Virtual)",
+    categoria: "Seguridad",
+    definicion: "Una conexión cifrada entre tu dispositivo e internet. Útil para empleados que trabajan desde casa o en redes públicas. No es infalible, pero agrega una capa importante de protección.",
+    impacto: "Protección"
+  },
+  {
     termino: "Web shell",
     categoria: "Ciberseguridad",
     definicion: "Archivo malicioso instalado en un servidor web que actúa como puerta trasera remota. Le da al atacante acceso permanente al servidor mediante un navegador, sin necesidad de autenticarse de nuevo. Es difícil de detectar porque se disfraza de archivo legítimo del sistema.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Zero-day",
+    categoria: "Ciberseguridad",
+    definicion: "Una vulnerabilidad en software que los fabricantes aún no conocen — y por lo tanto no tienen parche disponible. Son las más peligrosas porque no hay defensa directa aún.",
     impacto: "Alto"
   }
 ];
