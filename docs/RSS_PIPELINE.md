@@ -22,9 +22,9 @@ scripts/classify-rss.js
   (clasificación por keywords)
         |
         v
-inbox/rss/radar/                inbox/rss/alertas/          inbox/rss/discard/
-        |                               |
-        v                               v
+inbox/rss/radar/        inbox/rss/alertas/        inbox/rss/discard/
+        |                       |
+        v                       v
 scripts/generate-drafts.js
   (genera Markdown con frontmatter)
         |
@@ -34,7 +34,7 @@ src/content/radar/              src/content/alertas/
         |
         v
 scripts/enrich-drafts.js
-  (mejora context/resumen via LLM)
+  (mejora context/resumen via Anthropic API)
         |
         v
 src/content/radar/              src/content/alertas/
@@ -47,7 +47,7 @@ Revisión humana obligatoria
         |
         v
 node scripts/publish.js
-  (cambia publicacion a "published")
+  (cambia publicacion a "published" o "rejected")
         |
         v
 git push → Cloudflare Pages (publicación automática)
@@ -57,22 +57,22 @@ git push → Cloudflare Pages (publicación automática)
 
 ## Ejecución
 
-**Comando único (con enriquecimiento LLM):**
+**Pipeline completo (con enriquecimiento LLM):**
 ```bash
-GOOGLE_AI_API_KEY=... node scripts/run-pipeline.js
+ANTHROPIC_API_KEY=... node scripts/run-pipeline.js
 ```
 
-**Sin API key (pasos 1-3 + publicación manual):**
+**Sin API key (pasos 1-3, enrich omitido):**
 ```bash
-PIPELINE_NONINTERACTIVE=1 node scripts/run-pipeline.js
+node scripts/run-pipeline.js
 ```
 
-**O paso a paso:**
+**Paso a paso:**
 ```bash
 node scripts/fetch-rss.js        # 1. Descargar feeds
 node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
 node scripts/generate-drafts.js  # 3. Generar drafts Markdown
-GOOGLE_AI_API_KEY=... node scripts/enrich-drafts.js  # 4. Enriquecer vía Gemini
+ANTHROPIC_API_KEY=... node scripts/enrich-drafts.js  # 4. Enriquecer via Anthropic
 node scripts/publish.js          # 5. Publicar ítems en revisión
 ```
 
@@ -85,18 +85,27 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 
 ---
 
+## Estado actual
+
+El pipeline corre **manualmente**. El cron del sistema está desactivado.
+
+Hoja de ruta:
+- **Próximo:** migrar `enrich-drafts.js` de Gemini a Anthropic API (`claude-haiku-4-5`)
+- **Futuro:** evaluar n8n para orquestación visual del pipeline completo
+
+---
+
 ## Scripts
 
 | Script | Entrada | Salida |
 |---|---|---|
 | `scripts/run-pipeline.js` | — | Ejecuta los 5 pasos en secuencia |
 | `scripts/fetch-rss.js` | `data/sources/rss_sources.json` | `inbox/rss/*.json` |
-| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas}/` |
+| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas,discard}/` |
 | `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
 | `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con `context`/`resumen` mejorados y `publicacion: "review"` |
 | `scripts/publish.js` | `src/content/**/*.md` con `publicacion: "review"` | Mismos archivos con `publicacion: "published"` o `"rejected"` |
 | `scripts/validate-content.js` | `src/content/{radar,alertas}/*.md` | Reporte de errores en campos obligatorios |
-| `scripts/scheduler.js` | — | Ejecuta `run-pipeline.js` cada 30 min, persiste logs |
 
 ---
 
@@ -158,12 +167,12 @@ Para cada JSON en `inbox/rss/radar/` y `inbox/rss/alertas/`, genera un archivo `
 
 **Radar** detecta:
 - `category`: "AI" o "Seguridad" por keywords
-- `context`: frase editorial en español por templates según el tema del artículo
+- `context`: placeholder — se enriquece en el paso siguiente
 
 **Alertas** detecta:
 - `tipo`: Ransomware / Phishing / Defacement / Dark Forum / Filtración / Otro
 - `status`: "Activa" si hay señales de explotación en curso, sino "En monitoreo"
-- `resumen`: summary limpio truncado a ~220 caracteres
+- `resumen`: placeholder — se enriquece en el paso siguiente
 
 Todos los drafts salen con `publicacion: "draft"` y secciones marcadas como "Pendiente".
 
@@ -171,21 +180,27 @@ Todos los drafts salen con `publicacion: "draft"` y secciones marcadas como "Pen
 
 ## Enriquecimiento editorial (enrich-drafts.js)
 
-Llama a la API de Google Gemini para mejorar los campos editoriales clave de cada draft.
+Llama a la API de Anthropic para mejorar los campos editoriales clave de cada draft.
 
-**Requiere:** variable de entorno `GOOGLE_AI_API_KEY`. Modelo: `gemini-2.0-flash`.
+**Requiere:** variable de entorno `ANTHROPIC_API_KEY`. Modelo: `claude-haiku-4-5`.
 
-**Radar:** reescribe el campo `context` como un insight empresarial claro en español, enfocado en impacto operativo para MiPYMES mexicanas. Reemplaza los textos genéricos de template.
+**Variables de entorno opcionales:**
+- `ANTHROPIC_MODEL` — override del modelo (default: `claude-haiku-4-5`)
 
-**Alertas:** reescribe el campo `resumen` traduciendo el riesgo técnico a lenguaje de negocio, en español, sin tecnicismos innecesarios.
+**Radar:** reescribe el campo `context` respondiendo una sola pregunta: ¿qué cambia en cómo esta empresa gestiona su tecnología o toma decisiones? Tono staccato, enfoque GRC, sin resumir la noticia.
 
-**Reglas editoriales del LLM:**
+**Alertas:** reescribe el campo `resumen` en lenguaje de negocio, enfocado en qué pierde o arriesga la empresa. Traduce el título al español. El formato de las secciones de Recomendaciones sigue el estándar documentado en `EDITORIAL_GUIDE.md`:
+- Vulnerabilidades técnicas → instrucciones delegables ("Solicitar a TI que...")
+- Brechas de consumidor → pasos directos en segunda persona
+- Campañas activas → mixto (acción personal primero, gobernanza después)
+
+**Reglas del LLM:**
 - No inventa datos ni información nueva
-- No hace clickbait ni exageración
-- Tono profesional y sobrio
-- Máximo 2-3 oraciones por campo
+- Ritmo staccato: oraciones cortas, un concepto por oración
+- Términos técnicos explicados en el mismo párrafo
+- Máximo 2-3 oraciones por campo enriquecido
 
-**Output:** archivos procesados quedan con `publicacion: "review"`. Solo procesa archivos con `publicacion: "draft"` — los ya revisados o publicados no se tocan.
+**Output:** archivos procesados quedan con `publicacion: "review"`. Solo procesa archivos con `publicacion: "draft"`.
 
 **Este script no reemplaza la revisión humana.** Es una capa de claridad y síntesis antes de que el editor revise.
 
@@ -199,11 +214,12 @@ Ejecuta los cinco pasos del pipeline en orden, deteniendo en cualquier fallo:
 [fetch-rss] OK
 [classify]  OK
 [generate]  OK
-[enrich]    OK
-[publish]   OK
+[enrich]    OMITIDO (sin API key)
+[publish]   OMITIDO (modo no interactivo)
 ```
 
-Requiere `ANTHROPIC_API_KEY` en el entorno. El paso `publish` es interactivo: muestra los ítems en revisión y permite seleccionar cuál publicar.
+- Si no hay `ANTHROPIC_API_KEY`, el paso `enrich` se omite silenciosamente
+- Si hay `PIPELINE_NONINTERACTIVE=1`, el paso `publish` se omite (útil para automatización)
 
 ---
 
@@ -221,7 +237,7 @@ Salida:
 [ERROR] archivo.md → motivo
 ```
 
-Exit code 1 si hay errores — apto para CI o pre-publicación manual.
+Exit code 1 si hay errores — apto para pre-publicación manual.
 
 ---
 
@@ -232,7 +248,9 @@ inbox/rss/
   ├── {timestamp}-{slug}.json     ← items recién descargados
   ├── radar/
   │     └── {timestamp}-{slug}.json
-  └── alertas/
+  ├── alertas/
+  │     └── {timestamp}-{slug}.json
+  └── discard/
         └── {timestamp}-{slug}.json
 ```
 
@@ -256,6 +274,7 @@ inbox/rss/
 - Un feed roto imprime `[ERROR] NombreFuente: mensaje` y continúa con el siguiente
 - Items sin `link` se descartan automáticamente
 - Si un draft ya existe en `src/content/`, se omite sin sobrescribir
+- Errores de API en enrich (429, 503) reintentan hasta 3 veces con backoff; si fallan, el archivo se omite y continúa con el siguiente
 
 ---
 
@@ -283,55 +302,25 @@ inbox/rss/
 
 ---
 
-## Automatización
+## Automatización (pendiente)
 
-### Cron del sistema (recomendado)
-
-Cron configurado en el sistema para ejecución automática cada 30 minutos:
+El cron del sistema está desactivado. Para reactivarlo cuando esté lista la API de Anthropic:
 
 ```bash
-# Ver entrada activa:
-crontab -l
-
-# Sin API key (pasos 1-3):
-*/30 * * * * PIPELINE_NONINTERACTIVE=1 /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
-
-# Con API key (pipeline completo incluyendo enriquecimiento Gemini):
-*/30 * * * * PIPELINE_NONINTERACTIVE=1 GOOGLE_AI_API_KEY=... /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
+crontab -e
+# Agregar:
+*/30 * * * * PIPELINE_NONINTERACTIVE=1 ANTHROPIC_API_KEY=... /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
 ```
 
 **Nota:** usar la ruta absoluta de node porque cron no carga el PATH del usuario (nvm).
-El log va a `logs/cron.log` (gitignored).
 
-### scheduler.js (alternativa en proceso continuo)
-
-```bash
-GOOGLE_AI_API_KEY=... node scripts/scheduler.js
-```
-
-Ejecuta el pipeline cada 30 minutos via `setInterval`. Las fallas no detienen el proceso — se registran y el siguiente ciclo corre normalmente.
-
----
-
-## Logs
-
-Cada ejecución genera una línea en `logs/pipeline-YYYY-MM-DD.log` (JSONL):
-
-```json
-{"timestamp":"2026-05-20T20:30:00.000Z","status":"ok","duration_ms":45231}
-{"timestamp":"2026-05-20T21:00:00.000Z","status":"error","error":"API 429","duration_ms":3210}
-```
-
-Los archivos `.log` están en `.gitignore`. El directorio `logs/` se trackea con `.gitkeep`.
+A futuro se evalúa n8n para orquestación visual del pipeline completo.
 
 ---
 
 ## Etapas futuras
 
-### Filtrado por relevancia México
-
-Agregar un campo `keywords` opcional en `rss_sources.json` para pre-filtrar items que no mencionen términos relevantes (México, PYME, ransomware, etc.) antes de clasificar.
-
-### Fuentes adicionales
-
-Incorporar ingesta desde Telegram y newsletters según `data/sources/telegram_channels.json` y `data/sources/newsletters.json`.
+- **Filtrado por relevancia México:** agregar campo `keywords` en `rss_sources.json` para pre-filtrar items antes de clasificar
+- **Traducción automática de títulos:** agregar al flujo de enrich la traducción del título al español con el mismo LLM
+- **Fuentes adicionales:** ingesta desde Telegram y newsletters
+- **n8n:** orquestación visual como alternativa a los scripts Node.js
