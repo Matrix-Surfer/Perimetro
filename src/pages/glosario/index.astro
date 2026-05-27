@@ -51,6 +51,102 @@ const terminos = [
     categoria: "AI",
     definicion: "Herramienta de inteligencia artificial de Microsoft integrada en sus productos (Word, Excel, Teams, Outlook). Ayuda a redactar, resumir y analizar información directamente en las apps que ya usa tu empresa.",
     impacto: "Neutro"
+  },
+  {
+    termino: "APT (Amenaza Persistente Avanzada)",
+    categoria: "Ciberseguridad",
+    definicion: "Un grupo de atacantes altamente organizados — generalmente vinculados a gobiernos — que se infiltran en una red y permanecen sin ser detectados durante meses o años. No buscan hacer ruido: buscan espiar, robar información estratégica o sabotear en el momento preciso. MuddyWater (Irán) es un ejemplo activo.",
+    impacto: "Alto"
+  },
+  {
+    termino: "C2 / Comando y control",
+    categoria: "Ciberseguridad",
+    definicion: "La infraestructura que usa un atacante para comunicarse con el malware instalado en sistemas comprometidos: enviarle instrucciones, recibir datos robados y mantener el control a distancia. Desmantelar los canales C2 es una de las formas más efectivas de interrumpir una operación de malware.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Cadena de suministro de software",
+    categoria: "Ciberseguridad",
+    definicion: "El conjunto de librerías, herramientas y dependencias externas que usa tu software. Un ataque a la cadena de suministro no rompe tu sistema directamente — infecta uno de los ingredientes que usas para construirlo. Es como contaminar la harina para afectar a todas las panaderías que la compran.",
+    impacto: "Alto"
+  },
+  {
+    termino: "CI/CD (Integración y entrega continua)",
+    categoria: "Ciberseguridad",
+    definicion: "El proceso automatizado que convierte el código escrito por desarrolladores en software funcionando en producción, sin pasos manuales. Cuando un atacante compromete el pipeline de CI/CD puede insertar código malicioso en el producto final antes de que llegue a los usuarios.",
+    impacto: "Medio"
+  },
+  {
+    termino: "Cryptojacking",
+    categoria: "Ciberseguridad",
+    definicion: "Malware que se instala silenciosamente en tu equipo y usa sus recursos — procesador, memoria, electricidad — para minar criptomonedas en beneficio del atacante. No roba datos directamente, pero degrada el rendimiento de los equipos y aumenta el consumo eléctrico de forma sostenida.",
+    impacto: "Medio"
+  },
+  {
+    termino: "CVE",
+    categoria: "Ciberseguridad",
+    definicion: "Identificador único asignado a cada vulnerabilidad de seguridad descubierta públicamente. Cuando lees CVE-2026-27771, es el número de expediente de esa falla específica. Permite que todo el sector hable de la misma vulnerabilidad con el mismo nombre, independientemente del proveedor o herramienta.",
+    impacto: "Neutro"
+  },
+  {
+    termino: "Exfiltración",
+    categoria: "Ciberseguridad",
+    definicion: "El robo silencioso de datos desde dentro de una red hacia el exterior. Un atacante con acceso a tu sistema puede copiar archivos, bases de datos o correos sin que nadie lo note de inmediato. Es el paso que convierte una intrusión en una filtración.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Extorsión digital",
+    categoria: "Ciberseguridad",
+    definicion: "Amenazar con publicar, vender o destruir información robada si no se paga una suma de dinero. A diferencia del ransomware, no siempre implica cifrar archivos — a veces basta con tener los datos y amenazar. Grupos como ShinyHunters operan bajo este modelo.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Filtración de datos",
+    categoria: "Ciberseguridad",
+    definicion: "Cuando información privada de una organización — datos de clientes, empleados, contratos o credenciales — queda expuesta o en manos de terceros no autorizados. Puede ocurrir por un ataque externo, un error interno o ambos. Genera responsabilidad legal, daño reputacional y en algunos casos obligaciones de notificación.",
+    impacto: "Alto"
+  },
+  {
+    termino: "IA agéntica",
+    categoria: "AI",
+    definicion: "Sistemas de inteligencia artificial que ejecutan tareas de forma autónoma: buscan información, toman decisiones, usan herramientas y actúan sin intervención humana paso a paso. Son más poderosos que los chatbots, pero también asumen riesgos operativos si no se definen límites claros sobre qué pueden decidir por su cuenta.",
+    impacto: "Neutro"
+  },
+  {
+    termino: "MCP (Model Context Protocol)",
+    categoria: "AI",
+    definicion: "Protocolo que permite a herramientas de IA de programación conectarse con servicios externos — bases de datos, APIs, sistemas de archivos. Extiende lo que la IA puede hacer, pero también amplía la superficie de ataque: un servidor MCP comprometido puede acceder a todo lo que la herramienta de IA puede tocar.",
+    impacto: "Medio"
+  },
+  {
+    termino: "MFA (Autenticación Multifactor)",
+    categoria: "Seguridad",
+    definicion: "Sistema de verificación que exige más de un factor para confirmar tu identidad — algo que sabes (contraseña), algo que tienes (teléfono) o algo que eres (huella). Es más amplio que el 2FA. Importante: el MFA convencional puede ser eludido si un atacante roba el token de sesión activo en lugar de la contraseña.",
+    impacto: "Protección"
+  },
+  {
+    termino: "Parche de emergencia",
+    categoria: "Ciberseguridad",
+    definicion: "Actualización de seguridad que el fabricante lanza fuera de su ciclo regular porque la vulnerabilidad es crítica o ya está siendo explotada. Microsoft publica parches mensuales (Patch Tuesday), pero cuando hay una emergencia no puede esperar. Tratarlo como actualización rutinaria es una decisión de riesgo, no una omisión técnica.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Shadow AI (IA en la sombra)",
+    categoria: "AI",
+    definicion: "El uso de herramientas de inteligencia artificial por parte de empleados sin que la empresa lo sepa ni lo haya aprobado — ChatGPT para redactar documentos, extensiones de IA en el navegador, herramientas de transcripción de reuniones. No es malicioso por intención, pero puede exponer información confidencial a proveedores externos sin ningún control.",
+    impacto: "Medio"
+  },
+  {
+    termino: "Token de sesión",
+    categoria: "Ciberseguridad",
+    definicion: "Credencial temporal que el sistema genera después de que inicias sesión correctamente — incluyendo con MFA. Mientras el token esté activo, tu sesión permanece abierta. Si un atacante roba ese token, puede acceder a tu cuenta sin necesitar tu contraseña ni pasar por el segundo factor de autenticación.",
+    impacto: "Alto"
+  },
+  {
+    termino: "Web shell",
+    categoria: "Ciberseguridad",
+    definicion: "Archivo malicioso instalado en un servidor web que actúa como puerta trasera remota. Le da al atacante acceso permanente al servidor mediante un navegador, sin necesidad de autenticarse de nuevo. Es difícil de detectar porque se disfraza de archivo legítimo del sistema.",
+    impacto: "Alto"
   }
 ];
 ---
