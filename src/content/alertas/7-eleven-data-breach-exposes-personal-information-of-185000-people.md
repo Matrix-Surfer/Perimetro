@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-The ShinyHunters extortion gang stole the personal information of over 183,000 people after hacking the systems of convenience store chain giant 7-Eleven in April, according to data breach notification service Have I Been Pwned. [...]
+El grupo de extorsión ShinyHunters robó la información personal de más de 183,000 personas tras hackear los sistemas de la cadena de conveniencia 7-Eleven en abril de 2026, según el servicio de notificación de brechas Have I Been Pwned. Los datos robados incluyen nombres, correos electrónicos y posiblemente información de pago.
 
 ## Impacto potencial
 

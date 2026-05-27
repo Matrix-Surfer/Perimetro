@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-Microsoft has released the KB5089573 preview cumulative update for Windows 11 versions 25H2 and 24H2, which comes with 30 changes, including performance and reliability improvements. [...]
+Microsoft lanzó la actualización acumulativa KB5089573 para Windows 11 versiones 25H2 y 24H2, con 30 cambios que incluyen mejoras de rendimiento y confiabilidad. Las actualizaciones acumulativas de Windows frecuentemente contienen correcciones de seguridad no documentadas de forma explícita hasta semanas después de su lanzamiento.
 
 ## Relevancia
 

@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-Malicious repositories and disguised symlinks can trick AI coding agents into silently installing attacker-controlled MCP servers capable of stealing secrets, compromising CI pipelines, and deploying malicious code. The post ‘SymJack’ Attack Turns AI Coding Agents Into Supply Chain Attack Delivery Systems appeared first on SecurityWeek.
+SymJack usa repositorios maliciosos y symlinks disfrazados para engañar a agentes de IA de programación —como GitHub Copilot o Cursor— e instalar silenciosamente servidores MCP controlados por atacantes. Una vez instalado, el servidor MCP comprometido puede robar secretos, modificar código y atacar pipelines de integración continua (CI/CD) sin que el desarrollador lo note.
 
 ## Impacto potencial
 
@@ -21,4 +21,4 @@ El impacto requiere evaluación según el contexto específico. Las tres dimensi
 
 No instales servidores MCP sugeridos por tu herramienta de IA sin verificar la fuente en el repositorio oficial del proveedor.
 
-Solicitar a TI que audite los servidores MCP instalados en entornos de desarrollo y confirme su origen antes de permitir su uso en producción.
+Si tu equipo usa herramientas de IA para programar, el inventario de extensiones y servidores MCP instalados es parte del perímetro de seguridad. Sin ese inventario, no puedes saber qué accesos tiene tu entorno de desarrollo — y esa incertidumbre es el riesgo.

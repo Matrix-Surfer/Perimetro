@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-EvidenceForge generates high-quality, realistic, and consistent datasets across multiple log formats, enabling teams to effectively train personnel and validate detection models without the need for complex manual simulations.
+EvidenceForge, herramienta de Cisco Talos, genera conjuntos de datos sintéticos realistas en múltiples formatos de log para entrenar personal de seguridad y validar modelos de detección. Elimina la necesidad de usar datos reales de producción en ejercicios de entrenamiento — reduciendo la fricción entre la necesidad de practicar y los requisitos de privacidad.
 
 ## Relevancia
 

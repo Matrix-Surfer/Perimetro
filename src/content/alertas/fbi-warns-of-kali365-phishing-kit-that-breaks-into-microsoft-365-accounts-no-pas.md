@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-So, you've enabled multi-factor authentication. You've taught your staff never to type their passwords into dodgy-looking login pages. Surely your Microsoft 365 accounts are safe now? Well, think again. Read more in my article on the Hot for Security blog.
+El FBI emitió una alerta sobre Kali365, un kit de phishing capaz de eludir la autenticación multifactor (MFA) de Microsoft 365 robando tokens de sesión activos. A diferencia del phishing convencional, este ataque no necesita la contraseña de la víctima: intercepta la sesión ya autenticada. Tener MFA activado no es protección suficiente contra esta técnica.
 
 ## Impacto potencial
 
@@ -19,6 +19,6 @@ Una cuenta corporativa comprometida puede derivar en fraude por desvío de pagos
 
 ## Recomendaciones
 
-Revisa los inicios de sesión activos en tu cuenta M365 desde portal.microsoft.com → Seguridad → Actividad de inicio de sesión y cierra sesiones no reconocidas.
+Revisa los inicios de sesión activos en tu cuenta M365 desde portal.microsoft.com → Seguridad → Actividad de inicio de sesión. Si ves sesiones que no reconoces, ciérralas de inmediato.
 
-Solicitar a TI que habilite Conditional Access Policies en Microsoft Entra y configure alertas ante inicios de sesión desde ubicaciones o dispositivos desconocidos.
+La protección contra este ataque existe en Microsoft 365, pero requiere activación. Si nadie en tu organización sabe si está habilitada, ese es el vacío de gobernanza que un atacante aprovecha — no el tamaño del equipo técnico.

@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-Phishers are stealing LinkedIn credentials while abusing Adobe Target to track victims and redirect them to real LinkedIn pages.
+Atacantes están robando credenciales de LinkedIn mediante correos falsos que abusan de la infraestructura legítima de Adobe Target para rastrear clics y redirigir a las víctimas hacia páginas reales de LinkedIn. La técnica hace que el ataque sea difícil de detectar: los correos pasan filtros de seguridad porque provienen de dominios de Adobe reconocidos.
 
 ## Impacto potencial
 
@@ -19,6 +19,6 @@ El impacto requiere evaluación según el contexto específico. Las tres dimensi
 
 ## Recomendaciones
 
-Antes de introducir tu contraseña, verifica que la URL en el navegador sea exactamente linkedin.com y no una variante con caracteres adicionales.
+Antes de ingresar tu contraseña, verifica que la URL en el navegador sea exactamente linkedin.com — no una variante con caracteres adicionales o subdominios.
 
-Solicitar a TI que configure alertas para correos con rastreadores de Adobe Target que provengan de remitentes inesperados.
+En un entorno corporativo, la pregunta de gobernanza es directa: ¿las personas en tu organización saben que un correo puede parecer legítimo aunque venga de un dominio conocido? La capacitación básica en phishing no es un lujo técnico.

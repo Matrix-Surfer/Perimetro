@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-As AI accelerates phishing, session hijacking, and credential abuse, security teams are racing to close the gap between attacker speed and defensive response. The post The Credential Crisis: How Stolen Credentials Defeat Modern Security appeared first on SecurityWeek.
+La inteligencia artificial está acelerando el phishing, el secuestro de sesiones y el abuso de credenciales robadas, reduciendo el tiempo entre el robo y la explotación a cuestión de horas. Las credenciales robadas son hoy el vector de acceso inicial más común en ataques corporativos, por encima de los exploits técnicos.
 
 ## Impacto potencial
 
@@ -19,6 +19,6 @@ Una cuenta corporativa comprometida puede derivar en fraude por desvío de pagos
 
 ## Recomendaciones
 
-Verifica si alguna credencial corporativa aparece en bases de datos de contraseñas filtradas usando [Have I Been Pwned](https://haveibeenpwned.com) o herramientas similares para equipos.
+Verifica si alguna credencial corporativa aparece en bases de datos de contraseñas filtradas usando [Have I Been Pwned](https://haveibeenpwned.com) o herramientas similares.
 
-Solicitar a TI que configure alertas ante inicios de sesión desde ubicaciones, horarios o dispositivos inusuales en todos los servicios corporativos.
+La detección de accesos anómalos no es un lujo técnico — es el control mínimo que distingue a una organización que sabe cuándo fue comprometida de una que lo descubre meses después. Si nadie en tu organización monitorea inicios de sesión inusuales, ese es el vacío de gobernanza más urgente.

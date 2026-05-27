@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-The FBI warned on Tuesday that the Silent Ransom Group (SRG) extortion gang is now targeting U.S.-based law firms in in-person data theft attacks. [...]
+El FBI alertó que el grupo de extorsión Silent Ransom Group (SRG) está realizando ataques de robo de datos en persona contra despachos de abogados en EEUU. Los operativos se presentan físicamente en las oficinas e insertan dispositivos USB en los equipos de las víctimas para exfiltrar información directamente, eludiendo controles de red.
 
 ## Impacto potencial
 
@@ -19,6 +19,6 @@ El impacto requiere evaluación según el contexto específico. Las tres dimensi
 
 ## Recomendaciones
 
-Instruye a recepción y personal de piso para que no permitan a visitantes conectar dispositivos a equipos de la empresa bajo ninguna circunstancia.
+Instruye a recepción y personal de piso para que no permitan a visitantes conectar dispositivos a equipos de la empresa bajo ninguna circunstancia. Es una política de seguridad física que no requiere infraestructura técnica.
 
-Solicitar a TI que bloquee la ejecución automática y el montaje de dispositivos USB en todos los equipos corporativos.
+La desactivación de ejecución automática de USB es una configuración básica. Si no sabes si está activa en los equipos de tu organización, esa es la primera pregunta que debes poder responder.

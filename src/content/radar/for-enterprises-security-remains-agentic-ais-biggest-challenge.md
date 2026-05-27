@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-Every company needs an agentic AI strategy, but the tools to allow agentic AI frameworks be safely and securely adopted are just starting to appear.
+Toda empresa necesita una estrategia para la IA agéntica, pero las herramientas que permiten adoptarla de forma segura apenas están comenzando a aparecer. La presión por adoptar agentes de IA es real — los marcos de gobernanza para controlarlos van claramente por detrás.
 
 ## Relevancia
 

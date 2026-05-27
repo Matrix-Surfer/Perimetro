@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-The Iranian hacking group known as MuddyWater has been linked to a new campaign affecting at least nine organizations across nine countries on four continents in the first quarter of 2026. The activity targeted industrial and electronics manufacturing, education and public-sector bodies, financial services, and professional services, per the Threat Hunter Team from Symantec and Carbon Black.
+El grupo iraní MuddyWater fue vinculado a una campaña de espionaje que afectó al menos nueve organizaciones en nueve países durante el primer trimestre de 2026. Los sectores objetivo incluyen manufactura industrial, educación, sector público, servicios financieros y servicios profesionales, según el equipo Threat Hunter de Symantec y Carbon Black.
 
 ## Relevancia
 

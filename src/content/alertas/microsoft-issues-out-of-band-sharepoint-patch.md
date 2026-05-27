@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-SharePoint access often means access to the keys of the kingdom, something attackers and defenders understand all too well.
+Microsoft publicó un parche de emergencia fuera de su ciclo mensual para una vulnerabilidad crítica en SharePoint. El acceso a SharePoint equivale al acceso a los documentos, contratos y correos más sensibles de una organización — algo que los atacantes comprenden mejor que muchos defensores.
 
 ## Impacto potencial
 
@@ -19,4 +19,4 @@ El impacto requiere evaluación según el contexto específico. Las tres dimensi
 
 ## Recomendaciones
 
-Solicitar a TI que aplique el parche de emergencia de SharePoint publicado esta semana, priorizando los servidores accesibles desde internet o desde zonas de baja confianza.
+Si tu organización usa SharePoint Server on-premise, este parche no puede esperar al próximo ciclo de mantenimiento. Un parche de emergencia de Microsoft indica severidad alta — tratarlo como actualización rutinaria es una decisión de riesgo, no una omisión técnica. Quien administre el servidor necesita aplicarlo esta semana.

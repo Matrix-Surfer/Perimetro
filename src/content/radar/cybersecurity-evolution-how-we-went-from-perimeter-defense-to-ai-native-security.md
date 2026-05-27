@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-The cybersecurity industry of 2006 barely resembled today's billion-dollar behemoth. As part of Dark Reading's 20th anniversary celebration, we trace the industry's evolution through a technology lens.
+En el marco de su 20 aniversario, Dark Reading traza la evolución de la industria de ciberseguridad desde el modelo de defensa perimetral del 2006 hasta la seguridad nativa de IA de hoy. La industria de 2006 apenas se parece al sector multimillonario actual — y el modelo de defensa dominante cambió de forma estructural con cada ciclo.
 
 ## Relevancia
 

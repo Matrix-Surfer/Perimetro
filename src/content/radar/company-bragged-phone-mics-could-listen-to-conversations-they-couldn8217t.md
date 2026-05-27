@@ -10,7 +10,7 @@ publicacion: "published"
 
 ## Resumen
 
-Cox Media said it could spy on users through their devices and use the information for targeted advertising, except it wasn't true.
+Cox Media alardeó ante anunciantes de poder espiar a usuarios a través del micrófono de sus dispositivos para usarlo en publicidad segmentada. La capacidad no existía — pero la afirmación ya había circulado y generado desconfianza. El caso expone cómo las promesas de vigilancia de los proveedores de marketing pueden no tener base técnica real.
 
 ## Relevancia
 

@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-The attack was claimed by a hacktivist group, but evidence showed it used infrastructure linked to Iranian government threat actors. The post LA Metro Cyberattack Linked to Iranian State-Sponsored Hackers appeared first on SecurityWeek.
+El ciberataque al sistema de transporte público de Los Ángeles fue reclamado inicialmente por un grupo hacktivista, pero el análisis forense mostró que la infraestructura utilizada está vinculada a actores patrocinados por el gobierno iraní. La táctica de usar grupos hacktivistas como fachada complica la atribución y la respuesta durante un incidente activo.
 
 ## Impacto potencial
 

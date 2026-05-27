@@ -11,7 +11,7 @@ publicacion: "published"
 
 ## Contexto
 
-U.S. telecommunications giant Charter Communications has confirmed it suffered a data breach after the ShinyHunters extortion group threatened to leak stolen data unless a ransom is paid. [...]
+La gigante de telecomunicaciones Charter Communications confirmó una brecha de datos después de que el grupo ShinyHunters amenazara con publicar la información robada si no se pagaba un rescate. ShinyHunters es el mismo grupo responsable de ataques recientes contra Ticketmaster, Santander y AT&T.
 
 ## Impacto potencial
 
