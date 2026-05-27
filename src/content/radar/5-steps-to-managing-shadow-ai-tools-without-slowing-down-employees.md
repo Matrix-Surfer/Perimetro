@@ -5,7 +5,7 @@ source: "The Hacker News"
 link: "https://thehackernews.com/2026/05/5-steps-to-managing-shadow-ai-tools.html"
 category: "AI"
 context: "La proliferación de IA en el trabajo ya no es un riesgo potencial — es una realidad operativa no gestionada. Si TI no tiene visibilidad sobre qué herramientas usan los empleados, la política de seguridad es teórica."
-publicacion: "published"
+publicacion: "rejected"
 ---
 
 ## Resumen
