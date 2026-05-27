@@ -100,14 +100,34 @@ Ejemplos del estándar:
 
 ### Sección "Recomendaciones" en Alertas
 
-Las recomendaciones deben ser ejecutables por alguien que toma decisiones pero no configura servidores. Los comandos de terminal y los pasos técnicos específicos solo aparecen como contexto secundario dentro de una instrucción, nunca como la instrucción principal.
+El formato de las recomendaciones depende del tipo de alerta. La regla: **el lector debe poder actuar con lo que lee, sin necesitar contexto adicional.**
 
-Dos formatos válidos:
+#### Vulnerabilidades técnicas (CVEs, fallas en servidores, software empresarial)
+
+El lector es quien toma decisiones, no quien configura. Los comandos de terminal no son la instrucción principal — son contexto secundario dentro de ella.
+
+Formatos válidos:
 
 - **Instrucción delegable:** "Solicitar a TI que verifique si [X] está activo / desactivado / auditado / incluido en el contrato de servicio."
 - **Pregunta de gobierno:** "¿Con qué frecuencia se revisan los permisos de acceso de terceros a nuestros sistemas?"
 
-Usar el segundo formato cuando la acción depende de una decisión de presupuesto, política o proveedor, no solo de configuración técnica.
+Usar la pregunta de gobierno cuando la acción depende de una decisión de presupuesto, política o proveedor, no solo de configuración técnica.
+
+#### Brechas de consumidor (filtraciones de datos personales)
+
+El lector puede ser el afectado directo. Las recomendaciones son neutras y en segunda persona — aplican a cualquier persona, no a una empresa.
+
+Formatos válidos:
+
+- **Acción directa:** "Si tienes cuenta en [servicio], cambia tu contraseña hoy. Usa una contraseña única que no uses en ningún otro lugar."
+- **Señal de alerta:** "Si recibes correos que mencionan tu nombre y dirección real, es probable que vengan de esta filtración. No hagas clic en ningún enlace."
+
+#### Campañas de ataque activas (phishing, malware, ingeniería social)
+
+Formato mixto: primero la acción inmediata que puede tomar el propio lector, luego la pregunta de gobernanza para la empresa.
+
+- Primero: qué hace el lector si se enfrenta a esto hoy.
+- Después: qué debería revisar o preguntar como responsable de la empresa.
 
 ### Campo `context` en Radar
 

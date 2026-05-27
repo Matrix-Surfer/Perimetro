@@ -3,7 +3,7 @@ title: "MFA por notificación push: por qué ya no es suficiente y qué hacer al
 date: "2026-05-26"
 tipo: "Phishing"
 status: "En monitoreo"
-resumen: "Un atacante con las credenciales de un empleado puede saturar su celular con solicitudes de aprobación MFA hasta que alguien cede por fatiga o distracción. No necesita robar el segundo factor: solo necesita que el usuario apruebe sin pensar. Si la empresa usa MFA por notificación push sin controles adicionales, la autenticación no ofrece la protección que se cree."
+resumen: "Un atacante con tu contraseña puede saturar tu teléfono con solicitudes de aprobación MFA hasta que aceptas una por fatiga o distracción. No necesita robar el segundo factor — solo necesita que lo apruebes tú. Si la empresa usa MFA por notificación push sin controles adicionales, la autenticación no da la protección que parece."
 source: "The Hacker News"
 link: "https://thehackernews.com/2026/05/mfa-prompt-bombing-why-your-second.html"
 publicacion: "published"
@@ -11,15 +11,19 @@ publicacion: "published"
 
 ## Contexto
 
-El ataque de MFA Prompt Bombing (también llamado MFA fatigue) explota la mecánica de las notificaciones push: el atacante, que ya tiene las credenciales robadas, dispara decenas de solicitudes de aprobación al celular de la víctima. La mayoría de usuarios eventualmente aprueba para detener las notificaciones, o lo hace por error creyendo que fue su propia sesión. El resultado es acceso completo a la cuenta sin haber superado el segundo factor técnicamente.
+El ataque de MFA Prompt Bombing — también llamado fatiga de MFA — funciona así: el atacante tiene las credenciales robadas de un usuario. Inicia sesión repetidamente, lo que dispara decenas de notificaciones push al teléfono de la víctima. La mayoría de usuarios eventualmente aprueba una para que paren las notificaciones, o lo hace por error creyendo que fue su propia sesión. El atacante obtiene acceso completo sin haber superado el segundo factor técnicamente.
 
 ## Impacto potencial
 
-Una cuenta corporativa comprometida puede abrir acceso a correo, archivos, sistemas internos y, en muchos casos, permite al atacante moverse a otras cuentas. Si la cuenta tiene privilegios elevados — administrador, finanzas, dirección — el daño potencial es proporcional al acceso que otorga. El vector no requiere malware ni exploits: solo ingeniería social de bajo costo sobre un factor de autenticación mal configurado.
+Una cuenta corporativa comprometida puede abrir acceso a correo, archivos, sistemas internos y otras cuentas conectadas.
+
+Si la cuenta tiene privilegios elevados — finanzas, dirección, administración de sistemas — el daño potencial es proporcional al acceso que otorga.
+
+El vector no requiere malware. No requiere exploits. Solo requiere que el usuario apruebe sin pensar. Eso lo hace difícil de detectar y fácil de escalar.
 
 ## Recomendaciones
 
-- Migrar de notificaciones push simples a métodos resistentes a fatiga: FIDO2/llaves de seguridad físicas o TOTP (aplicación generadora de códigos).
-- Si el proveedor de identidad lo soporta, activar "number matching" — el usuario debe ingresar un número que aparece en pantalla, no solo aprobar.
-- Activar el contexto de inicio de sesión: mostrar IP y ubicación en la notificación push para que el usuario detecte solicitudes que no inició.
-- Revisar cuáles cuentas críticas usan push como único método MFA y priorizarlas para migración.
+- Si recibes notificaciones de aprobación MFA que tú no iniciaste, recházalas todas. Después cambia tu contraseña de inmediato y avisa a TI.
+- Nunca apruebes una solicitud MFA "para que paren" — ese es exactamente el objetivo del atacante.
+- Para la empresa: solicitar a TI que evalúe migrar de notificaciones push a métodos resistentes a fatiga: aplicaciones generadoras de códigos (TOTP) o llaves de seguridad físicas.
+- Si la migración no es inmediata, pedir que activen "number matching" — el usuario debe ingresar un número que aparece en pantalla, no solo tocar "aprobar".
