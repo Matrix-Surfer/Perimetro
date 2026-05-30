@@ -20,5 +20,3 @@ Para empresas con operaciones en ciudades sede —Ciudad de México, Guadalajara
 ## Recomendaciones
 
 Si planeas comprar boletos o paquetes de hospitalidad, usa únicamente el sitio oficial de FIFA (fifa.com) y portales de venta autorizados que puedas verificar de forma independiente. Cualquier oferta que llegue por correo, WhatsApp o redes sociales debe tratarse como sospechosa hasta que se confirme la fuente.
-
-Si tu empresa es proveedora de servicios durante el evento, ¿tienes un plan de continuidad si un sistema clave cae durante varios días? Documentarlo y comunicarlo a dirección es el primer paso concreto.
