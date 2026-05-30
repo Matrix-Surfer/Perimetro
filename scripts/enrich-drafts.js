@@ -11,7 +11,7 @@ const RADAR_DIR   = join(ROOT, 'src', 'content', 'radar');
 const ALERTAS_DIR = join(ROOT, 'src', 'content', 'alertas');
 
 const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL   = 'gemini-2.5-flash';
+const MODEL   = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 // --- Parsers ---
 
@@ -45,7 +45,9 @@ function getBody(content) {
 
 // --- LLM (Google Gemini) ---
 
-const RATE_LIMIT_DELAY_MS = 15000; // 15s entre llamadas → 4 req/min (límite: 5 RPM free tier)
+// gemini-2.5-flash: 10 RPM → 6s mínimo. gemini-2.0-flash: 15 RPM → 4s mínimo.
+// Usamos 5s como margen conservador para ambos modelos.
+const RATE_LIMIT_DELAY_MS = 5000;
 const MAX_RETRIES = 3;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }

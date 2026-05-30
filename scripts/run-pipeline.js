@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-const HAS_API_KEY = Boolean(process.env.GOOGLE_AI_API_KEY);
+const HAS_API_KEY = Boolean(process.env.GEMINI_API_KEY);
 
 const STEPS = [
   { label: 'fetch-rss',  cmd: 'node scripts/fetch-rss.js' },
@@ -18,7 +18,7 @@ const STEPS = [
 ];
 
 console.log('\nPipeline Perímetro\n');
-if (!HAS_API_KEY) console.log('[info] GOOGLE_AI_API_KEY no disponible — paso enrich omitido\n');
+if (!HAS_API_KEY) console.log('[info] GEMINI_API_KEY no disponible — paso enrich omitido\n');
 
 for (const step of STEPS) {
   // Omitir enrich si no hay API key
