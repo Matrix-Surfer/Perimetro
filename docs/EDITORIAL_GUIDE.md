@@ -83,7 +83,7 @@ El análisis en Perímetro no describe incidentes técnicos — traduce riesgo t
 
 **No responder:** ¿qué datos roba el atacante?
 
-**Responder:** ¿qué pierde la empresa?
+**Responder:** ¿qué pierde la empresa? ¿qué puede hacerle el atacante a la persona afectada?
 
 Las tres dimensiones a cubrir:
 
@@ -97,6 +97,49 @@ Ejemplos del estándar:
 
 - ❌ "El atacante obtiene tokens OAuth, acceso a SharePoint y variables de entorno del servidor."
 - ✅ "El acceso al correo corporativo habilita fraude por desvío de pagos: el atacante puede interceptar facturas activas y redirigir transferencias. Si accede a contratos o comunicaciones con clientes, la empresa enfrenta responsabilidad civil por filtración de información confidencial."
+
+---
+
+### Estándar especial: brechas de datos personales en bancos e instituciones
+
+Cuando se comprometen datos de un banco, institución financiera, organismo de gobierno o cualquier entidad que concentra información sensible de personas, el impacto no termina en la filtración. **El dato robado es la materia prima de un ataque posterior.**
+
+La obligación editorial es explicar la cadena de daño completa, no solo el evento. El lector sin contexto de ciberseguridad no conecta "se filtraron tus datos" con las consecuencias reales que eso habilita.
+
+#### Cadenas de daño por tipo de dato filtrado
+
+**Datos bancarios (número de cuenta, CLABE, saldo, movimientos):**
+- Con tus datos bancarios reales, un atacante puede llamarte haciéndose pasar por tu banco. Sabe tu saldo. Sabe tu último movimiento. Todo parece legítimo. El objetivo: que tú mismo le des tu NIP, tu contraseña o que autorices una transferencia.
+- Esta técnica se llama ingeniería social —manipular a una persona para que entregue información o acceso voluntariamente.
+
+**Documentos de identidad (INE, pasaporte, comprobante de domicilio, CURP, RFC):**
+- Con documentos reales, un atacante puede solicitar créditos, tarjetas o servicios a tu nombre en instituciones que no verifican presencialmente.
+- El daño financiero llega a tu historial crediticio, no solo a tu cuenta. Puede tardarse meses en detectarse y años en resolverse.
+
+**Credenciales (correo y contraseña):**
+- Si la contraseña filtrada se usa en otros servicios —práctica muy común— el atacante entra a todos: correo, banca en línea, servicios de nómina, plataformas de proveedores.
+- Este ataque se llama relleno de credenciales: probar la misma combinación en decenas de servicios de forma automatizada.
+
+**Datos de contacto (nombre, teléfono, dirección):**
+- Con nombre y teléfono reales, un atacante puede suplantar tu número de celular ante la operadora y tomar el control de tu WhatsApp o de los SMS que tu banco usa para confirmar operaciones.
+- Con dirección real, puede recibir documentos a tu nombre o presentarse físicamente en trámites que lo requieren.
+
+**Datos combinados (nombre + RFC + domicilio + datos bancarios):**
+- El perfil completo habilita fraude de identidad de alta sofisticación: apertura de empresas fantasma, solicitud de créditos fiscales, trámites ante el SAT o el IMSS a nombre de la víctima.
+- La combinación de datos de múltiples filtraciones —un fenómeno documentado en México— amplifica el daño de cada brecha individual.
+
+#### Cómo aplicar este estándar en la redacción
+
+La sección de impacto en una alerta de este tipo debe responder: **¿qué puede hacer el atacante con estos datos específicos, paso a paso, en la vida real?**
+
+No basta con escribir "datos personales expuestos generan riesgo de fraude". Hay que nombrar el mecanismo:
+
+- ❌ "La filtración expone datos personales que pueden usarse para actividades fraudulentas."
+- ✅ "Con nombre, CURP y datos de cuenta expuestos, un atacante puede llamar a la víctima haciéndose pasar por el banco —conoce los datos reales, por eso parece legítimo— e inducirla a entregar su NIP o autorizar una transferencia. Si los documentos también se filtraron, puede solicitar créditos a su nombre sin necesitar su presencia."
+
+El objetivo es que el lector entienda por qué importa, no solo que algo malo pasó.
+
+---
 
 ### Sección "Recomendaciones" en Alertas
 
