@@ -22,9 +22,22 @@ export async function getStaticPaths() {
 const { item, prev, next } = Astro.props;
 const { Content } = await render(item);
 
-const categoryClass: Record<string, string> = {
-  'AI': 'accent',
-  'Seguridad': 'red',
+const nivelClass: Record<string, string> = {
+  'Bajo': 'nivel-bajo',
+  'Medio': 'nivel-medio',
+  'Alto': 'nivel-alto',
+  'Crítico': 'nivel-critico',
+};
+
+const categoriaClass: Record<string, string> = {
+  'IA': 'accent',
+  'Vulnerabilidad': 'red',
+  'Malware': 'red',
+  'Ransomware': 'red',
+  'Phishing': 'orange',
+  'Fraude': 'orange',
+  'Fuga de datos': 'orange',
+  'OT/ICS': 'red',
 };
 ---
 
@@ -37,10 +50,24 @@ const categoryClass: Record<string, string> = {
       <a href="/radar" class="radar-back">← Radar</a>
       <div class="radar-meta-top">
         <span class="radar-source-label">{item.data.source}</span>
-        <span class={`radar-category ${categoryClass[item.data.category] ?? ''}`}>{item.data.category}</span>
+        {item.data.categoria
+          ? <span class={`radar-category ${categoriaClass[item.data.categoria] ?? ''}`}>{item.data.categoria}</span>
+          : item.data.category && <span class="radar-category">{item.data.category}</span>
+        }
+        {item.data.nivelAtencion && (
+          <span class={`radar-nivel ${nivelClass[item.data.nivelAtencion] ?? ''}`}>
+            {item.data.nivelAtencion}
+          </span>
+        )}
+        {item.data.ambito && (
+          <span class="radar-ambito">{item.data.ambito}</span>
+        )}
       </div>
       <h1 class="radar-title">{item.data.title}</h1>
-      <div class="radar-context-block">{item.data.context}</div>
+      {item.data.resumen
+        ? <div class="radar-context-block">{item.data.resumen}</div>
+        : item.data.context && <div class="radar-context-block">{item.data.context}</div>
+      }
       <div class="radar-date">
         <span>{item.data.pubDate.toLocaleDateString('es-MX', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })}</span>
       </div>
@@ -110,7 +137,9 @@ const categoryClass: Record<string, string> = {
     color: var(--muted);
   }
 
-  .radar-category {
+  .radar-category,
+  .radar-nivel,
+  .radar-ambito {
     font-family: 'DM Mono', monospace;
     font-size: 0.55rem;
     letter-spacing: 0.15em;
@@ -121,7 +150,13 @@ const categoryClass: Record<string, string> = {
   }
 
   .radar-category.accent { color: var(--accent); border-color: var(--accent); background: rgba(0,229,255,0.05); }
-  .radar-category.red { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+  .radar-category.red    { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+  .radar-category.orange { color: #f59e0b; border-color: #f59e0b; background: rgba(245,158,11,0.05); }
+
+  .radar-nivel.nivel-bajo    { color: var(--muted); border-color: var(--border); }
+  .radar-nivel.nivel-medio   { color: #f59e0b; border-color: #f59e0b; background: rgba(245,158,11,0.05); }
+  .radar-nivel.nivel-alto    { color: var(--accent2); border-color: var(--accent2); background: rgba(255,68,68,0.05); }
+  .radar-nivel.nivel-critico { color: #fff; border-color: var(--accent2); background: var(--accent2); }
 
   .radar-title {
     font-family: 'Bebas Neue', sans-serif;
@@ -181,7 +216,10 @@ const categoryClass: Record<string, string> = {
   .radar-body p { margin-bottom: 1.5rem; }
   .radar-body strong { color: var(--text); font-weight: 600; }
   .radar-body h2 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: 0.08em; color: var(--text); margin: 2.5rem 0 1rem; }
+  .radar-body h3 { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin: 1.5rem 0 0.75rem; border-left: 2px solid var(--border); padding-left: 0.75rem; }
   .radar-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .radar-body ul { margin: 0 0 1.5rem 1.25rem; }
+  .radar-body li { margin-bottom: 0.5rem; }
 
   .radar-nav {
     display: flex;

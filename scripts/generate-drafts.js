@@ -96,17 +96,42 @@ function truncate(text, max = 220) {
 
 function radarFrontmatter(item) {
   const text = normalize(`${item.title} ${item.summary}`);
-  const category = matches(text, AI_KEYWORDS) ? 'AI' : 'Seguridad';
-  const tpl = CONTEXT_TEMPLATES.find(t => matches(text, t.kw));
-  const context = tpl ? tpl.text : 'Señal relevante para el monitoreo de amenazas y tendencias tecnológicas.';
+
+  // categoria
+  let categoria = 'Otro';
+  if (matches(text, ['ransomware', 'encrypt', 'file-encrypting']))                          categoria = 'Malware';
+  else if (matches(text, ['phishing', 'spear phishing', 'smishing', 'credential harvest'])) categoria = 'Phishing';
+  else if (matches(text, ['fraud', 'scam', 'fake', 'counterfeit', 'impersonat']))           categoria = 'Fraude';
+  else if (matches(text, ['data breach', 'data leak', 'leak', 'breach', 'exposed']))        categoria = 'Fuga de datos';
+  else if (matches(text, ['cve-', 'vulnerability', 'zero-day', 'patch', 'exploit']))        categoria = 'Vulnerabilidad';
+  else if (matches(text, AI_KEYWORDS))                                                       categoria = 'IA';
+  else if (matches(text, ['ics', 'scada', 'ot ', 'industrial', 'plc', 'modbus']))           categoria = 'OT/ICS';
+  else if (matches(text, ['malware', 'botnet', 'trojan', 'worm', 'backdoor', 'rat ']))      categoria = 'Malware';
+
+  // ambito
+  const ambito = matches(text, ['consumer', 'user', 'personal', 'home', 'family', 'individual', 'phone', 'mobile'])
+    ? 'Personas'
+    : matches(text, ['enterprise', 'corporate', 'organization', 'business', 'company', 'vendor', 'supplier'])
+      ? 'Organizaciones'
+      : 'Mixto';
+
+  // nivelAtencion — empieza en Medio; se sube a Alto si hay explotación activa o criticidad
+  const nivelAtencion = matches(text, [
+    'critical', 'actively exploited', 'in the wild', 'cisa orders', 'emergency',
+    'zero-day', 'mass exploitation', 'widespread',
+  ]) ? 'Alto' : 'Medio';
+
+  const resumen = truncate(item.summary, 180);
 
   return `---
 title: "${esc(item.title)}"
 pubDate: ${parseDate(item.pubDate)}
 source: "${esc(item.source)}"
 link: "${esc(item.link ?? '')}"
-category: "${category}"
-context: "${esc(context)}"
+categoria: "${categoria}"
+ambito: "${ambito}"
+nivelAtencion: "${nivelAtencion}"
+resumen: "${esc(resumen)}"
 publicacion: "draft"
 ---`;
 }
@@ -166,11 +191,47 @@ async function processRadar() {
     const summary = cleanText(item.summary);
     const content = `${radarFrontmatter(item)}
 
-## Resumen
+## Qué está pasando
 
 ${summary}
 
-## Relevancia
+## Por qué importa ahora
+
+Pendiente.
+
+## Quién está expuesto
+
+### Personas
+
+Pendiente.
+
+### Organizaciones
+
+Pendiente.
+
+## Riesgo principal
+
+Pendiente.
+
+## Señales de alerta
+
+Pendiente.
+
+## Qué hacer hoy
+
+### Para personas
+
+Pendiente.
+
+### Para organizaciones
+
+Pendiente.
+
+## Controles GRC que aplica
+
+Pendiente.
+
+## Decisión recomendada
 
 Pendiente.
 `;

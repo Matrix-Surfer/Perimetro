@@ -22,11 +22,16 @@ const radar = defineCollection({
   schema: z.object({
     title: z.string(),
     source: z.string(),
-    category: z.string(),
-    context: z.string(),
+    category: z.string().optional().default('Seguridad'),
+    context: z.string().optional().default(''),
     pubDate: z.coerce.date(),
     link: z.string().url().optional(),
     publicacion: PUBLICACION,
+    // Campos nuevos — plantilla RADAR híbrida
+    nivelAtencion: z.enum(['Bajo', 'Medio', 'Alto', 'Crítico']).optional(),
+    ambito: z.enum(['Personas', 'Organizaciones', 'Mixto']).optional(),
+    categoria: z.enum(['Fraude', 'Phishing', 'Vulnerabilidad', 'Malware', 'Fuga de datos', 'IA', 'OT/ICS', 'Otro']).optional(),
+    resumen: z.string().optional(),
   }),
 });
 
