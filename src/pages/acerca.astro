@@ -11,19 +11,53 @@ import Footer from '../components/Footer.astro';
     <div class="acerca-content">
 
       <div class="acerca-header">
-        <div class="acerca-label">Quién está detrás</div>
+        <div class="acerca-label">Acerca de</div>
         <h1 class="acerca-title">Perímetro</h1>
       </div>
 
       <div class="acerca-body">
         <p>
-          Trabajo en el mundo de IT, sigo de cerca lo que ocurre en IA y ciberseguridad, y aquí iré documentando lo que sucede desde una perspectiva práctica y crítica.
+          Perímetro analiza los cambios que están redefiniendo la seguridad, la confianza y el riesgo en el entorno digital.
         </p>
         <p>
-          Perímetro nació de una frustración simple: gran parte de la información relevante sobre IA, ciberseguridad y tecnología aparece primero en inglés, fragmentada entre múltiples fuentes y rodeada de ruido. Entender qué realmente importa requiere tiempo, contexto y análisis.
+          La inteligencia artificial, la ciberseguridad y las tecnologías conectadas influyen cada vez más en la forma en que trabajamos, nos comunicamos, realizamos transacciones, compartimos información y tomamos decisiones. Estos cambios generan nuevas oportunidades. También introducen riesgos que afectan tanto a personas como a organizaciones.
         </p>
         <p>
-          Aquí encontrarás análisis directo, alertas relevantes y perspectiva práctica sobre IA, ciberseguridad y tecnología. El objetivo no es repetir noticias, sino entender el impacto real detrás de ellas.
+          El desafío rara vez es la falta de información. Cada día aparecen nuevas vulnerabilidades, incidentes, herramientas, regulaciones y tendencias. Lo difícil es comprender cuáles son realmente relevantes, qué implicaciones tienen y qué decisiones conviene tomar.
+        </p>
+        <p>
+          Perímetro existe para aportar contexto, interpretación y criterio.
+        </p>
+      </div>
+
+      <div class="acerca-divider"></div>
+
+      <div class="acerca-formatos">
+        <div class="formato-item">
+          <div class="formato-label">ALERTAS</div>
+          <p>Incidentes, vulnerabilidades y riesgos relevantes explicados de forma clara, junto con su posible impacto y recomendaciones prácticas.</p>
+        </div>
+        <div class="formato-item">
+          <div class="formato-label">RADAR</div>
+          <p>Señales tempranas, tendencias y eventos que conviene observar antes de que se conviertan en un problema.</p>
+        </div>
+        <div class="formato-item">
+          <div class="formato-label">ANÁLISIS</div>
+          <p>Lecturas sobre patrones de riesgo, confianza digital, inteligencia artificial, ciberseguridad y Gobierno, Riesgo y Cumplimiento (GRC).</p>
+        </div>
+      </div>
+
+      <div class="acerca-divider"></div>
+
+      <div class="acerca-body">
+        <p>
+          El enfoque de Perímetro parte de una idea sencilla: muchos de los desafíos actuales ya no son exclusivamente tecnológicos. Son problemas de confianza, decisiones, responsabilidad y gestión del riesgo.
+        </p>
+        <p>
+          Por ello, además de la perspectiva técnica, el sitio incorpora elementos de Gobierno, Riesgo y Cumplimiento (GRC) para ayudar a entender cómo estos cambios impactan a personas, profesionales, organizaciones y procesos de negocio.
+        </p>
+        <p>
+          Más que seguir eventos aislados, el objetivo es identificar los patrones que los conectan y las decisiones que esos cambios vuelven necesarias.
         </p>
       </div>
 
@@ -36,9 +70,8 @@ import Footer from '../components/Footer.astro';
         </div>
         <div class="meta-item">
           <div class="meta-label">Enfoque</div>
-          <div class="meta-value">IA · Ciberseguridad · IT </div>
+          <div class="meta-value">IA · Ciberseguridad · GRC</div>
         </div>
-        
       </div>
 
     </div>
@@ -118,7 +151,37 @@ import Footer from '../components/Footer.astro';
     width: 48px;
     height: 1px;
     background: var(--accent);
+    margin: 0 0 3rem;
+  }
+
+  .acerca-formatos {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
     margin-bottom: 3rem;
+  }
+
+  .formato-item {
+    border-left: 2px solid var(--border);
+    padding-left: 1rem;
+  }
+
+  .formato-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.4rem;
+  }
+
+  .formato-item p {
+    font-family: 'Fraunces', serif;
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--muted2);
+    line-height: 1.65;
+    margin: 0;
   }
 
   .acerca-meta {
