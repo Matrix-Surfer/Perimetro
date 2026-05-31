@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Perímetro — Radar',
-    description: 'Lo más relevante de la semana en AI y ciberseguridad, curado para empresas mexicanas.',
+    description: 'Lo más relevante de la semana en IA y ciberseguridad, curado para empresas mexicanas.',
     site: context.site!,
     items: items.map((item) => ({
       title: item.data.title,

@@ -8,7 +8,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'Perímetro — Análisis',
-    description: 'Perspectiva propia sobre AI, ciberseguridad y tecnología empresarial para empresas mexicanas.',
+    description: 'Perspectiva propia sobre IA, ciberseguridad y tecnología empresarial para empresas mexicanas.',
     site: context.site!,
     items: articulos.map((articulo) => ({
       title: articulo.data.title,
