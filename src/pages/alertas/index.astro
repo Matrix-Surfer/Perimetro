@@ -7,22 +7,40 @@ import Footer from '../../components/Footer.astro';
 const alertas = (await getCollection('alertas')).filter(a => a.data.publicacion === 'published');
 alertas.sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 
-const tipoCardClass: Record<string, string> = {
-  'Defacement': 'defacement',
-  'Filtración': 'filtracion',
-  'Ransomware': 'ransomware',
-  'Phishing': 'phishing',
-  'Dark Forum': 'darkforum',
-  'Otro': 'otro',
+const cardClass: Record<string, string> = {
+  // categoria (nuevo schema)
+  'Malware':      'ransomware',
+  'Phishing':     'phishing',
+  'Vulnerabilidad': 'defacement',
+  'Fraude':       'filtracion',
+  'Fuga de datos': 'filtracion',
+  'Terceros':     'otro',
+  'IA':           'otro',
+  'IoT/OT':       'otro',
+  'Otro':         'otro',
+  // tipo (legacy)
+  'Defacement':   'defacement',
+  'Filtración':   'filtracion',
+  'Ransomware':   'ransomware',
+  'Dark Forum':   'darkforum',
 };
 
-const tipoBadgeClass: Record<string, string> = {
-  'Defacement': 'badge-defacement',
-  'Filtración': 'badge-filtracion',
-  'Ransomware': 'badge-ransomware',
-  'Phishing': 'badge-phishing',
-  'Dark Forum': 'badge-darkforum',
-  'Otro': 'badge-otro',
+const badgeClass: Record<string, string> = {
+  // categoria (nuevo schema)
+  'Malware':      'badge-ransomware',
+  'Phishing':     'badge-phishing',
+  'Vulnerabilidad': 'badge-defacement',
+  'Fraude':       'badge-filtracion',
+  'Fuga de datos': 'badge-filtracion',
+  'Terceros':     'badge-otro',
+  'IA':           'badge-otro',
+  'IoT/OT':       'badge-otro',
+  'Otro':         'badge-otro',
+  // tipo (legacy)
+  'Defacement':   'badge-defacement',
+  'Filtración':   'badge-filtracion',
+  'Ransomware':   'badge-ransomware',
+  'Dark Forum':   'badge-darkforum',
 };
 
 const statusCssClass: Record<string, string> = {
@@ -48,10 +66,12 @@ const statusCssClass: Record<string, string> = {
 
     <div class="alertas-content">
 
-      {alertas.map((alerta) => (
-        <a href={`/alertas/${alerta.id}`} class={`alerta-card ${tipoCardClass[alerta.data.tipo] ?? 'otro'}`}>
+      {alertas.map((alerta) => {
+        const etiqueta = alerta.data.categoria ?? alerta.data.tipo ?? 'Otro';
+        return (
+        <a href={`/alertas/${alerta.id}`} class={`alerta-card ${cardClass[etiqueta] ?? 'otro'}`}>
           <div class="alerta-card-header">
-            <span class={`alerta-badge ${tipoBadgeClass[alerta.data.tipo] ?? 'badge-otro'}`}>{alerta.data.tipo}</span>
+            <span class={`alerta-badge ${badgeClass[etiqueta] ?? 'badge-otro'}`}>{etiqueta}</span>
             <span class="alerta-date">{alerta.data.date}</span>
           </div>
           <h3 class="alerta-title">{alerta.data.title}</h3>
@@ -61,7 +81,8 @@ const statusCssClass: Record<string, string> = {
             <span class={`alerta-status ${statusCssClass[alerta.data.status] ?? 'status-monitoring'}`}>{alerta.data.status}</span>
           </div>
         </a>
-      ))}
+        );
+      })}
 
     </div>
 
