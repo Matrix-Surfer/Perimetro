@@ -40,8 +40,14 @@ const alertas = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']),
+    // tipo: campo legacy — mantener para alertas publicadas anteriores
+    tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']).optional(),
+    categoria: z.enum(['Vulnerabilidad', 'Fraude', 'Phishing', 'Malware', 'Fuga de datos', 'Terceros', 'IA', 'IoT/OT', 'Otro']).optional(),
+    nivelAtencion: z.enum(['Bajo', 'Medio', 'Alto', 'Crítico']).optional(),
     status: z.enum(['Activa', 'En monitoreo', 'Resuelta']),
+    parche: z.enum(['Sí', 'No', 'Desconocido']).optional(),
+    explotacion: z.enum(['Activa', 'Reportada', 'No confirmado']).optional(),
+    versiones: z.string().optional(),
     resumen: z.string(),
     source: z.string().optional().default('Monitoreo Telegram'),
     link: z.string().url().optional(),

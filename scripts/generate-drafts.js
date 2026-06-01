@@ -139,17 +139,15 @@ publicacion: "draft"
 function alertaFrontmatter(item) {
   const text = normalize(`${item.title} ${item.summary}`);
 
-  let tipo = 'Otro';
-  if (matches(text, ['ransomware', 'encrypt', 'file-encrypting']))            tipo = 'Ransomware';
-  else if (matches(text, ['phishing', 'spear phishing', 'smishing', 'vishing',
-    'mfa fatigue', 'mfa bombing', 'prompt bombing', 'credential harvesting',
-    'social engineering', 'business email compromise', 'bec'])) tipo = 'Phishing';
-  else if (matches(text, ['defacement', 'defaced', 'web shell', 'webshell'])) tipo = 'Defacement';
-  else if (matches(text, ['dark web', 'dark forum', 'underground forum',
-    'clandestine', 'tor marketplace', 'criminal forum']))           tipo = 'Dark Forum';
-  else if (matches(text, ['data breach', 'data leak', 'leak', 'breach',
-    'exposed data', 'stolen data', 'records exposed', 'records stolen',
-    'database exposed', 'dump', 'filtrac', 'impacted by', 'affected by']))   tipo = 'Filtración';
+  let categoria = 'Otro';
+  if (matches(text, ['ransomware', 'malware', 'trojan', 'worm', 'backdoor', 'spyware', 'botnet', 'rat ', 'rootkit', 'encrypt', 'file-encrypting'])) categoria = 'Malware';
+  else if (matches(text, ['phishing', 'spear phishing', 'smishing', 'vishing', 'mfa fatigue', 'mfa bombing', 'credential harvesting', 'social engineering', 'business email compromise', 'bec'])) categoria = 'Phishing';
+  else if (matches(text, ['vulnerability', 'cve-', 'zero-day', 'zero day', 'rce', 'exploit', 'patch tuesday', 'buffer overflow', 'sql injection', 'xss', 'defacement', 'webshell'])) categoria = 'Vulnerabilidad';
+  else if (matches(text, ['fraud', 'fraude', 'scam', 'estafa', 'fake invoice', 'wire transfer', 'bec', 'dark web', 'dark forum', 'underground forum', 'criminal forum'])) categoria = 'Fraude';
+  else if (matches(text, ['data breach', 'data leak', 'leak', 'breach', 'exposed data', 'stolen data', 'records exposed', 'database exposed', 'dump', 'filtrac', 'impacted by', 'affected by'])) categoria = 'Fuga de datos';
+  else if (matches(text, ['supply chain', 'third party', 'vendor', 'tercero', 'proveedor', 'partner', 'contractor', 'npm ', 'pypi'])) categoria = 'Terceros';
+  else if (matches(text, ['artificial intelligence', 'machine learning', 'llm', 'gpt', 'chatgpt', 'deepfake', 'ai agent', 'agentic'])) categoria = 'IA';
+  else if (matches(text, ['iot', 'industrial control', 'scada', 'ot system', 'firmware', 'router', 'nvr', 'plc', 'modbus', 'camera', 'smart device'])) categoria = 'IoT/OT';
 
   const status = matches(text, [
     'exploited', 'in the wild', 'active exploit', 'ongoing', 'actively exploited',
@@ -158,18 +156,70 @@ function alertaFrontmatter(item) {
     'hijacked', 'compromised', 'infected',
   ]) ? 'Activa' : 'En monitoreo';
 
+  let nivelAtencion = 'Medio';
+  if (matches(text, ['actively exploited', 'exploited in the wild', 'in the wild', 'under attack', 'ransomware', 'critical vulnerability', 'zero-day', 'zero day', 'emergency patch', 'mass exploitation', 'widespread attack'])) nivelAtencion = 'Crítico';
+  else if (matches(text, ['high severity', 'high impact', 'rce', 'remote code execution', 'data breach', 'data leak', 'phishing campaign', 'active campaign', 'confirmed breach', 'hijacked', 'compromised', 'cisa adds'])) nivelAtencion = 'Alto';
+  else if (matches(text, ['patch available', 'security update', 'advisory', 'low severity', 'informational'])) nivelAtencion = 'Bajo';
+
+  const parche = matches(text, ['patch available', 'security update', 'fixed in', 'patched', 'update released', 'update now'])
+    ? 'Sí'
+    : matches(text, ['no patch', 'no fix', 'unpatched', 'vendor notified', 'awaiting patch'])
+      ? 'No'
+      : 'Desconocido';
+
+  const explotacion = matches(text, ['actively exploited', 'exploited in the wild', 'in the wild', 'active exploit', 'under attack', 'active campaign'])
+    ? 'Activa'
+    : matches(text, ['poc', 'proof of concept', 'published exploit', 'cve-', 'reported exploit'])
+      ? 'Reportada'
+      : 'No confirmado';
+
   const resumen = truncate(item.summary);
 
-  return { tipo, frontmatter: `---
+  return { nivelAtencion, frontmatter: `---
 title: "${esc(item.title)}"
 date: "${parseDate(item.pubDate)}"
-tipo: "${tipo}"
+categoria: "${categoria}"
+nivelAtencion: "${nivelAtencion}"
 status: "${status}"
+parche: "${parche}"
+explotacion: "${explotacion}"
 resumen: "${esc(resumen)}"
 source: "${esc(item.source ?? '')}"
 link: "${esc(item.link ?? '')}"
 publicacion: "draft"
 ---` };
+}
+
+function alertaBodyTemplate(nivelAtencion, summary) {
+  const parts = [];
+
+  parts.push(`## Contexto\n\n${summary}`);
+
+  if (nivelAtencion !== 'Bajo') {
+    parts.push(`## Por qué importa\n\nPendiente.`);
+    parts.push(`## Impacto potencial\n\n### Para personas\n\nPendiente.\n\n### Para organizaciones\n\nPendiente.`);
+  } else {
+    parts.push(`## Impacto potencial\n\n### Para organizaciones\n\nPendiente.`);
+  }
+
+  if (nivelAtencion === 'Alto' || nivelAtencion === 'Crítico') {
+    parts.push(`## Perspectiva Perímetro\n\nPendiente.`);
+    parts.push(`## Perspectiva GRC\n\nPendiente.`);
+  }
+
+  if (nivelAtencion !== 'Bajo') {
+    parts.push(`## Recomendaciones\n\n### Para personas\n\nPendiente.\n\n### Para organizaciones\n\nPendiente.`);
+  } else {
+    parts.push(`## Recomendaciones\n\n### Para organizaciones\n\nPendiente.`);
+  }
+
+  if (nivelAtencion === 'Crítico') {
+    parts.push(`## Si ya ocurrió\n\nPendiente.`);
+  }
+
+  parts.push(`## Pregunta diagnóstica\n\nPendiente.`);
+
+  return parts.join('\n\n');
 }
 
 function toSlug(title) {
@@ -252,22 +302,11 @@ async function processAlertas() {
     const outPath = join(OUT_ALERTAS, `${slug}.md`);
     if (existsSync(outPath)) { skipped++; continue; }
 
-    const { tipo, frontmatter } = alertaFrontmatter(item);
+    const { nivelAtencion, frontmatter } = alertaFrontmatter(item);
     const summary = cleanText(item.summary);
-    const content = `${frontmatter}
+    const body = alertaBodyTemplate(nivelAtencion, summary);
+    const content = `${frontmatter}\n\n${body}\n`;
 
-## Contexto
-
-${summary}
-
-## Impacto potencial
-
-${IMPACTO[tipo]}
-
-## Recomendaciones
-
-Pendiente.
-`;
     try { writeMarkdown(outPath, content); created++; }
     catch { skipped++; }
   }

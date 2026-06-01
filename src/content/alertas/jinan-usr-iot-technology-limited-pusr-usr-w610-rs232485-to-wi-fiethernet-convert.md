@@ -1,0 +1,22 @@
+---
+title: "Jinan USR IOT Technology Limited (PUSR) USR-W610 RS232/485 to Wi-Fi/Ethernet Converter"
+date: "2026-05-28"
+tipo: "Otro"
+status: "En monitoreo"
+resumen: "View CSAF Summary Successful exploitation of this vulnerability could result in an attacker gaining administrator access to the device. The following versions of Jinan USR IOT Technology Limited (PUSR) USR-W610…"
+source: "CISA Alerts"
+link: "https://www.cisa.gov/news-events/ics-advisories/icsa-26-148-02"
+publicacion: "rejected"
+---
+
+## Contexto
+
+View CSAF Summary Successful exploitation of this vulnerability could result in an attacker gaining administrator access to the device. The following versions of Jinan USR IOT Technology Limited (PUSR) USR-W610 RS232/485 to Wi-Fi/Ethernet Converter are affected: USR-W610 RS232/485 to Wi-Fi/Ethernet Converter 7.03T.07 CVSS Vendor Equipment Vulnerabilities v3 9.8 Jinan USR IOT Technology Limited (PUSR) Jinan USR IOT Technology Limited (PUSR) USR-W610 RS232/485 to Wi-Fi/Ethernet Converter Use of Hard-coded Credentials Background Critical Infrastructure Sectors: Critical Manufacturing Countries/Areas Deployed: Worldwide Company Headquarters Location: China Vulnerabilities Expand All + CVE-2026-7786 The device firmware contains plaintext administrative credentials embedded in the firmware image. These credentials can be extracted through firmware analysis and used to authenticate to device services. View CVE Details Affected Products Jinan USR IOT Technology Limited (PUSR) USR-W610 RS232/485 to Wi-Fi/Ethernet Converter Vendor: Jinan USR IOT Technology Limited (PUSR) Product Version: Jinan USR IOT Technology Limited (PUSR) USR-W610 RS232/485 to Wi-Fi/Ethernet Converter: 7.03T.07 Product Status: known_affected Remediations Mitigation Jinan USR IOT Technology Limited (PUSR) did not respond to CISA's attempts at coordination. Users of PUSR USR-W610 devices are encouraged to contact PUSR and keep their systems up to date. Relevant CWE: CWE-798 Use of Hard-coded Credentials Metrics CVSS Version Base Score Base Severity Vector String 3.1 9.8 CRITICAL CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H Acknowledgments Arun Mane and Omkar Mali reported this vulnerability to CISA Legal Notice and Terms of Use This product is provided subject to this Notification (https://www.cisa.gov/notification) and this Privacy & Use policy (https://www.cisa.gov/privacy-policy). Recommended Practices CISA recommends users take defensive measures to minimize the risk of exploitation of this vulnerability. Minimize network exposure for all control system devices and/or systems, ensuring they are not accessible from the internet. Locate control system networks and remote devices behind firewalls and isolating them from business networks. When remote access is required, use more secure methods, such as Virtual Private Networks (VPNs), recognizing VPNs may have vulnerabilities and should be updated to the most current version available. Also recognize VPN is only as secure as the connected devices. CISA reminds organizations to perform proper impact analysis and risk assessment prior to deploying defensive measures. CISA also provides a section for control systems security recommended practices on the ICS webpage on cisa.gov/ics. Several CISA products detailing cyber defense best practices are available for reading and download, including Improving Industrial Control Systems Cybersecurity with Defense-in-Depth Strategies. CISA encourages organizations to implement recommended cybersecurity strategies for proactive defense of ICS assets. Additional mitigation guidance and recommended practices are publicly available on the ICS webpage at cisa.gov/ics in the technical information paper, ICS-TIP-12-146-01B--Targeted Cyber Intrusion Detection and Mitigation Strategies. Organizations observing suspected malicious activity should follow established internal procedures and report findings to CISA for tracking and correlation against other incidents. No known public exploitation specifically targeting this vulnerability has been reported to CISA at this time. Revision History Initial Release Date: 2026-05-28 Date Revision Summary 2026-05-28 1 Initial Publication Legal Notice and Terms of Use
+
+## Impacto potencial
+
+El impacto requiere evaluación según el contexto específico. Las tres dimensiones a revisar: continuidad operativa (¿qué proceso se interrumpe?), exposición financiera (¿puede derivar en pérdida directa?) y obligaciones regulatorias o contractuales.
+
+## Recomendaciones
+
+Pendiente.
