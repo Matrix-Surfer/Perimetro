@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const PUBLICACION = z.enum(['draft', 'review', 'published', 'rejected']).optional().default('published');
+const PUBLICACION = z.enum(['draft', 'normalized', 'review', 'published', 'rejected']).optional().default('published');
 
 const analisis = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/analisis' }),
@@ -36,6 +36,11 @@ const radar = defineCollection({
     señal: z.string().optional(),
     supuesto: z.string().optional(),
     observación: z.string().optional(),
+    // Ficha GRC — normalización previa al enriquecimiento (no se renderiza en UI)
+    grc_cambio: z.string().optional(),
+    grc_paradigma: z.string().optional(),
+    grc_horizonte: z.enum(['semanas', 'meses', 'años']).optional(),
+    grc_confianza: z.enum(['alta', 'media', 'baja']).optional(),
   }),
 });
 
@@ -58,6 +63,13 @@ const alertas = defineCollection({
     expuestos: z.string().optional(),
     verificacion: z.string().optional(),
     impacto: z.string().optional(),
+    // Ficha GRC — normalización previa al enriquecimiento (no se renderiza en UI)
+    grc_activo: z.string().optional(),
+    grc_vector: z.string().optional(),
+    grc_condicion: z.string().optional(),
+    grc_explotacion: z.enum(['posible', 'confirmada', 'activa']).optional(),
+    grc_alcance: z.string().optional(),
+    grc_confianza: z.enum(['alta', 'media', 'baja']).optional(),
     // Campos legacy — compatibilidad con alertas anteriores
     tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']).optional(),
     parche: z.enum(['Sí', 'No', 'Desconocido']).optional(),

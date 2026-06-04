@@ -8,6 +8,10 @@ señal: "El chatbot de soporte de Meta fue manipulado para transferir cuentas de
 supuesto: "Un sistema de soporte basado en IA puede verificar la identidad del usuario antes de tomar acciones sobre su cuenta."
 observación: "Qué acciones pueden ejecutar los sistemas de atención automatizados que la organización usa o evalúa usar, y si existe algún proceso humano de verificación antes de que el sistema modifique accesos o datos."
 context: "El bot de soporte de Meta transfirió cuentas de Instagram a atacantes porque siguió el proceso diseñado. No hubo un hackeo técnico. El atacante proporcionó la información que el sistema pedía. El asistente la aceptó. La vulnerabilidad no es del software —es de la premisa: que un asistente de IA puede actuar como verificador de identidad confiable. Cada empresa que usa IA para soporte al cliente enfrenta la misma pregunta."
+grc_cambio: "asistentes de IA de soporte no pueden verificar identidad de forma confiable"
+grc_paradigma: "un sistema de soporte basado en IA puede autenticar usuarios antes de actuar sobre cuentas"
+grc_horizonte: "meses"
+grc_confianza: "alta"
 publicacion: "published"
 ---
 

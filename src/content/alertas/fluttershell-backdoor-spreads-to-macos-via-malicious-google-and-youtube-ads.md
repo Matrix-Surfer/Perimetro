@@ -11,6 +11,12 @@ resumen: "Una campaña activa usa anuncios en Google y YouTube para distribuir u
 expuestos: "Usuarios de equipos Mac que descargan software siguiendo anuncios en Google o YouTube."
 verificacion: "Verificar que los usuarios de Mac tienen instrucción de descargar software solo desde la App Store o sitios oficiales del fabricante, nunca desde anuncios publicitarios."
 impacto: "Un acceso oculto en un Mac de trabajo da control total del dispositivo: archivos, contraseñas, sesiones activas, y acceso a sistemas corporativos desde ese equipo."
+grc_activo: "equipos macOS con capacidad de instalación de software"
+grc_vector: "malvertising en plataformas publicitarias más instalador troyanizado"
+grc_condicion: "usuario hace clic en anuncio e instala el programa ofrecido"
+grc_explotacion: "activa"
+grc_alcance: "usuarios de Mac que descargan software siguiendo anuncios en Google o YouTube"
+grc_confianza: "alta"
 publicacion: "published"
 ---
 

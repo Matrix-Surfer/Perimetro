@@ -8,6 +8,10 @@ señal: "Un auditor encontró contraseñas de múltiples sistemas almacenadas en
 supuesto: "Las contraseñas de la organización están donde se gestionan las contraseñas: en bóvedas o sistemas dedicados. El resto del directorio de usuarios es solo información administrativa inerte."
 observación: "Si la organización usa Active Directory y si alguien ha revisado alguna vez qué hay almacenado en los campos de descripción, comentarios y atributos extendidos de las cuentas de servicio, administrador y sistemas heredados."
 context: "Active Directory tiene campos de texto libre donde los administradores suelen anotar información sobre las cuentas. Con el tiempo, contraseñas de sistemas heredados, credenciales de emergencia y accesos de servicio terminan en esos campos porque es conveniente. Cualquier usuario de la red —incluso con permisos mínimos— puede leerlos. Un atacante que entra a cualquier cuenta de la empresa puede extraer esos campos en segundos."
+grc_cambio: "credenciales almacenadas en campos de texto no auditados del directorio de usuarios"
+grc_paradigma: "las contraseñas de la organización están donde se gestionan, no en el directorio"
+grc_horizonte: "semanas"
+grc_confianza: "media"
 publicacion: "published"
 ---
 

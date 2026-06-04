@@ -8,6 +8,10 @@ señal: "Los servicios de inteligencia de EE.UU., Reino Unido, Canadá, Australi
 supuesto: "Las solicitudes de conexión de personas desconocidas en LinkedIn son, en el peor caso, spam de ventas. Las redes profesionales no son un vector de espionaje relevante para empresas privadas."
 observación: "Si la organización tiene directivos o responsables de tecnología con perfiles activos en LinkedIn que revelan proyectos en curso, tecnologías usadas o información estratégica, y si existe alguna política sobre cómo responder a contactos no solicitados de reclutadores o consultores externos."
 context: "El objetivo de estas operaciones no siempre es robar información de forma inmediata. A veces es reclutar. A veces es extraer información gradualmente a través de conversaciones que parecen oportunidades de negocio o consultoría legítima. Para directivos y responsables de tecnología con perfiles activos, el riesgo no es teórico ni reservado a empresas grandes."
+grc_cambio: "redes profesionales usadas sistemáticamente como vector de espionaje corporativo"
+grc_paradigma: "LinkedIn es canal comercial, no vector de inteligencia relevante para empresas privadas"
+grc_horizonte: "años"
+grc_confianza: "alta"
 publicacion: "published"
 ---
 

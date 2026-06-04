@@ -8,6 +8,10 @@ señal: "Investigadores demostraron que modelos de IA disponibles gratuitamente 
 supuesto: "El desarrollo de ataques automatizados y sofisticados requiere expertos con experiencia técnica avanzada. La barrera técnica es una capa de protección real."
 observación: "Si el argumento para no parchear vulnerabilidades conocidas en la organización incluye la premisa de que 'no somos un objetivo suficientemente atractivo para ese nivel de ataque', y si esa premisa sigue siendo válida cuando la sofisticación técnica es cada vez más accesible."
 context: "Un gusano informático es un programa que se propaga solo de sistema en sistema sin que nadie lo active manualmente. Construirlos requería experiencia técnica significativa. Esa barrera está desapareciendo. Investigadores publicaron evidencia de que modelos de IA gratuitos —sin los más avanzados del mercado— son suficientes para automatizar este tipo de ataque. El perfil del atacante potencial está cambiando."
+grc_cambio: "modelos de IA gratuitos son suficientes para construir ataques automatizados a escala"
+grc_paradigma: "ataques automatizados sofisticados requieren actores con experiencia técnica avanzada"
+grc_horizonte: "meses"
+grc_confianza: "media"
 publicacion: "published"
 ---
 

@@ -8,6 +8,10 @@ señal: "Una investigación de Cornell sugiere que la inyección de instruccione
 supuesto: "Los problemas de seguridad en la IA son de ingeniería: se descubren, se estudian, se corrigen. La pregunta es cuándo, no si."
 observación: "Qué acciones pueden ejecutar los asistentes de IA que la organización ya usa —enviar correos, modificar archivos, consultar sistemas— y si esos permisos pueden limitarse antes de que alguien los explote."
 context: "Las empresas conectan asistentes de IA a su correo, archivos y sistemas internos. Un atacante puede incrustar instrucciones maliciosas en un correo o documento que el asistente lee —y el asistente las ejecuta como si fueran del usuario legítimo. Si este problema no tiene solución técnica permanente, la pregunta no es cuándo se parcheará. La pregunta es qué permisos tiene el asistente y si esos permisos pueden reducirse."
+grc_cambio: "prompt injection puede ser una propiedad estructural irresoluble en los LLMs"
+grc_paradigma: "los problemas de seguridad en software se descubren, estudian y corrigen"
+grc_horizonte: "meses"
+grc_confianza: "media"
 publicacion: "published"
 ---
 

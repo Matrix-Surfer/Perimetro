@@ -11,6 +11,12 @@ resumen: "Atacantes mantuvieron acceso al correo de Outlook de un ejecutivo seni
 expuestos: "Directivos, dueños y ejecutivos con información estratégica o financiera en su correo corporativo. Organizaciones sin monitoreo de accesos anómalos."
 verificacion: "Verificar si hay sesiones activas desde ubicaciones inusuales en cuentas de correo de directivos. Confirmar que el correo corporativo registra los inicios de sesión."
 impacto: "Con acceso al correo de un directivo durante meses, un atacante puede extraer estrategia, negociaciones en curso, información financiera no pública, y datos de clientes usables para extorsión o fraude."
+grc_activo: "buzón de correo Outlook de ejecutivo senior en plataforma corporativa"
+grc_vector: "acceso no autorizado persistente con exfiltración camuflada vía servicios cloud"
+grc_condicion: "acceso inicial comprometido, sin monitoreo de sesiones anómalas en cuenta"
+grc_explotacion: "confirmada"
+grc_alcance: "directivos y ejecutivos con información estratégica en correo corporativo"
+grc_confianza: "alta"
 publicacion: "published"
 ---
 
