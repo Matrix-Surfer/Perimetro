@@ -1,5 +1,5 @@
 ---
-title: "Anuncios en Google y YouTube distribuyen programa malicioso con acceso oculto en equipos Mac"
+title: "La publicidad digital se convierte en un canal de distribución de programas maliciosos"
 date: "2026-06-04"
 source: "The Hacker News"
 link: "https://thehackernews.com/2026/06/fluttershell-backdoor-spreads-to-macos.html"

@@ -1,5 +1,5 @@
 ---
-title: "Contraseñas encontradas en campos de notas del directorio de usuarios — un problema más común de lo que parece"
+title: "El problema no es dónde se guardan las contraseñas. Es dónde terminan apareciendo"
 pubDate: 2026-06-04
 source: "The Register — Security"
 link: "https://www.theregister.com/security/2026/06/04/all-the-passwords-were-stored-in-active-directory-description-fields/5250820"
