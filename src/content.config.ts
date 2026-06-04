@@ -27,11 +27,15 @@ const radar = defineCollection({
     pubDate: z.coerce.date(),
     link: z.string().url().optional(),
     publicacion: PUBLICACION,
-    // Campos nuevos — plantilla RADAR híbrida
+    // Taxonomía
+    categoria: z.enum(['Fraude', 'Phishing', 'Vulnerabilidad', 'Malware', 'Fuga de datos', 'IA', 'OT/ICS', 'Otro']).optional(),
     nivelAtencion: z.enum(['Bajo', 'Medio', 'Alto', 'Crítico']).optional(),
     ambito: z.enum(['Personas', 'Organizaciones', 'Mixto']).optional(),
-    categoria: z.enum(['Fraude', 'Phishing', 'Vulnerabilidad', 'Malware', 'Fuga de datos', 'IA', 'OT/ICS', 'Otro']).optional(),
     resumen: z.string().optional(),
+    // Campos de control editorial RADAR (no se renderizan en UI)
+    señal: z.string().optional(),
+    supuesto: z.string().optional(),
+    observación: z.string().optional(),
   }),
 });
 
@@ -40,18 +44,25 @@ const alertas = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.string(),
-    // tipo: campo legacy — mantener para alertas publicadas anteriores
-    tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']).optional(),
-    categoria: z.enum(['Vulnerabilidad', 'Fraude', 'Phishing', 'Malware', 'Fuga de datos', 'Terceros', 'IA', 'IoT/OT', 'Otro']).optional(),
-    nivelAtencion: z.enum(['Bajo', 'Medio', 'Alto', 'Crítico']).optional(),
     status: z.enum(['Activa', 'En monitoreo', 'Resuelta']),
-    parche: z.enum(['Sí', 'No', 'Desconocido']).optional(),
-    explotacion: z.enum(['Activa', 'Reportada', 'No confirmado']).optional(),
-    versiones: z.string().optional(),
     resumen: z.string(),
     source: z.string().optional().default('Monitoreo Telegram'),
     link: z.string().url().optional(),
     publicacion: PUBLICACION,
+    // Taxonomía editorial
+    categoria: z.enum(['Vulnerabilidad', 'Fraude', 'Phishing', 'Malware', 'Fuga de datos', 'Terceros', 'IA', 'IoT/OT', 'Otro']).optional(),
+    nivelAtencion: z.enum(['Bajo', 'Medio', 'Alto', 'Crítico']).optional(),
+    ambito: z.enum(['Personas', 'Organizaciones', 'Mixto']).optional(),
+    audiencia: z.enum(['General', 'MiPYME', 'TI', 'Desarrollo', 'Ejecutivo']).optional(),
+    // Campos de control editorial (no se renderizan en UI)
+    expuestos: z.string().optional(),
+    verificacion: z.string().optional(),
+    impacto: z.string().optional(),
+    // Campos legacy — compatibilidad con alertas anteriores
+    tipo: z.enum(['Defacement', 'Filtración', 'Ransomware', 'Phishing', 'Dark Forum', 'Otro']).optional(),
+    parche: z.enum(['Sí', 'No', 'Desconocido']).optional(),
+    explotacion: z.enum(['Activa', 'Reportada', 'No confirmado']).optional(),
+    versiones: z.string().optional(),
   }),
 });
 

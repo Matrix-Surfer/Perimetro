@@ -10,8 +10,9 @@ const ROOT = join(__dirname, '..');
 const RADAR_DIR   = join(ROOT, 'src', 'content', 'radar');
 const ALERTAS_DIR = join(ROOT, 'src', 'content', 'alertas');
 
-const API_KEY = process.env.GEMINI_API_KEY;
-const MODEL   = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
+// Anthropic API (migrado desde Gemini)
+const API_KEY = process.env.ANTHROPIC_API_KEY;
+const MODEL   = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
 
 // --- Parsers ---
 
@@ -53,36 +54,33 @@ const MAX_RETRIES = 3;
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function callLLM(prompt) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${API_KEY}`;
+  const url = 'https://api.anthropic.com/v1/messages';
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
     const res = await fetch(url, {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: {
+        'content-type': 'application/json',
+        'x-api-key': API_KEY,
+        'anthropic-version': '2023-06-01',
+      },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: { maxOutputTokens: 300, temperature: 0.3 },
+        model: MODEL,
+        max_tokens: 400,
+        temperature: 0.3,
+        messages: [{ role: 'user', content: prompt }],
       }),
     });
 
     if (res.ok) {
       const data = await res.json();
-      const raw = data.candidates[0].content.parts[0].text;
-      // Normalizar: quitar comillas externas que algunos modelos añaden,
-      // colapsar saltos de línea (rompen YAML en una sola línea)
-      return raw
-        .trim()
-        .replace(/^["']|["']$/g, '')   // quitar comillas externas
-        .replace(/\n+/g, ' ')          // colapsar newlines → espacio
-        .trim();
+      return data.content[0].text.trim();
     }
 
     const body = await res.text();
 
-    // Extraer retryDelay del cuerpo si viene (429/503)
-    if (res.status === 429 || res.status === 503) {
-      const match = body.match(/"retryDelay":\s*"(\d+)s"/);
-      const wait = match ? (parseInt(match[1]) + 2) * 1000 : 60000;
+    if (res.status === 429 || res.status === 503 || res.status === 529) {
+      const wait = 60000;
       if (attempt < MAX_RETRIES) {
         process.stderr.write(`  ~ reintento ${attempt}/${MAX_RETRIES} en ${Math.round(wait/1000)}s (${res.status})\n`);
         await sleep(wait);
@@ -98,64 +96,90 @@ async function callLLM(prompt) {
 
 async function enrichRadarFile(content) {
   const title   = getField(content, 'title');
-  const context = getField(content, 'context');
-  const body    = getBody(content).slice(0, 600);
+  const body    = getBody(content).slice(0, 800);
 
-  const prompt = `Eres asistente editorial de Perímetro, plataforma de inteligencia sobre ciberseguridad e IA para empresas mexicanas.
+  // Prompt para los 3 campos de control editorial + context
+  const prompt = `Eres editor de inteligencia anticipatoria en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
-Reescribe el campo "context" de este ítem de radar. No resumas la noticia — el lector ya la ve en el título y la fuente.
+Un ítem de RADAR no es una noticia. Es una señal de cambio estructural que indica qué supuesto está dejando de ser válido y qué debería empezar a observarse.
 
-Responde una sola pregunta: ¿qué cambia en cómo esta empresa gestiona su tecnología o toma decisiones?
+Dado este título y contenido, responde con un JSON con exactamente estos campos:
+
+{
+  "señal": "El cambio estructural en una frase. Qué está cambiando en el mundo, no qué hizo la empresa.",
+  "supuesto": "El paradigma o creencia que este cambio hace cuestionable. Una frase.",
+  "observación": "Qué debería empezar a vigilar una organización o persona. Una frase. No una instrucción operativa — algo que observar o cuestionar.",
+  "context": "2 a 3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Sin resumir la noticia. Cierra con una pregunta sobre el supuesto, no con una instrucción de acción inmediata."
+}
 
 Reglas:
-- 2 a 3 oraciones
-- No inventes datos ni información nueva
-- Sin clickbait ni exageración
-- Tono directo y profesional, como un colega que encontró algo relevante
 - En español
-- Enfocado en implicación operativa o de gobernanza para empresas mexicanas medianas
-- Si aplica, cerrar con la pregunta concreta que el responsable debería hacerle a su equipo de TI
+- Sin clickbait ni exageración
+- No inventar datos
+- "señal", "supuesto" y "observación": una frase cada uno, sin punto final
+- "context": 2-3 oraciones, termina en pregunta o reflexión sobre el supuesto
+- Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Contexto actual: ${context}
-Contenido: ${body}
+Contenido: ${body}`;
 
-Responde ÚNICAMENTE con el nuevo texto del contexto, sin comillas ni explicaciones adicionales.`;
+  const raw = await callLLM(prompt);
 
-  const improved = await callLLM(prompt);
-  return markReview(setField(content, 'context', improved));
+  try {
+    const parsed = JSON.parse(raw.replace(/^```json\s*|```\s*$/g, '').trim());
+    let updated = content;
+    if (parsed.señal)      updated = setField(updated, 'señal',      parsed.señal);
+    if (parsed.supuesto)   updated = setField(updated, 'supuesto',   parsed.supuesto);
+    if (parsed.observación) updated = setField(updated, 'observación', parsed.observación);
+    if (parsed.context)    updated = setField(updated, 'context',    parsed.context);
+    return markReview(updated);
+  } catch {
+    // Si no parsea como JSON, intenta usar como context directo
+    return markReview(setField(content, 'context', raw));
+  }
 }
 
 async function enrichAlertaFile(content) {
   const title   = getField(content, 'title');
-  const resumen = getField(content, 'resumen');
-  const body    = getBody(content).slice(0, 600);
+  const body    = getBody(content).slice(0, 800);
 
-  const prompt = `Eres asistente editorial de Perímetro, plataforma de inteligencia sobre ciberseguridad e IA para empresas mexicanas.
+  const prompt = `Eres editor de inteligencia operativa en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
-Reescribe el campo "resumen" de esta alerta explicando qué pierde o qué arriesga la empresa si esto la afecta. No describas el mecanismo técnico del ataque.
+Una ALERTA responde tres preguntas: ¿qué ocurre?, ¿quién está expuesto?, ¿qué debe verificarse?
 
-Considera estas dimensiones cuando apliquen:
-- Continuidad operativa: ¿qué proceso del negocio se interrumpe o queda comprometido?
-- Exposición financiera: ¿puede derivar en fraude, pérdida directa o costo de respuesta?
-- Responsabilidad regulatoria o contractual: ¿activa obligaciones legales o viola acuerdos con clientes o proveedores?
+Dado el título y contenido, responde con un JSON con exactamente estos campos:
+
+{
+  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje de negocio, no técnico. Sin jerga sin explicar. En español.",
+  "expuestos": "Quién está expuesto — específico. No 'usuarios de Android' sino 'personas con teléfonos Android sin la actualización de junio 2026'. Una frase.",
+  "verificacion": "Qué debe verificarse hoy — concreto. No 'revisar CVE' sino 'confirmar que los dispositivos tienen instalada la actualización de seguridad más reciente'. Una frase.",
+  "impacto": "Qué podría ocurrir si aplica y no se verifica — en lenguaje de impacto de negocio. No 'ejecución remota de código' sino 'un atacante podría tomar control del dispositivo o acceder a información almacenada'. Una frase."
+}
 
 Reglas:
-- 2 a 3 oraciones
-- No inventes datos ni información nueva
-- Sin clickbait ni exageración
-- Tono profesional y sobrio
-- En español; si el contenido está en inglés, traducir
-- Lenguaje de negocio, no técnico
+- En español
+- Sin clickbait
+- No inventar datos
+- Cada campo es UNA frase, directa y específica
+- "resumen": máximo 220 caracteres
+- Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Resumen actual: ${resumen}
-Contenido: ${body}
+Contenido: ${body}`;
 
-Responde ÚNICAMENTE con el nuevo texto del resumen, sin comillas ni explicaciones adicionales.`;
+  const raw = await callLLM(prompt);
 
-  const improved = await callLLM(prompt);
-  return markReview(setField(content, 'resumen', improved));
+  try {
+    const parsed = JSON.parse(raw.replace(/^```json\s*|```\s*$/g, '').trim());
+    let updated = content;
+    if (parsed.resumen)      updated = setField(updated, 'resumen',      parsed.resumen);
+    if (parsed.expuestos)    updated = setField(updated, 'expuestos',    parsed.expuestos);
+    if (parsed.verificacion) updated = setField(updated, 'verificacion', parsed.verificacion);
+    if (parsed.impacto)      updated = setField(updated, 'impacto',      parsed.impacto);
+    return markReview(updated);
+  } catch {
+    return markReview(setField(content, 'resumen', raw));
+  }
 }
 
 // --- Runner ---

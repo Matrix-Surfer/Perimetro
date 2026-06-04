@@ -132,6 +132,9 @@ categoria: "${categoria}"
 ambito: "${ambito}"
 nivelAtencion: "${nivelAtencion}"
 resumen: "${esc(resumen)}"
+señal: ""
+supuesto: ""
+observación: ""
 publicacion: "draft"
 ---`;
 }
@@ -175,51 +178,44 @@ function alertaFrontmatter(item) {
 
   const resumen = truncate(item.summary);
 
+  // Audiencia
+  let audiencia = 'General';
+  if (matches(text, ['npm ', 'pypi', 'package manager', 'developer', 'github', 'repository', 'supply chain', 'open source', 'sdk', 'api key']))
+    audiencia = 'Desarrollo';
+  else if (matches(text, ['weblogic', 'kernel', 'linux server', 'windows server', 'oracle', 'cisco', 'fortinet', 'network appliance', 'cve-']))
+    audiencia = 'TI';
+  else if (matches(text, ['wordpress', 'woocommerce', 'plugin', 'small business', 'website owner', 'online store']))
+    audiencia = 'MiPYME';
+  else if (matches(text, ['board', 'governance', 'compliance', 'regulatory', 'ciso', 'executive', 'regulation']))
+    audiencia = 'Ejecutivo';
+
   return { nivelAtencion, frontmatter: `---
 title: "${esc(item.title)}"
 date: "${parseDate(item.pubDate)}"
 categoria: "${categoria}"
 nivelAtencion: "${nivelAtencion}"
+ambito: "${matches(text, ['consumer', 'personal', 'home user', 'mobile user', 'individual']) ? 'Personas' : matches(text, ['enterprise', 'corporate', 'organization', 'business']) ? 'Organizaciones' : 'Mixto'}"
+audiencia: "${audiencia}"
 status: "${status}"
 parche: "${parche}"
 explotacion: "${explotacion}"
 resumen: "${esc(resumen)}"
+expuestos: ""
+verificacion: ""
+impacto: ""
 source: "${esc(item.source ?? '')}"
 link: "${esc(item.link ?? '')}"
 publicacion: "draft"
 ---` };
 }
 
-function alertaBodyTemplate(nivelAtencion, summary) {
-  const parts = [];
-
-  parts.push(`## Contexto\n\n${summary}`);
-
-  if (nivelAtencion !== 'Bajo') {
-    parts.push(`## Por qué importa\n\nPendiente.`);
-    parts.push(`## Impacto potencial\n\n### Para personas\n\nPendiente.\n\n### Para organizaciones\n\nPendiente.`);
-  } else {
-    parts.push(`## Impacto potencial\n\n### Para organizaciones\n\nPendiente.`);
-  }
-
-  if (nivelAtencion === 'Alto' || nivelAtencion === 'Crítico') {
-    parts.push(`## Perspectiva Perímetro\n\nPendiente.`);
-    parts.push(`## Perspectiva GRC\n\nPendiente.`);
-  }
-
-  if (nivelAtencion !== 'Bajo') {
-    parts.push(`## Recomendaciones\n\n### Para personas\n\nPendiente.\n\n### Para organizaciones\n\nPendiente.`);
-  } else {
-    parts.push(`## Recomendaciones\n\n### Para organizaciones\n\nPendiente.`);
-  }
-
-  if (nivelAtencion === 'Crítico') {
-    parts.push(`## Si ya ocurrió\n\nPendiente.`);
-  }
-
-  parts.push(`## Pregunta diagnóstica\n\nPendiente.`);
-
-  return parts.join('\n\n');
+function alertaBodyTemplate(summary) {
+  return [
+    `## Qué ocurrió\n\n${summary}`,
+    `## Quién está expuesto\n\n`,
+    `## Qué verificar\n\n`,
+    `## Impacto potencial\n\n`,
+  ].join('\n\n');
 }
 
 function toSlug(title) {
@@ -241,49 +237,14 @@ async function processRadar() {
     const summary = cleanText(item.summary);
     const content = `${radarFrontmatter(item)}
 
-## Qué está pasando
+## La señal
 
 ${summary}
 
-## Por qué importa ahora
+## El supuesto que se rompe
 
-Pendiente.
+## Qué observar
 
-## Quién está expuesto
-
-### Personas
-
-Pendiente.
-
-### Organizaciones
-
-Pendiente.
-
-## Riesgo principal
-
-Pendiente.
-
-## Señales de alerta
-
-Pendiente.
-
-## Qué hacer hoy
-
-### Para personas
-
-Pendiente.
-
-### Para organizaciones
-
-Pendiente.
-
-## Controles GRC que aplica
-
-Pendiente.
-
-## Decisión recomendada
-
-Pendiente.
 `;
     try { writeMarkdown(outPath, content); created++; }
     catch { skipped++; }
@@ -304,7 +265,7 @@ async function processAlertas() {
 
     const { nivelAtencion, frontmatter } = alertaFrontmatter(item);
     const summary = cleanText(item.summary);
-    const body = alertaBodyTemplate(nivelAtencion, summary);
+    const body = alertaBodyTemplate(summary);
     const content = `${frontmatter}\n\n${body}\n`;
 
     try { writeMarkdown(outPath, content); created++; }
