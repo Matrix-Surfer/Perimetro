@@ -1,50 +1,42 @@
 ---
-title: "Campaña activa de facturas falsas usa Amazon, PayPal y Mercado Pago para engañar víctimas"
+title: "Campaña activa de facturas falsas busca provocar llamadas a centros de fraude"
 date: "2026-06-03"
-tipo: "Phishing"
-categoria: "Fraude"
-nivelAtencion: "Alto"
-status: "Activa"
-parche: "Desconocido"
-explotacion: "Activa"
-resumen: "Investigadores encontraron una campaña de fraude por factura falsa mientras los operadores aún la construían. El mecanismo: facturas convincentes de Amazon, PayPal o Mercado Pago con número de soporte falso. Quien llama es guiado para instalar acceso remoto o transferir fondos. Operación activa."
 source: "Malwarebytes Labs"
 link: "https://www.malwarebytes.com/blog/threat-intel/2026/06/we-found-this-fake-invoice-campaign-while-scammers-were-still-building-it"
+categoria: "Fraude"
+ambito: "Mixto"
+nivelAtencion: "Alto"
+status: "Activa"
+resumen: "Investigadores encontraron una campaña de fraude por factura falsa mientras los operadores aún la construían. El mecanismo: facturas que imitan servicios de pago conocidos, con un monto alarmante y un número de soporte falso. Quien llama es guiado para instalar acceso remoto o transferir fondos."
 publicacion: "published"
+
+expuestos: "Personas que reciben facturas no solicitadas por correo; empleados de cuentas por pagar en empresas."
+verificacion: "Confirmar si alguien recibió una factura inesperada y llamó al número incluido en el correo."
+impacto: "Pérdida financiera directa o instalación de software de acceso remoto en el dispositivo de la víctima."
 ---
 
-## Contexto
+## Qué ocurrió
 
-Malwarebytes encontró la infraestructura de esta campaña mientras los estafadores aún la configuraban: páginas incompletas, números de soporte sin activar, plantillas a medio terminar. Que la descubrieran en construcción muestra la escala industrial con la que operan: montan varias campañas en paralelo.
+Malwarebytes encontró la infraestructura de esta campaña mientras los estafadores aún la configuraban: páginas incompletas, números de soporte sin activar, plantillas a medio terminar. El mecanismo es conocido pero efectivo: una factura aparentemente legítima —de servicios como Amazon, PayPal o Mercado Pago— llega por correo con un monto suficientemente alto para generar alarma e incluye un número de "soporte al cliente". Quien llama habla con un operador del fraude que lo guía para instalar software de acceso remoto o realizar una transferencia de "cancelación".
 
-El mecanismo es conocido pero efectivo. Una factura aparentemente legítima — de Amazon, PayPal, Mercado Pago u otro servicio reconocido — llega por correo con un monto lo suficientemente alto para generar alarma. Incluye un número de "soporte al cliente". Quien llama habla con un operador del fraude que lo guía para instalar software de acceso remoto o realizar una transferencia de "cancelación".
+## Quién está expuesto
+
+### Personas
+
+Cualquier persona que reciba correo y use plataformas de compra o pago en línea. El perfil más frecuente: alguien que recibe una factura inesperada, se alarma por el monto y llama para cancelar el cargo. El riesgo es una transferencia irrecuperable o la pérdida de control del dispositivo.
+
+### Organizaciones
+
+Las empresas con procesos de pago por correo electrónico son un objetivo específico. Un empleado de cuentas por pagar que recibe una factura de un proveedor conocido está en el perfil de víctima. El daño escala con la frecuencia de pagos y la ausencia de un proceso de verificación.
+
+## Qué verificar
+
+- Si alguien en la organización recibió una factura no esperada y llamó al número incluido en el correo.
+- Si hay software de acceso remoto instalado recientemente en dispositivos de quienes procesan pagos.
+- Si existe una política documentada para el tratamiento de facturas no solicitadas.
 
 ## Impacto potencial
 
-### Para personas
+Una llamada al número falso puede terminar en pérdida de acceso al dispositivo o en una transferencia que no se puede revertir. La defensa no es técnica: es un proceso de dos pasos — ninguna factura inesperada activa un pago sin verificación por un canal diferente al que llegó.
 
-El riesgo es directo y financiero. Una llamada al número falso puede terminar en pérdida de acceso al dispositivo o en una transferencia que no se puede revertir. El vector explota urgencia y autoridad aparente.
-
-### Para organizaciones
-
-Las empresas con procesos de pago por correo electrónico son un objetivo específico. Un empleado de cuentas por pagar que recibe una factura de un proveedor conocido está en el perfil de víctima. El daño potencial escala con la frecuencia de pagos.
-
-## Perspectiva GRC
-
-Este tipo de fraude existe desde antes del correo electrónico. La IA lo hace más difícil de detectar visualmente — las facturas falsas ahora son casi indistinguibles de las reales. La defensa no es técnica.
-
-La defensa es un proceso: ninguna factura inesperada activa un pago sin verificación por un canal diferente al que llegó la factura.
-
-## Recomendaciones
-
-### Para personas
-
-No llamar a números de soporte incluidos en facturas no solicitadas. Si recibiste una factura que no esperabas, verificar directamente en la plataforma oficial — no a través del correo. Ningún proceso legítimo de Amazon, PayPal o Mercado Pago requiere que instales software para resolver un cargo.
-
-### Para organizaciones
-
-Establecer como política que cualquier factura no esperada — independientemente del monto — se verifica por un canal distinto al correo antes de cualquier acción de pago. No es un control técnico. Es un proceso de dos pasos que cualquier equipo puede implementar hoy.
-
----
-
-El fraude por factura falsa destruye el equivalente a años de margen operativo en minutos. La defensa no requiere tecnología. Requiere que todos en la organización sepan que "verificar por otro canal" no es burocracia — es el control.
+Para organizaciones sin ese proceso, el fraude puede consumir el equivalente a meses de margen operativo en minutos.

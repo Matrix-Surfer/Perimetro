@@ -149,3 +149,44 @@ RADAR no es un feed de noticias comentadas. Es una capa de inteligencia anticipa
 Una semana con 2-3 items de RADAR bien construidos es mejor que 10 items que parecen noticias con pregunta retórica al final.
 
 Si más del 20% de los candidatos a RADAR pasan los 4 filtros, probablemente los filtros no se están aplicando con rigor.
+
+---
+
+## Test de junta directiva (filtro final antes de publicar)
+
+Leer únicamente `title`, `señal`, `supuesto` y `observación`.
+
+Si un director general, director financiero o director de operaciones entiende el punto central sin leer el cuerpo del artículo, el RADAR pasó.
+
+Si necesita conocer términos de seguridad o IA para entenderlo, todavía está demasiado técnico.
+
+Si el título menciona una tecnología específica pero el cambio estructural puede explicarse sin ella, el título debe centrarse en el cambio y no en la tecnología.
+
+| | Ejemplo |
+|---|---|
+| ❌ | Anthropic expande Mythos a 150 organizaciones. |
+| ✅ | Las empresas empiezan a delegar tareas de seguridad a sistemas de IA que aún no pueden auditar completamente. |
+
+La noticia desaparece. La señal permanece.
+
+**Ejemplo que pasa:**
+```
+título:      Los agentes de IA llegan a las empresas antes de que alguien defina qué pueden hacer
+señal:       Los agentes de IA se integran en operaciones antes de que existan criterios para supervisar lo que hacen.
+supuesto:    El software hace lo que le pedimos — nada más, nada inesperado.
+observación: Qué agentes de IA están operando en la organización, a qué sistemas tienen acceso, y si existe algún registro de lo que hacen.
+```
+
+---
+
+## Arquitectura editorial — las tres capas de Perímetro
+
+| Sección  | Pregunta central                                       | Produce                 |
+|----------|--------------------------------------------------------|-------------------------|
+| ALERTAS  | ¿Qué debo verificar hoy?                               | Atención inmediata      |
+| RADAR    | ¿Qué debería empezar a observar?                       | Vigilancia estratégica  |
+| ANÁLISIS | ¿Qué supuesto estoy dando por cierto sin cuestionarlo? | Cambio de modelo mental |
+
+RADAR existe en el medio: después de la urgencia operativa (ALERTAS) y antes de la comprensión profunda (ANÁLISIS). Su función es anticipar lo que todavía no es urgente pero pronto lo será.
+
+La diferencia no es el tema — es el valor que recibe el lector en cada sección.

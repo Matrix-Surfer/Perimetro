@@ -1,44 +1,38 @@
 # Framework Editorial — ALERTAS
 
-## Definición
+## Propósito editorial
 
-ALERTAS responde: **¿Qué requiere atención inmediata?**
+ALERTAS responde: **¿Qué necesita verificar hoy una persona u organización debido a este evento?**
 
-Un item de ALERTAS siempre termina con algo verificable hoy. Si termina con "¿qué significa esto para el futuro?", es RADAR. Si termina con "¿qué debo revisar hoy?", es ALERTA.
+Esa es la pregunta correcta. No "¿qué pasó?" ni "¿qué riesgo existe?" — sino qué acción de verificación concreta existe hoy como consecuencia del evento.
 
----
+| Sección  | Pregunta central                                       | Produce                  |
+|----------|--------------------------------------------------------|--------------------------|
+| ALERTAS  | ¿Qué debo verificar hoy?                               | Atención inmediata       |
+| RADAR    | ¿Qué debería empezar a observar?                       | Vigilancia estratégica   |
+| ANÁLISIS | ¿Qué supuesto estoy dando por cierto sin cuestionarlo? | Cambio de modelo mental  |
 
-## Los 7 controles
-
-### CONTROL 1 — Test de inclusión (3 preguntas)
-
-Todo item debe poder responder las tres:
-
-```
-¿Qué ocurre?         Hecho concreto.
-¿Quién está expuesto? Usuarios, empresas, desarrolladores, administradores.
-¿Qué debe verificarse? No necesariamente corregir — pero sí revisar.
-```
-
-Si no puede responder las tres → no es ALERTA.
-
-**Ejemplo que pasa:**
-```
-¿Qué ocurre?          Android corrige zero-day explotado activamente.
-¿Quién está expuesto?  Usuarios Android sin actualizar.
-¿Qué verificar?       Estado de actualización del sistema.
-```
-
-**Ejemplo que no pasa:**
-```
-¿Qué ocurre?          "La IA cambiará la forma de trabajar."
-¿Quién está expuesto? ???
-¿Qué verificar?       No existe acción inmediata.
-```
+Si un artículo no produce una acción de verificación concreta → no es ALERTA.
 
 ---
 
-### CONTROL 2 — Categorías válidas
+## CONTROL 0 — Test de relevancia
+
+Antes de cualquier otra decisión:
+
+**¿Existe una acción de verificación razonable para la audiencia?**
+
+Si la respuesta es no → no es ALERTA.
+
+| Ejemplo | Verificación | ¿Pasa? |
+|---------|-------------|--------|
+| Campaña de facturas falsas | Si alguien recibió la factura. Si llamó. Si instaló acceso remoto. | ✅ |
+| Vulnerabilidad crítica en teléfonos VoIP | Si existen esos equipos. Si están inventariados. Si reciben actualizaciones. | ✅ |
+| Empresa X presentó nuevo modelo de IA | ¿Qué verifico hoy? Nada. | ❌ No es ALERTA |
+
+---
+
+## CONTROL 1 — Categorías válidas
 
 Solo entra si pertenece a al menos una:
 
@@ -55,7 +49,7 @@ Solo entra si pertenece a al menos una:
 
 ---
 
-### CONTROL 3 — Categorías excluidas
+## CONTROL 2 — Categorías excluidas
 
 No publicar como ALERTA:
 
@@ -69,10 +63,90 @@ No publicar como ALERTA:
 
 ---
 
-### CONTROL 4 — Schema obligatorio
+## CONTROL 3 — Lenguaje ciudadano
+
+Perímetro no escribe para CISOs. Escribe para directores, administradores, dueños de negocio y profesionales no técnicos.
+
+**Todo término técnico debe cumplir una de tres condiciones:**
+
+**Opción A — No usarlo.**
+Si el significado puede transmitirse sin el término, eliminarlo.
+
+**Opción B — Sustituirlo.**
+
+| ❌ Jerga técnica | ✅ Lenguaje ciudadano |
+|---|---|
+| Malware | Programa malicioso |
+| Ransomware | Secuestro de información |
+| Phishing | Engaño por correo o mensaje falso |
+| Credential theft / credenciales | Robo de accesos / usuario y contraseña |
+| Endpoint | Equipo de trabajo |
+| Exploit | Ataque que aprovecha una falla |
+| Backdoor | Acceso oculto no autorizado |
+| Acceso remoto | Control del equipo desde otra ubicación |
+| Autenticación | Verificación de identidad / inicio de sesión |
+| Propiedades digitales | Sitios web, canales, aplicaciones y cuentas publicitarias |
+| Dominio oficial del servicio | La dirección web oficial del servicio |
+| Google Workspace | El correo corporativo y los documentos de Google |
+| MDM | Sistema de gestión de dispositivos móviles |
+| IOC / indicador de compromiso | Señal de que el equipo pudo haber sido afectado |
+
+**Opción C — Explicarlo la primera vez.**
+
+> Un backdoor (acceso oculto que permite entrar al equipo sin autorización)...
+
+Después de la primera explicación, puede usarse el término.
+
+**Nota sobre titulares:** Describir el comportamiento o riesgo, no la tecnología. "Correos con falsas amenazas legales buscan tomar control de cuentas de Google" funciona mejor que "Campaña de phishing usa avisos falsos de copyright para robo de credenciales". El primero lo entiende un director administrativo. El segundo requiere formación técnica.
+
+---
+
+## CONTROL 4 — Test de comprensión
+
+Leer solamente el `title` y el `resumen`. Preguntarse:
+
+**¿Un gerente administrativo o director de área entiende el riesgo sin conocimiento técnico?**
+
+Si no → reescribir antes de continuar.
+
+---
+
+## CONTROL 5 — Estructura editorial del cuerpo
+
+```markdown
+## Qué ocurrió
+[1 párrafo. Solo hechos. Sin análisis ni especulación.]
+
+## Quién está expuesto
+[Personas, organizaciones o ambos. Específico — no "todos".]
+
+## Qué verificar
+[No es un playbook técnico. Es una validación operativa.
+ Preguntas concretas que alguien puede responder hoy.]
+
+## Impacto potencial
+[Qué podría ocurrir si aplica y no se verifica.]
+```
+
+---
+
+## CONTROL 6 — Test de eliminación
+
+Eliminar cualquier párrafo que describa la tecnología, el CVE, el exploit o el malware con detalle técnico si esa información no cambia lo que el lector debe verificar.
+
+| ❌ Sobra | ✅ Sirve |
+|---|---|
+| "La vulnerabilidad es una falla de deserialización insegura en el componente X." | "Un atacante podría obtener acceso al sistema sin autorización." |
+
+**La regla:** si el párrafo desaparece y la sección `## Qué verificar` sigue siendo válida, el párrafo sobraba.
+
+---
+
+## CONTROL 7 — Schema obligatorio
 
 ```yaml
 title:         # Titular del incidente — claro, factual, en español
+               # Nombra el mecanismo o patrón, no la marca involucrada
 date:          # "YYYY-MM-DD" (con comillas, z.string())
 source:        # Fuente original
 link:          # URL del artículo
@@ -106,43 +180,26 @@ impacto:      # Qué podría pasar si no se verifica — una frase
 
 ---
 
-### CONTROL 5 — Estructura editorial del cuerpo
+## CONTROL 8 — Test del administrador ocupado
 
-```markdown
-## Qué ocurrió
-[1 párrafo. Solo hechos. Sin análisis ni especulación.]
+Si una persona tiene dos minutos para leer la alerta, ¿puede entender:
 
-## Quién está expuesto
-[Personas, organizaciones o ambos. Específico — no "todos".]
+1. Qué pasó.
+2. Si le afecta.
+3. Qué debe verificar.
 
-## Qué verificar
-[No es un playbook técnico. Es una validación operativa.
- Preguntas concretas que alguien puede responder hoy.]
+...sin conocer términos técnicos?
 
-## Impacto potencial
-[Qué podría ocurrir si aplica y no se verifica.]
-```
+Si la respuesta es sí → la alerta está lista.
 
 ---
 
-### CONTROL 6 — Regla de lenguaje
+## CONTROL 9 — Formato Twitter/X
 
-ALERTAS usa verbos operativos. No reflexivos.
-
-**Verbos de ALERTA:** Verifique, Revise, Actualice, Confirme, Identifique, Rote, Desactive, Valide
-
-**Verbos de RADAR:** Observe, Monitoree, Evalúe, Cuestione, Considere
-
-Si el cierre del artículo usa verbos de RADAR → reclasificar o reencuadrar.
-
----
-
-### CONTROL 7 — Formato Twitter/X
-
-Formula fija:
+Fórmula fija:
 
 ```
-🚨 [Qué ocurrió]
+🚨 [Qué ocurrió — patrón, no marca]
 
 [Quién podría estar afectado]
 
@@ -155,28 +212,29 @@ jsilva.io/alertas/[slug]
 
 **Ejemplo correcto:**
 ```
-🚨 Android corrige una vulnerabilidad explotada activamente.
+🚨 Facturas inesperadas. Montos alarmantes. Un número de soporte para "cancelar".
 
-Los dispositivos sin actualizar siguen expuestos.
+Ese es el fraude. La llamada termina en una transferencia o en el control remoto de tu equipo.
 
-Si utiliza Android, verifique el estado de actualización del sistema.
+Verifique cualquier factura inesperada por un canal distinto al correo donde llegó.
 
-jsilva.io/alertas/...
+jsilva.io/alertas/facturas-falsas-amazon-paypal-campana-activa
 
 #AlertaPerímetro
 ```
 
-**Lo que no debe aparecer en un tweet de ALERTA:**
+**No debe aparecer en un tweet de ALERTA:**
 - Preguntas retóricas ("¿Está preparado?")
 - Reflexión estratégica ("Esto representa un cambio en...")
-- Análisis de implicaciones futuras
+- Nombres de marcas en el mensaje principal cuando el patrón puede explicarse sin ellas
 
 ---
 
 ## Regla de oro
 
-> **"¿Qué significa esto para el futuro?" → RADAR**
-> **"¿Qué debo revisar hoy?" → ALERTA**
+> **"¿Qué necesita verificar hoy una persona u organización debido a este evento?"**
+>
+> Si no hay respuesta concreta → no es ALERTA.
 
 ---
 

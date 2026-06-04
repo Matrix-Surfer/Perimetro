@@ -100,19 +100,32 @@ async function enrichRadarFile(content) {
 
   const prompt = `Eres editor de inteligencia anticipatoria en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
-AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No pentesters ni arquitectos cloud.
+AUDIENCIA: Director general, director financiero, director de operaciones, dueño de MiPyME. No CISOs ni especialistas técnicos. El lector entiende negocios, no ciberseguridad.
 
-REGLA DE LENGUAJE: Si usas un término técnico, explícalo entre paréntesis la primera vez. Prefiere lenguaje cotidiano: usa "equipos" en lugar de "endpoints", "programa malicioso" en lugar de "malware", "actualización de seguridad" en lugar de "patch". Si el lector necesita buscar un término en Google, el texto no está terminado.
+TEST DE JUNTA DIRECTIVA: Los cuatro campos que vas a generar (señal, supuesto, observación, context) deben poder leerse juntos y ser completamente comprensibles para un director general sin formación técnica. Si necesita conocer términos de seguridad o IA para entenderlos, están demasiado técnicos.
 
-Un ítem de RADAR no es una noticia. Es una señal de cambio estructural que indica qué supuesto está dejando de ser válido y qué debería empezar a observarse.
+PROPÓSITO: Un ítem de RADAR no es una noticia. Es una señal de cambio estructural que indica qué supuesto está dejando de ser válido y qué debería empezar a observarse. La señal debe sobrevivir 30 días — si la noticia desaparece mañana, la señal sigue siendo relevante.
 
-Dado el título y contenido, responde con un JSON con exactamente estos campos:
+REGLA DE TÍTULO: Si el título menciona una tecnología específica pero el cambio estructural puede explicarse sin ella, el título debe centrarse en el cambio. "Las empresas empiezan a delegar tareas de seguridad a sistemas de IA que aún no pueden auditar" es mejor que "Anthropic expande Mythos a 150 organizaciones".
+
+REGLA DE LENGUAJE — RADAR opera un nivel arriba del incidente:
+- Casi nunca usar términos técnicos. Si es inevitable, usar el equivalente en lenguaje de negocio.
+- "manipulación de instrucciones" en lugar de "prompt injection"
+- "mecanismos para eludir restricciones" en lugar de "jailbreak"
+- "qué pueden hacer exactamente, a qué sistemas tienen acceso" en lugar de "qué permisos tienen"
+- "decisión de gestión pendiente" en lugar de "problema de gobernanza"
+- "el sistema tomó decisiones inesperadas" en lugar de "comportamiento emergente"
+- El supuesto debe ser inmediato y claro, como: "El software hace lo que le pedimos — nada más, nada inesperado."
+
+ESTRUCTURA DE CIERRE: El campo "observación" y el cierre de "context" deben ser observaciones estratégicas, nunca instrucciones operativas. Verbos de RADAR: observe, monitoree, evalúe, cuestione, considere. Nunca: actualice, parchee, configure, implemente.
+
+Responde con un JSON con exactamente estos campos:
 
 {
-  "señal": "El cambio estructural en una frase. Qué está cambiando, no qué hizo la empresa.",
-  "supuesto": "La creencia que este cambio hace cuestionable. Una frase.",
-  "observación": "Qué debería empezar a vigilar una organización. Una frase. No una instrucción operativa.",
-  "context": "2-3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Sin resumir la noticia. Sin jerga sin explicar. Cierra con pregunta o reflexión sobre el supuesto, no con instrucción de acción inmediata."
+  "señal": "El cambio estructural en una frase. Qué está cambiando en el fondo, no qué hizo la empresa o el producto.",
+  "supuesto": "La creencia que este cambio hace cuestionable. Una frase directa, sin jerga. Ejemplo del tono correcto: 'El software hace lo que le pedimos — nada más, nada inesperado.'",
+  "observación": "Qué debería empezar a vigilar una organización. Una frase. No una instrucción operativa — una pregunta o indicador a seguir.",
+  "context": "2-3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Ángulo de riesgo para la organización. Sin resumir la noticia. Sin jerga sin explicar. Cierra con observación o pregunta estratégica — nunca con instrucción de acción inmediata."
 }
 
 Reglas adicionales:
@@ -146,23 +159,38 @@ async function enrichAlertaFile(content) {
 
   const prompt = `Eres editor de inteligencia operativa en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
-AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No especialistas técnicos.
+AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No especialistas técnicos. El lector entiende negocios, riesgo y dinero — no protocolos ni vulnerabilidades.
 
-REGLA DE LENGUAJE OBLIGATORIA:
-- Si usas un término técnico, explícalo entre paréntesis. Ejemplo: "ejecución remota de código (tomar control del sistema a distancia)".
-- Reemplaza jerga cuando sea posible: "equipos" por "endpoints", "programa malicioso" por "malware", "actualización de seguridad" por "patch", "usuarios y contraseñas" por "credenciales", "robo de información" por "exfiltración".
-- Nunca asumas que el lector conoce: CVE, OAuth, RCE, NTLM, EDR, token, API, SDK, JWT, RAT, APT, MFA, SSO.
-- Si el lector necesita buscar un término en Google, el texto no está terminado.
+PROPÓSITO DE UNA ALERTA: Responder exactamente esta pregunta — ¿qué necesita verificar hoy una persona u organización debido a este evento? No "¿qué pasó?" ni "¿qué riesgo existe?" — sino qué acción de verificación concreta existe hoy.
 
-Una ALERTA responde: ¿qué ocurre?, ¿quién está expuesto?, ¿qué debe verificarse?
+TEST DEL ADMINISTRADOR OCUPADO: El resumen debe permitir que alguien con dos minutos entienda qué pasó, si le afecta, y qué debe verificar — sin conocer ningún término técnico.
 
-Dado el título y contenido, responde con un JSON con exactamente estos campos:
+REGLA DE TÍTULOS: El titular nombra el mecanismo o patrón del ataque — no las marcas involucradas. "Correos con falsas amenazas legales buscan tomar control de cuentas de Google" es mejor que "Campaña de phishing usa avisos falsos de copyright para robo de credenciales". Las marcas pueden aparecer en el cuerpo, no deben dominar el titular.
+
+SUSTITUCIONES OBLIGATORIAS — nunca usar la columna izquierda, siempre la derecha:
+- malware / ransomware → programa malicioso / secuestro de información
+- phishing → engaño por correo o mensaje falso
+- credenciales → usuario y contraseña / datos de acceso
+- endpoint → equipo de trabajo
+- acceso remoto → control del equipo desde otra ubicación
+- autenticación / MFA → verificación de identidad / doble verificación al iniciar sesión
+- propiedades digitales → sitios web, canales, aplicaciones y cuentas publicitarias
+- dominio oficial → la dirección web oficial del servicio
+- Google Workspace → el correo corporativo y los documentos de Google
+- MDM → sistema de gestión de dispositivos móviles
+- CVE, RCE, NTLM, EDR, JWT, RAT, APT, SSO, IOC, OAuth → eliminar o reemplazar con descripción del impacto
+
+NUNCA ASUMIR que el lector conoce: CVE, RCE, NTLM, EDR, token, API, SDK, JWT, RAT, APT, SSO, IOC, OAuth, XSS, SQLi, IDOR, SSRF, CSRF.
+
+COMPORTAMIENTO VS TECNOLOGÍA: En lugar de explicar cómo funciona el ataque técnicamente, describir el comportamiento que el lector debe reconocer. "La urgencia es parte del engaño. Cuando un correo exige actuar de inmediato para evitar una sanción, conviene detenerse" es mejor que "La señal universal: ningún proceso legítimo exige verificar identidad fuera del dominio oficial".
+
+Responde con un JSON con exactamente estos campos:
 
 {
-  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje cotidiano. Sin jerga sin explicar. En español. Máximo 220 caracteres.",
-  "expuestos": "Quién está expuesto — específico y en lenguaje simple. No 'usuarios de Android' sino 'personas con teléfonos Android sin actualizar'. Una frase.",
-  "verificacion": "Qué debe verificarse — concreto y accionable. No 'revisar CVE' sino 'confirmar que los teléfonos tienen instalada la actualización de seguridad más reciente'. Una frase.",
-  "impacto": "Qué podría ocurrir si aplica y no se verifica — en lenguaje de consecuencia de negocio. No 'RCE' sino 'un atacante podría tomar control del equipo o acceder a información almacenada'. Una frase."
+  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje cotidiano. Sin jerga. Máximo 220 caracteres.",
+  "expuestos": "Quién está expuesto — específico y concreto. No 'usuarios de Android' sino 'personas con teléfonos Android que no han instalado la actualización de junio 2026'. Una frase.",
+  "verificacion": "Qué debe verificarse hoy — acción concreta que cualquiera puede hacer. No 'revisar CVE' sino 'confirmar que los teléfonos del equipo tienen instalada la actualización de seguridad de junio'. Una frase.",
+  "impacto": "Qué podría ocurrir si aplica y no se verifica — consecuencia de negocio, no técnica. No 'RCE' sino 'un atacante podría tomar control del equipo o acceder a información de la organización'. Una frase."
 }
 
 Reglas adicionales:
@@ -219,8 +247,8 @@ async function processDir(dir, enrichFn, label) {
 
 async function main() {
   if (!API_KEY) {
-    console.error('\nError: GEMINI_API_KEY no configurada.');
-    console.error('Uso: GEMINI_API_KEY=... node scripts/enrich-drafts.js\n');
+    console.error('\nError: ANTHROPIC_API_KEY no configurada.');
+    console.error('Uso: ANTHROPIC_API_KEY=... node scripts/enrich-drafts.js\n');
     process.exit(1);
   }
 
