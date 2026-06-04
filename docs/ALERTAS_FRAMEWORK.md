@@ -222,34 +222,36 @@ Si la respuesta es sí → la alerta está lista.
 
 ## CONTROL 9 — Formato Twitter/X
 
-Fórmula fija:
+Ver referencia completa en [`docs/SOCIAL_MEDIA.md`](SOCIAL_MEDIA.md).
+
+Reglas clave para ALERTAS:
+
+- Sin emojis — consistente con el tono editorial
+- Sin hashtags
+- Lidera con la consecuencia de negocio, no con el nombre técnico
+- Link al final, separado del cuerpo
+- Texto máximo ~245 caracteres (Twitter reserva ~23 para el URL)
 
 ```
-🚨 [Qué ocurrió — patrón, no marca]
-
-[Quién podría estar afectado]
-
-[Qué debe verificarse]
+[Consecuencia o hecho concreto en 1-2 oraciones.]
+[Contexto mínimo para que tenga sentido.]
+[Dato o señal que justifica leer más.]
 
 jsilva.io/alertas/[slug]
-
-#AlertaPerímetro
 ```
 
 **Ejemplo correcto:**
 ```
-🚨 Facturas inesperadas. Montos alarmantes. Un número de soporte para "cancelar".
+VS Code tiene una falla sin parche. Un clic entrega todos los repositorios del desarrollador al atacante.
 
-Ese es el fraude. La llamada termina en una transferencia o en el control remoto de tu equipo.
+Código fuente, contraseñas almacenadas, claves de producción.
+El código de ataque ya es público.
 
-Verifique cualquier factura inesperada por un canal distinto al correo donde llegó.
-
-jsilva.io/alertas/facturas-falsas-amazon-paypal-campana-activa
-
-#AlertaPerímetro
+jsilva.io/alertas/vs-code-vulnerability-allows-one-click-github-token-theft
 ```
 
 **No debe aparecer en un tweet de ALERTA:**
+- Emojis ni hashtags
 - Preguntas retóricas ("¿Está preparado?")
 - Reflexión estratégica ("Esto representa un cambio en...")
 - Nombres de marcas en el mensaje principal cuando el patrón puede explicarse sin ellas

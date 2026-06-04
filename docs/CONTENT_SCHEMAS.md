@@ -115,11 +115,14 @@ publicacion: "published"
 [1 párrafo. Solo hechos. Sin análisis ni especulación.]
 
 ## Quién está expuesto
-### Personas
-### Organizaciones
+### Para personas
+### Para organizaciones
 
-## Qué verificar
-[Acciones concretas. No playbook técnico.]
+## A considerar
+[Opcional. Solo si aporta indicadores de compromiso observables,
+ mitigaciones temporales o decisiones de gestión derivadas del incidente.
+ Si eliminarla no hace perder información útil, se omite.
+ Ver regla completa en ALERTAS_FRAMEWORK.md]
 
 ## Impacto potencial
 [Consecuencia de negocio si aplica y no se verifica.]
@@ -195,7 +198,8 @@ Nombre del archivo sin `.md`. Kebab-case sin acentos.
 
 | Valor | Quién lo asigna | Comportamiento |
 |---|---|---|
-| `draft` | `generate-drafts.js` | Oculto — pendiente de enriquecimiento |
-| `review` | `enrich-drafts.js` | Oculto — pendiente de aprobación humana |
-| `published` | `publish.js` | Visible públicamente |
-| `rejected` | `publish.js` | Oculto permanentemente |
+| `draft` | `generate-drafts.js` | Oculto — pendiente de normalización GRC |
+| `normalized` | `normalize-risk.js` | Oculto — campos GRC inyectados, pendiente de enriquecimiento editorial |
+| `review` | `enrich-drafts.js` (o manual) | Oculto — pendiente de aprobación humana |
+| `published` | `publish.js` (o manual) | Visible públicamente |
+| `rejected` | `publish.js` (o manual) | Oculto permanentemente |
