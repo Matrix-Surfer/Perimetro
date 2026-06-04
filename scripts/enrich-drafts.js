@@ -30,11 +30,13 @@ function setField(content, field, value) {
 }
 
 function isDraft(content) {
-  return /publicacion:\s*["']draft["']/.test(content);
+  return /publicacion:\s*["'](draft|normalized)["']/.test(content);
 }
 
 function markReview(content) {
   return content
+    .replace(/publicacion:\s*"normalized"/, 'publicacion: "review"')
+    .replace(/publicacion:\s*'normalized'/, 'publicacion: "review"')
     .replace(/publicacion:\s*"draft"/, 'publicacion: "review"')
     .replace(/publicacion:\s*'draft'/, 'publicacion: "review"');
 }
@@ -102,6 +104,19 @@ async function enrichRadarFile(content) {
   const title   = getField(content, 'title');
   const source  = getBody(content).slice(0, 1200);
 
+  const grcCambio    = getField(content, 'grc_cambio');
+  const grcParadigma = getField(content, 'grc_paradigma');
+  const grcHorizonte = getField(content, 'grc_horizonte');
+  const grcConfianza = getField(content, 'grc_confianza');
+
+  const grcSection = grcCambio
+    ? `\nFICHA GRC (extracción estructurada previa — úsala como base, no la inventes):
+- Cambio estructural: ${grcCambio}
+- Paradigma afectado: ${grcParadigma}
+- Horizonte: ${grcHorizonte}
+- Confianza en la fuente: ${grcConfianza}\n`
+    : '';
+
   const prompt = `Eres editor de inteligencia anticipatoria en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
 AUDIENCIA: Director general, director financiero, director de operaciones, dueño de MiPyME. No CISOs ni especialistas técnicos. El lector entiende negocios, no ciberseguridad.
@@ -150,7 +165,7 @@ Reglas adicionales:
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Contenido fuente: ${source}`;
+${grcSection}Contenido fuente: ${source}`;
 
   const raw = await callLLM(prompt, 1000);
 
@@ -171,6 +186,23 @@ Contenido fuente: ${source}`;
 async function enrichAlertaFile(content) {
   const title   = getField(content, 'title');
   const source  = getBody(content).slice(0, 1200);
+
+  const grcActivo     = getField(content, 'grc_activo');
+  const grcVector     = getField(content, 'grc_vector');
+  const grcCondicion  = getField(content, 'grc_condicion');
+  const grcExplot     = getField(content, 'grc_explotacion');
+  const grcAlcance    = getField(content, 'grc_alcance');
+  const grcConfianza  = getField(content, 'grc_confianza');
+
+  const grcSection = grcActivo
+    ? `\nFICHA GRC (extracción estructurada previa — úsala como base, no la inventes):
+- Activo en riesgo: ${grcActivo}
+- Vector: ${grcVector}
+- Condición: ${grcCondicion}
+- Explotación: ${grcExplot}
+- Alcance técnico: ${grcAlcance}
+- Confianza en la fuente: ${grcConfianza}\n`
+    : '';
 
   const prompt = `Eres editor de inteligencia operativa en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
@@ -229,7 +261,7 @@ Reglas adicionales:
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Contenido fuente: ${source}`;
+${grcSection}Contenido fuente: ${source}`;
 
   const raw = await callLLM(prompt, 1400);
 

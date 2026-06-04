@@ -13,8 +13,9 @@ const STEPS = [
   { label: 'fetch-rss',  cmd: 'node scripts/fetch-rss.js' },
   { label: 'classify',   cmd: 'node scripts/classify-rss.js' },
   { label: 'generate',   cmd: 'node scripts/generate-drafts.js' },
-  { label: 'enrich',     cmd: 'node scripts/enrich-drafts.js', requiresKey: true },
-  { label: 'publish',    cmd: 'node scripts/publish.js',       interactive: true },
+  { label: 'normalize',  cmd: 'node scripts/normalize-risk.js',  requiresKey: true },
+  { label: 'enrich',     cmd: 'node scripts/enrich-drafts.js',   requiresKey: true },
+  { label: 'publish',    cmd: 'node scripts/publish.js',         interactive: true },
 ];
 
 console.log('\nPipeline Perímetro\n');

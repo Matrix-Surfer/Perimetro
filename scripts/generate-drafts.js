@@ -114,6 +114,10 @@ señal: ""
 supuesto: ""
 observación: ""
 context: "${esc(context)}"
+grc_cambio: ""
+grc_paradigma: ""
+grc_horizonte: ""
+grc_confianza: ""
 publicacion: "draft"
 ---`;
 }
@@ -164,6 +168,12 @@ resumen: "${esc(resumen)}"
 expuestos: ""
 verificacion: ""
 impacto: ""
+grc_activo: ""
+grc_vector: ""
+grc_condicion: ""
+grc_explotacion: ""
+grc_alcance: ""
+grc_confianza: ""
 publicacion: "draft"
 ---` };
 }
