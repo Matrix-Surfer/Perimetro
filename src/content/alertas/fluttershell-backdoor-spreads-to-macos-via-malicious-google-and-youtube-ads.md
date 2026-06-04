@@ -34,11 +34,7 @@ Usuarios de Mac que hacen clic en anuncios de software en Google o YouTube y des
 
 Empresas con equipos Mac en uso cuyos empleados no tienen una política clara sobre dónde descargar software. Un Mac de trabajo comprometido puede dar acceso a sistemas corporativos y al correo de la empresa.
 
-## Qué verificar
 
-- Confirmar si hay equipos Mac en la organización.
-- Verificar que los usuarios tienen instrucción de descargar software solo desde la App Store de Apple o sitios oficiales del fabricante — no desde anuncios.
-- Si alguien descargó software recientemente siguiendo un anuncio en Google o YouTube, revisar ese equipo antes de continuar usándolo.
 
 ## Impacto potencial
 

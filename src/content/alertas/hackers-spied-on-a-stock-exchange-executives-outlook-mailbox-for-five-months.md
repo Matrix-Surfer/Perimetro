@@ -30,11 +30,6 @@ Investigadores de Symantec documentaron un caso real: atacantes mantuvieron acce
 
 Empresas cuyos directivos, socios o ejecutivos tienen información estratégica, financiera o comercial en su correo corporativo y que no cuentan con monitoreo activo de accesos anómalos en esas cuentas. No es necesario ser una bolsa de valores. Basta con tener información valiosa en el correo del director.
 
-## Qué verificar
-
-- Solicitar a TI que revise si hay sesiones activas desde ubicaciones inusuales en cuentas de correo de directivos.
-- Si se usa Microsoft 365, verificar si hay aplicaciones de terceros con acceso delegado al correo o reglas de reenvío automático no autorizadas.
-- Confirmar que el sistema de correo registra inicios de sesión y que alguien revisa esos registros periódicamente.
 
 ## Impacto potencial
 
