@@ -33,8 +33,18 @@ src/content/radar/              src/content/alertas/
   publicacion: "draft"            publicacion: "draft"
         |
         v
+scripts/normalize-risk.js
+  (extrae ficha GRC estructurada via Anthropic API, temp. 0.1)
+        |
+        v
+src/content/radar/              src/content/alertas/
+  publicacion: "normalized"       publicacion: "normalized"
+  grc_cambio/paradigma/…          grc_activo/vector/…
+  (+ nivelAtencion derivado de grc_explotacion)
+        |
+        v
 scripts/enrich-drafts.js
-  (mejora context/resumen via Anthropic API)
+  (genera narrativa editorial usando la ficha GRC como base)
         |
         v
 src/content/radar/              src/content/alertas/
@@ -57,12 +67,7 @@ git push → Cloudflare Pages (publicación automática)
 
 ## Ejecución
 
-**Pipeline completo (con enriquecimiento LLM):**
-```bash
-ANTHROPIC_API_KEY=... node scripts/run-pipeline.js
-```
-
-**Sin API key (pasos 1-3, enrich omitido):**
+**Pipeline automático (pasos 1-3):**
 ```bash
 node scripts/run-pipeline.js
 ```
@@ -72,8 +77,9 @@ node scripts/run-pipeline.js
 node scripts/fetch-rss.js        # 1. Descargar feeds
 node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
 node scripts/generate-drafts.js  # 3. Generar drafts Markdown
-ANTHROPIC_API_KEY=... node scripts/enrich-drafts.js  # 4. Enriquecer via Anthropic
-node scripts/publish.js          # 5. Publicar ítems en revisión
+# 4. normalize-risk.js — manual hasta nuevo aviso
+# 5. enrich-drafts.js  — manual hasta nuevo aviso
+node scripts/publish.js          # 6. Publicar ítems en revisión
 ```
 
 **Validación (independiente del pipeline):**
@@ -89,8 +95,10 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 
 El pipeline corre **manualmente**. El cron del sistema está desactivado.
 
+Los pasos `normalize-risk.js` y `enrich-drafts.js` se ejecutan **manualmente hasta nuevo aviso** — no forman parte del orquestador automático. `run-pipeline.js` solo ejecuta fetch → classify → generate → publish.
+
 Hoja de ruta:
-- **Próximo:** migrar `enrich-drafts.js` de Gemini a Anthropic API (`claude-haiku-4-5`)
+- **Futuro:** reintegrar normalize + enrich al orquestador cuando se defina el modelo de costo/automatización
 - **Futuro:** evaluar n8n para orquestación visual del pipeline completo
 
 ---
@@ -99,11 +107,12 @@ Hoja de ruta:
 
 | Script | Entrada | Salida |
 |---|---|---|
-| `scripts/run-pipeline.js` | — | Ejecuta los 5 pasos en secuencia |
+| `scripts/run-pipeline.js` | — | Ejecuta los 6 pasos en secuencia |
 | `scripts/fetch-rss.js` | `data/sources/rss_sources.json` | `inbox/rss/*.json` |
 | `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas,discard}/` |
 | `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
-| `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con `context`/`resumen` mejorados y `publicacion: "review"` |
+| `scripts/normalize-risk.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con campos `grc_*` inyectados y `publicacion: "normalized"` |
+| `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "normalized"` | Mismos archivos con narrativa editorial completa y `publicacion: "review"` |
 | `scripts/publish.js` | `src/content/**/*.md` con `publicacion: "review"` | Mismos archivos con `publicacion: "published"` o `"rejected"` |
 | `scripts/validate-content.js` | `src/content/{radar,alertas}/*.md` | Reporte de errores en campos obligatorios |
 
@@ -178,29 +187,54 @@ Todos los drafts salen con `publicacion: "draft"` y secciones marcadas como "Pen
 
 ---
 
+## Normalización GRC (normalize-risk.js)
+
+Primer paso LLM del pipeline. Extrae una ficha GRC estructurada de cada draft antes de la narrativa editorial.
+
+**Requiere:** variable de entorno `ANTHROPIC_API_KEY`. Temperatura: 0.1 (extracción, no generación).
+
+**Radar extrae:**
+- `grc_cambio` — qué está cambiando estructuralmente
+- `grc_paradigma` — qué supuesto queda obsoleto
+- `grc_horizonte` — `semanas | meses | años`
+- `grc_confianza` — `alta | media | baja`
+
+**Alertas extrae:**
+- `grc_activo` — sistema o dato en riesgo
+- `grc_vector` — método de explotación
+- `grc_condicion` — qué necesita el atacante para que aplique
+- `grc_explotacion` — `activa | poc_publica | investigacion`
+- `grc_alcance` — quién está técnicamente expuesto
+- `grc_confianza` — `alta | media | baja`
+
+**Derivación automática:** `nivelAtencion` se infiere desde `grc_explotacion`:
+- `activa` → `Alto` (el editor puede escalar a Crítico si el alcance lo justifica)
+- `poc_publica` → `Medio`
+- `investigacion` → `Bajo`
+
+**Output:** archivos procesados quedan con `publicacion: "normalized"`. Solo procesa archivos con `publicacion: "draft"`.
+
+---
+
 ## Enriquecimiento editorial (enrich-drafts.js)
 
-Llama a la API de Anthropic para mejorar los campos editoriales clave de cada draft.
+Segundo paso LLM del pipeline. Genera la narrativa editorial usando la ficha GRC como base.
 
 **Requiere:** variable de entorno `ANTHROPIC_API_KEY`. Modelo: `claude-haiku-4-5`.
 
 **Variables de entorno opcionales:**
-- `ANTHROPIC_MODEL` — override del modelo (default: `claude-haiku-4-5`)
+- `ANTHROPIC_MODEL` — override del modelo (default: `claude-haiku-4-5-20251001`)
 
-**Radar:** reescribe el campo `context` respondiendo una sola pregunta: ¿qué cambia en cómo esta empresa gestiona su tecnología o toma decisiones? Tono staccato, enfoque GRC, sin resumir la noticia.
+**Radar genera:** campos `señal`, `supuesto`, `observación`, `context` y cuerpo completo (3 secciones: La señal / El supuesto que se rompe / Qué observar). Tono staccato, lenguaje de directivo — nunca instrucciones operativas.
 
-**Alertas:** reescribe el campo `resumen` en lenguaje de negocio, enfocado en qué pierde o arriesga la empresa. Traduce el título al español. El formato de las secciones de Recomendaciones sigue el estándar documentado en `EDITORIAL_GUIDE.md`:
-- Vulnerabilidades técnicas → instrucciones delegables ("Solicitar a TI que...")
-- Brechas de consumidor → pasos directos en segunda persona
-- Campañas activas → mixto (acción personal primero, gobernanza después)
+**Alertas genera:** campos `resumen`, `expuestos`, `verificacion`, `impacto` y cuerpo completo (4 secciones: Qué ocurrió / Quién está expuesto / Qué verificar / Impacto potencial). Lenguaje ciudadano — sin jerga técnica.
 
 **Reglas del LLM:**
 - No inventa datos ni información nueva
 - Ritmo staccato: oraciones cortas, un concepto por oración
-- Términos técnicos explicados en el mismo párrafo
-- Máximo 2-3 oraciones por campo enriquecido
+- Sin términos técnicos sin traducción
 
-**Output:** archivos procesados quedan con `publicacion: "review"`. Solo procesa archivos con `publicacion: "draft"`.
+**Output:** archivos procesados quedan con `publicacion: "review"`. Procesa archivos con `publicacion: "draft"` o `"normalized"`.
 
 **Este script no reemplaza la revisión humana.** Es una capa de claridad y síntesis antes de que el editor revise.
 
@@ -208,17 +242,16 @@ Llama a la API de Anthropic para mejorar los campos editoriales clave de cada dr
 
 ## Orquestador (run-pipeline.js)
 
-Ejecuta los cinco pasos del pipeline en orden, deteniendo en cualquier fallo:
+Ejecuta los seis pasos del pipeline en orden, deteniendo en cualquier fallo:
 
 ```
-[fetch-rss] OK
-[classify]  OK
-[generate]  OK
-[enrich]    OMITIDO (sin API key)
-[publish]   OMITIDO (modo no interactivo)
+[fetch-rss]  OK
+[classify]   OK
+[generate]   OK
+[publish]    OMITIDO (modo no interactivo)
 ```
 
-- Si no hay `ANTHROPIC_API_KEY`, el paso `enrich` se omite silenciosamente
+Los pasos `normalize` y `enrich` no están en el orquestador — se ejecutan manualmente.
 - Si hay `PIPELINE_NONINTERACTIVE=1`, el paso `publish` se omite (útil para automatización)
 
 ---

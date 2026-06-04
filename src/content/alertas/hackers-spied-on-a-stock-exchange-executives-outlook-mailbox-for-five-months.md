@@ -7,33 +7,35 @@ categoria: "Otro"
 ambito: "Organizaciones"
 nivelAtencion: "Alto"
 status: "En monitoreo"
-resumen: "Atacantes mantuvieron acceso al correo de Outlook de un ejecutivo senior de una bolsa de valores global durante cinco meses. Extrajeron mensajes en lotes pequeños via Dropbox y OneDrive para no activar alertas. El caso muestra cómo un acceso no autorizado puede sostenerse por meses sin ser detectado cuando no hay monitoreo de accesos anómalos en cuentas de alto valor."
-expuestos: "Directivos, dueños y ejecutivos con información estratégica o financiera en su correo corporativo. Organizaciones sin monitoreo de accesos anómalos."
-verificacion: "Verificar si hay sesiones activas desde ubicaciones inusuales en cuentas de correo de directivos. Confirmar que el correo corporativo registra los inicios de sesión."
-impacto: "Con acceso al correo de un directivo durante meses, un atacante puede extraer estrategia, negociaciones en curso, información financiera no pública, y datos de clientes usables para extorsión o fraude."
-grc_activo: "buzón de correo Outlook de ejecutivo senior en plataforma corporativa"
-grc_vector: "acceso no autorizado persistente con exfiltración camuflada vía servicios cloud"
-grc_condicion: "acceso inicial comprometido, sin monitoreo de sesiones anómalas en cuenta"
-grc_explotacion: "confirmada"
-grc_alcance: "directivos y ejecutivos con información estratégica en correo corporativo"
-grc_confianza: "alta"
+resumen: "Atacantes mantuvieron acceso al correo de un ejecutivo de una bolsa de valores global durante cinco meses sin ser detectados. Usaron servicios de nube para extraer mensajes sin activar alertas. Organizaciones sin monitoreo de accesos a cuentas directivas tienen el mismo riesgo."
+expuestos: "Directivos y ejecutivos con información estratégica en su correo corporativo, en organizaciones sin monitoreo de accesos anómalos."
+verificacion: "Solicitar a TI que revise si hay sesiones activas desde ubicaciones inusuales en cuentas de correo de directivos."
+impacto: "Acceso sostenido al correo de un directivo permite extraer estrategia, negociaciones, información financiera no pública y datos de clientes usables para extorsión o fraude."
+grc_activo: "buzón de correo corporativo de directivos en Microsoft 365 / Outlook"
+grc_vector: "acceso no autorizado sostenido a correo corporativo vía credenciales comprometidas"
+grc_condicion: "cuenta de directivo sin monitoreo de accesos anómalos ni revisión de sesiones activas"
+grc_explotacion: "activa"
+grc_alcance: "organizaciones cuyos directivos usan correo corporativo sin monitoreo de sesiones"
+grc_confianza: "media"
 publicacion: "published"
 ---
 
 ## Qué ocurrió
 
-Investigadores de Symantec documentaron un caso en el que un grupo de atacantes mantuvo acceso continuo al correo de Outlook de un ejecutivo senior de una bolsa de valores global durante al menos cinco meses. El método fue calculado: copiaron los mensajes en pequeños lotes y los enviaron hacia cuentas de Dropbox y OneDrive, mezclando el tráfico con la actividad normal de la nube para no activar alertas. El objetivo fue el espionaje: extracción silenciosa de información estratégica, no un robo inmediato.
+Investigadores de Symantec documentaron un caso real: atacantes mantuvieron acceso continuo al correo de Outlook de un ejecutivo senior de una bolsa de valores global durante al menos cinco meses. No fue un ataque ruidoso. Extrajeron mensajes en pequeños lotes usando Dropbox y OneDrive —servicios de almacenamiento que la empresa ya usaba— para mezclar el tráfico con actividad normal y evitar alertas. El objetivo fue el espionaje silencioso, no un robo inmediato.
 
 ## Quién está expuesto
 
-### Organizaciones
+### Para organizaciones
 
-Empresas cuyos directivos, socios o ejecutivos tienen información estratégica, financiera o comercial en su correo corporativo, y que no cuentan con monitoreo activo de accesos anómalos en esas cuentas. No es necesario ser una bolsa de valores para tener información valiosa en el correo del director.
+Empresas cuyos directivos, socios o ejecutivos tienen información estratégica, financiera o comercial en su correo corporativo y que no cuentan con monitoreo activo de accesos anómalos en esas cuentas. No es necesario ser una bolsa de valores. Basta con tener información valiosa en el correo del director.
 
 ## Qué verificar
 
-Solicitar a TI que revise si hay sesiones activas desde ubicaciones inusuales en las cuentas de correo de directivos. Si se usa Microsoft 365, revisar si hay aplicaciones de terceros con acceso delegado al correo, o reglas de reenvío automático configuradas sin autorización. Confirmar que el sistema de correo corporativo registra los inicios de sesión y que alguien revisa esos registros periódicamente.
+- Solicitar a TI que revise si hay sesiones activas desde ubicaciones inusuales en cuentas de correo de directivos.
+- Si se usa Microsoft 365, verificar si hay aplicaciones de terceros con acceso delegado al correo o reglas de reenvío automático no autorizadas.
+- Confirmar que el sistema de correo registra inicios de sesión y que alguien revisa esos registros periódicamente.
 
 ## Impacto potencial
 
-Un atacante con acceso sostenido al correo de un directivo puede extraer estrategias de negocio, detalles de negociaciones en curso, información financiera no pública, y comunicaciones con clientes o proveedores. Esa información puede usarse para extorsión, fraude, o ventaja competitiva desleal. A diferencia de un secuestro de información, el atacante no muestra su presencia —el daño puede haberse hecho mucho antes de que alguien lo note.
+Con acceso sostenido al correo de un directivo, un atacante puede extraer estrategia de negocio, detalles de negociaciones en curso, información financiera no pública, y comunicaciones con clientes o proveedores. Esa información puede usarse para extorsión, fraude, o ventaja competitiva desleal. A diferencia de un secuestro de información, el atacante no muestra su presencia — el daño puede haberse producido mucho antes de que alguien lo note.
