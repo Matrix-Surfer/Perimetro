@@ -97,44 +97,23 @@ function truncate(text, max = 220) {
 function radarFrontmatter(item) {
   const text = normalize(`${item.title} ${item.summary}`);
 
-  // categoria
-  let categoria = 'Otro';
-  if (matches(text, ['ransomware', 'encrypt', 'file-encrypting']))                          categoria = 'Malware';
-  else if (matches(text, ['phishing', 'spear phishing', 'smishing', 'credential harvest'])) categoria = 'Phishing';
-  else if (matches(text, ['fraud', 'scam', 'fake', 'counterfeit', 'impersonat']))           categoria = 'Fraude';
-  else if (matches(text, ['data breach', 'data leak', 'leak', 'breach', 'exposed']))        categoria = 'Fuga de datos';
-  else if (matches(text, ['cve-', 'vulnerability', 'zero-day', 'patch', 'exploit']))        categoria = 'Vulnerabilidad';
-  else if (matches(text, AI_KEYWORDS))                                                       categoria = 'IA';
-  else if (matches(text, ['ics', 'scada', 'ot ', 'industrial', 'plc', 'modbus']))           categoria = 'OT/ICS';
-  else if (matches(text, ['malware', 'botnet', 'trojan', 'worm', 'backdoor', 'rat ']))      categoria = 'Malware';
+  const category = matches(text, AI_KEYWORDS) ? 'AI' : 'Seguridad';
 
-  // ambito
-  const ambito = matches(text, ['consumer', 'user', 'personal', 'home', 'family', 'individual', 'phone', 'mobile'])
-    ? 'Personas'
-    : matches(text, ['enterprise', 'corporate', 'organization', 'business', 'company', 'vendor', 'supplier'])
-      ? 'Organizaciones'
-      : 'Mixto';
-
-  // nivelAtencion — empieza en Medio; se sube a Alto si hay explotación activa o criticidad
-  const nivelAtencion = matches(text, [
-    'critical', 'actively exploited', 'in the wild', 'cisa orders', 'emergency',
-    'zero-day', 'mass exploitation', 'widespread',
-  ]) ? 'Alto' : 'Medio';
-
-  const resumen = truncate(item.summary, 180);
+  let context = '';
+  for (const tmpl of CONTEXT_TEMPLATES) {
+    if (matches(text, tmpl.kw)) { context = tmpl.text; break; }
+  }
 
   return `---
 title: "${esc(item.title)}"
 pubDate: ${parseDate(item.pubDate)}
 source: "${esc(item.source)}"
 link: "${esc(item.link ?? '')}"
-categoria: "${categoria}"
-ambito: "${ambito}"
-nivelAtencion: "${nivelAtencion}"
-resumen: "${esc(resumen)}"
+category: "${category}"
 señal: ""
 supuesto: ""
 observación: ""
+context: "${esc(context)}"
 publicacion: "draft"
 ---`;
 }
@@ -164,47 +143,27 @@ function alertaFrontmatter(item) {
   else if (matches(text, ['high severity', 'high impact', 'rce', 'remote code execution', 'data breach', 'data leak', 'phishing campaign', 'active campaign', 'confirmed breach', 'hijacked', 'compromised', 'cisa adds'])) nivelAtencion = 'Alto';
   else if (matches(text, ['patch available', 'security update', 'advisory', 'low severity', 'informational'])) nivelAtencion = 'Bajo';
 
-  const parche = matches(text, ['patch available', 'security update', 'fixed in', 'patched', 'update released', 'update now'])
-    ? 'Sí'
-    : matches(text, ['no patch', 'no fix', 'unpatched', 'vendor notified', 'awaiting patch'])
-      ? 'No'
-      : 'Desconocido';
-
-  const explotacion = matches(text, ['actively exploited', 'exploited in the wild', 'in the wild', 'active exploit', 'under attack', 'active campaign'])
-    ? 'Activa'
-    : matches(text, ['poc', 'proof of concept', 'published exploit', 'cve-', 'reported exploit'])
-      ? 'Reportada'
-      : 'No confirmado';
-
   const resumen = truncate(item.summary);
 
-  // Audiencia
-  let audiencia = 'General';
-  if (matches(text, ['npm ', 'pypi', 'package manager', 'developer', 'github', 'repository', 'supply chain', 'open source', 'sdk', 'api key']))
-    audiencia = 'Desarrollo';
-  else if (matches(text, ['weblogic', 'kernel', 'linux server', 'windows server', 'oracle', 'cisco', 'fortinet', 'network appliance', 'cve-']))
-    audiencia = 'TI';
-  else if (matches(text, ['wordpress', 'woocommerce', 'plugin', 'small business', 'website owner', 'online store']))
-    audiencia = 'MiPYME';
-  else if (matches(text, ['board', 'governance', 'compliance', 'regulatory', 'ciso', 'executive', 'regulation']))
-    audiencia = 'Ejecutivo';
+  const ambito = matches(text, ['consumer', 'personal', 'home user', 'mobile user', 'individual'])
+    ? 'Personas'
+    : matches(text, ['enterprise', 'corporate', 'organization', 'business'])
+      ? 'Organizaciones'
+      : 'Mixto';
 
   return { nivelAtencion, frontmatter: `---
 title: "${esc(item.title)}"
 date: "${parseDate(item.pubDate)}"
+source: "${esc(item.source ?? '')}"
+link: "${esc(item.link ?? '')}"
 categoria: "${categoria}"
+ambito: "${ambito}"
 nivelAtencion: "${nivelAtencion}"
-ambito: "${matches(text, ['consumer', 'personal', 'home user', 'mobile user', 'individual']) ? 'Personas' : matches(text, ['enterprise', 'corporate', 'organization', 'business']) ? 'Organizaciones' : 'Mixto'}"
-audiencia: "${audiencia}"
 status: "${status}"
-parche: "${parche}"
-explotacion: "${explotacion}"
 resumen: "${esc(resumen)}"
 expuestos: ""
 verificacion: ""
 impacto: ""
-source: "${esc(item.source ?? '')}"
-link: "${esc(item.link ?? '')}"
 publicacion: "draft"
 ---` };
 }

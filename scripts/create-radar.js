@@ -8,52 +8,57 @@ import { slugify, today, esc, writeMarkdown } from './utils.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const CONTENT_DIR = join(__dirname, '..', 'src', 'content', 'radar');
 
-const CATEGORIES = ['AI', 'Seguridad', 'Otro'];
+const CATEGORIES = ['AI', 'Seguridad'];
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
 async function main() {
-  console.log('\nCrear nuevo radar item — Perimetro\n');
+  console.log('\nCrear nuevo item RADAR — Perímetro\n');
 
-  const title = await rl.question('Titulo: ');
+  const title = await rl.question('Título (nombra el cambio estructural, no la noticia): ');
   if (!title.trim()) { rl.close(); return; }
 
-  const source = await rl.question('Fuente (ej. MIT Tech Review, tldrsec): ');
+  const source = await rl.question('Fuente: ');
+  const link   = await rl.question('Link (opcional): ');
 
-  console.log('\nCategorias disponibles:');
+  console.log('\nCategoría:');
   CATEGORIES.forEach((c, i) => console.log(`  ${i + 1}. ${c}`));
-  const catInput = await rl.question('Categoria (numero o texto libre): ');
-  const category = CATEGORIES[parseInt(catInput) - 1] ?? catInput.trim();
+  const catInput = await rl.question('Categoría (número): ');
+  const category = CATEGORIES[parseInt(catInput) - 1] ?? 'Seguridad';
 
-  const context = await rl.question('Contexto para empresas mexicanas: ');
+  const señal      = await rl.question('Señal (el cambio estructural — una frase): ');
+  const supuesto   = await rl.question('Supuesto que se rompe (una frase sin jerga): ');
+  const observación = await rl.question('Qué observar (no qué hacer — una frase): ');
 
   rl.close();
 
   const slug = slugify(title.trim());
   const date = today();
   const outputPath = join(CONTENT_DIR, `${slug}.md`);
+  const linkLine = link.trim() ? `\nlink: "${esc(link.trim())}"` : '';
 
-  // pubDate sin comillas para que YAML lo parsee como Date (requerido por z.coerce.date())
   const content = `---
 title: "${esc(title.trim())}"
 pubDate: ${date}
-source: "${esc(source.trim())}"
-category: "${esc(category)}"
-context: "${esc(context.trim())}"
+source: "${esc(source.trim())}"${linkLine}
+category: "${category}"
+señal: "${esc(señal.trim())}"
+supuesto: "${esc(supuesto.trim())}"
+observación: "${esc(observación.trim())}"
+context: ""
+publicacion: "draft"
 ---
 
-## Resumen
+## La señal
 
-Pendiente.
+## El supuesto que se rompe
 
-## Relevancia
-
-Pendiente.
+## Qué observar
 `;
 
   writeMarkdown(outputPath, content);
-  console.log(`\nRadar creado: src/content/radar/${slug}.md`);
-  console.log(`Slug: ${slug} | Fuente: ${source.trim()} | Fecha: ${date}\n`);
+  console.log(`\nRADAR creado: src/content/radar/${slug}.md`);
+  console.log(`Categoría: ${category} | Fecha: ${date}\n`);
 }
 
 main().catch((err) => { console.error(err.message); process.exit(1); });
