@@ -18,8 +18,9 @@ import { join, dirname, basename } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT = join(__dirname, '..');
-const BASE_URL = 'https://jsilva.io';
+const ROOT      = join(__dirname, '..');
+const TWEETS_DIR = join(ROOT, 'tweets');
+const BASE_URL  = 'https://jsilva.io';
 
 const URL_T_LENGTH = 23; // Twitter cuenta URLs como 23 chars (t.co)
 const MAX_TWEET    = 280;
@@ -186,9 +187,9 @@ async function main() {
     bloques.push(`[${seccion.toUpperCase()}] ${slug}\nCaracteres: ${chars}/${MAX_TWEET}\n\n${tweet}`);
   }
 
-  const outFile = join(ROOT, `tweets-${fecha}.txt`);
+  const outFile = join(TWEETS_DIR, `tweets-${fecha}.txt`);
   await writeFile(outFile, bloques.join('\n\n' + '─'.repeat(60) + '\n\n'), 'utf8');
-  console.log(`\n${todos.length} tweets guardados en tweets-${fecha}.txt\n`);
+  console.log(`\n${todos.length} tweets guardados en tweets/tweets-${fecha}.txt\n`);
 }
 
 main().catch(err => { console.error(err.message); process.exit(1); });
