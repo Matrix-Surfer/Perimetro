@@ -44,16 +44,20 @@ function getBody(content) {
   return end !== -1 ? content.slice(end + 5).trim() : '';
 }
 
-// --- LLM (Google Gemini) ---
+function setBody(content, newBody) {
+  const end = content.indexOf('\n---\n', 4);
+  if (end === -1) return content + '\n\n' + newBody + '\n';
+  return content.slice(0, end + 5) + newBody + '\n';
+}
 
-// gemini-2.5-flash: 10 RPM → 6s mínimo. gemini-2.0-flash: 15 RPM → 4s mínimo.
-// Usamos 5s como margen conservador para ambos modelos.
+// --- LLM ---
+
 const RATE_LIMIT_DELAY_MS = 5000;
 const MAX_RETRIES = 3;
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-async function callLLM(prompt) {
+async function callLLM(prompt, maxTokens = 400) {
   const url = 'https://api.anthropic.com/v1/messages';
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt++) {
@@ -66,7 +70,7 @@ async function callLLM(prompt) {
       },
       body: JSON.stringify({
         model: MODEL,
-        max_tokens: 400,
+        max_tokens: maxTokens,
         temperature: 0.3,
         messages: [{ role: 'user', content: prompt }],
       }),
@@ -96,13 +100,13 @@ async function callLLM(prompt) {
 
 async function enrichRadarFile(content) {
   const title   = getField(content, 'title');
-  const body    = getBody(content).slice(0, 800);
+  const source  = getBody(content).slice(0, 1200);
 
   const prompt = `Eres editor de inteligencia anticipatoria en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
 AUDIENCIA: Director general, director financiero, director de operaciones, dueño de MiPyME. No CISOs ni especialistas técnicos. El lector entiende negocios, no ciberseguridad.
 
-TEST DE JUNTA DIRECTIVA: Los cuatro campos que vas a generar (señal, supuesto, observación, context) deben poder leerse juntos y ser completamente comprensibles para un director general sin formación técnica. Si necesita conocer términos de seguridad o IA para entenderlos, están demasiado técnicos.
+TEST DE JUNTA DIRECTIVA: Los campos señal, supuesto, observación y context deben poder leerse juntos y ser completamente comprensibles para un director general sin formación técnica. Si necesita conocer términos de seguridad o IA para entenderlos, están demasiado técnicos.
 
 PROPÓSITO: Un ítem de RADAR no es una noticia. Es una señal de cambio estructural que indica qué supuesto está dejando de ser válido y qué debería empezar a observarse. La señal debe sobrevivir 30 días — si la noticia desaparece mañana, la señal sigue siendo relevante.
 
@@ -117,15 +121,26 @@ REGLA DE LENGUAJE — RADAR opera un nivel arriba del incidente:
 - "el sistema tomó decisiones inesperadas" en lugar de "comportamiento emergente"
 - El supuesto debe ser inmediato y claro, como: "El software hace lo que le pedimos — nada más, nada inesperado."
 
-ESTRUCTURA DE CIERRE: El campo "observación" y el cierre de "context" deben ser observaciones estratégicas, nunca instrucciones operativas. Verbos de RADAR: observe, monitoree, evalúe, cuestione, considere. Nunca: actualice, parchee, configure, implemente.
+CIERRE: observación y cuerpo cierran con observación estratégica — nunca con instrucción operativa. Verbos de RADAR: observe, monitoree, evalúe, cuestione, considere. Nunca: actualice, parchee, configure, implemente.
+
+ESTRUCTURA DEL CUERPO — tres secciones exactas, en este orden:
+## La señal
+Una o dos oraciones. El hecho desnudo. Qué está cambiando estructuralmente.
+
+## El supuesto que se rompe
+Qué creíamos que era cierto y ya no lo es. Sin jerga. Un director general debe entenderlo sin contexto adicional.
+
+## Qué observar
+No qué hacer. Qué vigilar, qué pregunta hacerse, qué indicador monitorear. Cierra con observación — nunca con instrucción de acción inmediata.
 
 Responde con un JSON con exactamente estos campos:
 
 {
-  "señal": "El cambio estructural en una frase. Qué está cambiando en el fondo, no qué hizo la empresa o el producto.",
-  "supuesto": "La creencia que este cambio hace cuestionable. Una frase directa, sin jerga. Ejemplo del tono correcto: 'El software hace lo que le pedimos — nada más, nada inesperado.'",
-  "observación": "Qué debería empezar a vigilar una organización. Una frase. No una instrucción operativa — una pregunta o indicador a seguir.",
-  "context": "2-3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Ángulo de riesgo para la organización. Sin resumir la noticia. Sin jerga sin explicar. Cierra con observación o pregunta estratégica — nunca con instrucción de acción inmediata."
+  "señal": "El cambio estructural en una frase. Qué está cambiando en el fondo, no qué hizo la empresa.",
+  "supuesto": "La creencia que este cambio hace cuestionable. Una frase directa, sin jerga. Ejemplo: 'El software hace lo que le pedimos — nada más, nada inesperado.'",
+  "observación": "Qué debería empezar a vigilar una organización. Una frase. No instrucción operativa.",
+  "context": "2-3 oraciones. Desarrolla señal + supuesto + observación. Tono staccato. Sin jerga. Cierra con observación o pregunta estratégica, nunca con instrucción.",
+  "cuerpo": "El cuerpo completo del artículo con las tres secciones (## La señal, ## El supuesto que se rompe, ## Qué observar). Usa \\n para saltos de línea. Sin instrucciones operativas en el cierre."
 }
 
 Reglas adicionales:
@@ -135,39 +150,39 @@ Reglas adicionales:
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Contenido: ${body}`;
+Contenido fuente: ${source}`;
 
-  const raw = await callLLM(prompt);
+  const raw = await callLLM(prompt, 1000);
 
   try {
     const parsed = JSON.parse(raw.replace(/^```json\s*|```\s*$/g, '').trim());
     let updated = content;
-    if (parsed.señal)      updated = setField(updated, 'señal',      parsed.señal);
-    if (parsed.supuesto)   updated = setField(updated, 'supuesto',   parsed.supuesto);
+    if (parsed.señal)       updated = setField(updated, 'señal',       parsed.señal);
+    if (parsed.supuesto)    updated = setField(updated, 'supuesto',    parsed.supuesto);
     if (parsed.observación) updated = setField(updated, 'observación', parsed.observación);
-    if (parsed.context)    updated = setField(updated, 'context',    parsed.context);
+    if (parsed.context)     updated = setField(updated, 'context',     parsed.context);
+    if (parsed.cuerpo)      updated = setBody(updated, parsed.cuerpo.replace(/\\n/g, '\n'));
     return markReview(updated);
   } catch {
-    // Si no parsea como JSON, intenta usar como context directo
     return markReview(setField(content, 'context', raw));
   }
 }
 
 async function enrichAlertaFile(content) {
   const title   = getField(content, 'title');
-  const body    = getBody(content).slice(0, 800);
+  const source  = getBody(content).slice(0, 1200);
 
   const prompt = `Eres editor de inteligencia operativa en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
 AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No especialistas técnicos. El lector entiende negocios, riesgo y dinero — no protocolos ni vulnerabilidades.
 
-PROPÓSITO DE UNA ALERTA: Responder exactamente esta pregunta — ¿qué necesita verificar hoy una persona u organización debido a este evento? No "¿qué pasó?" ni "¿qué riesgo existe?" — sino qué acción de verificación concreta existe hoy.
+PROPÓSITO: Responder exactamente esta pregunta — ¿qué necesita verificar hoy una persona u organización debido a este evento? No "¿qué pasó?" ni "¿qué riesgo existe?" — sino qué acción de verificación concreta existe hoy.
 
-TEST DEL ADMINISTRADOR OCUPADO: El resumen debe permitir que alguien con dos minutos entienda qué pasó, si le afecta, y qué debe verificar — sin conocer ningún término técnico.
+TEST DEL ADMINISTRADOR OCUPADO: Con dos minutos de lectura, el lector debe entender qué pasó, si le afecta, y qué debe verificar — sin conocer ningún término técnico.
 
-REGLA DE TÍTULOS: El titular nombra el mecanismo o patrón del ataque — no las marcas involucradas. "Correos con falsas amenazas legales buscan tomar control de cuentas de Google" es mejor que "Campaña de phishing usa avisos falsos de copyright para robo de credenciales". Las marcas pueden aparecer en el cuerpo, no deben dominar el titular.
+REGLA DE TÍTULOS: El titular nombra el mecanismo o patrón — no las marcas. "Correos con falsas amenazas legales buscan tomar control de cuentas de Google" es mejor que "Campaña de phishing usa avisos falsos de copyright para robo de credenciales".
 
-SUSTITUCIONES OBLIGATORIAS — nunca usar la columna izquierda, siempre la derecha:
+SUSTITUCIONES OBLIGATORIAS:
 - malware / ransomware → programa malicioso / secuestro de información
 - phishing → engaño por correo o mensaje falso
 - credenciales → usuario y contraseña / datos de acceso
@@ -178,19 +193,33 @@ SUSTITUCIONES OBLIGATORIAS — nunca usar la columna izquierda, siempre la derec
 - dominio oficial → la dirección web oficial del servicio
 - Google Workspace → el correo corporativo y los documentos de Google
 - MDM → sistema de gestión de dispositivos móviles
-- CVE, RCE, NTLM, EDR, JWT, RAT, APT, SSO, IOC, OAuth → eliminar o reemplazar con descripción del impacto
+- CVE, RCE, NTLM, EDR, JWT, RAT, APT, SSO, IOC, OAuth → eliminar o reemplazar por descripción del impacto
 
-NUNCA ASUMIR que el lector conoce: CVE, RCE, NTLM, EDR, token, API, SDK, JWT, RAT, APT, SSO, IOC, OAuth, XSS, SQLi, IDOR, SSRF, CSRF.
+NUNCA asumir que el lector conoce: CVE, RCE, NTLM, EDR, token, API, SDK, JWT, RAT, APT, SSO, IOC, OAuth, XSS, SQLi.
 
-COMPORTAMIENTO VS TECNOLOGÍA: En lugar de explicar cómo funciona el ataque técnicamente, describir el comportamiento que el lector debe reconocer. "La urgencia es parte del engaño. Cuando un correo exige actuar de inmediato para evitar una sanción, conviene detenerse" es mejor que "La señal universal: ningún proceso legítimo exige verificar identidad fuera del dominio oficial".
+COMPORTAMIENTO VS TECNOLOGÍA: Describir el comportamiento que el lector debe reconocer, no cómo funciona el ataque. "La urgencia es parte del engaño. Cuando un correo exige actuar de inmediato, conviene detenerse" es mejor que "La señal universal: ningún proceso legítimo exige verificar identidad fuera del dominio oficial".
+
+ESTRUCTURA DEL CUERPO — cuatro secciones exactas, en este orden:
+## Qué ocurrió
+1 párrafo. Solo hechos. Sin análisis ni especulación.
+
+## Quién está expuesto
+Personas y organizaciones por separado con ### Para personas y ### Para organizaciones. Específico — no "todos". Lenguaje de negocio.
+
+## Qué verificar
+Acciones concretas que cualquiera puede hacer hoy. No un manual técnico. Puede ser lista con guiones.
+
+## Impacto potencial
+Qué podría ocurrir si aplica y no se verifica. Consecuencia de negocio. Puede incluir una observación de cierre que conecte con comportamiento humano, no con tecnología.
 
 Responde con un JSON con exactamente estos campos:
 
 {
-  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje cotidiano. Sin jerga. Máximo 220 caracteres.",
-  "expuestos": "Quién está expuesto — específico y concreto. No 'usuarios de Android' sino 'personas con teléfonos Android que no han instalado la actualización de junio 2026'. Una frase.",
-  "verificacion": "Qué debe verificarse hoy — acción concreta que cualquiera puede hacer. No 'revisar CVE' sino 'confirmar que los teléfonos del equipo tienen instalada la actualización de seguridad de junio'. Una frase.",
-  "impacto": "Qué podría ocurrir si aplica y no se verifica — consecuencia de negocio, no técnica. No 'RCE' sino 'un atacante podría tomar control del equipo o acceder a información de la organización'. Una frase."
+  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Sin jerga. Máximo 220 caracteres.",
+  "expuestos": "Quién está expuesto — específico. No 'usuarios de Android' sino 'personas con teléfonos Android sin la actualización de junio'. Una frase.",
+  "verificacion": "Qué verificar hoy — acción concreta. No 'revisar CVE' sino 'confirmar que los teléfonos tienen instalada la actualización de seguridad de junio'. Una frase.",
+  "impacto": "Consecuencia de negocio si aplica y no se verifica. No jerga técnica. Una frase.",
+  "cuerpo": "El cuerpo completo con las cuatro secciones (## Qué ocurrió, ## Quién está expuesto, ## Qué verificar, ## Impacto potencial). Usa \\n para saltos de línea. Lenguaje ciudadano en todo el cuerpo."
 }
 
 Reglas adicionales:
@@ -200,9 +229,9 @@ Reglas adicionales:
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
-Contenido: ${body}`;
+Contenido fuente: ${source}`;
 
-  const raw = await callLLM(prompt);
+  const raw = await callLLM(prompt, 1400);
 
   try {
     const parsed = JSON.parse(raw.replace(/^```json\s*|```\s*$/g, '').trim());
@@ -211,6 +240,7 @@ Contenido: ${body}`;
     if (parsed.expuestos)    updated = setField(updated, 'expuestos',    parsed.expuestos);
     if (parsed.verificacion) updated = setField(updated, 'verificacion', parsed.verificacion);
     if (parsed.impacto)      updated = setField(updated, 'impacto',      parsed.impacto);
+    if (parsed.cuerpo)       updated = setBody(updated, parsed.cuerpo.replace(/\\n/g, '\n'));
     return markReview(updated);
   } catch {
     return markReview(setField(content, 'resumen', raw));
