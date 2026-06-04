@@ -5,7 +5,7 @@ source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-upgrades-gpt-55-as-it-plans-to-retire-legacy-chatgpt-models/"
 category: "AI"
 context: "OpenAI anuncia mejoras en GPT-5.5 Instant y el retiro programado de modelos anteriores incluyendo o3. Para organizaciones que integran la API de OpenAI en flujos de trabajo o productos propios, el retiro de modelos es un riesgo de continuidad: las llamadas a modelos retirados dejarán de funcionar. La acción concreta: revisar qué integraciones usan modelos OpenAI y verificar si alguno está en la lista de retiro. Las migraciones de modelo requieren pruebas de comportamiento, no solo un cambio de parámetro."
-publicacion: "published"
+publicacion: "rejected"
 ---
 
 OpenAI anunció mejoras al modelo GPT-5.5 Instant y confirmó el retiro programado de varios modelos anteriores, incluyendo o3. Los modelos retirados dejan de responder peticiones en la API una vez que se alcanza la fecha de fin de vida.
