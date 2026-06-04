@@ -55,10 +55,16 @@ Creación: `node scripts/create-analysis.js`
 | `nivelAtencion` | enum | Sí | `"Bajo"` \| `"Medio"` \| `"Alto"` \| `"Crítico"` |
 | `status` | enum | Sí | `"Activa"` \| `"En monitoreo"` \| `"Resuelta"` |
 | `resumen` | string | Sí | 2-3 oraciones: hecho + quién expuesto + qué verificar |
-| `publicacion` | enum | Sí | `draft` \| `review` \| `published` \| `rejected` |
+| `publicacion` | enum | Sí | `draft` \| `normalized` \| `review` \| `published` \| `rejected` |
 | `expuestos` | string | Interno | Quién está expuesto — control editorial, no se renderiza en UI |
 | `verificacion` | string | Interno | Qué verificar hoy — control editorial, no se renderiza en UI |
 | `impacto` | string | Interno | Consecuencia si no se verifica — control editorial, no se renderiza en UI |
+| `grc_activo` | string | Interno | Sistema, software o dato en riesgo — ficha GRC, no se renderiza |
+| `grc_vector` | string | Interno | Método de explotación — ficha GRC, no se renderiza |
+| `grc_condicion` | string | Interno | Qué necesita el atacante — ficha GRC, no se renderiza |
+| `grc_explotacion` | enum | Interno | `investigacion` \| `poc_publica` \| `activa` — determina `nivelAtencion` |
+| `grc_alcance` | string | Interno | Quién está técnicamente expuesto — ficha GRC, no se renderiza |
+| `grc_confianza` | enum | Interno | `alta` \| `media` \| `baja` — ficha GRC, no se renderiza |
 
 **Valores válidos para `categoria`:**
 
@@ -75,10 +81,14 @@ Creación: `node scripts/create-analysis.js`
 | `Otro` | Incidentes que no encajan en las categorías anteriores |
 
 **Criterio para `nivelAtencion`:**
-- **Crítico**: Explotación activa, sin parche, impacto masivo
-- **Alto**: Explotación confirmada o riesgo amplio
-- **Medio**: Riesgo real con mitigaciones disponibles
-- **Bajo**: Señal temprana, riesgo acotado
+
+`nivelAtencion` se deriva automáticamente de `grc_explotacion` en el paso `normalize-risk`. El valor derivado es un piso — el editor puede escalarlo si el contexto lo justifica.
+
+| `grc_explotacion` | `nivelAtencion` derivado | Cuándo escalar manualmente |
+|---|---|---|
+| `activa` | `Alto` | Escalar a `Crítico` si sin parche y alcance masivo |
+| `poc_publica` | `Medio` | Escalar a `Alto` si infraestructura crítica |
+| `investigacion` | `Bajo` | — |
 
 ```yaml
 ---

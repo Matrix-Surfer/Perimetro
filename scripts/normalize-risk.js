@@ -7,9 +7,12 @@
  * para extraer una ficha GRC estructurada (sin narrativa), e inyecta los
  * campos grc_* en el frontmatter. Cambia el estado a "normalized".
  *
- * El enrich-drafts.js recibe los archivos ya normalizados y usa la ficha
- * como base para la traducción editorial. Esto evita que el LLM interprete
- * riesgo desde texto crudo.
+ * Para alertas, deriva nivelAtencion desde grc_explotacion:
+ *   activa       → Alto   (mínimo; editor puede escalar a Crítico)
+ *   poc_publica  → Medio
+ *   investigacion → Bajo
+ *
+ * El enrich-drafts.js usa la ficha como base para la traducción editorial.
  */
 
 import { readdir, readFile, writeFile } from 'fs/promises';
@@ -25,11 +28,18 @@ const ALERTAS_DIR = join(ROOT, 'src', 'content', 'alertas');
 const API_KEY = process.env.ANTHROPIC_API_KEY;
 const MODEL   = process.env.ANTHROPIC_MODEL || 'claude-haiku-4-5-20251001';
 
-// --- Parsers ---
+// --- Helpers ---
 
 function getField(content, field) {
   const m = content.match(new RegExp(`^${field}:\\s*"((?:[^"\\\\]|\\\\.)*)"`, 'm'));
   return m ? m[1].replace(/\\"/g, '"') : '';
+}
+
+function setField(content, field, value) {
+  return content.replace(
+    new RegExp(`^(${field}):.*$`, 'm'),
+    `$1: "${value}"`
+  );
 }
 
 function getBody(content) {
@@ -45,22 +55,46 @@ function esc(str) {
   return (str ?? '').replace(/"/g, '\\"');
 }
 
+// Regla de derivación: grc_explotacion → nivelAtencion (floor, no ceiling)
+// El editor puede escalar manualmente si el alcance o el contexto lo justifica.
+function deriveNivelAtencion(explotacion) {
+  const map = {
+    'activa':        'Alto',
+    'poc_publica':   'Medio',
+    'investigacion': 'Bajo',
+  };
+  return map[explotacion] ?? 'Medio';
+}
+
 function injectGRC(content, fields, type) {
-  const block = type === 'alerta'
-    ? [
-        `grc_activo: "${esc(fields.activo ?? '')}"`,
-        `grc_vector: "${esc(fields.vector ?? '')}"`,
-        `grc_condicion: "${esc(fields.condicion ?? '')}"`,
-        `grc_explotacion: "${esc(fields.explotacion ?? 'posible')}"`,
-        `grc_alcance: "${esc(fields.alcance ?? '')}"`,
-        `grc_confianza: "${esc(fields.confianza ?? 'media')}"`,
-      ].join('\n')
-    : [
-        `grc_cambio: "${esc(fields.cambio ?? '')}"`,
-        `grc_paradigma: "${esc(fields.paradigma ?? '')}"`,
-        `grc_horizonte: "${esc(fields.horizonte ?? 'meses')}"`,
-        `grc_confianza: "${esc(fields.confianza ?? 'media')}"`,
-      ].join('\n');
+  if (type === 'alerta') {
+    const explotacion = fields.explotacion ?? 'investigacion';
+    const block = [
+      `grc_activo: "${esc(fields.activo ?? '')}"`,
+      `grc_vector: "${esc(fields.vector ?? '')}"`,
+      `grc_condicion: "${esc(fields.condicion ?? '')}"`,
+      `grc_explotacion: "${esc(explotacion)}"`,
+      `grc_alcance: "${esc(fields.alcance ?? '')}"`,
+      `grc_confianza: "${esc(fields.confianza ?? 'media')}"`,
+    ].join('\n');
+
+    let updated = content
+      .replace(/publicacion:\s*"draft"/, `${block}\npublicacion: "normalized"`)
+      .replace(/publicacion:\s*'draft'/, `${block}\npublicacion: "normalized"`);
+
+    // Derivar nivelAtencion desde grc_explotacion
+    updated = setField(updated, 'nivelAtencion', deriveNivelAtencion(explotacion));
+
+    return updated;
+  }
+
+  // Radar: solo campos GRC, sin derivación de nivelAtencion
+  const block = [
+    `grc_cambio: "${esc(fields.cambio ?? '')}"`,
+    `grc_paradigma: "${esc(fields.paradigma ?? '')}"`,
+    `grc_horizonte: "${esc(fields.horizonte ?? 'meses')}"`,
+    `grc_confianza: "${esc(fields.confianza ?? 'media')}"`,
+  ].join('\n');
 
   return content
     .replace(/publicacion:\s*"draft"/, `${block}\npublicacion: "normalized"`)
@@ -129,15 +163,15 @@ Descripción: ${body}
   "activo": "sistema, software o dato en riesgo (máx. 10 palabras, español)",
   "vector": "método de explotación (máx. 8 palabras, español)",
   "condicion": "qué necesita el atacante para que aplique (máx. 8 palabras, español)",
-  "explotacion": "posible | confirmada | activa",
+  "explotacion": "investigacion | poc_publica | activa",
   "alcance": "quién está técnicamente expuesto (máx. 10 palabras, español)",
   "confianza": "alta | media | baja"
 }
 
 Criterio explotacion:
-- activa: explotación confirmada en curso, CISA KEV, ataques documentados
-- confirmada: falla verificada con PoC disponible, sin explotación masiva confirmada
-- posible: vulnerabilidad reportada sin confirmación de explotación real
+- activa: explotación confirmada en curso — CISA KEV, ataques documentados por múltiples fuentes
+- poc_publica: falla verificada con código de ataque disponible públicamente, sin explotación masiva confirmada
+- investigacion: vulnerabilidad reportada sin PoC público ni confirmación de explotación real
 
 Criterio confianza:
 - alta: fuente primaria (CISA, fabricante, CVE oficial, PoC publicado por el fabricante)

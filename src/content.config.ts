@@ -67,7 +67,7 @@ const alertas = defineCollection({
     grc_activo: z.string().optional(),
     grc_vector: z.string().optional(),
     grc_condicion: z.string().optional(),
-    grc_explotacion: z.enum(['posible', 'confirmada', 'activa']).optional(),
+    grc_explotacion: z.enum(['investigacion', 'poc_publica', 'activa']).optional(),
     grc_alcance: z.string().optional(),
     grc_confianza: z.enum(['alta', 'media', 'baja']).optional(),
     // Campos legacy — compatibilidad con alertas anteriores
