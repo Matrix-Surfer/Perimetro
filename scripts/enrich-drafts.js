@@ -98,26 +98,27 @@ async function enrichRadarFile(content) {
   const title   = getField(content, 'title');
   const body    = getBody(content).slice(0, 800);
 
-  // Prompt para los 3 campos de control editorial + context
   const prompt = `Eres editor de inteligencia anticipatoria en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
+
+AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No pentesters ni arquitectos cloud.
+
+REGLA DE LENGUAJE: Si usas un término técnico, explícalo entre paréntesis la primera vez. Prefiere lenguaje cotidiano: usa "equipos" en lugar de "endpoints", "programa malicioso" en lugar de "malware", "actualización de seguridad" en lugar de "patch". Si el lector necesita buscar un término en Google, el texto no está terminado.
 
 Un ítem de RADAR no es una noticia. Es una señal de cambio estructural que indica qué supuesto está dejando de ser válido y qué debería empezar a observarse.
 
-Dado este título y contenido, responde con un JSON con exactamente estos campos:
+Dado el título y contenido, responde con un JSON con exactamente estos campos:
 
 {
-  "señal": "El cambio estructural en una frase. Qué está cambiando en el mundo, no qué hizo la empresa.",
-  "supuesto": "El paradigma o creencia que este cambio hace cuestionable. Una frase.",
-  "observación": "Qué debería empezar a vigilar una organización o persona. Una frase. No una instrucción operativa — algo que observar o cuestionar.",
-  "context": "2 a 3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Sin resumir la noticia. Cierra con una pregunta sobre el supuesto, no con una instrucción de acción inmediata."
+  "señal": "El cambio estructural en una frase. Qué está cambiando, no qué hizo la empresa.",
+  "supuesto": "La creencia que este cambio hace cuestionable. Una frase.",
+  "observación": "Qué debería empezar a vigilar una organización. Una frase. No una instrucción operativa.",
+  "context": "2-3 oraciones que desarrollen señal + supuesto + observación. Tono staccato. Sin resumir la noticia. Sin jerga sin explicar. Cierra con pregunta o reflexión sobre el supuesto, no con instrucción de acción inmediata."
 }
 
-Reglas:
-- En español
+Reglas adicionales:
+- Todo en español
 - Sin clickbait ni exageración
 - No inventar datos
-- "señal", "supuesto" y "observación": una frase cada uno, sin punto final
-- "context": 2-3 oraciones, termina en pregunta o reflexión sobre el supuesto
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
@@ -145,23 +146,29 @@ async function enrichAlertaFile(content) {
 
   const prompt = `Eres editor de inteligencia operativa en Perímetro, plataforma de ciberseguridad e IA para empresas mexicanas.
 
-Una ALERTA responde tres preguntas: ¿qué ocurre?, ¿quién está expuesto?, ¿qué debe verificarse?
+AUDIENCIA: Director general, dueño de MiPyME, gerente administrativo. No especialistas técnicos.
+
+REGLA DE LENGUAJE OBLIGATORIA:
+- Si usas un término técnico, explícalo entre paréntesis. Ejemplo: "ejecución remota de código (tomar control del sistema a distancia)".
+- Reemplaza jerga cuando sea posible: "equipos" por "endpoints", "programa malicioso" por "malware", "actualización de seguridad" por "patch", "usuarios y contraseñas" por "credenciales", "robo de información" por "exfiltración".
+- Nunca asumas que el lector conoce: CVE, OAuth, RCE, NTLM, EDR, token, API, SDK, JWT, RAT, APT, MFA, SSO.
+- Si el lector necesita buscar un término en Google, el texto no está terminado.
+
+Una ALERTA responde: ¿qué ocurre?, ¿quién está expuesto?, ¿qué debe verificarse?
 
 Dado el título y contenido, responde con un JSON con exactamente estos campos:
 
 {
-  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje de negocio, no técnico. Sin jerga sin explicar. En español.",
-  "expuestos": "Quién está expuesto — específico. No 'usuarios de Android' sino 'personas con teléfonos Android sin la actualización de junio 2026'. Una frase.",
-  "verificacion": "Qué debe verificarse hoy — concreto. No 'revisar CVE' sino 'confirmar que los dispositivos tienen instalada la actualización de seguridad más reciente'. Una frase.",
-  "impacto": "Qué podría ocurrir si aplica y no se verifica — en lenguaje de impacto de negocio. No 'ejecución remota de código' sino 'un atacante podría tomar control del dispositivo o acceder a información almacenada'. Una frase."
+  "resumen": "2-3 oraciones. Qué ocurre + quién está expuesto + qué verificar. Lenguaje cotidiano. Sin jerga sin explicar. En español. Máximo 220 caracteres.",
+  "expuestos": "Quién está expuesto — específico y en lenguaje simple. No 'usuarios de Android' sino 'personas con teléfonos Android sin actualizar'. Una frase.",
+  "verificacion": "Qué debe verificarse — concreto y accionable. No 'revisar CVE' sino 'confirmar que los teléfonos tienen instalada la actualización de seguridad más reciente'. Una frase.",
+  "impacto": "Qué podría ocurrir si aplica y no se verifica — en lenguaje de consecuencia de negocio. No 'RCE' sino 'un atacante podría tomar control del equipo o acceder a información almacenada'. Una frase."
 }
 
-Reglas:
-- En español
-- Sin clickbait
+Reglas adicionales:
+- Todo en español
+- Sin clickbait ni sensacionalismo
 - No inventar datos
-- Cada campo es UNA frase, directa y específica
-- "resumen": máximo 220 caracteres
 - Responde SOLO el JSON, sin texto adicional
 
 Título: ${title}
