@@ -245,3 +245,35 @@ El campo `tipo` es **legacy** — se mantiene para compatibilidad con alertas pu
 El campo `ambito` es **nuevo** y obligatorio desde esta versión del framework.
 
 Los campos `expuestos`, `verificacion` e `impacto` son **nuevos** — controles editoriales internos, no se renderizan en la UI.
+
+---
+
+## Apéndice — Estándar especial: brechas de datos personales
+
+Cuando se comprometen datos de un banco, institución financiera, organismo de gobierno o cualquier entidad que concentra información sensible de personas, el impacto no termina en la filtración. **El dato robado es la materia prima de un ataque posterior.**
+
+La obligación editorial es explicar la cadena de daño completa. El lector sin contexto no conecta "se filtraron tus datos" con las consecuencias reales.
+
+**Cadenas de daño por tipo de dato filtrado:**
+
+**Datos bancarios (número de cuenta, CLABE, saldo, movimientos):**
+Con datos bancarios reales, un atacante puede llamar a la víctima haciéndose pasar por su banco — sabe el saldo, sabe el último movimiento, todo parece legítimo. El objetivo: que la víctima entregue su código de acceso o autorice una transferencia. Esta técnica se llama ingeniería social.
+
+**Documentos de identidad (INE, pasaporte, comprobante de domicilio, CURP, RFC):**
+Con documentos reales, un atacante puede solicitar créditos, tarjetas o servicios a nombre de la víctima en instituciones que no verifican presencialmente. El daño llega al historial crediticio — puede tardarse meses en detectarse y años en resolverse.
+
+**Datos de acceso (correo y contraseña):**
+Si la contraseña filtrada se usa en otros servicios — práctica muy común — el atacante entra a todos: correo, banca en línea, plataformas de proveedores. Esto se llama relleno de credenciales: probar la misma combinación en decenas de servicios de forma automatizada.
+
+**Datos de contacto (nombre, teléfono, dirección):**
+Con nombre y teléfono reales, un atacante puede suplantar el número ante la operadora y tomar el control del WhatsApp de la víctima o de los SMS que su banco usa para confirmar operaciones.
+
+**Datos combinados (nombre + RFC + domicilio + datos bancarios):**
+El perfil completo habilita fraude de identidad: apertura de empresas fantasma, solicitud de créditos fiscales, trámites ante el SAT o el IMSS a nombre de la víctima.
+
+**Cómo aplicar este estándar:**
+
+La sección `## Impacto potencial` en este tipo de alerta debe responder: ¿qué puede hacer el atacante con estos datos específicos, en la vida real?
+
+- ❌ "La filtración expone datos personales que pueden usarse para actividades fraudulentas."
+- ✅ "Con nombre, CURP y datos de cuenta expuestos, un atacante puede llamar a la víctima haciéndose pasar por el banco — conoce los datos reales, por eso parece legítimo — e inducirla a entregar su código de acceso o autorizar una transferencia."

@@ -1,33 +1,29 @@
 # Content Schemas — Perímetro
 
-Referencia completa de los schemas de Astro Content Collections.
+Referencia de campos de Astro Content Collections. Definidos en `src/content.config.ts`.
 
-Definidos en: `src/content.config.ts`
+La fuente de verdad editorial es:
+- [`docs/ALERTAS_FRAMEWORK.md`](ALERTAS_FRAMEWORK.md) — estructura, controles y criterios de ALERTAS
+- [`docs/RADAR_FRAMEWORK.md`](RADAR_FRAMEWORK.md) — estructura, filtros y criterios de RADAR
 
 ---
 
 ## Collection: analisis
 
-**Directorio:** `src/content/analisis/`
-**Ruta pública:** `/analisis/[slug]`
-**RSS:** `/analisis/rss.xml`
-
-### Campos
+**Directorio:** `src/content/analisis/` | **Ruta:** `/analisis/[slug]`
 
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
 | `title` | string | Sí | Título del artículo |
-| `date` | string | Sí | Fecha de publicación en formato `YYYY-MM-DD` |
+| `date` | string | Sí | `"YYYY-MM-DD"` entre comillas |
 | `categoria` | string | Sí | Categoría editorial (ej. "Ciberseguridad", "AI Empresarial") |
 | `tags` | string[] | Sí | Array de etiquetas |
-| `resumen` | string | Sí | Resumen corto. Se usa en SEO description y en listados |
-| `tiempo_lectura` | number | Sí | Tiempo estimado de lectura en minutos |
-| `destacado` | boolean | No | Si es `true`, aparece como artículo destacado en el home |
+| `resumen` | string | Sí | Descripción breve para SEO y listados |
+| `tiempo_lectura` | number | Sí | Minutos estimados de lectura |
+| `destacado` | boolean | No | `true` → aparece destacado en el home |
 | `publicacion` | enum | No | Estado editorial. Default: `published` |
 
-### Ejemplo de frontmatter
-
-```markdown
+```yaml
 ---
 title: "Cuando la IA reduce el costo del ciberataque"
 date: "2026-05-15"
@@ -40,211 +36,156 @@ publicacion: "published"
 ---
 ```
 
-### Notas
-
-- Solo un artículo debe tener `destacado: true` a la vez. Si hay varios, se usa el primero en orden de fecha.
-- `date` en formato ISO (`YYYY-MM-DD`) entre comillas para que Zod lo valide como string.
-- El `slug` de la ruta es el nombre del archivo sin `.md`.
-
-### Creación rápida
-
-```bash
-node scripts/create-analysis.js
-```
+Creación: `node scripts/create-analysis.js`
 
 ---
 
 ## Collection: alertas
 
-**Directorio:** `src/content/alertas/`
-**Ruta pública:** `/alertas/[slug]`
-**RSS:** `/alertas/rss.xml`
+**Directorio:** `src/content/alertas/` | **Ruta:** `/alertas/[slug]`
 
-### Campos
-
-| Campo | Tipo | Requerido | Valores válidos |
+| Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
-| `title` | string | Sí | Título descriptivo del incidente |
-| `date` | string | Sí | Fecha en formato `YYYY-MM-DD` |
-| `tipo` | enum | Sí | Ver tabla de tipos |
-| `status` | enum | Sí | Ver tabla de status |
-| `resumen` | string | Sí | Descripción breve del incidente y su impacto |
-| `publicacion` | enum | No | Estado editorial. Default: `published` |
+| `title` | string | Sí | Mecanismo o patrón del ataque — no la marca |
+| `date` | string | Sí | `"YYYY-MM-DD"` entre comillas |
+| `source` | string | Sí | Nombre de la fuente |
+| `link` | string | No | URL de la fuente original |
+| `categoria` | enum | Sí | Ver tabla de valores válidos |
+| `ambito` | enum | Sí | `"Personas"` \| `"Organizaciones"` \| `"Mixto"` |
+| `nivelAtencion` | enum | Sí | `"Bajo"` \| `"Medio"` \| `"Alto"` \| `"Crítico"` |
+| `status` | enum | Sí | `"Activa"` \| `"En monitoreo"` \| `"Resuelta"` |
+| `resumen` | string | Sí | 2-3 oraciones: hecho + quién expuesto + qué verificar |
+| `publicacion` | enum | Sí | `draft` \| `review` \| `published` \| `rejected` |
+| `expuestos` | string | Interno | Quién está expuesto — control editorial, no se renderiza en UI |
+| `verificacion` | string | Interno | Qué verificar hoy — control editorial, no se renderiza en UI |
+| `impacto` | string | Interno | Consecuencia si no se verifica — control editorial, no se renderiza en UI |
 
-### Tipos válidos (`tipo`)
-
-| Valor | Uso | Color en UI |
-|---|---|---|
-| `Defacement` | Modificación no autorizada de sitios web | Rojo |
-| `Filtración` | Exposición de datos o documentos | Naranja/Amarillo |
-| `Ransomware` | Secuestro de sistemas o datos | Naranja |
-| `Phishing` | Campañas de suplantación | Morado |
-| `Dark Forum` | Menciones en foros clandestinos | Gris |
-| `Otro` | Incidentes que no encajan en las categorías anteriores | Gris neutro |
-
-### Status válidos (`status`)
+**Valores válidos para `categoria`:**
 
 | Valor | Uso |
 |---|---|
-| `Activa` | Incidente confirmado y en curso |
-| `En monitoreo` | Señal detectada, sin confirmación total |
-| `Resuelta` | Incidente resuelto o sin impacto confirmado |
+| `Vulnerabilidad` | CVE explotado, falla activa en software |
+| `Malware` | Programa malicioso en distribución activa |
+| `Fuga de datos` | Brecha o exposición de datos confirmada |
+| `Phishing` | Campaña de engaño activa |
+| `Fraude` | Fraude financiero o por ingeniería social |
+| `Terceros` | Compromiso vía proveedor o cadena de suministro |
+| `IA` | Riesgo relacionado con sistemas de inteligencia artificial |
+| `IoT/OT` | Dispositivos conectados o sistemas industriales |
+| `Otro` | Incidentes que no encajan en las categorías anteriores |
 
-### Ejemplo de frontmatter
+**Criterio para `nivelAtencion`:**
+- **Crítico**: Explotación activa, sin parche, impacto masivo
+- **Alto**: Explotación confirmada o riesgo amplio
+- **Medio**: Riesgo real con mitigaciones disponibles
+- **Bajo**: Señal temprana, riesgo acotado
 
-```markdown
+```yaml
 ---
-title: "Subdominio de la Secretaría de Administración y Finanzas de CDMX comprometido"
-date: "2025-05-15"
-tipo: "Defacement"
+title: "Campaña activa de facturas falsas busca provocar llamadas a centros de fraude"
+date: "2026-06-03"
+source: "Malwarebytes Labs"
+link: "https://..."
+categoria: "Fraude"
+ambito: "Mixto"
+nivelAtencion: "Alto"
 status: "Activa"
-resumen: "El grupo Chronus modificó páginas públicas de un subdominio gubernamental..."
+resumen: "Una campaña activa envía correos con avisos falsos de infracción de derechos de autor..."
+expuestos: "Personas que reciben facturas no solicitadas; empleados de cuentas por pagar."
+verificacion: "Confirmar si alguien llamó al número incluido en el correo."
+impacto: "Pérdida financiera directa o instalación de acceso remoto en el dispositivo."
 publicacion: "published"
 ---
 ```
 
-### Estructura de cuerpo recomendada
+**Estructura del cuerpo:**
 
 ```markdown
-## Contexto
+## Qué ocurrió
+[1 párrafo. Solo hechos. Sin análisis ni especulación.]
 
-Descripción del incidente, actores involucrados y método detectado. Los términos técnicos se explican en el mismo párrafo. Este es el único lugar donde el detalle técnico es apropiado.
+## Quién está expuesto
+### Personas
+### Organizaciones
+
+## Qué verificar
+[Acciones concretas. No playbook técnico.]
 
 ## Impacto potencial
-
-No inventariar qué datos roba el atacante. Responder: ¿qué pierde la empresa?
-
-Las tres dimensiones relevantes:
-- Continuidad operativa: ¿qué proceso se interrumpe?
-- Exposición financiera: ¿puede derivar en fraude o pérdida directa?
-- Responsabilidad regulatoria o contractual: ¿activa obligaciones legales o viola acuerdos?
-
-Ver estándar completo en docs/EDITORIAL_GUIDE.md → "Ángulo de análisis: impacto de negocio".
-
-## Recomendaciones
-
-Instrucciones delegables y preguntas de gobierno — no comandos de terminal como instrucción principal.
-Ejecutables por alguien que toma decisiones sin configurar servidores.
+[Consecuencia de negocio si aplica y no se verifica.]
 ```
 
-### Creación rápida
+**Nota sobre `tipo` (legacy):** existe en alertas publicadas antes de junio 2026. No usar en alertas nuevas. El campo canónico es `categoria`.
 
-Usar el script interactivo:
-
-```bash
-node scripts/create-alert.js
-```
+Creación: `node scripts/create-alert.js`
 
 ---
 
 ## Collection: radar
 
-**Directorio:** `src/content/radar/`
-**Ruta pública:** `/radar/[slug]`
-**RSS:** `/radar/rss.xml`
-
-### Campos
+**Directorio:** `src/content/radar/` | **Ruta:** `/radar/[slug]`
 
 | Campo | Tipo | Requerido | Descripción |
 |---|---|---|---|
-| `title` | string | Sí | Titular de la noticia o señal |
-| `source` | string | Sí | Nombre de la fuente (ej. "MIT Tech Review", "tldrsec") |
-| `category` | string | Sí | Categoría del ítem. Determina el color del badge |
-| `context` | string | Sí | Contexto editorial propio. Qué significa para empresas mexicanas |
-| `pubDate` | date | Sí | Fecha de publicación. Sin comillas en YAML para que se parsee como Date |
-| `publicacion` | enum | No | Estado editorial. Default: `published` |
+| `title` | string | Sí | Nombra el cambio estructural — no la noticia ni la empresa |
+| `pubDate` | date | Sí | Sin comillas en YAML (`YYYY-MM-DD`) — `z.coerce.date()` |
+| `source` | string | Sí | Nombre de la fuente |
+| `link` | string | No | URL de la fuente original |
+| `category` | enum | Sí | `"AI"` \| `"Seguridad"` |
+| `señal` | string | Interno | El cambio estructural en una frase — control editorial |
+| `supuesto` | string | Interno | La creencia que se rompe, sin jerga — control editorial |
+| `observación` | string | Interno | Qué vigilar, no qué hacer — control editorial |
+| `context` | string | Sí | 2-3 oraciones. Termina en observación estratégica, nunca en instrucción. |
+| `publicacion` | enum | Sí | `draft` \| `review` \| `published` \| `rejected` |
 
-### Categorías y colores en UI
-
-| Valor | Color |
-|---|---|
-| `AI` | Cyan (acento principal) |
-| `Seguridad` | Rojo (acento secundario) |
-| Cualquier otro | Gris neutro |
-
-### Ejemplo de frontmatter
-
-```markdown
+```yaml
 ---
-title: "Nueva técnica de ataque via QR codes afecta usuarios corporativos"
-source: "tldrsec"
-category: "Seguridad"
-context: "Atacantes están usando códigos QR en correos aparentemente legítimos para robar credenciales. Cualquier empresa que use Microsoft 365 o Google Workspace está en riesgo."
-pubDate: 2025-05-13
+title: "Los agentes de IA llegan a las empresas antes de que alguien defina qué pueden hacer"
+pubDate: 2026-06-03
+source: "Dark Reading"
+link: "https://..."
+category: "AI"
+señal: "Los agentes de IA se integran en operaciones antes de que existan criterios para supervisarlos."
+supuesto: "El software hace lo que le pedimos — nada más, nada inesperado."
+observación: "Qué agentes operan en la organización, a qué sistemas tienen acceso, y si existe registro de lo que hacen."
+context: "Los agentes de IA pueden producir efectos que nadie autorizó — no por ataque externo, sino porque el sistema tomó decisiones inesperadas con acceso legítimo. La pregunta no es si son útiles: es si alguien sabe exactamente qué pueden hacer."
 publicacion: "published"
 ---
 ```
 
-### Notas
+**Estructura del cuerpo:**
 
-- `pubDate` sin comillas en YAML. Con comillas se interpreta como string y falla el schema (`z.coerce.date()`).
-- El campo `context` es el valor editorial central del Radar. Debe explicar la implicación para empresas mexicanas, no solo repetir el titular.
-- Las fechas se muestran en español (ej. "13 de mayo de 2025") usando `toLocaleDateString` con `timeZone: 'UTC'`.
+```markdown
+## La señal
+[1-2 oraciones. El hecho desnudo. Qué está cambiando.]
 
-### Creación rápida
+## El supuesto que se rompe
+[Qué creíamos que era cierto y ya no lo es. Sin jerga.]
 
-```bash
-node scripts/create-radar.js
+## Qué observar
+[No qué hacer. Qué vigilar. Cierra con observación estratégica.]
 ```
+
+Creación: `node scripts/create-radar.js`
 
 ---
 
 ## Convenciones generales
 
-### Slugs
-
-El slug de cada artículo es el nombre del archivo sin la extensión `.md`.
-
-Convención: kebab-case en español sin acentos.
-
-```
-cuando-la-ia-reduce-el-costo-del-ciberataque.md
-subdominio-secretaria-cdmx.md
-qr-phishing-corporativo.md
-```
-
 ### Fechas
 
-- `analisis` y `alertas`: campo `date` como string `"YYYY-MM-DD"` (con comillas)
-- `radar`: campo `pubDate` como date YAML sin comillas (`YYYY-MM-DD`)
+- `analisis` y `alertas`: `date: "YYYY-MM-DD"` entre comillas → `z.string()`
+- `radar`: `pubDate: YYYY-MM-DD` sin comillas → `z.coerce.date()`
 
-Esta diferencia existe porque analisis/alertas usan `z.string()` y radar usa `z.coerce.date()` en el schema.
+### Slugs
 
-### Campo publicacion (estado editorial)
+Nombre del archivo sin `.md`. Kebab-case sin acentos.
 
-Todas las colecciones tienen el campo `publicacion` para control de visibilidad. Solo el contenido con `publicacion: "published"` aparece en el sitio.
+### Campo `publicacion` — flujo editorial
 
-| Valor | Comportamiento |
-|---|---|
-| `published` | Visible públicamente |
-| `draft` | Oculto. Generado automáticamente, pendiente de enriquecimiento |
-| `review` | Oculto. Enriquecido por LLM, pendiente de aprobación humana |
-| `rejected` | Oculto. Descartado permanentemente |
-
-El campo es opcional. Si no está presente, el default es `published` — esto preserva el comportamiento del contenido creado antes de que existiera el campo.
-
-**Flujo del pipeline automático:**
-
-```
-generate-drafts.js → publicacion: "draft"
-enrich-drafts.js   → publicacion: "review"
-publish.js         → publicacion: "published" | "rejected"
-```
-
-`publish.js` solo muestra ítems con `publicacion: "review"`. Para promover a publicado:
-
-```bash
-node scripts/publish.js
-```
-
-**Nota sobre `alertas`:** esta colección ya tiene un campo `status` para el estado del incidente (`Activa / En monitoreo / Resuelta`). El campo `publicacion` es independiente y controla únicamente la visibilidad editorial.
-
----
-
-### Agregar una nueva categoría de radar
-
-Si se necesita una categoría nueva con color diferente, editar el mapping en:
-
-- `src/pages/radar/index.astro` — `categoryClass`
-- `src/pages/radar/[slug].astro` — `categoryClass`
-- `src/pages/index.astro` — `categoryClass`
+| Valor | Quién lo asigna | Comportamiento |
+|---|---|---|
+| `draft` | `generate-drafts.js` | Oculto — pendiente de enriquecimiento |
+| `review` | `enrich-drafts.js` | Oculto — pendiente de aprobación humana |
+| `published` | `publish.js` | Visible públicamente |
+| `rejected` | `publish.js` | Oculto permanentemente |

@@ -87,12 +87,19 @@ Toda alerta debe:
 
 # Clasificaciones actuales
 
-* Defacement
-* Filtración
-* Ransomware
-* Phishing
-* Dark Forum
-* Otro
+Las categorías de monitoreo mapean al campo `categoria` del schema de ALERTAS:
+
+| Categoría | Qué cubre |
+|---|---|
+| `Vulnerabilidad` | CVE explotado, falla activa en software |
+| `Malware` | Programa malicioso en distribución activa |
+| `Fuga de datos` | Brecha o exposición de datos confirmada |
+| `Phishing` | Campaña de engaño activa |
+| `Fraude` | Fraude financiero o por ingeniería social |
+| `Terceros` | Compromiso vía proveedor o cadena de suministro |
+| `IA` | Riesgo relacionado con sistemas de IA |
+| `IoT/OT` | Dispositivos conectados o sistemas industriales |
+| `Otro` | Incidentes que no encajan en las categorías anteriores |
 
 ---
 
