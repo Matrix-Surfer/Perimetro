@@ -120,13 +120,39 @@ Si no → reescribir antes de continuar.
 ## Quién está expuesto
 [Personas, organizaciones o ambos. Específico — no "todos".]
 
-## Qué verificar
-[No es un playbook técnico. Es una validación operativa.
- Preguntas concretas que alguien puede responder hoy.]
+## A considerar
+[Opcional. Solo si aporta algo que el lector no puede deducir por sí mismo.
+ Ver regla de oro de la sección "A considerar" más abajo.]
 
 ## Impacto potencial
 [Qué podría ocurrir si aplica y no se verifica.]
 ```
+
+---
+
+## Regla de oro — "A considerar"
+
+La sección `## A considerar` solo existe cuando aporta acciones, decisiones o señales específicas que se desprenden directamente del incidente. Si eliminarla no hace perder información importante para tomar una decisión, debe eliminarse.
+
+**Cuándo SÍ incluir:**
+
+| Caso | Ejemplo |
+|---|---|
+| Acción concreta derivada de la alerta | VS Code: revisar accesos a repositorios, identificar tokens sin expiración |
+| Mitigación temporal (sin parche) | Deshabilitar integración, restringir acceso, aumentar monitoreo |
+| Indicadores de compromiso observables | Reglas de reenvío en M365, clonaciones masivas de repos, sesiones desde países inusuales |
+| Decisión de gestión del riesgo | ¿Seguir usando esta integración? ¿Reducir permisos? ¿Cambiar política? |
+
+**Cuándo NO incluir:**
+
+| Caso | Ejemplo |
+|---|---|
+| Repite quién está expuesto | ❌ "Confirmar si existen equipos Mac" — ya está en "Quién está expuesto" |
+| Recomendación universal | ❌ "Mantener sistemas actualizados" / "Capacitar usuarios" — válida siempre, no nace de la alerta |
+| Acción obvia que la propia alerta ya implica | ❌ "Preguntar si usan Mirasvit" — si la alerta ya dice "si lo usa, aplique el parche" |
+| Alerta principalmente operativa o de contexto | No toda alerta genera una checklist. A veces el valor está en el impacto, no en la acción. |
+
+**Prueba práctica:** "¿Si elimino 'A considerar', el lector pierde información importante para tomar una decisión?" Si la respuesta es NO → eliminar.
 
 ---
 
@@ -138,7 +164,7 @@ Eliminar cualquier párrafo que describa la tecnología, el CVE, el exploit o el
 |---|---|
 | "La vulnerabilidad es una falla de deserialización insegura en el componente X." | "Un atacante podría obtener acceso al sistema sin autorización." |
 
-**La regla:** si el párrafo desaparece y la sección `## Qué verificar` sigue siendo válida, el párrafo sobraba.
+**La regla:** si el párrafo desaparece y la sección `## A considerar` (o `## Impacto potencial`) sigue siendo válida, el párrafo sobraba.
 
 ---
 
