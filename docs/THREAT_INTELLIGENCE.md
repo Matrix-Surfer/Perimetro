@@ -1,93 +1,50 @@
-# THREAT_INTELLIGENCE.md
-
 # Threat Intelligence y Monitoreo
 
 ## Objetivo
 
-La sección “Alertas” de Perímetro funciona como un sistema editorial de monitoreo OSINT orientado a organizaciones mexicanas.
-
-El objetivo es identificar:
-
-* posibles filtraciones,
-* actividad de ransomware,
-* venta de accesos,
-* menciones en foros clandestinos,
-* defacements,
-* campañas de phishing,
-* y amenazas relevantes.
+Identificar amenazas relevantes para organizaciones mexicanas — especialmente MiPYMES — mediante monitoreo continuo de fuentes OSINT, Telegram y dark web.
 
 ---
 
-# Fuentes monitoreadas
+## Fuentes monitoreadas
 
-## Telegram
+### Telegram
 
-Canales especializados de ciberseguridad y monitoreo.
+Canales especializados de ciberseguridad y monitoreo de amenazas activas.
 
----
+### OSINT
 
-## OSINT
+Fuentes públicas relacionadas con ransomware, leaks, malware, actores de amenaza y campañas activas.
 
-Fuentes públicas relacionadas con:
+### Dark Web
 
-* ransomware,
-* leaks,
-* malware,
-* actores de amenaza,
-* campañas activas.
+Monitoreo indirecto de foros clandestinos, leak sites, marketplaces y publicaciones de actores ransomware.
 
 ---
 
-## Dark Web Monitoring
+## Restricciones
 
-Monitoreo indirecto de:
+Perímetro NO publica:
 
-* foros clandestinos,
-* leak sites,
-* marketplaces,
-* publicaciones de actores ransomware.
-
----
-
-# Restricciones
-
-Perímetro NO debe:
-
-* publicar datos robados,
-* publicar credenciales,
-* distribuir bases de datos,
-* enlazar contenido ilegal,
-* facilitar acceso a material ilícito,
-* promover actores maliciosos.
+- Datos robados o credenciales filtradas
+- Bases de datos o documentos confidenciales completos
+- Enlaces a contenido ilegal
+- Información que facilite acceso no autorizado
+- Contenido que promueva actores maliciosos
 
 ---
 
-# Política editorial
+## Flujo CTI
 
-Toda alerta debe:
-
-* contextualizarse,
-* verificarse cuando sea posible,
-* redactarse de forma neutral,
-* enfocarse en impacto empresarial,
-* evitar sensacionalismo.
+1. Detección inicial en fuentes monitoreadas
+2. Clasificación por categoría (ver tabla)
+3. Validación preliminar — verificar cuando sea posible
+4. Evaluación de impacto para audiencia MX/MiPYME
+5. Si pasa → pipeline editorial → ALERTAS o RADAR
 
 ---
 
-# Flujo editorial esperado
-
-1. detección inicial
-2. clasificación
-3. validación preliminar
-4. evaluación de impacto
-5. redacción
-6. publicación
-
----
-
-# Clasificaciones actuales
-
-Las categorías de monitoreo mapean al campo `categoria` del schema de ALERTAS:
+## Clasificación inicial
 
 | Categoría | Qué cubre |
 |---|---|
@@ -101,8 +58,10 @@ Las categorías de monitoreo mapean al campo `categoria` del schema de ALERTAS:
 | `IoT/OT` | Dispositivos conectados o sistemas industriales |
 | `Otro` | Incidentes que no encajan en las categorías anteriores |
 
+Filtro geográfico: rechazar incidentes exclusivamente de EE.UU. sin ángulo MX/LATAM. Conservar si el software, técnica o actor tiene relevancia directa en México.
+
 ---
 
-# Objetivo estratégico
+## Objetivo estratégico
 
 Construir una capacidad editorial ligera de cyber threat intelligence enfocada en México y MiPYMES.
