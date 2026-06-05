@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ShareLinks from '../../components/ShareLinks.astro';
 
 export async function getStaticPaths() {
   const items = (await getCollection('radar'))
@@ -82,6 +83,8 @@ const categoriaClass: Record<string, string> = {
         Leer fuente original →
       </a>
     )}
+
+    <ShareLinks url={`https://jsilva.io/radar/${item.id}`} title={item.data.title} />
 
     <nav class="radar-nav">
       {prev && <a href={`/radar/${prev.id}`} class="radar-nav-link">← Anterior</a>}

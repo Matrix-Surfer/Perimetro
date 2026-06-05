@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import { getCollection, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Nav from '../../components/Nav.astro';
 import Footer from '../../components/Footer.astro';
+import ShareLinks from '../../components/ShareLinks.astro';
 
 export async function getStaticPaths() {
   const articulos = (await getCollection('analisis')).filter(a => a.data.publicacion === 'published');
@@ -39,6 +39,8 @@ const { Content } = await render(articulo);
     <div class="articulo-body">
       <Content />
     </div>
+
+    <ShareLinks url={`https://jsilva.io/analisis/${articulo.id}`} title={articulo.data.title} />
 
   </article>
 
