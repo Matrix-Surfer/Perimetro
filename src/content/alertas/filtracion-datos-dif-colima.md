@@ -7,11 +7,11 @@ categoria: "Fuga de datos"
 ambito: "Mixto"
 nivelAtencion: "Medio"
 status: "En monitoreo"
-resumen: "Un actor identificado como SoulHemTeam publicó en un foro de filtraciones una base de datos que atribuye al DIF Colima. La publicación fue revisada por el equipo editorial de Perímetro. No existe confirmación oficial de la institución sobre la autenticidad, el origen o el alcance de la información publicada."
+resumen: "Un actor identificado como SoulHemTeam publicó en un foro de filtraciones información atribuible al DIF Colima. La publicación fue revisada por el equipo editorial de Perímetro. No existe confirmación oficial de la institución sobre la autenticidad, el origen o el alcance de la información comprometida."
 expuestos: "Personas con algún vínculo con el DIF Colima. El tipo de información afectada no ha sido confirmado."
-verificacion: "Si alguien recibe un contacto que menciona datos específicos vinculados a un trámite del DIF Colima, verificar la identidad del contacto antes de responder o proporcionar información adicional."
+verificacion: "Estar en alerta por si alguien recibe un contacto que menciona datos específicos vinculados a un trámite del DIF Colima, verificar la identidad del contacto antes de responder o proporcionar información adicional."
 impacto: "El alcance del daño depende del tipo de información incluida en la filtración. No confirmado al momento de la publicación."
-grc_activo: "Base de datos atribuida al DIF Colima (contenido no confirmado)"
+grc_activo: "Información atribuida al DIF Colima (contenido no confirmado)"
 grc_vector: "Método de obtención no confirmado"
 grc_condicion: "Datos en posesión del actor de amenaza; método de obtención sin confirmar"
 grc_explotacion: "investigacion"
@@ -22,13 +22,13 @@ publicacion: "published"
 
 ## Qué ocurrió
 
-Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones una base de datos que atribuye al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada por el equipo editorial de Perímetro. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
+Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada por el equipo editorial de Perímetro. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
 
 ## Quién está expuesto
 
 ### Para personas
 
-Personas que hayan mantenido algún tipo de relación administrativa con el DIF Colima. Al momento de esta publicación no existe información oficial que permita determinar con precisión qué categorías de datos podrían estar involucradas.
+Al momento de esta publicación no existe información oficial que permita determinar con precisión qué categorías de datos podrían estar involucradas.
 
 ### Para organizaciones
 
