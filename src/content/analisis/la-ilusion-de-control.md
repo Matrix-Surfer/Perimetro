@@ -1,6 +1,6 @@
 ---
-title: "La organización ya no sabe exactamente qué está usando."
-subtitle: "La ilusión de control."
+title: "La ilusión de control."
+subtitle: "La organización ya no sabe exactamente qué está usando."
 date: "2026-06-05"
 categoria: "Ciberseguridad"
 tags: ["gobernanza", "GRC", "riesgo", "cumplimiento", "gestión de riesgos"]
