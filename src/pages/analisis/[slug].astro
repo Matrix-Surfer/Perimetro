@@ -17,7 +17,7 @@ const { articulo } = Astro.props;
 const { Content } = await render(articulo);
 ---
 
-<Base title={articulo.data.title} description={articulo.data.resumen}>
+<Base title={articulo.data.title} description={articulo.data.resumen} ogType="article">
   <Nav />
 
   <article class="articulo-wrap">

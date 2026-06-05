@@ -3,17 +3,19 @@ export interface Props {
   title?: string;
   description?: string;
   image?: string;
+  ogType?: string;
 }
 
 const {
   title = 'Perímetro',
   description = 'IA y Ciberseguridad — Lo que importa, cuando importa.',
   image,
+  ogType = 'website',
 } = Astro.props;
 
 const pageTitle = `${title} — Perímetro`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? 'https://jsilva.io');
-const ogImage = image ?? new URL('favicon.svg', Astro.site ?? 'https://jsilva.io').toString();
+const ogImage = image ?? new URL('og-image.png', Astro.site ?? 'https://jsilva.io').toString();
 ---
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@ const ogImage = image ?? new URL('favicon.svg', Astro.site ?? 'https://jsilva.io
   <meta name="description" content={description} />
   <link rel="canonical" href={canonicalURL} />
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:url" content={canonicalURL} />
   <meta property="og:title" content={pageTitle} />
   <meta property="og:description" content={description} />
