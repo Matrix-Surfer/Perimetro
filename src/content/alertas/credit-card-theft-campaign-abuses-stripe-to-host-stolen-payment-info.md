@@ -36,10 +36,10 @@ Empresas que operan tiendas en línea, especialmente aquellas con plataformas de
 
 ## A considerar
 
-- Verificar si la plataforma de la tienda tiene actualizaciones de seguridad pendientes (Magento, WooCommerce, Shopify con plugins de terceros).
-- Revisar si hay scripts no autorizados cargados en las páginas de checkout, especialmente los que hacen llamadas a dominios o endpoints desconocidos.
-- Revisar en el panel de Stripe si hay llamadas a la API desde orígenes inesperados o con patrones inusuales.
-
+- Validar si las páginas de pago cargan scripts o componentes que no forman parte de la implementación autorizada del sitio.
+- Verificar cambios recientes en plantillas, plugins o componentes relacionados con el proceso de checkout.
+- Revisar en Stripe actividades o patrones de uso inusuales asociados al formulario de pago.
+- Confirmar que existe monitoreo de integridad sobre las páginas donde se capturan datos de tarjeta.
 ## Impacto potencial
 
 Los datos de tarjeta capturados en tiempo real pueden usarse para compras fraudulentas inmediatas. Para la empresa operadora, el riesgo incluye sanciones del procesador de pagos, pérdida de la certificación de seguridad requerida para procesar tarjetas, notificación obligatoria a clientes afectados, y daño reputacional difícil de revertir.

@@ -7,7 +7,7 @@ categoria: "Malware"
 ambito: "Mixto"
 nivelAtencion: "Alto"
 status: "Activa"
-resumen: "El instalador oficial de Hola Browser para Windows fue comprometido e incluía un programa no declarado que usaba los recursos del equipo para minar criptomonedas. El instalador legítimo fue el vector. Usuarios con Hola Browser instalado deben desinstalarlo y revisar el equipo."
+resumen: "El instalador oficial de Hola Browser para Windows fue comprometido e incluía un programa no declarado que usaba los recursos del equipo para minar criptomonedas. El incidente demuestra que descargar desde el sitio oficial reduce riesgos, pero no los elimina cuando la cadena de distribución del proveedor es comprometida."
 expuestos: "Usuarios de Windows que descargaron e instalaron Hola Browser desde el sitio oficial."
 verificacion: "Verificar si Hola Browser está instalado en equipos corporativos, desinstalarlo y revisar si hay actividad inusual en el equipo."
 impacto: "La presencia de software comprometido indica que el instalador fue el vector — puede haber otros programas maliciosos además del minero en el mismo equipo."
@@ -36,9 +36,9 @@ Empresas cuyos empleados usan Hola Browser en equipos de trabajo.
 
 ## A considerar
 
-- Si el equipo tuvo Hola Browser instalado, considerar que el instalador fue comprometido: el minero puede no ser el único programa instalado sin autorización.
-- Revisar el equipo en busca de procesos inusuales o actividad de red inesperada tras desinstalar el navegador.
-
+- Si el equipo tuvo Hola Browser instalado durante el periodo afectado, asumir que el instalador no era confiable y evaluar el equipo como potencialmente comprometido.
+- Revisar procesos en ejecución, tareas programadas y conexiones de red inusuales incluso después de desinstalar el navegador.
+- Identificar si el equipo tuvo acceso a información corporativa sensible o credenciales durante el periodo de exposición.
 ## Impacto potencial
 
 El programa malicioso consume recursos del equipo para beneficio del atacante. Su presencia confirma que el instalador fue comprometido, lo que abre la posibilidad de que se hayan instalado otros programas más peligrosos en el mismo proceso. Un equipo corporativo afectado puede ser punto de entrada a sistemas internos de la empresa.

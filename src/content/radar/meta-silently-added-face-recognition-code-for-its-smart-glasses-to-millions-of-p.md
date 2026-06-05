@@ -1,5 +1,5 @@
 ---
-title: "Meta instaló reconocimiento facial en millones de teléfonos sin informarlo — el código ya está ahí"
+title: "Meta incorporó capacidades de reconocimiento facial no anunciadas en aplicaciones ya instaladas"
 pubDate: 2026-06-04
 source: "Wired — Security"
 link: "https://www.wired.com/story/meta-smart-glasses-face-recognition-nametag-connections/"
@@ -17,7 +17,7 @@ publicacion: "published"
 
 ## La señal
 
-WIRED revisó el código de la aplicación de Meta para sus lentes inteligentes Ray-Ban y encontró un sistema de reconocimiento facial no anunciado, integrado y funcional, en aplicaciones ya instaladas en millones de teléfonos. El sistema puede identificar personas usando datos biométricos almacenados en el dispositivo del usuario. Meta no comunicó la existencia de esta función.
+WIRED revisó el código de la aplicación de Meta para sus lentes inteligentes Ray-Ban y encontró un sistema de reconocimiento facial no anunciado, integrado y funcional, en aplicaciones ya instaladas en millones de teléfonos. El código encontrado incorpora capacidades de identificación biométrica basadas en información almacenada en el dispositivo. Meta no comunicó la existencia de esta función.
 
 ## El supuesto que se rompe
 
