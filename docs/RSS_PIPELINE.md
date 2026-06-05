@@ -319,17 +319,13 @@ inbox/rss/
 | The Hacker News | Seguridad | Noticias |
 | Schneier on Security | Seguridad | Análisis independiente |
 | Dark Reading | Seguridad | Noticias + análisis |
-| CISA Alerts | Seguridad | Avisos oficiales US-CERT |
 | BleepingComputer | Seguridad | Noticias |
 | SecurityWeek | Seguridad | Noticias |
-| Graham Cluley | Seguridad | Periodismo independiente |
 | Malwarebytes Labs | Seguridad | Investigación |
 | The Register — Security | Seguridad | Noticias |
 | Ars Technica — Security | Seguridad | Noticias + análisis |
 | Wired — Security | Seguridad | Noticias + análisis |
-| SANS Internet Storm Center | Seguridad | Threat intelligence |
 | MIT Technology Review | AI / Tecnología | Análisis |
-| VentureBeat — AI | AI | Noticias |
 | Unit 42 — Palo Alto Networks | Seguridad / Threat Intel | Investigación propia |
 | Cisco Talos Blog | Seguridad / Threat Intel | Investigación propia |
 
