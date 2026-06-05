@@ -4,9 +4,8 @@ interface Props {
   title: string;
 }
 const { url, title } = Astro.props;
-const encoded = encodeURIComponent(url);
-const text = encodeURIComponent(title);
-const twitterHref = `https://x.com/intent/tweet?url=${encoded}&text=${text}`;
+const twitterText = encodeURIComponent(`${title}\n\n${url}`);
+const twitterHref = `https://x.com/intent/tweet?text=${twitterText}`;
 const facebookHref = `https://www.facebook.com/sharer/sharer.php?u=${encoded}`;
 ---
 
