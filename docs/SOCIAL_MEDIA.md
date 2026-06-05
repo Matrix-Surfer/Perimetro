@@ -13,110 +13,163 @@ URLs canónicas por sección:
 
 ---
 
-## Formato estándar de tweets
+## Objetivo del tweet
 
-### Reglas generales
+El objetivo no es informar toda la noticia.
 
-- **Un tweet por artículo** — sin hilo por defecto
-- **Lidera con la consecuencia de negocio**, no con el nombre técnico de la vulnerabilidad ni con el nombre del atacante
-- **Sin emojis** — consistente con el tono editorial
-- **Link al final**, separado del cuerpo del tweet
-- **Texto máximo ~245 caracteres** — Twitter reserva ~23 chars para el URL (t.co), total 280
+El objetivo es lograr que la persona detenga el scroll porque detectó un riesgo, un cambio o un patrón que le afecta.
 
-### Estructura
+Si el usuario entiende toda la noticia sin entrar al sitio, el tweet fracasó.
+Si el usuario no entiende nada, también fracasó.
 
-```
-[Consecuencia o implicación de negocio en 1-2 oraciones.]
-[Contexto mínimo necesario para que tenga sentido.]
-[Llamada a la acción implícita o dato que justifica leer más.]
+Debe existir una tensión natural entre entender el riesgo y querer leer el análisis completo.
 
-jsilva.io/[seccion]/[slug]
-```
+**La pregunta que debe pasar cada tweet:**
 
-### Tono y ritmo
+> ¿Estoy describiendo una noticia o explicando por qué importa?
 
-El tweet es una extensión del tono editorial: analítico, directo, útil. No es un titular de diario sensacionalista ni un comunicado corporativo.
-
-El ritmo es staccato. Oraciones cortas. Una idea por línea. El punto como martillo.
-
-- ❌ "¡URGENTE! Hackers norcoreanos atacan empresas. ¿Está tu empresa en riesgo?"
-- ❌ "Lazarus Group ha desplegado RemotePE, un RAT de solo memoria que usa DPAPILoader."
-- ✅ "Lazarus tiene un nuevo malware. Opera solo en memoria. No escribe archivos. Tu antivirus no tiene nada que analizar."
+Si describes la noticia, es contenido commodity.
+Si explicas por qué importa, es contenido Perímetro.
 
 ---
 
-## Ejemplos de referencia (25 mayo 2026)
+## Reglas generales
 
-**Alerta — Phishing / Kali365**
+- **Sin emojis** — consistente con el tono editorial
+- **Sin hashtags**
+- **Link al final**, separado del cuerpo del tweet
+- **40 a 70 palabras** — menos de 30 parece titular, más de 90 pierde alcance
+
+---
+
+## ALERTAS — estructura
+
+El tweet de ALERTA muestra el riesgo.
+
+**Fórmula principal:**
+
 ```
-El FBI advierte sobre Kali365. Phishing industrial. Se vende como servicio.
-Cualquiera puede comprarlo.
-
-La víctima autoriza el acceso sin saberlo. La verificación en dos pasos
-no lo detiene.
-
-jsilva.io/alertas/kali365-phishing-como-servicio-cuentas-microsoft-365
-```
-
-**Alerta — Malware / Lazarus**
-```
-Lazarus tiene un nuevo malware. Opera solo en memoria. No escribe archivos.
-Tu antivirus no tiene nada que analizar.
-
-Objetivo: empresas financieras y cripto. Sin señal de alerta.
-
-jsilva.io/alertas/lazarus-remotepe-rat-sector-financiero-crypto
-```
-
-**Alerta — Supply chain / Megalodon**
-```
-5,500 repositorios de GitHub comprometidos. Commits falsos. Automatización
-maliciosa.
-
-Si tu equipo usa GitHub con pipelines activos, las credenciales de tu
-infraestructura pueden estar expuestas. Rotar. No esperar confirmación.
-
-jsilva.io/alertas/megalodon-github-actions-5500-repositorios-comprometidos
+Hecho
+↓
+Consecuencia
+↓
+Por qué importa
+↓
+Link
 ```
 
-**Alerta — Supply chain / TrapDoor**
+**Fórmula alternativa:**
+
 ```
-34 paquetes maliciosos. npm, PyPI, Crates.io. Desde el 22 de mayo.
-
-Si tu equipo instaló dependencias esta semana, asumir compromiso preventivo.
-El acceso al desarrollador es el acceso a toda la infraestructura.
-
-jsilva.io/alertas/trapdoor-ataque-cadena-suministro-npm-pypi-crates
-```
-
-**Alerta — Phishing / Ghost CMS**
-```
-700 sitios con Ghost CMS sirviendo malware a sus visitantes.
-Los administradores no lo saben.
-
-Si usas Ghost: actualizar ahora. No puede esperar.
-
-jsilva.io/alertas/ghost-cms-campana-clickfix-inyeccion-sql
+Lo que pasó
+↓
+Lo que rompe
+↓
+Link
 ```
 
-**Alerta — Supply chain / Laravel Lang**
+**Ejemplos:**
+
 ```
-Paquetes de Laravel Lang comprometidos. Malware distribuido como
-actualización de rutina.
+Una falla en la GitHub Action de Claude Code permitía tomar control de
+repositorios públicos con un solo issue.
 
-Alta penetración en México. Si tu equipo usa Laravel, tratar el entorno
-como comprometido. Rotar credenciales. No esperar.
+El repositorio de Anthropic era vulnerable. Un ataque exitoso habría
+propagado código malicioso a todos los proyectos que dependen de ella.
 
-jsilva.io/alertas/laravel-lang-paquetes-comprometidos-malware-credenciales
+La falla fue corregida. Los equipos que no actualizaron siguen expuestos.
+
+jsilva.io/alertas/claude-code-github-action-flaw-let-one-malicious-issue-hijack-repositories
 ```
 
-**Radar — AI / Mythos**
 ```
-La IA de Anthropic analizó 1,000 proyectos de software. Encontró 23,000
-vulnerabilidades.
+El instalador oficial de Hola Browser fue comprometido para distribuir
+un programa malicioso.
 
-El atacante descubre fallas más rápido que el parche que las cierra.
-El plazo de 30 días que acordaste con TI ya es obsoleto.
+No fue un sitio falso ni un correo de phishing. Fue el instalador
+descargado del sitio oficial del proveedor.
 
-jsilva.io/radar/anthropic-mythos-ia-descubre-23000-vulnerabilidades-oss
+Descargar desde la fuente original reduce el riesgo. No lo elimina.
+
+jsilva.io/alertas/hola-browser-for-windows-compromised-to-deliver-cryptominer
 ```
+
+```
+Una campaña activa roba datos de tarjeta en el momento del pago — y usa
+la propia infraestructura de Stripe para extraerlos.
+
+El tráfico parece legítimo porque técnicamente lo es.
+
+Operar con Stripe no protege si el código del checkout fue modificado.
+
+jsilva.io/alertas/credit-card-theft-campaign-abuses-stripe-to-host-stolen-payment-info
+```
+
+---
+
+## RADAR — estructura
+
+El tweet de RADAR muestra el cambio de paradigma.
+
+RADAR no habla de incidentes. Habla de señales. La estructura refleja eso.
+
+**Fórmula:**
+
+```
+Observación
+↓
+Cambio de paradigma
+↓
+Link
+```
+
+**Ejemplos:**
+
+```
+Tres grupos criminales distintos ya usan llamadas falsas de soporte
+técnico para obtener accesos corporativos.
+
+Cuando una táctica se replica entre grupos, deja de ser una excepción
+y se convierte en un método estándar.
+
+El riesgo ya no requiere un atacante sofisticado. Requiere un número
+de teléfono y un guión.
+
+jsilva.io/radar/pink-is-the-latest-goon-squad-to-use-fake-helpdesk-calls-to-steal-creds
+```
+
+```
+Meta incorporó reconocimiento facial en aplicaciones instaladas en
+millones de teléfonos sin comunicarlo.
+
+El usuario no activó nada. El código ya estaba ahí.
+
+Cuando las capacidades biométricas pueden desplegarse sin aviso en
+aplicaciones de consumo, la línea entre dispositivo personal y entorno
+corporativo controlado se vuelve difusa.
+
+jsilva.io/radar/meta-silently-added-face-recognition-code-for-its-smart-glasses-to-millions-of-p
+```
+
+---
+
+## Qué evitar
+
+| ❌ | Motivo |
+|---|---|
+| Repetir la nota ("Cisco publicó una vulnerabilidad CVE-2026-XX con score 10.0...") | Parece RSS, no análisis |
+| Sensacionalismo ("¡URGENTE! ¡Millones en peligro!") | Reduce credibilidad |
+| Recomendaciones obvias ("Actualice sus sistemas") | No aporta valor |
+| Demasiados detalles técnicos ("afecta el endpoint /api/v1...") | La mayoría de los lectores no lo necesitan |
+| Emojis o hashtags | Inconsistente con el tono editorial |
+
+---
+
+## La diferencia que define el proyecto
+
+| Sección | El tweet muestra |
+|---|---|
+| ALERTAS | El riesgo |
+| RADAR | El cambio de paradigma |
+
+Esta distinción evita que RADAR se convierta en otra sección de noticias y obliga a que cada pieza aporte una observación estratégica.
