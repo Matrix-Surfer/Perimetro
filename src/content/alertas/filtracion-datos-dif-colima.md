@@ -7,8 +7,8 @@ categoria: "Fuga de datos"
 ambito: "Mixto"
 nivelAtencion: "Medio"
 status: "En monitoreo"
-resumen: "Un actor identificado como SoulHemTeam publicó en un foro de filtraciones información atribuible al DIF Colima. La publicación fue revisada por el equipo editorial de Perímetro. No existe confirmación oficial de la institución sobre la autenticidad, el origen o el alcance de la información comprometida."
-expuestos: "Personas con algún vínculo con el DIF Colima. El tipo de información afectada no ha sido confirmado."
+resumen: "Un actor identificado como SoulHemTeam publicó en un foro de filtraciones información atribuible al DIF Colima. La publicación fue revisada. No existe confirmación oficial de la institución sobre la autenticidad, el origen o el alcance de la información comprometida."
+expuestos: "El tipo de información afectada no ha sido confirmado."
 verificacion: "Estar en alerta por si alguien recibe un contacto que menciona datos específicos vinculados a un trámite del DIF Colima, verificar la identidad del contacto antes de responder o proporcionar información adicional."
 impacto: "El alcance del daño depende del tipo de información incluida en la filtración. No confirmado al momento de la publicación."
 grc_activo: "Información atribuida al DIF Colima (contenido no confirmado)"
@@ -22,7 +22,7 @@ publicacion: "published"
 
 ## Qué ocurrió
 
-Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada por el equipo editorial de Perímetro. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
+Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
 
 ## Quién está expuesto
 
