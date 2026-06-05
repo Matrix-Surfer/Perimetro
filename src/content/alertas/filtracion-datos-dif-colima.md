@@ -23,7 +23,7 @@ publicacion: "published"
 ## Qué ocurrió
 
 Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
-
+<br><br>
 SoulHemTeam tiene un patrón documentado: publica información de acceso público o de escaso valor real, la presenta como una filtración significativa y genera atención mediática antes de que alguien verifique qué hay realmente ahí. La publicación sobre el DIF Colima sigue ese mismo patrón. Medios internacionales han amplificado la publicación sin confirmación independiente. Périmetro la documenta precisamente por eso: para ofrecer contexto antes de que la cobertura genere alarma desproporcionada.
 
 ## Quién está expuesto
