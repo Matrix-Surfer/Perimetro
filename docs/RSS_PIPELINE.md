@@ -227,7 +227,7 @@ Segundo paso LLM del pipeline. Genera la narrativa editorial usando la ficha GRC
 
 **Radar genera:** campos `señal`, `supuesto`, `observación`, `context` y cuerpo completo (3 secciones: La señal / El supuesto que se rompe / Qué observar). Tono staccato, lenguaje de directivo — nunca instrucciones operativas.
 
-**Alertas genera:** campos `resumen`, `expuestos`, `verificacion`, `impacto` y cuerpo completo (4 secciones: Qué ocurrió / Quién está expuesto / Qué verificar / Impacto potencial). Lenguaje ciudadano — sin jerga técnica.
+**Alertas genera:** campos `resumen`, `expuestos`, `verificacion`, `impacto` y cuerpo completo (4 secciones: Qué ocurrió / Quién está expuesto / A considerar (opcional) / Impacto potencial). Lenguaje ciudadano — sin jerga técnica.
 
 **Reglas del LLM:**
 - No inventa datos ni información nueva

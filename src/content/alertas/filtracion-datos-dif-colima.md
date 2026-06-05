@@ -22,7 +22,7 @@ publicacion: "published"
 
 ## Qué ocurrió
 
-Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada. La existencia de la publicación fue verificada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
+Un actor identificado como SoulHemTeam publicó en un foro especializado en filtraciones cierta información atribuible al Sistema para el Desarrollo Integral de la Familia (DIF) del estado de Colima. La publicación fue revisada. La autenticidad, integridad y origen de los datos atribuidos al DIF Colima no han sido confirmados de forma independiente. Al momento de esta publicación, el DIF Colima no ha emitido comunicado oficial sobre el incidente.
 <br><br>
 SoulHemTeam tiene un patrón documentado: publica información de acceso público o de escaso valor real, la presenta como una filtración significativa y genera atención mediática antes de que alguien verifique qué hay realmente ahí. La publicación sobre el DIF Colima sigue ese mismo patrón. Medios internacionales han amplificado la publicación sin confirmación independiente. Périmetro la documenta precisamente por eso: para ofrecer contexto antes de que la cobertura genere alarma desproporcionada.
 
@@ -34,8 +34,7 @@ Al momento de esta publicación no existe información oficial que permita deter
 
 ### Para organizaciones
 
-Instituciones públicas locales y estatales que resguardan datos personales de ciudadanos o beneficiarios. El evento es una señal de que los actores de amenaza consideran a estas organizaciones objetivos con información de valor, independientemente de su tamaño o presupuesto.
-
+Este tipo de incidentes refuerza la necesidad de revisión periódica de superficies expuestas en instituciones públicas. En particular, portales web, sistemas de gestión de beneficiarios y repositorios administrativos deben ser evaluados para identificar configuraciones inseguras, credenciales expuestas o servicios sin endurecimiento adecuado.
 
 ## Impacto potencial
 

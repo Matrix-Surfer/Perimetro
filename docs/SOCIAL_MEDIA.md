@@ -33,12 +33,30 @@ Si explicas por qué importa, es contenido Perímetro.
 
 ---
 
-## Reglas generales
+## Formato de publicación
 
-- **Sin emojis** — consistente con el tono editorial
-- **Sin hashtags**
-- **Link al final**, separado del cuerpo del tweet
+Cada tweet sigue esta estructura:
+
+```
+[emoji] [SECCIÓN]
+
+[cuerpo — 40 a 70 palabras]
+
+jsilva.io/[sección]/[slug]
+
+#[HashtagSección] #Ciberseguridad
+```
+
+| Sección | Emoji | Etiqueta | Hashtag |
+|---|---|---|---|
+| ALERTAS | 🚨 | ALERTA | #AlertaPerímetro |
+| RADAR | 📡 | RADAR | #RadarPerímetro |
+
+**Reglas generales:**
+
+- **Link antes de hashtags**, sin `https://` — formato `jsilva.io/...`
 - **40 a 70 palabras** — menos de 30 parece titular, más de 90 pierde alcance
+- **Archivo de tweets:** `tweets/tweets-YYYY-MM-DD.txt`
 
 ---
 
@@ -161,7 +179,7 @@ jsilva.io/radar/meta-silently-added-face-recognition-code-for-its-smart-glasses-
 | Sensacionalismo ("¡URGENTE! ¡Millones en peligro!") | Reduce credibilidad |
 | Recomendaciones obvias ("Actualice sus sistemas") | No aporta valor |
 | Demasiados detalles técnicos ("afecta el endpoint /api/v1...") | La mayoría de los lectores no lo necesitan |
-| Emojis o hashtags | Inconsistente con el tono editorial |
+| Preguntas retóricas vacías ("¿Está preparado?") | No aporta tensión real |
 
 ---
 

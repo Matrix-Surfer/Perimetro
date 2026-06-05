@@ -85,7 +85,7 @@ Incidentes de ciberseguridad relevantes para empresas mexicanas. Monitoreo, cont
 - [x] Dashboard editorial (`/dashboard`) — estado del pipeline, métricas y actividad reciente, protegido con Basic Auth
 - [x] Sistema de estados editoriales (`publicacion`: draft / review / published / rejected)
 - [x] Script de publicación interactivo (`scripts/publish.js`)
-- [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `CONTENT_PIPELINE.md`, `CONTENT_SCHEMAS.md`, `RSS_PIPELINE.md`)
+- [x] Documentación editorial (`EDITORIAL_GUIDE.md`, `ALERTAS_FRAMEWORK.md`, `RADAR_FRAMEWORK.md`, `CONTENT_SCHEMAS.md`, `RSS_PIPELINE.md`, `SOCIAL_MEDIA.md`)
 - [x] Estándar editorial GRC: ángulo de impacto de negocio en Alertas y Radar (`EDITORIAL_GUIDE.md`)
 - [x] Formato de distribución en redes sociales (`SOCIAL_MEDIA.md`)
 

@@ -222,39 +222,9 @@ Si la respuesta es sí → la alerta está lista.
 
 ## CONTROL 9 — Formato Twitter/X
 
-Ver referencia completa en [`docs/SOCIAL_MEDIA.md`](SOCIAL_MEDIA.md).
+Ver formato completo, ejemplos y reglas en [`docs/SOCIAL_MEDIA.md`](SOCIAL_MEDIA.md).
 
-Reglas clave para ALERTAS:
-
-- Sin emojis — consistente con el tono editorial
-- Sin hashtags
-- Lidera con la consecuencia de negocio, no con el nombre técnico
-- Link al final, separado del cuerpo
-- Texto máximo ~245 caracteres (Twitter reserva ~23 para el URL)
-
-```
-[Consecuencia o hecho concreto en 1-2 oraciones.]
-[Contexto mínimo para que tenga sentido.]
-[Dato o señal que justifica leer más.]
-
-jsilva.io/alertas/[slug]
-```
-
-**Ejemplo correcto:**
-```
-VS Code tiene una falla sin parche. Un clic entrega todos los repositorios del desarrollador al atacante.
-
-Código fuente, contraseñas almacenadas, claves de producción.
-El código de ataque ya es público.
-
-jsilva.io/alertas/vs-code-vulnerability-allows-one-click-github-token-theft
-```
-
-**No debe aparecer en un tweet de ALERTA:**
-- Emojis ni hashtags
-- Preguntas retóricas ("¿Está preparado?")
-- Reflexión estratégica ("Esto representa un cambio en...")
-- Nombres de marcas en el mensaje principal cuando el patrón puede explicarse sin ellas
+Regla editorial para ALERTAS: lidera con la consecuencia de negocio, no con el nombre técnico ni el CVE. El nombre de la marca aparece como contexto en el cuerpo — nunca en el titular ni en el tweet.
 
 ---
 
