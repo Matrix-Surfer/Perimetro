@@ -19,32 +19,28 @@ data/cache/rss_seen.json        inbox/rss/*.json
         |
         v
 scripts/classify-rss.js
-  (clasificación por keywords)
+  (clasificación por keywords; los descartados se eliminan)
         |
         v
-inbox/rss/radar/        inbox/rss/alertas/        inbox/rss/discard/
+inbox/rss/radar/        inbox/rss/alertas/
         |                       |
         v                       v
 scripts/generate-drafts.js
-  (genera Markdown con frontmatter)
+  (genera Markdown con frontmatter vacío en español)
+  (mueve cada JSON procesado a inbox/rss/processed/)
         |
         v
 src/content/radar/              src/content/alertas/
   publicacion: "draft"            publicacion: "draft"
+  title en inglés                 title en inglés
+  todos los campos vacíos         todos los campos vacíos
         |
         v
-scripts/normalize-risk.js
-  (extrae ficha GRC estructurada via Anthropic API, temp. 0.1)
-        |
-        v
-src/content/radar/              src/content/alertas/
-  publicacion: "normalized"       publicacion: "normalized"
-  grc_cambio/paradigma/…          grc_activo/vector/…
-  (+ nivelAtencion derivado de grc_explotacion)
-        |
-        v
-scripts/enrich-drafts.js
-  (genera narrativa editorial usando la ficha GRC como base)
+Enriquecimiento manual (Claude Code)
+  — traduce title y resumen al español
+  — aplica framework GRC (señal/supuesto/observación o ficha GRC)
+  — escribe cuerpo editorial completo
+  — cambia publicacion a "review"
         |
         v
 src/content/radar/              src/content/alertas/
@@ -52,8 +48,7 @@ src/content/radar/              src/content/alertas/
         |
         v
 Revisión humana obligatoria
-  (verificar información, ajustar tono,
-   completar secciones Pendiente)
+  (verificar información, ajustar tono, aprobar)
         |
         v
 node scripts/publish.js
@@ -75,11 +70,10 @@ node scripts/run-pipeline.js
 **Paso a paso:**
 ```bash
 node scripts/fetch-rss.js        # 1. Descargar feeds
-node scripts/classify-rss.js    # 2. Clasificar en radar/alertas/discard
-node scripts/generate-drafts.js  # 3. Generar drafts Markdown
-# 4. normalize-risk.js — manual hasta nuevo aviso
-# 5. enrich-drafts.js  — manual hasta nuevo aviso
-node scripts/publish.js          # 6. Publicar ítems en revisión
+node scripts/classify-rss.js    # 2. Clasificar en radar/alertas (descartados se eliminan)
+node scripts/generate-drafts.js  # 3. Generar drafts vacíos + limpiar inbox
+# 4. Enriquecimiento manual con Claude Code (traducción + GRC + cuerpo)
+node scripts/publish.js          # 5. Publicar ítems en revisión
 ```
 
 **Validación (independiente del pipeline):**
@@ -95,10 +89,11 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 
 El pipeline corre **manualmente**. El cron del sistema está desactivado.
 
-Los pasos `normalize-risk.js` y `enrich-drafts.js` se ejecutan **manualmente hasta nuevo aviso** — no forman parte del orquestador automático. `run-pipeline.js` solo ejecuta fetch → classify → generate → publish.
+El flujo operativo es: `run-pipeline.js` (fetch → classify → generate) → enriquecimiento manual con Claude Code → `publish.js`.
+
+Los scripts `normalize-risk.js` y `enrich-drafts.js` están disponibles como herramientas opcionales pero no forman parte del flujo regular. El enriquecimiento editorial — traducción al español, ficha GRC, cuerpo completo — lo hace Claude Code directamente sobre los drafts.
 
 Hoja de ruta:
-- **Futuro:** reintegrar normalize + enrich al orquestador cuando se defina el modelo de costo/automatización
 - **Futuro:** evaluar n8n para orquestación visual del pipeline completo
 
 ---

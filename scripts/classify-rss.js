@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readdir, readFile, rename, mkdir } from 'fs/promises';
+import { readdir, readFile, rename, unlink, mkdir } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -8,7 +8,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const INBOX     = join(__dirname, '..', 'inbox', 'rss');
 const DIR_RADAR   = join(INBOX, 'radar');
 const DIR_ALERTAS = join(INBOX, 'alertas');
-const DIR_DISCARD = join(INBOX, 'discard');
 
 // Patrones de descarte — se evalúan ANTES que alertas/radar
 // Objetivo: eliminar ruido editorial (webinars, recaps, podcasts, avisos OT/ICS)
@@ -36,6 +35,48 @@ const TITLE_DISCARD_PATTERNS = [
   /^⚡ weekly recap/i,
   /^isc stormcast for/i,
   /^remembering /i,
+];
+
+// --- Filtro geográfico ---
+// Orden de evaluación: LATAM → tech_global → us_específico → conservar (default)
+
+const KEYWORDS_LATAM = [
+  'mexico', 'méxico', 'latam', 'latin america', 'latinoamérica', 'latinoamerica',
+  'colombia', 'argentina', 'brasil', 'brazil', 'chile', 'perú', 'peru',
+  'venezuela', 'ecuador', 'costa rica', 'panamá', 'panama', 'bolivia',
+  'paraguay', 'uruguay', 'guatemala', 'honduras', 'el salvador', 'nicaragua',
+  'banxico', 'pemex', 'condusef', 'cnbv', 'inai',
+];
+
+// Software, plataformas y actores con presencia global — conservar aunque mencione institución US
+const KEYWORDS_GLOBAL_TECH = [
+  'cve-', 'zero-day', 'zero day', '0-day',
+  'windows', 'linux', 'android', 'ios ', 'macos',
+  'cisco', 'microsoft', 'google', 'apple', 'vmware', 'fortinet', 'ivanti',
+  'chrome', 'firefox', 'safari', 'edge',
+  'wordpress', 'apache ', 'nginx', 'openssl',
+  'github', 'npm ', 'pypi', 'docker', 'kubernetes',
+  'chinese ', 'china-linked', 'russian ', 'russia-linked',
+  'north korean', 'iranian ', 'iran-linked',
+  'supply chain',
+];
+
+// Instituciones y programas exclusivos de EE.UU. — descartar si no hay señal global
+const KEYWORDS_US_SPECIFIC = [
+  'u.s. government', 'us government', 'u.s. federal', 'federal agency',
+  'pentagon', 'u.s. military', 'us military', 'u.s. army', 'us army',
+  'u.s. navy', 'u.s. air force',
+  'u.s. senate', 'us senate', 'u.s. congress', 'us congress',
+  'u.s. house', 'us house of representatives',
+  'white house', 'state department',
+  'department of defense', 'department of justice', 'department of energy',
+  'u.s. treasury', 'us treasury', 'treasury department',
+  'irs ', 'internal revenue service',
+  'social security number',
+  'medicare ', 'medicaid ',
+  'veterans affairs', 'va hospital',
+  'national guard',
+  'u.s. election', 'us election', 'u.s. voter',
 ];
 
 const KEYWORDS_ALERTAS = [
@@ -82,8 +123,17 @@ function shouldDiscard(item) {
   return false;
 }
 
+function isGeoIrrelevant(item) {
+  const text = normalize(`${item.title} ${item.summary}`);
+  if (matches(text, KEYWORDS_LATAM))       return false; // señal MX/LATAM → conservar
+  if (matches(text, KEYWORDS_GLOBAL_TECH)) return false; // tech global → conservar
+  if (matches(text, KEYWORDS_US_SPECIFIC)) return true;  // institución US sin ángulo global → descartar
+  return false;
+}
+
 function classify(item) {
-  if (shouldDiscard(item)) return 'discard';
+  if (shouldDiscard(item))    return 'discard';
+  if (isGeoIrrelevant(item))  return 'discard';
   const text = normalize(`${item.title} ${item.summary}`);
   if (matches(text, KEYWORDS_ALERTAS)) return 'alertas';
   return 'radar';
@@ -92,7 +142,6 @@ function classify(item) {
 async function main() {
   await mkdir(DIR_RADAR,   { recursive: true });
   await mkdir(DIR_ALERTAS, { recursive: true });
-  await mkdir(DIR_DISCARD, { recursive: true });
 
   const files = (await readdir(INBOX))
     .filter(f => f.endsWith('.json'));
@@ -108,7 +157,11 @@ async function main() {
     const src = join(INBOX, file);
     const item = JSON.parse(await readFile(src, 'utf8'));
     const category = classify(item);
-    await rename(src, join(INBOX, category, file));
+    if (category === 'discard') {
+      await unlink(src);
+    } else {
+      await rename(src, join(INBOX, category, file));
+    }
     counts[category]++;
   }
 

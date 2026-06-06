@@ -230,8 +230,9 @@ Criterio confianza:
 
 // --- Runner ---
 
-async function processDir(dir, normalizeFn, label) {
-  const files = (await readdir(dir)).filter(f => f.endsWith('.md'));
+async function processDir(dir, normalizeFn, label, onlyFiles) {
+  const all = (await readdir(dir)).filter(f => f.endsWith('.md'));
+  const files = onlyFiles ? all.filter(f => onlyFiles.includes(f)) : all;
   let normalized = 0, skipped = 0;
 
   for (const file of files) {
@@ -262,10 +263,14 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('\nNormalización GRC — Perímetro\n');
+  const argFiles = process.argv.slice(2).map(f => f.split('/').pop());
+  const onlyFiles = argFiles.length ? argFiles : null;
 
-  const radar   = await processDir(RADAR_DIR,   normalizeRadar,  'radar');
-  const alertas = await processDir(ALERTAS_DIR, normalizeAlerta, 'alerta');
+  console.log('\nNormalización GRC — Perímetro\n');
+  if (onlyFiles) console.log(`  Procesando: ${onlyFiles.join(', ')}\n`);
+
+  const radar   = await processDir(RADAR_DIR,   normalizeRadar,  'radar',  onlyFiles);
+  const alertas = await processDir(ALERTAS_DIR, normalizeAlerta, 'alerta', onlyFiles);
 
   const total = radar.normalized + alertas.normalized;
   console.log(`\n${total} archivos normalizados`);
