@@ -16,7 +16,7 @@ publicacion: "published"
 
 ## La señal
 
-Un investigador documentó cómo el SDK de Bright Data — integrado en aplicaciones de consumo gratuitas — convierte los dispositivos donde se instala en nodos de salida que retransmiten tráfico de raspado web para clientes de esa empresa. Los televisores inteligentes son el caso más claro: siempre encendidos, conectados a la red del hogar o la oficina, y con apps instaladas que nadie gestiona activamente. Bright Data opera una de las redes de proxies residenciales más grandes del mundo y la comercializa a empresas de inteligencia artificial que necesitan volúmenes masivos de datos de navegación.
+Un investigador documentó cómo aplicaciones gratuitas instaladas en televisores inteligentes y otros dispositivos conectados pueden utilizar la conectividad de esos equipos para retransmitir tráfico de terceros. El caso expone un cambio más amplio: algunos dispositivos ya no solo consumen servicios, también prestan recursos de red a modelos de negocio que operan en segundo plano. Equipos que suelen permanecer encendidos, conectados y fuera de los procesos de gestión de TI pueden terminar participando en actividades que la organización nunca evaluó ni autorizó explícitamente.
 
 ## El supuesto que se rompe
 

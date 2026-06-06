@@ -79,6 +79,29 @@ const KEYWORDS_US_SPECIFIC = [
   'u.s. election', 'us election', 'u.s. voter',
 ];
 
+// --- Detección de anuncios de producto/función ---
+// Si el TÍTULO tiene un verbo de anuncio (sin señal de amenaza activa) → radar directo,
+// sin pasar por el matching de KEYWORDS_ALERTAS que detectaría falsos positivos.
+
+const TITLE_ANNOUNCEMENT_VERBS = [
+  'launches', 'introduces', 'rolls out', 'rolling out',
+  'unveils', 'unveiled', 'debuts', 'now available', 'goes live',
+  'adds new', 'adds support',
+];
+
+const TITLE_FEATURE_NOUNS = [
+  'mode', 'feature', 'tool', 'capability', 'platform', 'update',
+];
+
+// Si el título contiene ALGUNA de estas señales, el patrón de anuncio no aplica
+const TITLE_HARD_THREAT = [
+  'zero-day', '0-day', 'actively exploited', 'under attack',
+  'no patch', 'emergency patch', 'critical flaw',
+  'ransomware', 'data breach', 'breached', 'stolen', 'leaked',
+  'malware', 'exploit', 'attack', 'hack', 'backdoor',
+  'trojan', 'worm', 'spyware', 'stealer', 'botnet',
+];
+
 const KEYWORDS_ALERTAS = [
   'ransomware', 'data breach', 'credential', 'phishing', 'malware',
   'exploit', 'exploited', 'zero-day', 'zero day', '0-day', 'cve-',
@@ -131,9 +154,19 @@ function isGeoIrrelevant(item) {
   return false;
 }
 
+function isAnnouncementRadar(item) {
+  const title = normalize(item.title ?? '');
+  const hasVerb = TITLE_ANNOUNCEMENT_VERBS.some(v => title.includes(v));
+  const hasNewFeature = (title.startsWith('new ') || title.includes(' new ')) &&
+    TITLE_FEATURE_NOUNS.some(n => title.includes(n));
+  if (!hasVerb && !hasNewFeature) return false;
+  return !TITLE_HARD_THREAT.some(t => title.includes(t));
+}
+
 function classify(item) {
-  if (shouldDiscard(item))    return 'discard';
-  if (isGeoIrrelevant(item))  return 'discard';
+  if (shouldDiscard(item))       return 'discard';
+  if (isGeoIrrelevant(item))     return 'discard';
+  if (isAnnouncementRadar(item)) return 'radar';
   const text = normalize(`${item.title} ${item.summary}`);
   if (matches(text, KEYWORDS_ALERTAS)) return 'alertas';
   return 'radar';

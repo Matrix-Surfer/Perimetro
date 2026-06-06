@@ -24,17 +24,54 @@ async function getDrafts() {
       const path = join(dir, file);
       const content = await readFile(path, 'utf8');
       if (content.includes('publicacion: "review"') || content.includes("publicacion: 'review'")) {
-        drafts.push({ seccion, file, path });
+        const titleMatch = content.match(/^title:\s*"?([^\n"]+)"?/m);
+        const title = titleMatch ? titleMatch[1].trim() : file;
+        drafts.push({ seccion, file, path, title });
       }
     }
   }
   return drafts;
 }
 
+async function publishItem(draft, estado = 'published') {
+  const original = await readFile(draft.path, 'utf8');
+  const updated = original
+    .replace(/publicacion: "review"/, `publicacion: "${estado}"`)
+    .replace(/publicacion: 'review'/, `publicacion: "${estado}"`);
+  await writeFile(draft.path, updated, 'utf8');
+}
+
 async function main() {
-  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  const args = process.argv.slice(2);
+  const publishAll = args.includes('--all');
+  const targetSlugs = args
+    .filter(a => !a.startsWith('--'))
+    .map(f => f.replace(/.*\//, '').replace(/\.md$/, '') + '.md');
 
   const drafts = await getDrafts();
+
+  // --- Modo bulk ---
+  if (publishAll || targetSlugs.length > 0) {
+    const toPublish = targetSlugs.length > 0
+      ? drafts.filter(d => targetSlugs.includes(d.file))
+      : drafts;
+
+    if (toPublish.length === 0) {
+      console.log('\nNo hay ítems en revisión que coincidan.\n');
+      return;
+    }
+
+    console.log(`\nPublicando ${toPublish.length} ítem${toPublish.length !== 1 ? 's' : ''}...\n`);
+    for (const draft of toPublish) {
+      await publishItem(draft, 'published');
+      console.log(`  ✓ [${draft.seccion}] ${draft.file}`);
+    }
+    console.log();
+    return;
+  }
+
+  // --- Modo interactivo ---
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
 
   if (drafts.length === 0) {
     console.log('\nNo hay ítems en revisión pendientes de publicación.\n');
@@ -44,7 +81,7 @@ async function main() {
 
   console.log(`\n${drafts.length} ítems en revisión:\n`);
   drafts.forEach((d, i) => {
-    console.log(`  ${String(i + 1).padStart(3)}. [${d.seccion}] ${d.file}`);
+    console.log(`  ${String(i + 1).padStart(3)}. [${d.seccion}] ${d.title}`);
   });
 
   let indexInput, estadoInput;
@@ -60,7 +97,7 @@ async function main() {
   }
 
   const draft = drafts[index];
-  console.log(`\nSeleccionado: [${draft.seccion}] ${draft.file}`);
+  console.log(`\nSeleccionado: [${draft.seccion}] ${draft.title}`);
   console.log('Estados disponibles:');
   ESTADOS.forEach((e, i) => console.log(`  ${i + 1}. ${e}`));
 
@@ -77,12 +114,7 @@ async function main() {
 
   rl.close();
 
-  const original = await readFile(draft.path, 'utf8');
-  const updated = original
-    .replace(/publicacion: "review"/, `publicacion: "${estado}"`)
-    .replace(/publicacion: 'review'/, `publicacion: "${estado}"`);
-
-  await writeFile(draft.path, updated, 'utf8');
+  await publishItem(draft, estado);
   console.log(`\n✓ ${draft.file} → ${estado}\n`);
 }
 
