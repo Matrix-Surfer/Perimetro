@@ -5,7 +5,7 @@ categoria: "Ciberseguridad"
 tags: ["IA", "ciberseguridad", "automatización", "malware", "phishing", "MiPYMES"]
 resumen: "La inteligencia artificial está reduciendo las barreras técnicas y económicas para ejecutar ciberataques sofisticados. Esto cambia el panorama de riesgo para pequeñas y medianas empresas que antes no eran consideradas objetivos prioritarios."
 tiempo_lectura: 8
-destacado: true
+destacado: false
 ---
 
 Hasta hace pocos años, ejecutar un ciberataque sofisticado requería tiempo, experiencia técnica y recursos especializados. Esa barrera de entrada funcionaba, de manera indirecta, como una protección para muchas pequeñas y medianas empresas. Simplemente, atacar ciertos objetivos no resultaba rentable.

@@ -5,7 +5,7 @@ categoria: "Ciberseguridad"
 tags: ["ciberseguridad", "confianza digital", "phishing", "ingeniería social", "MiPYMES", "identidad"]
 resumen: "Una parte creciente de los ataques no busca vulnerar sistemas de forma visible. Busca explotar señales que hacen que algo parezca confiable: un logo conocido, una interfaz familiar, una solicitud rutinaria. Ese cambio transforma la forma de pensar el riesgo."
 tiempo_lectura: 6
-destacado: true
+destacado: false
 publicacion: "published"
 ---
 

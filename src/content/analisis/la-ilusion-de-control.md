@@ -6,6 +6,7 @@ categoria: "Ciberseguridad"
 tags: ["gobernanza", "GRC", "riesgo", "cumplimiento", "gestión de riesgos"]
 resumen: "Muchas organizaciones creen que gestionan el riesgo porque gestionan los controles. Pero cuando la gobernanza opera sobre una realidad desactualizada, el cumplimiento deja de ser una garantía de entendimiento y se convierte en un ritual performativo."
 tiempo_lectura: 4
+destacado: true
 publicacion: "published"
 ---
 

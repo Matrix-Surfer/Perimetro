@@ -5,7 +5,7 @@ categoria: "Ciberseguridad"
 tags: ["Shadow AI", "IA", "gobernanza", "accesos", "permisos", "MiPYMES"]
 resumen: "El 67% de los profesionales usa asistentes de IA personales en su trabajo. Solo el 35% de las empresas ofrece herramientas oficiales. El resultado: conexiones no registradas, permisos que nadie revocará y datos corporativos en manos de terceros que la organización nunca autorizó."
 tiempo_lectura: 5
-destacado: true
+destacado: false
 publicacion: "published"
 ---
 

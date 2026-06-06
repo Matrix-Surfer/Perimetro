@@ -281,8 +281,9 @@ ${grcSection}Contenido fuente: ${source}`;
 
 // --- Runner ---
 
-async function processDir(dir, enrichFn, label) {
-  const files = (await readdir(dir)).filter(f => f.endsWith('.md'));
+async function processDir(dir, enrichFn, label, onlyFiles = null) {
+  const all = (await readdir(dir)).filter(f => f.endsWith('.md'));
+  const files = onlyFiles ? all.filter(f => onlyFiles.includes(f)) : all;
   let enriched = 0, skipped = 0;
 
   for (const file of files) {
@@ -310,14 +311,22 @@ async function processDir(dir, enrichFn, label) {
 async function main() {
   if (!API_KEY) {
     console.error('\nError: ANTHROPIC_API_KEY no configurada.');
-    console.error('Uso: ANTHROPIC_API_KEY=... node scripts/enrich-drafts.js\n');
+    console.error('Uso: ANTHROPIC_API_KEY=... node scripts/enrich-drafts.js [archivo.md ...]\n');
     process.exit(1);
   }
 
-  console.log('\nEnriquecimiento editorial — Perímetro\n');
+  // Si se pasan argumentos, solo procesar esos archivos (por nombre de archivo, sin ruta)
+  const argFiles = process.argv.slice(2).map(f => f.split('/').pop());
+  const onlyFiles = argFiles.length ? argFiles : null;
 
-  const radar   = await processDir(RADAR_DIR,   enrichRadarFile,   'radar');
-  const alertas = await processDir(ALERTAS_DIR, enrichAlertaFile,  'alerta');
+  if (onlyFiles) {
+    console.log(`\nEnriquecimiento editorial — Perímetro (${onlyFiles.length} archivos)\n`);
+  } else {
+    console.log('\nEnriquecimiento editorial — Perímetro\n');
+  }
+
+  const radar   = await processDir(RADAR_DIR,   enrichRadarFile,   'radar',   onlyFiles);
+  const alertas = await processDir(ALERTAS_DIR, enrichAlertaFile,  'alerta',  onlyFiles);
 
   const total = radar.enriched + alertas.enriched;
   console.log(`\n${total} archivos enriquecidos`);
