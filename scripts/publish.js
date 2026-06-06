@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { createInterface } from 'readline/promises';
-import { readdir, readFile, writeFile } from 'fs/promises';
+import { readdir, readFile, writeFile, unlink } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -34,6 +34,10 @@ async function getDrafts() {
 }
 
 async function publishItem(draft, estado = 'published') {
+  if (estado === 'rejected') {
+    await unlink(draft.path);
+    return;
+  }
   const original = await readFile(draft.path, 'utf8');
   const updated = original
     .replace(/publicacion: "review"/, `publicacion: "${estado}"`)

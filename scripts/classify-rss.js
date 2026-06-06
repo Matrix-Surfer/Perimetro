@@ -13,8 +13,9 @@ const DIR_ALERTAS = join(INBOX, 'alertas');
 // Objetivo: eliminar ruido editorial (webinars, recaps, podcasts, avisos OT/ICS)
 const KEYWORDS_DISCARD = [
   // Contenido editorial sin valor informativo
-  'webinar', 'watch on demand', 'weekly recap', 'weekly roundup',
+  'webinar', 'virtual event', 'watch on demand', 'weekly recap', 'weekly roundup',
   'stormcast for ', 'all sessions available', 'join us', 'register now',
+  'name-that-toon', 'name that toon', 'caption contest',
   'remembering ', 'in memoriam', 'obituary',
 
   // Avisos CISA para sistemas industriales/OT — irrelevantes para MiPYME
