@@ -3,7 +3,7 @@ title: "Atacantes instalaron programa oculto en firewalls Fortinet para capturar
 date: "2026-06-22"
 source: "BleepingComputer"
 link: "https://www.bleepingcomputer.com/news/security/fortibleed-campaign-used-custom-fortigate-sniffer-to-steal-credentials/"
-categoria: "Credenciales"
+categoria: "Otro"
 ambito: "Organizaciones"
 nivelAtencion: "Alto"
 status: "Activa"
