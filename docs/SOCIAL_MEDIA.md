@@ -38,23 +38,23 @@ Si explicas por qué importa, es contenido Perímetro.
 Cada tweet sigue esta estructura:
 
 ```
-[emoji] [SECCIÓN]
+[SECCIÓN]
 
 [cuerpo — 40 a 70 palabras]
 
 jsilva.io/[sección]/[slug]
-
-#[HashtagSección] #Ciberseguridad
 ```
 
-| Sección | Emoji | Etiqueta | Hashtag |
-|---|---|---|---|
-| ALERTAS | 🚨 | ALERTA | #AlertaPerímetro |
-| RADAR | 📡 | RADAR | #RadarPerímetro |
+| Sección | Etiqueta |
+|---|---|
+| ALERTAS | ALERTA |
+| RADAR | RADAR |
 
 **Reglas generales:**
 
-- **Link antes de hashtags**, sin `https://` — formato `jsilva.io/...`
+- **Sin emojis** — ni en la etiqueta ni en el cuerpo
+- **Sin hashtags**
+- Link sin `https://` — formato `jsilva.io/...`
 - **40 a 70 palabras** — menos de 30 parece titular, más de 90 pierde alcance
 - **Archivo de tweets:** `tweets/tweets-YYYY-MM-DD.txt`
 

@@ -25,10 +25,10 @@ Editorial frameworks and schemas live in `docs/`. Key files:
 ## Pipeline
 
 ```
-fetch-rss → classify-rss → generate-drafts → enrich-drafts → publish
+fetch-rss → classify-rss → generate-drafts → [enriquecimiento manual con Claude Code] → publish
 ```
 
-Enrich requires `ANTHROPIC_API_KEY`. Model: `claude-haiku-4-5-20251001`.
+`normalize-risk.js` y `enrich-drafts.js` existen pero no son parte del flujo regular. El enriquecimiento (traducción, GRC, cuerpo editorial) lo hace Claude Code directamente sobre los drafts.
 
 ## Editorial priorities
 

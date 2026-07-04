@@ -182,7 +182,7 @@ nivelAtencion: # "Bajo" | "Medio" | "Alto" | "Crítico"
 status:        # "Activa" | "En monitoreo" | "Resuelta"
 resumen:       # 2-3 oraciones. Hecho + quién expuesto + qué verificar.
                # En español. Tono directo. Sin jerga sin explicar.
-publicacion:   # draft | review | published | rejected
+publicacion:   # draft | normalized | review | published | rejected
 
 # Campos editoriales internos (no aparecen en UI, obligan a pensar)
 expuestos:    # Quién está expuesto — una frase

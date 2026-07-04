@@ -257,7 +257,7 @@ Valida los campos obligatorios de todos los archivos en `src/content/radar/` y `
 
 **Radar valida:** `title`, `pubDate` (fecha válida), `source`, `category`, `context`
 
-**Alertas valida:** `title`, `date` (formato YYYY-MM-DD), `tipo` (enum), `status` (enum), `resumen`
+**Alertas valida:** `title`, `date` (formato YYYY-MM-DD), `categoria` (enum), `status` (enum), `resumen`
 
 Salida:
 ```
