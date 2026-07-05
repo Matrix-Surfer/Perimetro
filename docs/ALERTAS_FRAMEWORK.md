@@ -218,6 +218,13 @@ Si una persona tiene dos minutos para leer la alerta, ¿puede entender:
 
 Si la respuesta es sí → la alerta está lista.
 
+**Prueba adicional de cierre:** ¿Un dueño de MiPYME entendería por qué le importa con solo leer el título y el resumen?
+
+- Si sí → publicar como siempre.
+- Si no → agregar una frase de cierre al final del cuerpo que aterrice el vínculo con el negocio.
+
+Esta frase no explica la técnica. Explica la consecuencia en lenguaje cotidiano: qué proceso, qué dato o qué operación de negocio está en riesgo. Es un ajuste de caso por caso — no aplica cuando el impacto ya es obvio sin traducción ("millones de dispositivos afectados", "datos bancarios expuestos").
+
 ---
 
 ## CONTROL 9 — Formato Twitter/X

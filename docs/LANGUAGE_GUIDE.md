@@ -118,6 +118,19 @@ Ejemplo correcto:
 
 ---
 
+## REGLA 9 — Puntuación
+
+No usar el guión largo (—, em dash). No es el estilo de Perímetro.
+
+Para separar ideas dentro de una oración, usar punto y seguido, punto y coma, o coma. El ritmo staccato de Perímetro hace innecesario el em dash: si una idea requiere ese separador, casi siempre es mejor convertirla en oración propia.
+
+| ❌ Evitar | ✅ Preferir |
+|---|---|
+| "La falla — que afecta versiones 2016 y 2019 — fue parcheada en mayo." | "La falla afecta versiones 2016 y 2019. Fue parcheada en mayo." |
+| "Sin contraseña — ni cuenta previa — un atacante puede entrar." | "Sin contraseña ni cuenta previa, un atacante puede entrar." |
+
+---
+
 ## Regla resumen
 
 > **Si un lector necesita buscar un término en Internet para entender la alerta, la alerta aún no está terminada.**

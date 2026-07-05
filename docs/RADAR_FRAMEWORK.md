@@ -160,6 +160,8 @@ Si un director general, director financiero o director de operaciones entiende e
 
 Si necesita conocer términos de seguridad o IA para entenderlo, todavía está demasiado técnico.
 
+**Criterio de selección adicional:** antes de enriquecer un candidato a RADAR, preguntarse si un lector nuevo — alguien que llega al sitio por primera vez — entendería de qué se habla con solo leer el titular. Si la señal requiere contexto de industria que ese lector no tiene, descartarla o reformularla hasta que sea autoexplicativa. Un buen RADAR no necesita que el lector ya sepa qué es la señal para entender por qué importa.
+
 Si el título menciona una tecnología específica pero el cambio estructural puede explicarse sin ella, el título debe centrarse en el cambio y no en la tecnología.
 
 | | Ejemplo |

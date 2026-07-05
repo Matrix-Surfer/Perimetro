@@ -8,10 +8,6 @@ señal: ""
 supuesto: ""
 observación: ""
 context: ""
-grc_cambio: ""
-grc_paradigma: ""
-grc_horizonte: ""
-grc_confianza: ""
 publicacion: "rejected"
 ---
 

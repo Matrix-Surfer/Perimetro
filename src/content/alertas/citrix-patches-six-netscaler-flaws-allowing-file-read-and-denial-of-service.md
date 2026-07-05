@@ -11,12 +11,6 @@ resumen: ""
 expuestos: ""
 verificacion: ""
 impacto: ""
-grc_activo: ""
-grc_vector: ""
-grc_condicion: ""
-grc_explotacion: ""
-grc_alcance: ""
-grc_confianza: ""
 publicacion: "rejected"
 ---
 
