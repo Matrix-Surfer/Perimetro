@@ -5,7 +5,7 @@ categoria: "Ciberseguridad"
 tags: ["nearshoring", "cadena de suministro", "ciberseguridad", "GRC", "MiPYMES", "proveedores", "ventas"]
 resumen: "Hay empresas mexicanas que llegan al final de una negociación de nearshoring y pierden el contrato sin entender por qué. El precio ya dejó de ser el factor decisivo: el verdadero filtro es demostrar que pueden proteger la información del cliente."
 tiempo_lectura: 7
-destacado: false
+destacado: true
 publicacion: "published"
 ---
 
