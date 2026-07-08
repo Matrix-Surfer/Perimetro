@@ -12,7 +12,7 @@ grc_cambio: "Los controles de seguridad de los asistentes de IA fallan cuando la
 grc_paradigma: "Si un modelo rechaza una instrucción dañina en el chat, el flujo de trabajo completo es seguro."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

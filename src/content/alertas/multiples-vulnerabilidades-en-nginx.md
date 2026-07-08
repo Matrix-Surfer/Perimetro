@@ -17,7 +17,7 @@ grc_condicion: "Ejecutar una configuración no predeterminada (encabezados perso
 grc_explotacion: "poc_publica"
 grc_alcance: "Organizaciones con infraestructura web basada en NGINX, incluyendo productos WAF de F5"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima dé clic en 'Continuar con Google' dentro de la 
 grc_explotacion: "activa"
 grc_alcance: "Profesionales de marketing en contacto con ofertas que suplantan a más de 30 marcas"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

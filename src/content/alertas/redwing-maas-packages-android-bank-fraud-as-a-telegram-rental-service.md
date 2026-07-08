@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima instale la aplicación fuera de Google Play sigu
 grc_explotacion: "activa"
 grc_alcance: "Usuarios de Android con aplicaciones bancarias o de criptomonedas instaladas"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

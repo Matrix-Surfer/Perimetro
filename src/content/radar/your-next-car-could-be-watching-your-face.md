@@ -12,7 +12,7 @@ grc_cambio: "El monitoreo biométrico del conductor pasa de opcional a obligator
 grc_paradigma: "La cámara que vigila al conductor es solo una función de seguridad vial, no una fuente de datos biométricos con valor comercial."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

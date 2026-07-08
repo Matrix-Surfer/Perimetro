@@ -17,7 +17,7 @@ grc_condicion: "Que un empleado conteste la llamada y siga las instrucciones par
 grc_explotacion: "activa"
 grc_alcance: "Empleados de organizaciones en alimentos y bebidas, tecnología, salud, automotriz, construcción y aviación"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

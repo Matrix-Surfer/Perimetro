@@ -12,7 +12,7 @@ grc_cambio: "El mecanismo criptográfico detrás de la 'computación confidencia
 grc_paradigma: "Una prueba criptográfica de que el software no fue alterado es suficiente para confiar en dónde y cómo se procesan los datos."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

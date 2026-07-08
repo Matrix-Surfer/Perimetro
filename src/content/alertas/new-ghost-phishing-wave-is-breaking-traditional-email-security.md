@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima abra el enlace y complete el flujo real de inici
 grc_explotacion: "activa"
 grc_alcance: "Organizaciones de tecnología, manufactura, educación, banca, consultoría y servicios financieros en EE. UU. y Europa"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

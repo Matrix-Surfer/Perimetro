@@ -17,7 +17,7 @@ grc_condicion: "Operar una versión no parchada de Moodle"
 grc_explotacion: "poc_publica"
 grc_alcance: "Instituciones educativas y organizaciones que usan Moodle"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

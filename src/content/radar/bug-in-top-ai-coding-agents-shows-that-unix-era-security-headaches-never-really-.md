@@ -12,7 +12,7 @@ grc_cambio: "La aprobación humana antes de que un agente de IA escriba un archi
 grc_paradigma: "Un cuadro de confirmación que pide aprobar una acción de la IA es suficiente para que un humano controle lo que hace el agente."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

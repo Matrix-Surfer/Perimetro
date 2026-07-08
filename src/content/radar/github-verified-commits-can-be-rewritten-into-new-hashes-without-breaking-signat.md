@@ -12,7 +12,7 @@ grc_cambio: "La verificación de código por hash de commit deja de ser una gara
 grc_paradigma: "Un commit firmado y verificado es una identidad única e inmutable."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

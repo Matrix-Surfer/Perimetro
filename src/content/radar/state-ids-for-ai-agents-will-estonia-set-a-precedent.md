@@ -12,7 +12,7 @@ grc_cambio: "Los gobiernos empiezan a reconocer identidad oficial a los agentes 
 grc_paradigma: "La identidad legal y digital pertenece solo a personas y organizaciones."
 grc_horizonte: "años"
 grc_confianza: "media"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal
