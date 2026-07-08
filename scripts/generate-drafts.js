@@ -70,8 +70,6 @@ observación: ""
 context: ""
 grc_cambio: ""
 grc_paradigma: ""
-grc_horizonte: ""
-grc_confianza: ""
 publicacion: "draft"
 ---`;
 }
@@ -123,9 +121,7 @@ impacto: ""
 grc_activo: ""
 grc_vector: ""
 grc_condicion: ""
-grc_explotacion: ""
 grc_alcance: ""
-grc_confianza: ""
 publicacion: "draft"
 ---` };
 }

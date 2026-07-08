@@ -1,54 +1,72 @@
 [
   {
     "name": "Krebs on Security",
-    "url": "https://krebsonsecurity.com/feed/"
+    "url": "https://krebsonsecurity.com/feed/",
+    "lang": "en"
   },
   {
     "name": "The Hacker News",
-    "url": "https://feeds.feedburner.com/TheHackersNews"
+    "url": "https://feeds.feedburner.com/TheHackersNews",
+    "lang": "en"
   },
   {
     "name": "Schneier on Security",
-    "url": "https://www.schneier.com/feed/atom"
+    "url": "https://www.schneier.com/feed/atom",
+    "lang": "en"
   },
   {
     "name": "Dark Reading",
-    "url": "https://www.darkreading.com/rss.xml"
+    "url": "https://www.darkreading.com/rss.xml",
+    "lang": "en"
   },
   {
     "name": "BleepingComputer",
-    "url": "https://www.bleepingcomputer.com/feed/"
+    "url": "https://www.bleepingcomputer.com/feed/",
+    "lang": "en"
   },
   {
     "name": "SecurityWeek",
-    "url": "https://feeds.feedburner.com/securityweek"
+    "url": "https://feeds.feedburner.com/securityweek",
+    "lang": "en"
   },
   {
     "name": "Malwarebytes Labs",
-    "url": "https://www.malwarebytes.com/blog/feed/"
+    "url": "https://www.malwarebytes.com/blog/feed/",
+    "lang": "en"
   },
   {
     "name": "The Register — Security",
-    "url": "https://www.theregister.com/security/headlines.atom"
+    "url": "https://www.theregister.com/security/headlines.atom",
+    "lang": "en"
   },
   {
     "name": "Ars Technica — Security",
-    "url": "https://arstechnica.com/security/feed/"
+    "url": "https://arstechnica.com/security/feed/",
+    "lang": "en"
   },
   {
     "name": "Wired — Security",
-    "url": "https://www.wired.com/feed/category/security/latest/rss"
+    "url": "https://www.wired.com/feed/category/security/latest/rss",
+    "lang": "en"
   },
   {
     "name": "MIT Technology Review",
-    "url": "https://www.technologyreview.com/feed/"
+    "url": "https://www.technologyreview.com/feed/",
+    "lang": "en"
   },
   {
     "name": "Unit 42 — Palo Alto Networks",
-    "url": "https://unit42.paloaltonetworks.com/feed/"
+    "url": "https://unit42.paloaltonetworks.com/feed/",
+    "lang": "en"
   },
   {
     "name": "Cisco Talos Blog",
-    "url": "https://blog.talosintelligence.com/rss/"
+    "url": "https://blog.talosintelligence.com/rss/",
+    "lang": "en"
+  },
+  {
+    "name": "INCIBE-CERT",
+    "url": "https://www.incibe.es/incibe-cert/alerta-temprana/avisos/feed",
+    "lang": "es"
   }
 ]

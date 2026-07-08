@@ -129,10 +129,13 @@ Hoja de ruta:
 [
   {
     "name": "Krebs on Security",
-    "url": "https://krebsonsecurity.com/feed/"
+    "url": "https://krebsonsecurity.com/feed/",
+    "lang": "en"
   }
 ]
 ```
+
+`lang` distingue fuentes en inglés (`en`) de fuentes en español (`es`). Por ahora es solo informativo: `classify-rss.js` clasifica con keywords en inglés, así que los items de fuentes `es` (ej. INCIBE-CERT) pueden caer mal clasificados en `radar` por defecto hasta que se agreguen keywords en español.
 
 Agregar o quitar fuentes directamente en este archivo. El script lo lee en cada ejecución.
 
@@ -323,6 +326,7 @@ inbox/rss/
 | MIT Technology Review | AI / Tecnología | Análisis |
 | Unit 42 — Palo Alto Networks | Seguridad / Threat Intel | Investigación propia |
 | Cisco Talos Blog | Seguridad / Threat Intel | Investigación propia |
+| INCIBE-CERT | Seguridad (España, en español) | Avisos oficiales de vulnerabilidades |
 
 ---
 
