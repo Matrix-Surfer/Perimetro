@@ -12,7 +12,7 @@ grc_cambio: "El desarrollo del firmware de Flipper Zero pasa de un equipo dedica
 grc_paradigma: "Las actualizaciones de herramientas de seguridad ampliamente usadas dependen de un fabricante con equipo dedicado."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

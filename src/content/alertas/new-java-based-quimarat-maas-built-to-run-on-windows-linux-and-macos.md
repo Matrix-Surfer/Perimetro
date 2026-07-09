@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima ejecute el archivo malicioso entregado"
 grc_explotacion: "activa"
 grc_alcance: "Cualquier persona u organización con equipos Windows, Linux o macOS, sin importar el sector"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

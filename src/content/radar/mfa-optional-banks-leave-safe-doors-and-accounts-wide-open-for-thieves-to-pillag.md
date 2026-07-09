@@ -12,7 +12,7 @@ grc_cambio: "Instituciones financieras dejan la autenticación multifactor como 
 grc_paradigma: "Un banco protege automáticamente la cuenta del cliente con más de una capa de seguridad."
 grc_horizonte: "meses"
 grc_confianza: "media"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

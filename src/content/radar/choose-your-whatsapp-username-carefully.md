@@ -12,7 +12,7 @@ grc_cambio: "WhatsApp reemplaza el número telefónico por un nombre de usuario 
 grc_paradigma: "El número telefónico dificultaba vincular la identidad de WhatsApp con otras redes sociales."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

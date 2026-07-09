@@ -17,7 +17,7 @@ grc_condicion: "Que el desarrollador instale o actualice a la versión compromet
 grc_explotacion: "activa"
 grc_alcance: "162 artefactos maliciosos en 108 paquetes distribuidos en NPM, Packagist, Go y Chrome"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

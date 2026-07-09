@@ -17,7 +17,7 @@ grc_condicion: "Haber instalado la aplicación señuelo o adquirido un dispositi
 grc_explotacion: "activa"
 grc_alcance: "Millones de dispositivos de consumo a nivel global."
 grc_confianza: "media"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

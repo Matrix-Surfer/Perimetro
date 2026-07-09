@@ -12,7 +12,7 @@ grc_cambio: "La IA generativa permite crear aplicaciones funcionales en minutos 
 grc_paradigma: "La seguridad se garantiza revisando el código durante las etapas de desarrollo."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

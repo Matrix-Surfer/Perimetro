@@ -17,7 +17,7 @@ grc_condicion: "El atacante necesita ya tener acceso o control de una máquina v
 grc_explotacion: "poc_publica"
 grc_alcance: "Proveedores de nube pública y empresas con infraestructura virtualizada propia sobre KVM."
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

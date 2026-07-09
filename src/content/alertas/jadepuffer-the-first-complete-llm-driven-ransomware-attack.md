@@ -17,7 +17,7 @@ grc_condicion: "Tener una instancia de Langflow expuesta a Internet sin la corre
 grc_explotacion: "activa"
 grc_alcance: "Organizaciones que usan Langflow para construir aplicaciones con inteligencia artificial."
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

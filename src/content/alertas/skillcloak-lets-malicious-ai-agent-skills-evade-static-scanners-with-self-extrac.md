@@ -17,7 +17,7 @@ grc_condicion: "Que la organización permita instalar skills de terceros sin rev
 grc_explotacion: "investigacion"
 grc_alcance: "Cualquier organización que use plataformas de agentes de IA con marketplace de complementos"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

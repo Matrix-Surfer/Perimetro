@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima descargue y ejecute el archivo falso, recibido p
 grc_explotacion: "activa"
 grc_alcance: "Contribuyentes y profesionales fiscales en India; patrón replicable contra otras autoridades fiscales"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

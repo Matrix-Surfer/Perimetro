@@ -12,7 +12,7 @@ grc_cambio: "La gestión de riesgo tecnológico pasa de escalas técnicas aislad
 grc_paradigma: "Una calificación de severidad técnica es suficiente para que la dirección entienda la gravedad de un riesgo."
 grc_horizonte: "meses"
 grc_confianza: "media"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal

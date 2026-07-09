@@ -17,7 +17,7 @@ grc_condicion: "Que la víctima visite una página controlada por el atacante us
 grc_explotacion: "poc_publica"
 grc_alcance: "Usuarios de Opera GX en cualquier país; no se limita a una industria o región."
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## Qué ocurrió

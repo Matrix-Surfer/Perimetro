@@ -12,7 +12,7 @@ grc_cambio: "El reconocimiento facial pasa de ser una medida puntual a infraestr
 grc_paradigma: "El reconocimiento facial en tiendas es excepcional y de uso limitado."
 grc_horizonte: "meses"
 grc_confianza: "alta"
-publicacion: "review"
+publicacion: "published"
 ---
 
 ## La señal
