@@ -25,10 +25,14 @@ Editorial frameworks and schemas live in `docs/`. Key files:
 ## Pipeline
 
 ```
-fetch-rss → classify-rss → generate-drafts → [enriquecimiento manual con Claude Code] → publish
+fetch-rss → classify-rss → [triage editorial manual con Claude Code] → generate-drafts → [enriquecimiento manual con Claude Code] → publish
 ```
 
+El triage aplica los filtros de viabilidad de `ALERTAS_FRAMEWORK.md`/`RADAR_FRAMEWORK.md` sobre los JSON crudos en `inbox/rss/{radar,alertas}/` **antes** de generar drafts: presenta una tabla numerada (sección, título, viabilidad), el usuario indica qué pasa, y solo esos items llegan a `generate-drafts`. Los que no pasan se mueven a `inbox/rss/discard/`. Esto evita gastar tiempo y dinero enriqueciendo notas que no se van a publicar, y evita acumular drafts de ruido en `src/content/`.
+
 `normalize-risk.js` y `enrich-drafts.js` existen pero no son parte del flujo regular. El enriquecimiento (traducción, GRC, cuerpo editorial) lo hace Claude Code directamente sobre los drafts.
+
+Ver `docs/RSS_PIPELINE.md` para el flujo completo y detallado.
 
 ## Editorial priorities
 

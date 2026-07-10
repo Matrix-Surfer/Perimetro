@@ -1,6 +1,6 @@
 # RSS Pipeline — Perímetro
 
-Sistema de ingesta, clasificación y generación automática de drafts a partir de feeds RSS. Ningún contenido se publica sin revisión humana.
+Sistema de ingesta y clasificación de feeds RSS. Solo se generan drafts de los items que pasan el triage editorial — nada se enriquece ni se publica sin revisión humana.
 
 ---
 
@@ -19,17 +19,31 @@ data/cache/rss_seen.json        inbox/rss/*.json
         |
         v
 scripts/classify-rss.js
-  (clasificación por keywords; los descartados se eliminan)
+  (clasificación por keywords; los descartados se eliminan permanentemente)
         |
         v
-inbox/rss/radar/        inbox/rss/alertas/
-        |                       |
-        v                       v
-scripts/generate-drafts.js
-  (genera Markdown con frontmatter vacío en español)
-  (mueve cada JSON procesado a inbox/rss/processed/)
+inbox/rss/radar/*.json        inbox/rss/alertas/*.json
+        |                              |
+        v                              v
+Triage editorial (Claude Code + humano)
+  — lee título + resumen de cada item, sin abrir cada JSON manualmente
+  — aplica CONTROL 0-2 de ALERTAS_FRAMEWORK.md
+    y Filtros 1/2/4 de RADAR_FRAMEWORK.md
+  — presenta tabla numerada: # | sección | título | viabilidad | razón
+  — el usuario indica qué números SÍ pasan
         |
         v
+inbox/rss/discard/*.json        inbox/rss/{radar,alertas}/*.json
+  (no viables, se conservan        (viables, siguen al
+   para auditoría, no generan       siguiente paso)
+   drafts)
+                                          |
+                                          v
+                              scripts/generate-drafts.js
+                                (genera Markdown SOLO de lo aprobado en el triage)
+                                (mueve cada JSON procesado a inbox/rss/processed/)
+                                          |
+                                          v
 src/content/radar/              src/content/alertas/
   publicacion: "draft"            publicacion: "draft"
   title en inglés                 title en inglés
@@ -62,18 +76,19 @@ git push → Cloudflare Pages (publicación automática)
 
 ## Ejecución
 
-**Pipeline automático (pasos 1-3):**
+**Pipeline automático (pasos 1-2):**
 ```bash
 node scripts/run-pipeline.js
 ```
 
 **Paso a paso:**
 ```bash
-node scripts/fetch-rss.js        # 1. Descargar feeds
-node scripts/classify-rss.js    # 2. Clasificar en radar/alertas (descartados se eliminan)
-node scripts/generate-drafts.js  # 3. Generar drafts vacíos + limpiar inbox
-# 4. Enriquecimiento manual con Claude Code (traducción + GRC + cuerpo)
-node scripts/publish.js          # 5. Publicar ítems en revisión
+node scripts/fetch-rss.js         # 1. Descargar feeds
+node scripts/classify-rss.js      # 2. Clasificar en radar/alertas (descartados se eliminan)
+# 3. Triage editorial manual con Claude Code (tabla de viabilidad + selección humana)
+node scripts/generate-drafts.js   # 4. Generar drafts SOLO de los items aprobados en el triage
+# 5. Enriquecimiento manual con Claude Code (traducción + GRC + cuerpo)
+node scripts/publish.js           # 6. Publicar ítems en revisión
 ```
 
 **Validación (independiente del pipeline):**
@@ -81,7 +96,27 @@ node scripts/publish.js          # 5. Publicar ítems en revisión
 node scripts/validate-content.js
 ```
 
-Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no genera duplicados. El script de enriquecimiento solo procesa archivos con `publicacion: "draft"`.
+`fetch-rss.js`, `classify-rss.js` y `generate-drafts.js` son idempotentes: ejecutarlos múltiples veces no genera duplicados.
+
+---
+
+## Triage editorial (paso 3)
+
+Filtro de viabilidad antes de gastar tiempo y dinero enriqueciendo un item. Se ejecuta sobre `inbox/rss/radar/*.json` e `inbox/rss/alertas/*.json`, **antes** de `generate-drafts.js` — así nunca se generan drafts de items que no van a publicarse.
+
+**Quién lo hace:** Claude Code, en vivo, dentro de la sesión de trabajo. No hay script ni llamada a LLM de por medio — mismo criterio que el enriquecimiento manual.
+
+**Cómo:**
+1. Lee título + resumen de cada JSON pendiente (sin generar contenido nuevo, solo evalúa).
+2. Aplica el framework editorial correspondiente:
+   - **Alertas:** CONTROL 0 (test de relevancia — ¿existe acción de verificación razonable?) y CONTROL 1/2 (categorías válidas/excluidas) de [`ALERTAS_FRAMEWORK.md`](ALERTAS_FRAMEWORK.md).
+   - **Radar:** Filtro 1 (cambio estructural), Filtro 2 (sobrevive 30 días) y Filtro 4 (horizonte estratégico) de [`RADAR_FRAMEWORK.md`](RADAR_FRAMEWORK.md).
+3. Presenta una tabla numerada: `# | Sección | Título | Viabilidad | Razón breve`.
+4. El usuario responde con los números que **sí** pasan.
+5. Los que no pasan se mueven a `inbox/rss/discard/` (se conservan para auditoría, no generan drafts).
+6. Los que sí pasan permanecen en `inbox/rss/{radar,alertas}/` para que `generate-drafts.js` los procese.
+
+**Por qué antes de generar el draft y no después:** generar el `.md` en `src/content/` y luego rechazarlo deja ruido — archivos `draft` que hay que revisar y limpiar en cada sesión. Filtrando sobre el JSON crudo, lo que no es viable nunca llega a `src/content/`.
 
 ---
 
@@ -89,7 +124,7 @@ Los primeros tres scripts son idempotentes: ejecutarlos múltiples veces no gene
 
 El pipeline corre **manualmente**. El cron del sistema está desactivado.
 
-El flujo operativo es: `run-pipeline.js` (fetch → classify → generate) → enriquecimiento manual con Claude Code → `publish.js`.
+El flujo operativo es: `run-pipeline.js` (fetch → classify) → triage editorial manual (Claude Code + humano) → `generate-drafts.js` (solo lo aprobado) → enriquecimiento manual con Claude Code → revisión humana → `publish.js`.
 
 Los scripts `normalize-risk.js` y `enrich-drafts.js` están disponibles como herramientas opcionales pero no forman parte del flujo regular. El enriquecimiento editorial — traducción al español, ficha GRC, cuerpo completo — lo hace Claude Code directamente sobre los drafts.
 
@@ -102,10 +137,11 @@ Hoja de ruta:
 
 | Script | Entrada | Salida |
 |---|---|---|
-| `scripts/run-pipeline.js` | — | Ejecuta los 6 pasos en secuencia |
+| `scripts/run-pipeline.js` | — | Ejecuta fetch + classify en secuencia (el resto del flujo es manual) |
 | `scripts/fetch-rss.js` | `data/sources/rss_sources.json` | `inbox/rss/*.json` |
-| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas,discard}/` |
-| `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
+| `scripts/classify-rss.js` | `inbox/rss/*.json` | `inbox/rss/{radar,alertas}/*.json` (descartes por keyword se eliminan permanentemente) |
+| *(sin script)* Triage editorial | `inbox/rss/{radar,alertas}/*.json` | Selección humana. No viables → `inbox/rss/discard/`; viables permanecen en su carpeta |
+| `scripts/generate-drafts.js` | `inbox/rss/{radar,alertas}/*.json` (post-triage) | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` |
 | `scripts/normalize-risk.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "draft"` | Mismos archivos con campos `grc_*` inyectados y `publicacion: "normalized"` |
 | `scripts/enrich-drafts.js` | `src/content/{radar,alertas}/*.md` con `publicacion: "normalized"` | Mismos archivos con narrativa editorial completa y `publicacion: "review"` |
 | `scripts/publish.js` | `src/content/**/*.md` con `publicacion: "review"` | Mismos archivos con `publicacion: "published"` o `"rejected"` |
@@ -240,17 +276,14 @@ Segundo paso LLM del pipeline. Genera la narrativa editorial usando la ficha GRC
 
 ## Orquestador (run-pipeline.js)
 
-Ejecuta los seis pasos del pipeline en orden, deteniendo en cualquier fallo:
+Ejecuta fetch y classify en orden, deteniendo en cualquier fallo:
 
 ```
 [fetch-rss]  OK
 [classify]   OK
-[generate]   OK
-[publish]    OMITIDO (modo no interactivo)
 ```
 
-Los pasos `normalize` y `enrich` no están en el orquestador — se ejecutan manualmente.
-- Si hay `PIPELINE_NONINTERACTIVE=1`, el paso `publish` se omite (útil para automatización)
+Triage, generate, normalize, enrich y publish no están en el orquestador — se ejecutan manualmente, en ese orden, después de revisar lo que dejó `classify`.
 
 ---
 
@@ -332,15 +365,15 @@ inbox/rss/
 
 ## Automatización (pendiente)
 
-El cron del sistema está desactivado. Para reactivarlo cuando esté lista la API de Anthropic:
+El cron del sistema está desactivado. `run-pipeline.js` ya no requiere `ANTHROPIC_API_KEY` (solo hace fetch + classify, sin pasos LLM). Para reactivarlo:
 
 ```bash
 crontab -e
 # Agregar:
-*/30 * * * * PIPELINE_NONINTERACTIVE=1 ANTHROPIC_API_KEY=... /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
+*/30 * * * * /home/jess/.nvm/versions/node/v24.15.0/bin/node /home/jess/Proyectos/perimetro/scripts/run-pipeline.js >> /home/jess/Proyectos/perimetro/logs/cron.log 2>&1
 ```
 
-**Nota:** usar la ruta absoluta de node porque cron no carga el PATH del usuario (nvm).
+**Nota:** usar la ruta absoluta de node porque cron no carga el PATH del usuario (nvm). El triage editorial, `generate-drafts.js`, el enriquecimiento y `publish.js` siguen siendo manuales — no tiene sentido automatizarlos hasta que el triage tenga un mecanismo no interactivo.
 
 A futuro se evalúa n8n para orquestación visual del pipeline completo.
 
