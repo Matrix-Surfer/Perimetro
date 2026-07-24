@@ -1,5 +1,5 @@
 ---
-title: "Entregaste tu INE, tu CURP o tu SAT. ¿Qué pasa después?"
+title: "Entregaste tu INE, tu CURP o tu constancia del SAT. ¿Qué pasa después?"
 date: "2026-07-17"
 categoria: "Ciberseguridad"
 tags: ["privacidad", "datos personales", "INAI", "identificación", "protección de datos", "derechos ARCO"]
